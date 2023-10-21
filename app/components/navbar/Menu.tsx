@@ -1,0 +1,64 @@
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import Avatar from '../Avatar'
+import MenuItem from './MenuItem'
+import useLoginModal from '@/app/hooks/useLoginModal'
+import useSignUpModal from '@/app/hooks/useSignUpModal'
+
+export default function Menu() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [fade, setFade] = useState(false)
+  const loginModal = useLoginModal()
+  const signUpModal = useSignUpModal()
+
+  const toggleOpen = () => {
+    setIsOpen((prev) => !prev)
+  }
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>
+    if (isOpen) {
+      setFade(true)
+    } else {
+      timer = setTimeout(() => {
+        setFade(false)
+      }, 200)
+    }
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [isOpen])
+
+  return (
+    <div className="relative">
+      <div
+        onClick={toggleOpen}
+        className="cursor-pointer hover:shadow-md transition"
+      >
+        <Avatar />
+      </div>
+      <div
+        className={`transition duration-200 ${
+          isOpen ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {fade && (
+          <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[120px] bg-white overflow-hidden top-12 right-0  md:-right-10 text-sm">
+            <div className="flex flex-col curser-pointer">
+              <>
+                <MenuItem onClick={loginModal.onOpen} label="로그인" />
+                <MenuItem onClick={signUpModal.onOpen} label="회원가입" />
+              </>
+              <MenuItem
+                onClick={() => {}}
+                label="내 소식 올리기"
+                className="border-t"
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
