@@ -1,13 +1,18 @@
 import React from 'react'
 import Logo from './Logo'
 import RightSide from './RightSide'
+import { User } from 'next-auth'
 
-export default function Navbar() {
+interface NavbarProps {
+  currentUser?: User | null
+}
+
+export default function Navbar({ currentUser }: NavbarProps) {
   return (
     <header className="fixed w-full">
       <div className="container flex items-center justify-between">
         <Logo />
-        <RightSide />
+        <RightSide currentUser={currentUser} />
       </div>
     </header>
   )

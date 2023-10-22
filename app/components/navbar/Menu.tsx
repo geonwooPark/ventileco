@@ -5,8 +5,14 @@ import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useSignUpModal from '@/app/hooks/useSignUpModal'
+import { User } from 'next-auth'
+import { signOut } from 'next-auth/react'
 
-export default function Menu() {
+interface MenuProps {
+  currentUser?: User | null
+}
+
+export default function Menu({ currentUser }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [fade, setFade] = useState(false)
   const loginModal = useLoginModal()
@@ -36,7 +42,7 @@ export default function Menu() {
         onClick={toggleOpen}
         className="cursor-pointer hover:shadow-md transition"
       >
-        <Avatar />
+        <Avatar src={currentUser?.image} />
       </div>
       <div
         className={`transition duration-200 ${
@@ -46,15 +52,25 @@ export default function Menu() {
         {fade && (
           <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[120px] bg-white overflow-hidden top-12 right-0  md:-right-10 text-sm">
             <div className="flex flex-col curser-pointer">
-              <>
-                <MenuItem onClick={loginModal.onOpen} label="로그인" />
-                <MenuItem onClick={signUpModal.onOpen} label="회원가입" />
-              </>
-              <MenuItem
-                onClick={() => {}}
-                label="내 소식 올리기"
-                className="border-t"
-              />
+              {currentUser ? (
+                <>
+                  <MenuItem
+                    onClick={() => signOut()}
+                    label="로그아웃"
+                    className="text-red-500"
+                  />
+                  <MenuItem
+                    onClick={() => {}}
+                    label="내가 쓴 댓글"
+                    className="border-t"
+                  />
+                </>
+              ) : (
+                <>
+                  <MenuItem onClick={loginModal.onOpen} label="로그인" />
+                  <MenuItem onClick={signUpModal.onOpen} label="회원가입" />
+                </>
+              )}
             </div>
           </div>
         )}
