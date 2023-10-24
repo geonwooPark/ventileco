@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, Suspense } from 'react'
 import { IconType } from 'react-icons'
 
 const btnSize = {
@@ -8,10 +8,10 @@ const btnSize = {
 }
 
 const btnLevel = {
-  primary: `bg-blue-600 text-white rounded transition duration-200 ease-in-out hover:opacity-80 disabled:bg-gray-400`,
-  secondary: `bg-gray-700 text-white rounded transition duration-200 ease-in-out hover:opacity-80 disabled:bg-gray-400`,
+  primary: `bg-blue-600 text-white rounded transition duration-200 ease-in-out hover:opacity-80 disabled:opacity-40 disabled:cursor-not-allowed`,
+  secondary: `bg-gray-700 text-white rounded transition duration-200 ease-in-out hover:opacity-80 disabled:opacity-40 disabled:cursor-not-allowed`,
   ghost: `border border-blue-600 text-blue-600 rounded transition duration-200 ease-in-out`,
-  outline: `border border-gray-400 text-gray-800 rounded transition duration-200 ease-in-out`,
+  outline: `border border-gray-400 text-gray-800 rounded transition duration-200 ease-in-out disabled:opacity-40 disabled:cursor-not-allowed`,
 }
 
 type ButtonProps = (
@@ -51,11 +51,11 @@ export default function Button({
       disabled={disabled}
       onClick={onClick}
       className={`
-      ${btnSize[size]}
-      ${btnLevel[level]}
-      ${Icon && 'flex justify-center items-center'}
-      ${fullWidth && '!w-full'}
-      ${className}`}
+        ${btnSize[size]}
+        ${btnLevel[level]}
+        ${Icon && 'flex justify-center items-center'}
+        ${fullWidth && '!w-full'}
+        ${className}`}
     >
       <>
         {Icon && <Icon size={20} className="mr-1" />}
