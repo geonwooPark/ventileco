@@ -1,10 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SearchIcon from './SearchIcon'
 import Menu from './Menu'
 import Search from './Search'
 import { User } from 'next-auth'
+import Link from 'next/link'
+import { AiOutlineEdit } from 'react-icons/ai'
 
 interface RightSideProps {
   currentUser?: User | null
@@ -14,11 +16,17 @@ export default function RightSide({ currentUser }: RightSideProps) {
 
   const toggleOpen = () => {
     setIsOpen((prev) => !prev)
+    if (!isOpen) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
   }
 
   return (
     <div className="flex items-center gap-4">
       <Search isOpen={isOpen} />
+      <Link href={'/write'} className="text-white z-50">
+        <AiOutlineEdit size={24} />
+      </Link>
       <SearchIcon isOpen={isOpen} toggleOpen={toggleOpen} />
       <Menu currentUser={currentUser} />
     </div>
