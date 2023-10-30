@@ -125,13 +125,6 @@ export default function LoginModal() {
     </>
   )
 
-  useEffect(() => {
-    setFocus({
-      email: false,
-      password: false,
-    })
-  }, [email, password])
-
   const footerContent = (
     <div className="mt-3">
       <hr className="mb-3" />
@@ -159,6 +152,13 @@ export default function LoginModal() {
       </p>
     </div>
   )
+
+  useEffect(() => {
+    setFocus({
+      email: false,
+      password: false,
+    })
+  }, [email, password])
 
   return (
     <Modal

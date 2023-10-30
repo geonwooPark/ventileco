@@ -15,7 +15,7 @@ export default function Logo() {
         quality={100}
         placeholder="blur"
         fill
-        className="w-full h-full object-cover"
+        className="object-cover"
         onClick={() => router.push('/')}
       />
     </div>
