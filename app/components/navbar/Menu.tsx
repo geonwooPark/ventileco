@@ -5,11 +5,11 @@ import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useSignUpModal from '@/app/hooks/useSignUpModal'
-import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
+import { UserType } from '@/app/utils/getCurrentUser'
 
 interface MenuProps {
-  currentUser?: User | null
+  currentUser?: UserType | null
 }
 
 export default function Menu({ currentUser }: MenuProps) {
@@ -38,10 +38,7 @@ export default function Menu({ currentUser }: MenuProps) {
 
   return (
     <div className="relative">
-      <div
-        onClick={toggleOpen}
-        className="cursor-pointer hover:shadow-md transition"
-      >
+      <div onClick={toggleOpen} className="cursor-pointer">
         <Avatar src={currentUser?.image} />
       </div>
       <div

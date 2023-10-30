@@ -4,12 +4,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import SearchIcon from './SearchIcon'
 import Menu from './Menu'
 import Search from './Search'
-import { User } from 'next-auth'
 import Link from 'next/link'
 import { AiOutlineEdit } from 'react-icons/ai'
+import { UserType } from '@/app/utils/getCurrentUser'
 
 interface RightSideProps {
-  currentUser?: User | null
+  currentUser?: UserType | null
 }
 export default function RightSide({ currentUser }: RightSideProps) {
   const [isOpen, setIsOpen] = useState(false)

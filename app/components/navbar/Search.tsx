@@ -30,7 +30,9 @@ export default function Search({ isOpen }: SearchProps) {
       }`}
     >
       {fade && (
-        <div className={`absolute w-full h-[420px] bg-black top-0 left-0`}>
+        <div
+          className={`absolute w-full h-[320px] md:h-[420px] bg-black top-0 left-0`}
+        >
           <form className="h-full">
             <div className="h-full flex justify-center items-center">
               <input
