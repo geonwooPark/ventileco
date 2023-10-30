@@ -1,19 +1,18 @@
 import mongoose, { Schema, models } from 'mongoose'
 
-const favoriteSchema = new Schema(
+const commentSchema = new Schema(
   {
     postingId: {
       type: String,
       unique: true,
       required: true,
     },
-    userId: {
+    user: {
       type: Array,
-      unique: true,
     },
   },
   { versionKey: false },
 )
 
-export const Favorite =
-  models.Favorite || mongoose.model('Favorite', favoriteSchema)
+export const Comment =
+  models.Comment || mongoose.model('Comment', commentSchema)

@@ -36,7 +36,7 @@ export default function YesNoModal() {
 
   return (
     <Modal
-      title="게시글 삭제"
+      title="삭제"
       body={bodyContent}
       isOpen={yesNoModal.isOpen}
       onClose={yesNoModal.onClose}

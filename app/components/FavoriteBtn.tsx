@@ -23,6 +23,7 @@ export default function FavoriteBtn({
 
   useEffect(() => {
     const getFav = async () => {
+      if (!currentUser) return
       await fetch(`/api/favorite?${postingId}`, {
         method: 'GET',
       })
@@ -38,7 +39,10 @@ export default function FavoriteBtn({
 
   return (
     <div
-      className={`border px-1.5 py-1 rounded hover:opacity-70 transition cursor-pointer ${className}`}
+      className={`border px-1.5 py-1 rounded transition
+      ${
+        currentUser ? 'cursor-pointer hover:opacity-70' : 'cursor-not-allowed'
+      } ${className}`}
       onClick={handleFavoriteBtn}
     >
       {isFav ? (
