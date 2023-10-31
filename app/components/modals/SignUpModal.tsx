@@ -78,9 +78,9 @@ export default function SignUpModal() {
             signUpModal.onClose()
           } else if (result.status === '409') {
             setFocus({ ...focus, email: true })
-            throw new Error(result.message)
+            throw new Error(result.error)
           } else {
-            throw new Error(result.message)
+            throw new Error(result.error)
           }
         })
     } catch (error) {

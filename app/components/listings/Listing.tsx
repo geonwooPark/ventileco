@@ -1,4 +1,6 @@
 import { PostingType } from '@/app/utils/getPostings'
+import getTimeDiff from '@/app/utils/getTimeDiff'
+import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -28,7 +30,7 @@ export default function Listing({ posting }: ListingProps) {
             </div>
           )}
         </div>
-        <div className="md:flex-1 md:px-6  flex flex-col justify-between">
+        <div className="md:flex-1 md:px-6 md:py-2  flex flex-col justify-between">
           <div className="mt-3 md:mt-0 mb-4">
             <h6 className="text-sm text-gray-400 mb-1.5 md:mb-4">
               {posting.category}
@@ -36,7 +38,9 @@ export default function Listing({ posting }: ListingProps) {
             <h4 className="text-lg font-semibold mb-1.5">{posting.title}</h4>
             <p className="text-sm text-gray-500">{posting.description}</p>
           </div>
-          <div className="text-xs text-gray-400">'s'</div>
+          <div className="text-xs text-gray-400">
+            {getTimeDiff(dayjs(posting.createdAt))}
+          </div>
         </div>
       </Link>
     </li>

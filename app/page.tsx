@@ -1,3 +1,69 @@
-export default function Home() {
-  return <div></div>;
+import Image from 'next/image'
+import mainBg from '/public/images/main-bg.png'
+import getPostings from './utils/getPostings'
+import Listing from './components/listings/Listing'
+import CategoryItem from './components/CategoryItem'
+
+const categories = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'TypeScript',
+  'React.JS',
+  'Next.JS',
+  '컴퓨터과학',
+  '라이브러리',
+]
+
+export default async function Home() {
+  const postings = await getPostings()
+
+  if (!postings) return
+  return (
+    <>
+      <section className="w-full h-[320px] md:h-[420px]">
+        <div className="my-container h-full text-white flex flex-col justify-center items-end">
+          <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
+            <Image
+              src={mainBg}
+              alt="메인 배경이미지"
+              quality={100}
+              fill
+              placeholder="blur"
+              className="object-cover brightness-50"
+            />
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold mb-5">Study Log</h1>
+          <p className="text-sm md:text-base">
+            프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-10">
+        <div className="my-container">
+          <div className="md:flex md:flex-row-reverse">
+            <div className="min-w-[120px] mb-10 md:mb-0">
+              <h1 className="md:text-lg mb-4">카테고리</h1>
+              <ul className="flex flex-wrap md:flex-col gap-2">
+                {categories.map((category, i) => {
+                  return <CategoryItem key={i} category={category} />
+                })}
+              </ul>
+            </div>
+            <div className="flex-1 md:mr-10">
+              <h1 className="md:text-lg mb-4">전체 게시글</h1>
+              <main>
+                <ul>
+                  {postings.map((posting) => {
+                    return <Listing key={posting._id} posting={posting} />
+                  })}
+                </ul>
+              </main>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }
