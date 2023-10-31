@@ -5,11 +5,13 @@ interface InputProps {
   type: 'text' | 'name' | 'email' | 'password'
   name: string
   value: string
+  maxLength?: number
   disabled?: boolean
   placeholder?: string
   className?: string
   icon?: IconType
   iconAction?: () => void
+  iconType?: 'button' | 'submit'
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -17,12 +19,14 @@ export default function Input({
   type,
   name,
   value,
+  maxLength,
   disabled,
   placeholder,
   className,
   onChange,
   icon: Icon,
   iconAction,
+  iconType,
 }: InputProps) {
   return (
     <div className="relative w-full">
@@ -30,20 +34,22 @@ export default function Input({
         type={type}
         name={name}
         value={value}
+        maxLength={maxLength}
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChange}
-        className={`px-4 py-3 text-sm text-gray-700 bg-white border border-gray-300 rounded outline-none focus:border-black
+        className={`px-4 py-3 text-sm bg-white border border-gray-300 rounded outline-none focus:border-black
         ${className}
         `}
       />
       {Icon && (
-        <div
+        <button
+          type={iconType}
           onClick={iconAction}
           className="absolute right-3 top-3 cursor-pointer"
         >
           <Icon size={20} />
-        </div>
+        </button>
       )}
     </div>
   )

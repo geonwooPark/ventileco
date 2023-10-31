@@ -5,8 +5,6 @@ import { v4 as uuid } from 'uuid'
 
 export async function POST(req: NextRequest) {
   const { postingId, currentUser, text } = await req.json()
-  // let date = new Date().toISOString()
-  // let isoDate = new Date(date)
 
   try {
     connectMongo()

@@ -11,7 +11,7 @@ export default function AdminController() {
   const { id } = useParams()
 
   return (
-    <div className="flex gap-4 my-6">
+    <div className="flex gap-4">
       <Button
         type="button"
         level="ghost"

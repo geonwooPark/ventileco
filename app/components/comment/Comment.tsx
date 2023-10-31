@@ -12,14 +12,12 @@ export default async function Comment({ postingId }: CommentProps) {
   const currentUser = await getCurrentUser()
   const comments = await getComments(postingId)
 
-  if (!comments) return
-
   return (
     <div>
       <h1 className="md:text-lg mb-4">댓글</h1>
       <Textarea currentUser={currentUser} />
       <div>
-        {comments.map((comment) => {
+        {comments?.map((comment) => {
           return (
             <CommentItem
               key={comment.commentId}

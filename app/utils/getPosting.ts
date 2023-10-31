@@ -1,6 +1,5 @@
 import { Posting } from '@/models/posting'
 import { connectMongo } from './database'
-import { Date } from 'mongoose'
 
 export interface PostingType {
   _id: string

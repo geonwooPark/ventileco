@@ -1,7 +1,6 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import { User } from '@/models/user'
-import { Date } from 'mongoose'
 
 export interface UserType {
   _doc?: any

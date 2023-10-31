@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { UserType } from '@/app/utils/getCurrentUser'
 import Button from '../Button'
 import dayjs from 'dayjs'
+import getTimeDiff from '@/app/utils/getTimeDiff'
 
 interface CommentItemProps {
   comment: {
@@ -84,7 +85,7 @@ export default function CommentItem({
               <button onClick={onDelete}>삭제</button>
             </>
           )}
-          <p>{dayjs(comment.createdAt).format('YYYY.MM.DD HH:mm')}</p>
+          <p>{dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}</p>
         </small>
       </div>
       {editMode ? (
