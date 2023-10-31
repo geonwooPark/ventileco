@@ -3,6 +3,7 @@ import mainBg from '/public/images/main-bg.png'
 import getPostings from './utils/getPostings'
 import Listing from './components/listings/Listing'
 import CategoryItem from './components/CategoryItem'
+import EmptyState from './components/EmptyState'
 
 const categories = [
   'HTML',
@@ -19,10 +20,11 @@ export default async function Home() {
   const postings = await getPostings()
 
   if (!postings) return
+
   return (
     <>
       <section className="w-full h-[320px] md:h-[420px]">
-        <div className="my-container h-full text-white flex flex-col justify-center items-end">
+        <div className="my-container h-full text-white text-right flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
             <Image
               src={mainBg}
@@ -42,7 +44,7 @@ export default async function Home() {
 
       <section className="mt-10">
         <div className="my-container">
-          <div className="md:flex md:flex-row-reverse">
+          <div className="flex flex-col md:flex-row-reverse mb-10">
             <div className="min-w-[120px] mb-10 md:mb-0">
               <h1 className="md:text-lg mb-4">카테고리</h1>
               <ul className="flex flex-wrap md:flex-col gap-2">
@@ -51,15 +53,19 @@ export default async function Home() {
                 })}
               </ul>
             </div>
-            <div className="flex-1 md:mr-10">
+            <div className="w-full flex flex-col md:w-[calc(100%-120px)]">
               <h1 className="md:text-lg mb-4">전체 게시글</h1>
-              <main>
-                <ul>
-                  {postings.map((posting) => {
-                    return <Listing key={posting._id} posting={posting} />
-                  })}
-                </ul>
-              </main>
+              {postings.length === 0 ? (
+                <EmptyState label="작성된 게시글이 없어요!" />
+              ) : (
+                <main>
+                  <ul>
+                    {postings?.map((posting) => {
+                      return <Listing key={posting._id} posting={posting} />
+                    })}
+                  </ul>
+                </main>
+              )}
             </div>
           </div>
         </div>
