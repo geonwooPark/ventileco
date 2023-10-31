@@ -14,6 +14,7 @@ import {
 } from 'firebase/storage'
 import { storage } from '../firebase'
 import DropDownMenu from '../components/dropdown/DropDownMenu'
+import EmptyState from '../components/EmptyState'
 
 const categories = [
   'HTML',
@@ -28,7 +29,7 @@ const categories = [
 
 const EditorWrapper = dynamic(() => import('../components/Editor'), {
   ssr: false,
-  loading: () => <p className="text-center">Loading ...</p>,
+  loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
 })
 
 export interface Images {
@@ -43,7 +44,13 @@ export default function Write() {
   const categoryRef = useRef<HTMLDivElement>(null)
   const [title, setTitle] = useState('')
   const titleRef = useRef<HTMLDivElement>(null)
+  const [errorSign, setErrorSign] = useState({
+    category: false,
+    title: false,
+    description: false,
+  })
   const [description, setDescription] = useState('')
+  const descriptionRef = useRef<HTMLDivElement>(null)
   const [previewURL, setPreviewURL] = useState('')
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
   const [content, setContent] = useState('')
@@ -54,8 +61,19 @@ export default function Write() {
     const { name, value } = e.target
     if (name === 'title') {
       setTitle(value)
-    } else {
+      if (value.length > 40) {
+        setErrorSign({ ...errorSign, title: true })
+      } else {
+        setErrorSign({ ...errorSign, title: false })
+      }
+    }
+    if (name === 'description') {
       setDescription(value)
+      if (value.length > 90) {
+        setErrorSign({ ...errorSign, description: true })
+      } else {
+        setErrorSign({ ...errorSign, description: false })
+      }
     }
   }
 
@@ -126,6 +144,21 @@ export default function Write() {
         })
         throw new Error('제목을 입력해주세요.')
       }
+      if (title.length > 40) {
+        titleRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+        throw new Error('제목은 40자 이하로 입력해주세요.')
+      }
+      if (description.length > 90) {
+        descriptionRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        })
+        throw new Error('설명은 90자 이하로 입력해주세요.')
+      }
+
       await fetch('/api/postings', {
         method: 'POST',
         body: JSON.stringify({
@@ -143,9 +176,9 @@ export default function Write() {
             router.push('/')
             router.refresh()
           } else if (result.status === '409') {
-            throw new Error(result.message)
+            throw new Error(result.error)
           } else {
-            throw new Error(result.message)
+            throw new Error(result.error)
           }
         })
     } catch (error) {
@@ -171,7 +204,7 @@ export default function Write() {
               <div className="w-full h-full bg-slate-400"></div>
             )}
           </div>
-          <div className="mb-3" ref={categoryRef}>
+          <div className="mt-10 md:mt-0 mb-4" ref={categoryRef}>
             <DropDownMenu
               categories={categories}
               category={category}
@@ -179,24 +212,36 @@ export default function Write() {
               setCategory={setCategory}
             />
           </div>
-          <div ref={titleRef}>
+          <div
+            ref={titleRef}
+            className={`w-full ${
+              errorSign.title ? 'text-red-500' : 'text-white'
+            }`}
+          >
             <Input
               type="text"
               name="title"
               value={title}
               placeholder="제목을 입력하세요"
               onChange={onTextChange}
-              className={`w-full !text-4xl text-white md:!text-6xl text-right font-bold !bg-transparent mb-3 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
+              className={`w-full !text-2xl md:!text-4xl text-right font-bold !bg-transparent mb-3 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
             />
           </div>
-          <Input
-            type="text"
-            name="description"
-            value={description}
-            placeholder="설명을 추가해보세요"
-            onChange={onTextChange}
-            className={`w-full !text-sm md:!text-base text-white text-right !bg-transparent mb-6 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
-          />
+          <div
+            ref={descriptionRef}
+            className={`w-full ${
+              errorSign.description ? 'text-red-500' : 'text-white'
+            }`}
+          >
+            <Input
+              type="text"
+              name="description"
+              value={description}
+              placeholder="설명을 추가해보세요"
+              onChange={onTextChange}
+              className={`w-full !text-sm md:!text-base text-right !bg-transparent mb-6 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
+            />
+          </div>
           <label
             htmlFor="photo"
             className="flex justify-center items-center w-40 h-11 md:h-12 px-4 text-xs md:text-sm text-white bg-gray-700 rounded transition duration-200 ease-in-out hover:opacity-80 cursor-pointer"

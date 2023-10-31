@@ -19,6 +19,18 @@ export async function POST(req: NextRequest) {
       { status: 409 },
     )
   }
+  if (title.length > 40) {
+    return NextResponse.json(
+      { message: '제목은 40자 이하로 입력해주세요.', statue: '409' },
+      { status: 409 },
+    )
+  }
+  if (description.length > 90) {
+    return NextResponse.json(
+      { message: '설명은 90자 이하로 입력해주세요.', statue: '409' },
+      { status: 409 },
+    )
+  }
 
   try {
     connectMongo()
