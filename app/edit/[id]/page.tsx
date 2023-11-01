@@ -1,25 +1,24 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Button from '../components/Button'
+import React, { useEffect, useRef, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import Button from '../../components/Button'
 import dynamic from 'next/dynamic'
 import { toast } from 'react-toastify'
-import Input from '../components/Input'
+import Input from '../../components/Input'
 import {
   deleteObject,
   getDownloadURL,
   ref,
   uploadBytes,
 } from 'firebase/storage'
-import { storage } from '../firebase'
-import DropDownMenu from '../components/dropdown/DropDownMenu'
-import EmptyState from '../components/EmptyState'
-import { PostingType } from '../utils/getPosting'
+import { storage } from '../../firebase'
+import DropDownMenu from '../../components/dropdown/DropDownMenu'
+import EmptyState from '@/app/components/EmptyState'
+import { PostingType } from '@/app/utils/getPosting'
 
 const categories = [
-  'HTML',
-  'CSS',
+  'HTML/CSS',
   'JavaScript',
   'TypeScript',
   'React.JS',
@@ -28,7 +27,7 @@ const categories = [
   '라이브러리',
 ]
 
-const EditorWrapper = dynamic(() => import('../components/Editor'), {
+const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ssr: false,
   loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
 })
@@ -40,8 +39,9 @@ export interface Images {
 
 export type Posting = Omit<PostingType, '_id' | 'createdAt' | 'updatedAt'>
 
-export default function Write() {
+export default function Edit() {
   const router = useRouter()
+  const { id: postingId } = useParams()
 
   const [posting, setPosting] = useState<Posting>({
     category: '',
@@ -51,7 +51,14 @@ export default function Write() {
     content: '',
   })
 
-  const { category, title, description, thumbnailURL, content } = posting
+  const {
+    category,
+    title,
+    description,
+    thumbnailURL: previewURL,
+    content,
+  } = posting
+  const [fetchLoading, setFetchLoading] = useState(true)
 
   const [errorSign, setErrorSign] = useState({
     category: false,
@@ -62,10 +69,30 @@ export default function Write() {
   const categoryRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)
   const descriptionRef = useRef<HTMLDivElement>(null)
-  const [previewURL, setPreviewURL] = useState('')
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
   const [uploadImages, setUploadImages] = useState<Images[]>([])
   const [isLoading, setisLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetch(`/api/postings?${postingId}`, { method: 'GET' })
+          .then((res) => res.json())
+          .then((result) => {
+            if (!result.error) {
+              setPosting(result)
+            }
+          })
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        }
+      } finally {
+        setFetchLoading(false)
+      }
+    }
+    fetchData()
+  }, [postingId])
 
   const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -101,7 +128,7 @@ export default function Write() {
     reader.onload = () => {
       const result = reader.result
       if (typeof result === 'string') {
-        setPreviewURL(result)
+        setPosting({ ...posting, thumbnailURL: result })
       }
     }
     reader.readAsDataURL(file)
@@ -176,14 +203,14 @@ export default function Write() {
       }
 
       await fetch('/api/postings', {
-        method: 'POST',
-        body: JSON.stringify({ ...posting, thumbnailURL }),
+        method: 'PUT',
+        body: JSON.stringify({ ...posting, thumbnailURL, postingId }),
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.status === '201') {
             toast.success(result.message)
-            router.push('/')
+            router.push(`/postings/${postingId}`)
             router.refresh()
           } else if (result.status === '409') {
             throw new Error(result.error)
@@ -198,6 +225,14 @@ export default function Write() {
     } finally {
       setisLoading(false)
     }
+  }
+
+  if (fetchLoading) {
+    return (
+      <div className="h-[100vh]">
+        <EmptyState label="데이터를 불러오는 중이에요!" />
+      </div>
+    )
   }
 
   return (
@@ -279,7 +314,7 @@ export default function Write() {
             type="button"
             level="primary"
             size="l"
-            label="등록하기"
+            label="수정하기"
             fullWidth={true}
             disabled={isLoading}
             className="mt-20 md:mt-12 mb-6"

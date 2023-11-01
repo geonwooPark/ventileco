@@ -7,25 +7,31 @@ import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../firebase'
 import { toast } from 'react-toastify'
-import { Images } from '../write/page'
+import { Images, Posting } from '../write/page'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {
   content: string
   theme: string
   readOnly?: boolean
-  setContent?: React.Dispatch<React.SetStateAction<string>>
-  setUploadImage?: React.Dispatch<React.SetStateAction<Images[]>>
+  setPosting: React.Dispatch<React.SetStateAction<Posting>>
+  setUploadImages?: React.Dispatch<React.SetStateAction<Images[]>>
 }
 
 export default function Editor({
   content,
   theme,
   readOnly,
-  setContent,
-  setUploadImage,
+  setPosting,
+  setUploadImages,
 }: EditorProps) {
   const quillRef = useRef<any>()
+
+  const onChange = (content: string) => {
+    setPosting((prev) => {
+      return { ...prev, content }
+    })
+  }
 
   const imageHandler = async () => {
     const input = document.createElement('input')
@@ -46,8 +52,8 @@ export default function Editor({
         editor.insertEmbed(range.index, 'image', fileUrl)
         editor.setSelection(range.index + 1)
 
-        if (setUploadImage) {
-          setUploadImage((prev) => [
+        if (setUploadImages) {
+          setUploadImages((prev) => [
             ...prev,
             { imageURL: fileUrl, imagePath: result.ref.fullPath },
           ])
@@ -86,7 +92,7 @@ export default function Editor({
     <ReactQuill
       ref={quillRef}
       value={content}
-      onChange={setContent}
+      onChange={onChange}
       modules={theme === 'snow' ? modules : undefined}
       theme={theme}
       readOnly={readOnly}

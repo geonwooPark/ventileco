@@ -2,19 +2,20 @@
 
 import React, { useEffect, useState } from 'react'
 import DropDownItem from './DropDownItem'
+import { Posting } from '@/app/edit/[id]/page'
 
 interface DropDownMenuProps {
   categories: string[]
   category: string
   label: string
-  setCategory: React.Dispatch<React.SetStateAction<string>>
+  setPosting: React.Dispatch<React.SetStateAction<Posting>>
 }
 
 export default function DropDownMenu({
   categories,
   category,
   label,
-  setCategory,
+  setPosting,
 }: DropDownMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [animation, setAnimation] = useState(false)
@@ -55,7 +56,7 @@ export default function DropDownMenu({
                     key={i}
                     category={category}
                     setIsOpen={setIsOpen}
-                    setCategory={setCategory}
+                    setPosting={setPosting}
                   />
                 )
               })}
