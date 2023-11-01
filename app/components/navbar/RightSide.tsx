@@ -23,7 +23,7 @@ export default function RightSide({ currentUser }: RightSideProps) {
 
   return (
     <div className="flex items-center gap-4">
-      <Search isOpen={isOpen} />
+      <Search isOpen={isOpen} setIsOpen={setIsOpen} />
       <Link href={'/write'} className="text-white z-50">
         <AiOutlineEdit size={24} />
       </Link>

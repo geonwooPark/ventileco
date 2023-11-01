@@ -3,34 +3,22 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
 import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { PostingType } from '@/app/utils/getPosting'
 import EmptyState from '@/app/components/EmptyState'
 import Listing from '@/app/components/listings/Listing'
-import CategoryItem from '@/app/components/CategoryItem'
-
-const categories = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
-  'React.JS',
-  'Next.JS',
-  '컴퓨터과학',
-  '라이브러리',
-]
 
 export default function page() {
-  const params = useParams()
-  const { category } = params
+  const keyword = useSearchParams().get('keyword')
   const [postings, setPostings] = useState<PostingType[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
-        await fetch(`/api/categories/${category}`, { method: 'GET' })
+        await fetch(`/api/search?keyword=${keyword}`, { method: 'GET' })
           .then((res) => res.json())
           .then((result) => {
             if (!result.error) {
@@ -46,7 +34,8 @@ export default function page() {
       }
     }
     fetchData()
-  }, [])
+  }, [keyword])
+
   return (
     <>
       <section className="w-full h-[320px] md:h-[420px]">
@@ -70,16 +59,8 @@ export default function page() {
 
       <section className="mt-10">
         <div className="my-container">
-          <div className="flex flex-col md:flex-row-reverse mb-10">
-            <div className="min-w-[120px] mb-10 md:mb-0">
-              <h1 className="md:text-lg mb-4">카테고리</h1>
-              <ul className="flex flex-wrap md:flex-col gap-2">
-                {categories.map((category, i) => {
-                  return <CategoryItem key={i} category={category} />
-                })}
-              </ul>
-            </div>
-            <div className="w-full flex flex-col md:w-[calc(100%-120px)]">
+          <div className="flex flex-col mb-10">
+            <div className="w-full md:h-auto">
               <h1 className="md:text-lg mb-4">검색 결과</h1>
               {isLoading ? (
                 <EmptyState label={'검색중이에요!'} />

@@ -23,5 +23,6 @@ const postingSchema = new Schema(
   { timestamps: true, versionKey: false },
 )
 
+postingSchema.index({ title: 'text', description: 'text', content: 'text' })
 export const Posting =
   models.Posting || mongoose.model('Posting', postingSchema)
