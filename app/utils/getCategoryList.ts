@@ -12,23 +12,27 @@ export interface PostingType {
   updatedAt: Date
 }
 
-export default async function getPostings({
+export default async function getCategoryList({
+  search,
   page = 1,
   limit = 10,
 }: {
+  search: string
   page: number
   limit: number
 }) {
   try {
     await connectMongo()
-    let postings = await Posting.find<PostingType>({})
+    let postings = await Posting.find<PostingType>({ category: search })
       .sort({
         createdAt: -1,
       })
       .skip((page - 1) * limit)
       .limit(limit)
 
-    let postingCount = await Posting.countDocuments()
+    let postingCount = await Posting.find<PostingType>({
+      category: search,
+    }).countDocuments()
 
     return { postings, postingCount }
   } catch (error) {

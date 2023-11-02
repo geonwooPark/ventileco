@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import getPostings from './utils/getPostings'
-import Listing from './components/listings/Listing'
-import CategoryItem from './components/CategoryItem'
-import EmptyState from './components/EmptyState'
-import Pagenation from './components/Pagenation'
+import getPostings from '../utils/getPostings'
+import Listing from '../components/listings/Listing'
+import CategoryItem from '../components/CategoryItem'
+import EmptyState from '../components/EmptyState'
+import Pagenation from '@/app/components/Pagenation'
 
 const categories = [
   'HTML',
@@ -17,7 +17,7 @@ const categories = [
   '라이브러리',
 ]
 
-export default async function Home({
+export default async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
@@ -26,6 +26,7 @@ export default async function Home({
     typeof searchParams.page === 'string' ? Number(searchParams.page) : 1
   const limit =
     typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10
+
   const { postings, postingCount } = await getPostings({ page, limit })
 
   return (

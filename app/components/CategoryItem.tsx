@@ -10,7 +10,7 @@ export default function CategoryItem({ category }: { category: string }) {
   const decodedParameter = decodeURI(categoryParameter as string)
   return (
     <div>
-      <Link href={`/categories/${category}`}>
+      <Link href={{ pathname: `/categories`, query: { search: category } }}>
         <button
           className={`px-3 py-2 text-sm text-gray-700 bg-gray-100 rounded-sm transition hover:opacity-50
         ${

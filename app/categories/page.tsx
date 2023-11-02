@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import getPostings from './utils/getPostings'
-import Listing from './components/listings/Listing'
-import CategoryItem from './components/CategoryItem'
-import EmptyState from './components/EmptyState'
-import Pagenation from './components/Pagenation'
+import EmptyState from '@/app/components/EmptyState'
+import Listing from '@/app/components/listings/Listing'
+import CategoryItem from '@/app/components/CategoryItem'
+import getCategoryList from '../utils/getCategoryList'
+import Pagenation from '../components/Pagenation'
 
 const categories = [
   'HTML',
@@ -17,7 +17,7 @@ const categories = [
   '라이브러리',
 ]
 
-export default async function Home({
+export default async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
@@ -26,7 +26,13 @@ export default async function Home({
     typeof searchParams.page === 'string' ? Number(searchParams.page) : 1
   const limit =
     typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10
-  const { postings, postingCount } = await getPostings({ page, limit })
+  const search =
+    typeof searchParams.search === 'string' ? searchParams.search : ''
+  const { postings, postingCount } = await getCategoryList({
+    search,
+    page,
+    limit,
+  })
 
   return (
     <>
@@ -61,9 +67,9 @@ export default async function Home({
               </ul>
             </div>
             <div className="w-full flex flex-col md:w-[calc(100%-120px)]">
-              <h1 className="md:text-lg mb-4">전체 게시글</h1>
+              <h1 className="md:text-lg mb-4">검색 결과</h1>
               {postingCount === 0 ? (
-                <EmptyState label="작성된 게시글이 없어요!" />
+                <EmptyState label={'작성된 게시글이 없어요!'} />
               ) : (
                 <main>
                   <ul>
@@ -77,7 +83,8 @@ export default async function Home({
           </div>
           <div className="mb-10">
             <Pagenation
-              path="postings"
+              path="categories"
+              search={search}
               postingCount={postingCount}
               page={page}
             />
