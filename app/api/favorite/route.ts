@@ -4,7 +4,7 @@ import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
-  const postingId = req.nextUrl.search.substring(1)
+  const postingId = req.nextUrl.searchParams.get('postingId')
   const currentUser = await getCurrentUser()
   try {
     connectMongo()

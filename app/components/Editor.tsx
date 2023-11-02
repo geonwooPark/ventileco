@@ -14,7 +14,7 @@ interface EditorProps {
   content: string
   theme: string
   readOnly?: boolean
-  setPosting: React.Dispatch<React.SetStateAction<Posting>>
+  setPosting?: React.Dispatch<React.SetStateAction<Posting>>
   setUploadImages?: React.Dispatch<React.SetStateAction<Images[]>>
 }
 
@@ -28,9 +28,11 @@ export default function Editor({
   const quillRef = useRef<any>()
 
   const onChange = (content: string) => {
-    setPosting((prev) => {
-      return { ...prev, content }
-    })
+    if (setPosting) {
+      setPosting((prev) => {
+        return { ...prev, content }
+      })
+    }
   }
 
   const imageHandler = async () => {

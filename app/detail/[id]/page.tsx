@@ -34,6 +34,8 @@ export default async function Postings({ params }: { params: { id: string } }) {
                 src={posting.thumbnailURL}
                 alt="썸네일이미지"
                 fill
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
                 className="object-cover brightness-50"
               />
             ) : (

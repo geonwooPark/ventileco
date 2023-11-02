@@ -25,7 +25,7 @@ export default function FavoriteBtn({
   useEffect(() => {
     const getFav = async () => {
       if (!currentUser) return
-      await fetch(`/api/favorite?${postingId}`, {
+      await fetch(`/api/favorite?postingId=${postingId}`, {
         method: 'GET',
       })
         .then((res) => res.json())

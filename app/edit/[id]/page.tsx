@@ -76,7 +76,7 @@ export default function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/postings?${postingId}`, { method: 'GET' })
+        await fetch(`/api/postings?postingId=${postingId}`, { method: 'GET' })
           .then((res) => res.json())
           .then((result) => {
             if (!result.error) {

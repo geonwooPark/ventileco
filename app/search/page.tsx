@@ -59,7 +59,7 @@ export default function page() {
 
       <section className="mt-10">
         <div className="my-container">
-          <div className="flex flex-col mb-10">
+          <div className="flex flex-col mb-5">
             <div className="w-full md:h-auto">
               <h1 className="md:text-lg mb-4">검색 결과</h1>
               {isLoading ? (

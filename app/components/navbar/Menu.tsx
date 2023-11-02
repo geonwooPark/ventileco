@@ -47,7 +47,7 @@ export default function Menu({ currentUser }: MenuProps) {
         }`}
       >
         {fade && (
-          <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[120px] bg-white overflow-hidden top-12 right-0  md:-right-10 text-sm">
+          <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[140px] bg-white overflow-hidden top-12 right-0  md:-right-10 text-sm">
             <div className="flex flex-col curser-pointer">
               {currentUser ? (
                 <>
@@ -59,6 +59,11 @@ export default function Menu({ currentUser }: MenuProps) {
                   <MenuItem
                     onClick={() => {}}
                     label="내가 쓴 댓글"
+                    className="border-t"
+                  />
+                  <MenuItem
+                    onClick={() => {}}
+                    label="내가 좋아하는 글"
                     className="border-t"
                   />
                 </>

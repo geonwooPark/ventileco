@@ -13,7 +13,7 @@ export default function Listing({ posting }: ListingProps) {
   return (
     <li className="group mb-6 md:mb-12">
       <Link
-        href={`/postings/${posting._id}`}
+        href={`/detail/${posting._id}`}
         className="flex flex-col md:flex-row"
       >
         <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] rounded-lg overflow-hidden">
@@ -22,6 +22,8 @@ export default function Listing({ posting }: ListingProps) {
               src={posting.thumbnailURL && posting.thumbnailURL}
               alt="썸네일이미지"
               fill
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
               className="object-cover transition-scale duration-200 ease-in group-hover:scale-110"
             />
           ) : (
