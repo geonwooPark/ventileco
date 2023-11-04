@@ -7,12 +7,16 @@ const favoriteSchema = new Schema(
       unique: true,
       required: true,
     },
+    title: {
+      type: String,
+      unique: true,
+    },
     userId: {
       type: Array,
       unique: true,
     },
   },
-  { versionKey: false },
+  { timestamps: true, versionKey: false },
 )
 
 export const Favorite =

@@ -2,8 +2,10 @@ import { Comment } from '@/models/comment'
 import { connectMongo } from './database'
 
 export interface CommentType {
+  _doc?: any
   _id: string
   postingId: string
+  title: string
   user: {
     commentId: string
     userImage: string
@@ -12,6 +14,8 @@ export interface CommentType {
     createdAt: Date
     text: string
   }[]
+  createdAt: Date
+  updatedAt: Date
 }
 
 export default async function getComments(postingId: string) {

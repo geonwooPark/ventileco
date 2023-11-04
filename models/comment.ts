@@ -7,11 +7,15 @@ const commentSchema = new Schema(
       unique: true,
       required: true,
     },
+    title: {
+      type: String,
+      required: true,
+    },
     user: {
       type: Array,
     },
   },
-  { versionKey: false },
+  { timestamps: true, versionKey: false },
 )
 
 export const Comment =

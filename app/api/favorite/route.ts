@@ -7,16 +7,14 @@ export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
   const currentUser = await getCurrentUser()
   try {
-    connectMongo()
-    const fav = await Favorite.findOne({
+    await connectMongo()
+    const isFav = await Favorite.findOne({
       postingId,
       userId: currentUser._id,
     })
-    if (fav) {
-      return NextResponse.json({ status: '200' }, { status: 200 })
-    } else {
-      return NextResponse.json({ status: '201' }, { status: 201 })
-    }
+    if (isFav) {
+      return NextResponse.json(1, { status: 200 })
+    } else return NextResponse.json(0, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -29,7 +27,7 @@ export async function POST(req: NextRequest) {
   const { postingId, userId } = await req.json()
 
   try {
-    connectMongo()
+    await connectMongo()
     await Favorite.updateOne(
       {
         postingId,
@@ -50,7 +48,7 @@ export async function DELETE(req: NextRequest) {
   const { postingId, userId } = await req.json()
 
   try {
-    connectMongo()
+    await connectMongo()
     await Favorite.updateOne(
       {
         postingId,
