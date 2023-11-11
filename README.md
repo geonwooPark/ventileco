@@ -52,8 +52,8 @@ Next.js를 기반으로 한 개인 블로그로, 최신 기술 동향, 개발 �
 ## 화면 구성
 | 메인 페이지  |  로그인 및 회원가입   |
 | :-------------------------------------------: | :------------: |
-|  <img width="400" alt="스크린샷 2023-11-11 오후 4 37 56" src="https://github.com/geonwooPark/myblog/assets/136573728/a3f43d44-5b48-4757-9281-847a6e6fcf8a"> |  <img width="400" alt="스크린샷 2023-11-11 오후 4 40 42" src="https://github.com/geonwooPark/myblog/assets/136573728/8cf90381-27d9-486d-b425-f58cc37b06a1">|  
+|  <img width="400" alt="스크린샷 2023-11-11 오후 8 43 57" src="https://github.com/geonwooPark/myblog/assets/136573728/2ae1d0b2-486b-4a3b-9820-61c1fc41b2cc"> |  <img width="400" alt="스크린샷 2023-11-11 오후 8 44 24" src="https://github.com/geonwooPark/myblog/assets/136573728/46e37087-cabf-4ff9-b4d1-68b6560e485e">|  
 | 상세 페이지   |  포스팅 페이지   |  
 | <img width="400" alt="스크린샷 2023-11-11 오후 4 38 32" src="https://github.com/geonwooPark/myblog/assets/136573728/d556ae42-6b1c-440e-a3f6-c358f228ed8f"> |  <img width="400" alt="스크린샷 2023-11-11 오후 4 38 20" src="https://github.com/geonwooPark/myblog/assets/136573728/775235c4-a0ae-4f1e-93a8-3f9def62b126">|
 | 검색 페이지  |  마이 페이지   |
-|  <img width="400" alt="스크린샷 2023-11-11 오후 4 39 48" src="https://github.com/geonwooPark/myblog/assets/136573728/bd5c1c06-d070-4c90-9348-7b482ab33534"> |  <img width="400" alt="스크린샷 2023-11-11 오후 4 38 51" src="https://github.com/geonwooPark/myblog/assets/136573728/458feaa4-62c7-4214-9612-0626f5f33f0c">|   
+|  <img width="400" alt="스크린샷 2023-11-11 오후 4 39 48" src="https://github.com/geonwooPark/myblog/assets/136573728/bd5c1c06-d070-4c90-9348-7b482ab33534"> |  <img width="400" alt="스크린샷 2023-11-11 오후 8 44 15" src="https://github.com/geonwooPark/myblog/assets/136573728/23383793-bcf6-49a8-a73d-5a0c781d9ce0">|   
