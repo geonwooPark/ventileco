@@ -2,7 +2,7 @@ import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
 import React from 'react'
 import Tap from '../components/tap/Tap'
-import getCurrentUser from '../utils/getCurrentUser'
+import getCurrentUser from '../actions/getCurrentUser'
 
 export default async function page() {
   const currentUser = await getCurrentUser()

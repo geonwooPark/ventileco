@@ -3,16 +3,13 @@ import mainBg from '/public/images/main-bg.png'
 import EmptyState from '@/app/components/EmptyState'
 import Listing from '@/app/components/listings/Listing'
 import CategoryItem from '@/app/components/CategoryItem'
-import getCategoryList from '../utils/getCategoryList'
+import getCategoryList from '../actions/getCategoryList'
 import Pagenation from '../components/Pagenation'
 
 const categories = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
   'React.JS',
   'Next.JS',
+  'TypeScript',
   '컴퓨터과학',
   '라이브러리',
 ]

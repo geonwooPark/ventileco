@@ -1,21 +1,28 @@
 'use client'
 
-import { CommentType } from '@/app/utils/getComments'
+import { CommentType } from '@/app/actions/getComments'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { PiDotsThreeVerticalBold } from 'react-icons/pi'
+import { toast } from 'react-toastify'
 
 export default function CommentList() {
   const [commentArr, setCommentArr] = useState<CommentType[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch('/api/comment', { method: 'GET' })
-        .then((res) => res.json())
-        .then((result) => {
-          setCommentArr(result)
-        })
+      try {
+        await fetch('/api/comment', { method: 'GET' })
+          .then((res) => res.json())
+          .then((result) => {
+            setCommentArr(result)
+          })
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        }
+      }
     }
     fetchData()
   }, [])

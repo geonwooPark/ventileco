@@ -3,6 +3,7 @@
 import React, { useMemo, useRef } from 'react'
 import ReactQuill, { Quill } from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.bubble.css'
 import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../firebase'
@@ -72,7 +73,7 @@ export default function Editor({
     return {
       toolbar: {
         container: [
-          [{ header: [1, 2, 3, 4, false] }],
+          [{ size: ['small', false, 'large', 'huge'] }],
           [{ color: [] }, { background: [] }],
           ['bold', 'italic', 'underline', 'strike', 'blockquote'],
           [{ list: 'ordered' }, { list: 'bullet' }, { align: [] }],
@@ -98,7 +99,7 @@ export default function Editor({
       modules={theme === 'snow' ? modules : undefined}
       theme={theme}
       readOnly={readOnly}
-      className="w-full h-full mt-6"
+      className="w-full h-full outline-none focus:outline-none"
     />
   )
 }

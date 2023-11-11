@@ -1,6 +1,6 @@
 import { connectMongo } from '@/app/utils/database'
-import { CommentType } from '@/app/utils/getComments'
-import getCurrentUser from '@/app/utils/getCurrentUser'
+import { CommentType } from '@/app/actions/getComments'
+import getCurrentUser from '@/app/actions/getCurrentUser'
 import { Comment } from '@/models/comment'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'

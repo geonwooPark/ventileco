@@ -3,6 +3,7 @@
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 interface Favorite {
   _id: string
@@ -18,11 +19,17 @@ export default function CommentList() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch('/api/favoriteList', { method: 'GET' })
-        .then((res) => res.json())
-        .then((result) => {
-          setFavoriteArr(result)
-        })
+      try {
+        await fetch('/api/favoriteList', { method: 'GET' })
+          .then((res) => res.json())
+          .then((result) => {
+            setFavoriteArr(result)
+          })
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        }
+      }
     }
     fetchData()
   }, [])

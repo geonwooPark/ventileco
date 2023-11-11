@@ -5,7 +5,7 @@ import mainBg from '/public/images/main-bg.png'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { PostingType } from '@/app/utils/getPosting'
+import { PostingType } from '@/app/actions/getPosting'
 import EmptyState from '@/app/components/EmptyState'
 import Listing from '@/app/components/listings/Listing'
 

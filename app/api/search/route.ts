@@ -1,5 +1,5 @@
 import { connectMongo } from '@/app/utils/database'
-import { PostingType } from '@/app/utils/getPosting'
+import { PostingType } from '@/app/actions/getPosting'
 import { Posting } from '@/models/posting'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -8,12 +8,12 @@ export async function GET(req: NextRequest) {
   if (!keyword || keyword.trim() === '') {
     return NextResponse.json(
       { error: '올바른 검색어를 입력하세요!' },
-      { status: 400 },
+      { status: 409 },
     )
   }
 
   try {
-    connectMongo()
+    await connectMongo()
     const options = [
       { title: { $regex: new RegExp(keyword, 'i') } },
       { description: { $regex: new RegExp(keyword, 'i') } },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UserType } from '../utils/getCurrentUser'
+import { UserType } from '../actions/getCurrentUser'
 
 interface UseFavorite {
   postingId: string

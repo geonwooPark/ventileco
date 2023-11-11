@@ -38,11 +38,11 @@ export default function LoginModal() {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/
 
     try {
-      if (!email) {
+      if (!email || email.trim() === '') {
         setFocus({ ...focus, email: true })
         throw new Error('이메일을 입력해주세요.')
       }
-      if (!password) {
+      if (!password || password.trim() === '') {
         setFocus({ ...focus, password: true })
         throw new Error('비밀번호를 입력해주세요.')
       }
@@ -63,9 +63,9 @@ export default function LoginModal() {
         redirect: false,
       }).then((callback) => {
         if (callback?.ok) {
-          toast.success('로그인에 성공했습니다')
-          router.refresh()
           loginModal.onClose()
+          router.refresh()
+          toast.success('로그인에 성공했습니다')
         }
         if (callback?.error) {
           if (callback.error === '존재하지 않는 회원입니다.') {

@@ -1,4 +1,4 @@
-import { PostingType } from '@/app/utils/getPostings'
+import { PostingType } from '@/app/actions/getPostings'
 import getTimeDiff from '@/app/utils/getTimeDiff'
 import dayjs from 'dayjs'
 import Image from 'next/image'

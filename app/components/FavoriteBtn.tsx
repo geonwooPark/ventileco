@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import useFavorite from '../hooks/useFavorite'
-import { UserType } from '../utils/getCurrentUser'
+import { UserType } from '../actions/getCurrentUser'
+import { toast } from 'react-toastify'
 
 interface FavoriteBtn {
   className?: string
@@ -25,18 +26,26 @@ export default function FavoriteBtn({
   useEffect(() => {
     const getFav = async () => {
       if (!currentUser) return
-      await fetch(`/api/favorite?postingId=${postingId}`, {
-        method: 'GET',
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result === 1) {
-            setIsFav(true)
-          } else {
-            setIsFav(false)
-          }
+
+      try {
+        await fetch(`/api/favorite?postingId=${postingId}`, {
+          method: 'GET',
         })
-        .finally(() => setIsLoading(false))
+          .then((res) => res.json())
+          .then((result) => {
+            if (result === 1) {
+              setIsFav(true)
+            } else {
+              setIsFav(false)
+            }
+          })
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        }
+      } finally {
+        setIsLoading(false)
+      }
     }
     getFav()
   }, [currentUser])

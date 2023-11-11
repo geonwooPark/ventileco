@@ -1,5 +1,5 @@
 import { Posting } from '@/models/posting'
-import { connectMongo } from './database'
+import { connectMongo } from '../utils/database'
 
 export interface PostingType {
   _id: string

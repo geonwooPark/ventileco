@@ -1,8 +1,8 @@
 import React from 'react'
 import Textarea from './Textarea'
-import getCurrentUser from '@/app/utils/getCurrentUser'
+import getCurrentUser from '@/app/actions/getCurrentUser'
 import CommentItem from './CommentItem'
-import getComments from '@/app/utils/getComments'
+import getComments from '@/app/actions/getComments'
 
 interface CommentProps {
   postingId: string

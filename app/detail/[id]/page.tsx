@@ -1,14 +1,14 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import getPosting from '@/app/utils/getPosting'
+import getPosting from '@/app/actions/getPosting'
 import Image from 'next/image'
-import getCurrentUser, { UserType } from '@/app/utils/getCurrentUser'
+import getCurrentUser, { UserType } from '@/app/actions/getCurrentUser'
 import AdminController from '@/app/components/AdminController'
 import FavoriteBtn from '@/app/components/FavoriteBtn'
 import Comment from '@/app/components/comment/Comment'
-import YesNoModal from '@/app/components/modals/YesNoModal'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/components/EmptyState'
+import DeleteModal from '@/app/components/modals/DeleteModal'
 
 const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ssr: false,
@@ -25,8 +25,8 @@ export default async function Postings({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <YesNoModal />
-      <section className="w-full h-[320px] md:h-[420px]">
+      <DeleteModal />
+      <section className="w-full h-[320px] md:h-[420px] mb-10">
         <div className="my-container h-full text-white flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
             {posting.thumbnailURL ? (

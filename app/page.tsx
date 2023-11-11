@@ -1,18 +1,15 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import getPostings from './utils/getPostings'
+import getPostings from './actions/getPostings'
 import Listing from './components/listings/Listing'
 import CategoryItem from './components/CategoryItem'
 import EmptyState from './components/EmptyState'
 import Pagenation from './components/Pagenation'
 
 const categories = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
   'React.JS',
   'Next.JS',
+  'TypeScript',
   '컴퓨터과학',
   '라이브러리',
 ]

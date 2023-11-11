@@ -3,10 +3,10 @@
 import React, { useState } from 'react'
 import Avatar from '../Avatar'
 import { useParams, useRouter } from 'next/navigation'
-import { UserType } from '@/app/utils/getCurrentUser'
+import { UserType } from '@/app/actions/getCurrentUser'
 import Button from '../Button'
 import dayjs from 'dayjs'
-import getTimeDiff from '@/app/utils/getTimeDiff'
+import { toast } from 'react-toastify'
 
 interface CommentItemProps {
   comment: {
@@ -39,15 +39,21 @@ export default function CommentItem({
     if (!currentUser) return
     if (comment.userId !== currentUser._id) return
 
-    await fetch('/api/comment', {
-      method: 'DELETE',
-      body: JSON.stringify({
-        postingId: postingId,
-        commentId: comment.commentId,
-      }),
-    }).then(() => {
-      router.refresh()
-    })
+    try {
+      await fetch('/api/comment', {
+        method: 'DELETE',
+        body: JSON.stringify({
+          postingId: postingId,
+          commentId: comment.commentId,
+        }),
+      }).then(() => {
+        router.refresh()
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
+    }
   }
 
   const onEdit = () => {

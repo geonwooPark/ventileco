@@ -1,5 +1,5 @@
 import { connectMongo } from '@/app/utils/database'
-import { PostingType } from '@/app/utils/getPosting'
+import { PostingType } from '@/app/actions/getPosting'
 import { Comment } from '@/models/comment'
 import { Favorite } from '@/models/favorite'
 import { Posting } from '@/models/posting'
@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
 
   try {
-    connectMongo()
+    await connectMongo()
     const posting = await Posting.findOne<PostingType>({ _id: postingId })
     return NextResponse.json(posting, { status: 200 })
   } catch (error) {
@@ -26,37 +26,39 @@ export async function POST(req: NextRequest) {
 
   if (!category) {
     return NextResponse.json(
-      { message: '카테고리를 입력해주세요.', statue: '409' },
+      { error: '카테고리를 입력해주세요.', focus: 'category' },
       { status: 409 },
     )
   }
   if (!title) {
     return NextResponse.json(
-      { message: '제목을 입력해주세요.', statue: '409' },
+      { error: '제목을 입력해주세요.', focus: 'title' },
       { status: 409 },
     )
   }
   if (title.length > 40) {
     return NextResponse.json(
-      { message: '제목은 40자 이하로 입력해주세요.', statue: '409' },
+      { error: '제목은 40자 이하로 입력해주세요.', focus: 'title' },
       { status: 409 },
     )
   }
   if (description.length > 90) {
     return NextResponse.json(
-      { message: '설명은 90자 이하로 입력해주세요.', statue: '409' },
+      { error: '설명은 90자 이하로 입력해주세요.', focus: 'description' },
       { status: 409 },
     )
   }
 
   try {
-    connectMongo()
+    await connectMongo()
     const newPosting = await Posting.create(posting)
-    await Favorite.create({
-      postingId: newPosting._id,
-    })
     await Comment.create({
       postingId: newPosting._id,
+      title,
+    })
+    await Favorite.create({
+      postingId: newPosting._id,
+      title,
     })
     return NextResponse.json(
       { message: '글 작성 성공!', status: '201' },
@@ -73,7 +75,7 @@ export async function POST(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   const id = await req.json()
   try {
-    connectMongo()
+    await connectMongo()
     await Posting.findByIdAndDelete({ _id: id })
     await Favorite.deleteMany({ postingId: id })
     await Comment.deleteMany({ postingId: id })
@@ -97,31 +99,31 @@ export async function PUT(req: NextRequest) {
 
   if (!category) {
     return NextResponse.json(
-      { message: '카테고리를 입력해주세요.', statue: '409' },
+      { error: '카테고리를 입력해주세요.', focus: 'category' },
       { status: 409 },
     )
   }
   if (!title) {
     return NextResponse.json(
-      { message: '제목을 입력해주세요.', statue: '409' },
+      { error: '제목을 입력해주세요.', focus: 'title' },
       { status: 409 },
     )
   }
   if (title.length > 40) {
     return NextResponse.json(
-      { message: '제목은 40자 이하로 입력해주세요.', statue: '409' },
+      { error: '제목은 40자 이하로 입력해주세요.', focus: 'title' },
       { status: 409 },
     )
   }
   if (description.length > 90) {
     return NextResponse.json(
-      { message: '설명은 90자 이하로 입력해주세요.', statue: '409' },
+      { error: '설명은 90자 이하로 입력해주세요.', focus: 'description' },
       { status: 409 },
     )
   }
 
   try {
-    connectMongo()
+    await connectMongo()
     await Posting.updateOne(
       { _id: postingId },
       { category, title, description, thumbnailURL, content },

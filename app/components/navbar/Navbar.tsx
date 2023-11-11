@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
 import RightSide from './RightSide'
-import { UserType } from '@/app/utils/getCurrentUser'
+import { UserType } from '@/app/actions/getCurrentUser'
 
 interface NavbarProps {
   currentUser?: UserType | null

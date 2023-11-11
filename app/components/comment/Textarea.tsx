@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 import Button from '../Button'
-import { UserType } from '@/app/utils/getCurrentUser'
+import { UserType } from '@/app/actions/getCurrentUser'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 interface TextareaProps {
   currentUser?: UserType | null
@@ -22,17 +23,23 @@ export default function Textarea({ currentUser }: TextareaProps) {
   }
 
   const onSubmit = async () => {
-    await fetch('/api/comment', {
-      method: 'POST',
-      body: JSON.stringify({
-        postingId: postingId,
-        currentUser: currentUser,
-        text,
-      }),
-    }).then(() => {
-      setText('')
-      router.refresh()
-    })
+    try {
+      await fetch('/api/comment', {
+        method: 'POST',
+        body: JSON.stringify({
+          postingId: postingId,
+          currentUser: currentUser,
+          text,
+        }),
+      }).then(() => {
+        setText('')
+        router.refresh()
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
+    }
   }
 
   return (

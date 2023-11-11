@@ -6,8 +6,8 @@ import LoginModal from './components/modals/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './components/modals/SignUpModal'
-import getCurrentUser, { UserType } from './utils/getCurrentUser'
-import YesNoModal from './components/modals/YesNoModal'
+import getCurrentUser, { UserType } from './actions/getCurrentUser'
+import YesNoModal from './components/modals/DeleteModal'
 
 const inter = Inter({ subsets: ['latin'] })
 

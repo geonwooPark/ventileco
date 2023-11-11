@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Button from './Button'
-import useYesNoModal from '../hooks/useYesNoModal'
+import useYesNoModal from '../hooks/useDeleteModal'
 import { useParams, useRouter } from 'next/navigation'
 
 export default function AdminController() {

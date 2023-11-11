@@ -9,11 +9,11 @@ const favoriteSchema = new Schema(
     },
     title: {
       type: String,
-      unique: true,
+      required: true,
     },
     userId: {
       type: Array,
-      unique: true,
+      // unique: true,
     },
   },
   { timestamps: true, versionKey: false },

@@ -1,15 +1,15 @@
 import { create } from 'zustand'
 
-interface YesNoModalStore {
+interface DeleteStore {
   isOpen: boolean
   onOpen: () => void
   onClose: () => void
 }
 
-const useYesNoModal = create<YesNoModalStore>((set) => ({
+const useDeleteModal = create<DeleteStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }))
 
-export default useYesNoModal
+export default useDeleteModal

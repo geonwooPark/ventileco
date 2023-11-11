@@ -16,7 +16,12 @@ export const authOptions: AuthOptions = {
         password: { label: 'password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
+        if (
+          !credentials?.email ||
+          credentials?.email.trim() === '' ||
+          !credentials.password ||
+          credentials?.password.trim() === ''
+        ) {
           throw new Error('빈칸을 모두 입력해주세요.')
         }
         await connectMongo()
@@ -49,22 +54,27 @@ export const authOptions: AuthOptions = {
     signIn: '/',
   },
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ user, account, profile, email, credentials }) {
       if (account?.type === 'oauth') {
         return await signInWithOAuth(account, profile)
       }
       return true
     },
-    async jwt({ token }) {
+    async jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token
+      }
       return token
     },
-    async session({ session }) {
+    async session({ session, token, user }) {
       return session
     },
   },
   debug: process.env.NODE_ENV === 'development',
+  // JSON 웹 토큰 - 어댑터를 지정하지 않는 경우 기본적으로 활성화
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60,
   },
   secret: process.env.NEXT_PUBLIC_JWT_SECRET,
 }

@@ -1,5 +1,5 @@
 import { Comment } from '@/models/comment'
-import { connectMongo } from './database'
+import { connectMongo } from '../utils/database'
 
 export interface CommentType {
   _doc?: any

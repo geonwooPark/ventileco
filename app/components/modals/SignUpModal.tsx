@@ -34,15 +34,15 @@ export default function SignUpModal() {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/
 
     try {
-      if (!email) {
+      if (!email || email.trim() === '') {
         setFocus({ ...focus, email: true })
         throw new Error('이메일을 입력해주세요.')
       }
-      if (!name) {
+      if (!name || name.trim() === '') {
         setFocus({ ...focus, name: true })
         throw new Error('이름을 입력해주세요.')
       }
-      if (!password) {
+      if (!password || password.trim() === '') {
         setFocus({ ...focus, password: true })
         throw new Error('비밀번호를 입력해주세요.')
       }
@@ -68,18 +68,24 @@ export default function SignUpModal() {
       })
         .then((res) => res.json())
         .then((result) => {
-          if (result.status === '201') {
+          if (!result.error) {
+            signUpModal.onClose()
             toast.success(result.message)
             setValues({
               email: '',
               name: '',
               password: '',
             })
-            signUpModal.onClose()
-          } else if (result.status === '409') {
-            setFocus({ ...focus, email: true })
-            throw new Error(result.error)
           } else {
+            if (result.focus === 'email') {
+              setFocus({ ...focus, email: true })
+            }
+            if (result.focus === 'name') {
+              setFocus({ ...focus, name: true })
+            }
+            if (result.focus === 'password') {
+              setFocus({ ...focus, password: true })
+            }
             throw new Error(result.error)
           }
         })

@@ -2,14 +2,14 @@
 
 import React from 'react'
 import Modal from './Modal'
-import useYesNoModal from '@/app/hooks/useYesNoModal'
 import { toast } from 'react-toastify'
 import { useParams, useRouter } from 'next/navigation'
+import useDeleteModal from '@/app/hooks/useDeleteModal'
 
-export default function YesNoModal() {
+export default function DeleteModal() {
   const router = useRouter()
   const params = useParams()
-  const yesNoModal = useYesNoModal()
+  const deleteModal = useDeleteModal()
   const bodyContent = <p>정말 삭제하시겠습니까?</p>
 
   const onSubmit = async () => {
@@ -22,7 +22,7 @@ export default function YesNoModal() {
         .then((result) => {
           if (result.status === '201') {
             toast.success(result.message)
-            yesNoModal.onClose()
+            deleteModal.onClose()
             router.push('/')
             router.refresh()
           }
@@ -38,11 +38,11 @@ export default function YesNoModal() {
     <Modal
       title="삭제"
       body={bodyContent}
-      isOpen={yesNoModal.isOpen}
-      onClose={yesNoModal.onClose}
+      isOpen={deleteModal.isOpen}
+      onClose={deleteModal.onClose}
       onSubmit={onSubmit}
       actionLabel="삭제"
-      secondaryAction={yesNoModal.onClose}
+      secondaryAction={deleteModal.onClose}
       secondaryActionLabel="취소"
     />
   )

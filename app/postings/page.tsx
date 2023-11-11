@@ -1,18 +1,15 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import getPostings from '../utils/getPostings'
+import getPostings from '../actions/getPostings'
 import Listing from '../components/listings/Listing'
 import CategoryItem from '../components/CategoryItem'
 import EmptyState from '../components/EmptyState'
 import Pagenation from '@/app/components/Pagenation'
 
 const categories = [
-  'HTML',
-  'CSS',
-  'JavaScript',
-  'TypeScript',
   'React.JS',
   'Next.JS',
+  'TypeScript',
   '컴퓨터과학',
   '라이브러리',
 ]
@@ -50,7 +47,7 @@ export default async function page({
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="mt-10 mb-10">
         <div className="my-container">
           <div className="flex flex-col md:flex-row-reverse mb-5">
             <div className="min-w-[120px] mb-10 md:mb-0">

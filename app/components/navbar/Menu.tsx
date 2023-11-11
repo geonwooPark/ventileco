@@ -6,13 +6,15 @@ import MenuItem from './MenuItem'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useSignUpModal from '@/app/hooks/useSignUpModal'
 import { signOut } from 'next-auth/react'
-import { UserType } from '@/app/utils/getCurrentUser'
+import { UserType } from '@/app/actions/getCurrentUser'
+import { useRouter } from 'next/navigation'
 
 interface MenuProps {
   currentUser?: UserType | null
 }
 
 export default function Menu({ currentUser }: MenuProps) {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [fade, setFade] = useState(false)
   const loginModal = useLoginModal()
@@ -57,13 +59,8 @@ export default function Menu({ currentUser }: MenuProps) {
                     className="text-red-500"
                   />
                   <MenuItem
-                    onClick={() => {}}
-                    label="내가 쓴 댓글"
-                    className="border-t"
-                  />
-                  <MenuItem
-                    onClick={() => {}}
-                    label="내가 좋아하는 글"
+                    onClick={() => router.push('/mypage')}
+                    label="마이페이지"
                     className="border-t"
                   />
                 </>

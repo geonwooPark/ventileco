@@ -15,14 +15,12 @@ import {
 import { storage } from '../../firebase'
 import DropDownMenu from '../../components/dropdown/DropDownMenu'
 import EmptyState from '@/app/components/EmptyState'
-import { PostingType } from '@/app/utils/getPosting'
+import { PostingType } from '@/app/actions/getPosting'
 
 const categories = [
-  'HTML/CSS',
-  'JavaScript',
-  'TypeScript',
   'React.JS',
   'Next.JS',
+  'TypeScript',
   '컴퓨터과학',
   '라이브러리',
 ]
@@ -208,14 +206,36 @@ export default function Edit() {
       })
         .then((res) => res.json())
         .then((result) => {
-          if (result.status === '201') {
+          if (!result.error) {
             toast.success(result.message)
-            router.push(`/postings/${postingId}`)
+            router.push(`/detail/${postingId}`)
             router.refresh()
-          } else if (result.status === '409') {
-            throw new Error(result.error)
           } else {
-            throw new Error(result.error)
+            if (!result.error) {
+              toast.success(result.message)
+              router.push(`/`)
+              router.refresh()
+            } else {
+              if (result.focus === 'category') {
+                categoryRef.current?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+                })
+              }
+              if (result.focus === 'title') {
+                titleRef.current?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+                })
+              }
+              if (result.focus === 'description') {
+                descriptionRef.current?.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'center',
+                })
+              }
+              throw new Error(result.error)
+            }
           }
         })
     } catch (error) {
