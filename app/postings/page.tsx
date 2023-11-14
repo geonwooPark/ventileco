@@ -60,7 +60,7 @@ export default async function Postings({
               <Suspense fallback={<SkeletonListings />}>
                 <Listings
                   path="postings"
-                  url={`http://127.0.0.1:3000/api/postingList?page=${page}&limit=${limit}`}
+                  type="all"
                   page={page}
                   limit={limit}
                 />

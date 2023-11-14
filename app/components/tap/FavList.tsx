@@ -1,14 +1,11 @@
-import getData from '@/app/actions/getData'
+import getMyFavList from '@/app/actions/getMyFavList'
 import { FavoriteType } from '@/app/interfaces/interface'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import React from 'react'
 
 export default async function CommentList() {
-  const favoriteList: FavoriteType[] = await getData(
-    'http://127.0.0.1:3000/api/favoriteList',
-  )
-
+  const favoriteList: FavoriteType[] = await getMyFavList()
   return (
     <table className="w-full">
       <thead>

@@ -1,9 +1,8 @@
 'use client'
 
 import React from 'react'
-import { UserType } from '@/app/actions/getCurrentUser'
 import CommentItem from './CommentItem'
-import { CommentUserType } from '@/app/interfaces/interface'
+import { CommentUserType, UserType } from '@/app/interfaces/interface'
 import DeleteCommentModal from '../modals/DeleteCommentModal'
 import { toast } from 'react-toastify'
 import { useParams, useRouter } from 'next/navigation'

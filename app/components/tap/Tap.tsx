@@ -1,21 +1,15 @@
 'use client'
 
 import React, { Suspense, useState } from 'react'
-import FavList from './FavList'
-import CommentList from './CommentList'
 
-const menuArr = [
-  {
-    name: '댓글',
-    content: <CommentList />,
-  },
-  {
-    name: '좋아요',
-    content: <FavList />,
-  },
-]
-
-export default function Tap() {
+export default function Tap({
+  menuArr,
+}: {
+  menuArr: {
+    name: string
+    content: React.JSX.Element
+  }[]
+}) {
   const [currentTap, setCurrentTap] = useState(0)
   return (
     <div>

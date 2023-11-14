@@ -6,7 +6,7 @@ import Menu from './Menu'
 import Search from './Search'
 import Link from 'next/link'
 import { AiOutlineEdit } from 'react-icons/ai'
-import { UserType } from '@/app/actions/getCurrentUser'
+import { UserType } from '@/app/interfaces/interface'
 
 interface RightSideProps {
   currentUser?: UserType | null

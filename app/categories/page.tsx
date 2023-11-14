@@ -62,7 +62,7 @@ export default async function Categories({
               <Suspense fallback={<SkeletonListings />}>
                 <Listings
                   path="categories"
-                  url={`http://127.0.0.1:3000/api/categoryList?search=${search}&page=${page}&limit=${limit}`}
+                  type="category"
                   page={page}
                   limit={limit}
                   search={search}

@@ -6,8 +6,8 @@ import MenuItem from './MenuItem'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import useSignUpModal from '@/app/hooks/useSignUpModal'
 import { signOut } from 'next-auth/react'
-import { UserType } from '@/app/actions/getCurrentUser'
 import { useRouter } from 'next/navigation'
+import { UserType } from '@/app/interfaces/interface'
 
 interface MenuProps {
   currentUser?: UserType | null

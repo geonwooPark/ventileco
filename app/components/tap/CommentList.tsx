@@ -1,4 +1,4 @@
-import getData from '@/app/actions/getData'
+import getMyCommentList from '@/app/actions/getMyCommentList'
 import { CommentType } from '@/app/interfaces/interface'
 import dayjs from 'dayjs'
 import Link from 'next/link'
@@ -6,9 +6,7 @@ import React from 'react'
 import { PiDotsThreeVerticalBold } from 'react-icons/pi'
 
 export default async function CommentList() {
-  const commentList: CommentType[] = await getData(
-    'http://127.0.0.1:3000/api/commentList',
-  )
+  const commentList: CommentType[] = await getMyCommentList()
 
   return (
     <table className="w-full">

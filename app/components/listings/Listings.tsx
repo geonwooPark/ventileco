@@ -2,12 +2,23 @@ import React from 'react'
 import Pagenation from '../Pagenation'
 import EmptyState from '../EmptyState'
 import ListingItem from '../ListingItem'
-import { PostingType } from '@/app/interfaces/interface'
-import getData from '@/app/actions/getData'
+import { GetListingsType } from '@/app/interfaces/interface'
+import getListings from '@/app/actions/getListings'
 
-interface ListingsProps {
-  path: string
-  url: string
+type ListingsProps = (
+  | {
+      path: 'postings'
+      type: 'all'
+    }
+  | {
+      path: 'search'
+      type: 'search'
+    }
+  | {
+      path: 'categories'
+      type: 'category'
+    }
+) & {
   page: number
   limit: number
   search?: string
@@ -15,16 +26,18 @@ interface ListingsProps {
 
 export default async function Listings({
   path,
-  url,
+  type,
   page,
   limit,
   search,
 }: ListingsProps) {
-  // 전체 경로를 적지 않으면 URL을 parse하지 못하는 에러 발생
-  const {
-    postings,
-    postingCount,
-  }: { postings: PostingType[]; postingCount: number } = await getData(url)
+  const { postings, postingCount }: GetListingsType = await getListings({
+    type,
+    search,
+    page,
+    limit,
+  })
+
   return (
     <>
       {postingCount === 0 ? (

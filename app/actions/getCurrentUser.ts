@@ -1,18 +1,7 @@
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import { User } from '@/models/user'
-
-export interface UserType {
-  _doc?: any
-  _id: string
-  name: string
-  email: string
-  image: string
-  role: string
-  provider: string
-  createdAt: Date
-  updatedAt: Date
-}
+import { UserType } from '../interfaces/interface'
 
 export async function getSession() {
   return await getServerSession(authOptions)

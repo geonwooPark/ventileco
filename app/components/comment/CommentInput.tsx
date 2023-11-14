@@ -2,11 +2,10 @@
 
 import React, { useState } from 'react'
 import Button from '../Button'
-import { UserType } from '@/app/actions/getCurrentUser'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { CommentUserType } from '@/app/interfaces/interface'
+import { CommentUserType, UserType } from '@/app/interfaces/interface'
 
 interface CommentInputProps {
   type: 'post' | 'edit'

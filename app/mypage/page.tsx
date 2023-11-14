@@ -3,6 +3,19 @@ import mainBg from '/public/images/main-bg.png'
 import React from 'react'
 import Tap from '../components/tap/Tap'
 import getCurrentUser from '../actions/getCurrentUser'
+import CommentList from '../components/tap/CommentList'
+import FavList from '../components/tap/FavList'
+
+const menuArr = [
+  {
+    name: '댓글',
+    content: <CommentList />,
+  },
+  {
+    name: '좋아요',
+    content: <FavList />,
+  },
+]
 
 export default async function page() {
   const currentUser = await getCurrentUser()
@@ -35,7 +48,7 @@ export default async function page() {
           <div>
             <h1 className="md:text-lg mb-3">나의 활동</h1>
             <div className="mb-10">
-              <Tap />
+              <Tap menuArr={menuArr} />
             </div>
           </div>
         </div>

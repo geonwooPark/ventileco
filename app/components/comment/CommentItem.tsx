@@ -2,11 +2,10 @@
 
 import React, { useState } from 'react'
 import Avatar from '../Avatar'
-import { UserType } from '@/app/actions/getCurrentUser'
 import dayjs from 'dayjs'
 import useDeleteCommentModal from '@/app/hooks/useDeleteCommentModal'
 import useSelectedComment from '@/app/hooks/useSelectedComment'
-import { CommentUserType } from '@/app/interfaces/interface'
+import { CommentUserType, UserType } from '@/app/interfaces/interface'
 import CommentInput from './CommentInput'
 
 interface CommentItemProps {

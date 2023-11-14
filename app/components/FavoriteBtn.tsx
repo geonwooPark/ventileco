@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import useFavorite from '../hooks/useFavorite'
-import { UserType } from '../actions/getCurrentUser'
 import { toast } from 'react-toastify'
+import { UserType } from '../interfaces/interface'
 
 interface FavoriteBtn {
   className?: string

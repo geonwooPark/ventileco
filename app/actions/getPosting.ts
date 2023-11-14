@@ -1,0 +1,14 @@
+import { PostingType } from '../interfaces/interface'
+import { connectMongo } from '../utils/database'
+import { Posting } from '@/models/posting'
+
+export default async function getPosting(postingId: string) {
+  try {
+    await connectMongo()
+    const posting = await Posting.findOne<PostingType>({ _id: postingId })
+
+    return posting
+  } catch (error) {
+    return null
+  }
+}

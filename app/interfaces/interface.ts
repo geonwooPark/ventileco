@@ -1,3 +1,15 @@
+export interface UserType {
+  _doc?: any
+  _id: string
+  name: string
+  email: string
+  image: string
+  role: string
+  provider: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 export interface PostingType {
   _id: string
   category: string
@@ -35,4 +47,9 @@ export interface FavoriteType {
   updatedAt: string
   userId: string[]
   _id: string
+}
+
+export interface GetListingsType {
+  postings: PostingType[]
+  postingCount: number
 }

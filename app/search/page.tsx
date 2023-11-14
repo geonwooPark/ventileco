@@ -45,7 +45,7 @@ export default async function Search({
               <Suspense fallback={<SkeletonListings />}>
                 <Listings
                   path="search"
-                  url={`http://127.0.0.1:3000/api/searchList?search=${search}&page=${page}&limit=${limit}`}
+                  type="search"
                   page={page}
                   limit={limit}
                   search={search}

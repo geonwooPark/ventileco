@@ -1,14 +1,15 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import getCurrentUser, { UserType } from '@/app/actions/getCurrentUser'
+import getCurrentUser from '@/app/actions/getCurrentUser'
 import AdminController from '@/app/components/AdminController'
 import FavoriteBtn from '@/app/components/FavoriteBtn'
 import Comment from '@/app/components/comment/Comment'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/components/EmptyState'
-import getData from '@/app/actions/getData'
-import { CommentUserType, PostingType } from '@/app/interfaces/interface'
+import { CommentUserType, UserType } from '@/app/interfaces/interface'
+import getComment from '@/app/actions/getComment'
+import getPosting from '@/app/actions/getPosting'
 
 const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ssr: false,
@@ -20,12 +21,10 @@ const EditorWrapper = dynamic(() => import('../../components/Editor'), {
 export default async function Detail({ params }: { params: { id: string } }) {
   const currentUser: UserType = await getCurrentUser()
   // 전체 경로를 적지 않으면 URL을 parse하지 못하는 에러 발생
-  const posting: PostingType = await getData(
-    `http://127.0.0.1:3000/api/posting?postingId=${params.id}`,
-  )
-  const comments: CommentUserType[] = await getData(
-    `http://127.0.0.1:3000/api/comment?postingId=${params.id}`,
-  )
+  const posting = await getPosting(params.id)
+  const comments: CommentUserType[] = await getComment(params.id)
+
+  if (!posting) return
 
   return (
     <>
