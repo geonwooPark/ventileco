@@ -6,7 +6,7 @@ import React from 'react'
 
 export default async function CommentList() {
   const favoriteList: FavoriteType[] = await getData(
-    'http://localhost:3000/api/favoriteList',
+    'http://127.0.0.1:3000/api/favoriteList',
   )
 
   return (

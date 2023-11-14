@@ -7,7 +7,7 @@ import { PiDotsThreeVerticalBold } from 'react-icons/pi'
 
 export default async function CommentList() {
   const commentList: CommentType[] = await getData(
-    'http://localhost:3000/api/commentList',
+    'http://127.0.0.1:3000/api/commentList',
   )
 
   return (

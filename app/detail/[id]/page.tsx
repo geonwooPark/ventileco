@@ -21,10 +21,10 @@ export default async function Detail({ params }: { params: { id: string } }) {
   const currentUser: UserType = await getCurrentUser()
   // 전체 경로를 적지 않으면 URL을 parse하지 못하는 에러 발생
   const posting: PostingType = await getData(
-    `http://localhost:3000/api/posting?postingId=${params.id}`,
+    `http://127.0.0.1:3000/api/posting?postingId=${params.id}`,
   )
   const comments: CommentUserType[] = await getData(
-    `http://localhost:3000/api/comment?postingId=${params.id}`,
+    `http://127.0.0.1:3000/api/comment?postingId=${params.id}`,
   )
 
   return (
