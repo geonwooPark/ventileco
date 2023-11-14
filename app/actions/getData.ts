@@ -1,9 +1,13 @@
 export default async function getData(url: string) {
-  const res = await fetch(url, { method: 'GET' })
+  try {
+    const res = await fetch(url, { method: 'GET' })
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
+
+    return res.json()
+  } catch (e) {
+    return []
   }
-
-  return res.json()
 }
