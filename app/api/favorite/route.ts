@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
   const currentUser = await getCurrentUser()
+
   try {
     await connectMongo()
     const isFav = await Favorite.findOne({
@@ -13,8 +14,8 @@ export async function GET(req: NextRequest) {
       userId: currentUser._id,
     })
     if (isFav) {
-      return NextResponse.json(1, { status: 200 })
-    } else return NextResponse.json(0, { status: 200 })
+      return NextResponse.json({ status: 201 })
+    } else return NextResponse.json({ status: 204 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

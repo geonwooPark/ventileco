@@ -2,21 +2,15 @@
 
 import React, { useState } from 'react'
 import Avatar from '../Avatar'
-import { useParams, useRouter } from 'next/navigation'
 import { UserType } from '@/app/actions/getCurrentUser'
-import Button from '../Button'
 import dayjs from 'dayjs'
-import { toast } from 'react-toastify'
+import useDeleteCommentModal from '@/app/hooks/useDeleteCommentModal'
+import useSelectedComment from '@/app/hooks/useSelectedComment'
+import { CommentUserType } from '@/app/interfaces/interface'
+import CommentInput from './CommentInput'
 
 interface CommentItemProps {
-  comment: {
-    commentId: string
-    userImage: string
-    userId: string
-    userName: string
-    createdAt: Date
-    text: string
-  }
+  comment: CommentUserType
   currentUser?: UserType | null
 }
 
@@ -24,37 +18,9 @@ export default function CommentItem({
   comment,
   currentUser,
 }: CommentItemProps) {
-  const router = useRouter()
-  const params = useParams()
-  const { id: postingId } = params
-  const [text, setText] = useState(comment.text)
   const [editMode, setEditMode] = useState(false)
-
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = e.target
-    setText(value)
-  }
-
-  const onDelete = async () => {
-    if (!currentUser) return
-    if (comment.userId !== currentUser._id) return
-
-    try {
-      await fetch('/api/comment', {
-        method: 'DELETE',
-        body: JSON.stringify({
-          postingId: postingId,
-          commentId: comment.commentId,
-        }),
-      }).then(() => {
-        router.refresh()
-      })
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message)
-      }
-    }
-  }
+  const deleteCommentModal = useDeleteCommentModal()
+  const selectedComment = useSelectedComment()
 
   const onEdit = () => {
     if (!currentUser) return
@@ -62,19 +28,9 @@ export default function CommentItem({
     setEditMode(!editMode)
   }
 
-  const onSubmit = async () => {
-    await fetch('/api/comment', {
-      method: 'PATCH',
-      body: JSON.stringify({
-        postingId: postingId,
-        commentId: comment.commentId,
-        currentUser: currentUser,
-        text,
-      }),
-    }).then(() => {
-      setEditMode(false)
-      router.refresh()
-    })
+  const onDelete = () => {
+    deleteCommentModal.onOpen()
+    selectedComment.onChange(comment.commentId)
   }
 
   return (
@@ -95,23 +51,13 @@ export default function CommentItem({
         </small>
       </div>
       {editMode ? (
-        <div className="flex gap-2 mb-4">
-          <textarea
-            cols={30}
-            rows={3}
-            value={text}
-            className="w-full px-3 py-2 border outline-none rounded resize-none"
-            onChange={onChange}
-          />
-          <Button
-            type="button"
-            level="primary"
-            size="s"
-            label="댓글 수정"
-            className="w-24"
-            onClick={onSubmit}
-          />
-        </div>
+        <CommentInput
+          type="edit"
+          comment={comment}
+          currentUser={currentUser}
+          buttonLabel="댓글 수정"
+          setEditMode={setEditMode}
+        />
       ) : (
         <p>{comment.text}</p>
       )}

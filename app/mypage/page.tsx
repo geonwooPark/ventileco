@@ -27,10 +27,10 @@ export default async function page() {
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="my-10">
         <div className="my-container">
           <div className="text-3xl font-semibold mb-4">
-            {currentUser.name}님 환영합니다
+            {currentUser && currentUser.name}님 환영합니다
           </div>
           <div>
             <h1 className="md:text-lg mb-3">나의 활동</h1>

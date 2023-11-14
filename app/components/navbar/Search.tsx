@@ -25,7 +25,7 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     if (!text) return
     if (text.trim() === '') return
 
-    router.push(`/search?keyword=${text}`)
+    router.push(`/search?search=${text}`)
     setText('')
     setIsOpen(false)
   }

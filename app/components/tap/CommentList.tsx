@@ -1,31 +1,14 @@
-'use client'
-
-import { CommentType } from '@/app/actions/getComments'
+import getData from '@/app/actions/getData'
+import { CommentType } from '@/app/interfaces/interface'
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { PiDotsThreeVerticalBold } from 'react-icons/pi'
-import { toast } from 'react-toastify'
 
-export default function CommentList() {
-  const [commentArr, setCommentArr] = useState<CommentType[]>([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch('/api/comment', { method: 'GET' })
-          .then((res) => res.json())
-          .then((result) => {
-            setCommentArr(result)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      }
-    }
-    fetchData()
-  }, [])
+export default async function CommentList() {
+  const commentList: CommentType[] = await getData(
+    'http://localhost:3000/api/commentList',
+  )
 
   return (
     <table className="w-full">
@@ -36,13 +19,13 @@ export default function CommentList() {
         </tr>
       </thead>
       <tbody>
-        {commentArr.map((doc) => {
+        {commentList.map((commentItem) => {
           return (
-            <tr key={doc._id} className="border-b">
+            <tr key={commentItem._id} className="border-b">
               <td className="px-2 py-3">
-                <Link href={`/detail/${doc.postingId}`}>
-                  <p className="mb-2">{doc.title}</p>
-                  {doc.user
+                <Link href={`/detail/${commentItem.postingId}`}>
+                  <p className="mb-2">{commentItem.title}</p>
+                  {commentItem.user
                     .sort(
                       (a, b) =>
                         new Date(b.createdAt).getTime() -
@@ -59,7 +42,7 @@ export default function CommentList() {
                           : comment.text}
                       </p>
                     ))}
-                  {doc.user.length > 3 && (
+                  {commentItem.user.length > 3 && (
                     <div className="w-full text-gray-400">
                       <PiDotsThreeVerticalBold className="mx-auto" />
                     </div>
@@ -67,7 +50,7 @@ export default function CommentList() {
                 </Link>
               </td>
               <td className="text-sm text-center">
-                {dayjs(doc.createdAt).format('YYYY-MM-DD')}
+                {dayjs(commentItem.createdAt).format('YYYY-MM-DD')}
               </td>
             </tr>
           )

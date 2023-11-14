@@ -1,15 +1,15 @@
-import { PostingType } from '@/app/actions/getPostings'
 import getTimeDiff from '@/app/utils/getTimeDiff'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { PostingType } from '../interfaces/interface'
 
 interface ListingProps {
   posting: PostingType
 }
 
-export default function Listing({ posting }: ListingProps) {
+export default function ListingItem({ posting }: ListingProps) {
   return (
     <li className="group mb-6 md:mb-12">
       <Link

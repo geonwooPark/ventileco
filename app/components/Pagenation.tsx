@@ -7,6 +7,7 @@ interface PagenationProps {
   path: string
   postingCount: number
   page: number
+  limit: number
   search?: string
 }
 
@@ -14,9 +15,10 @@ export default function Pagenation({
   path,
   postingCount,
   page,
+  limit,
   search,
 }: PagenationProps) {
-  const lastPageNum = Math.ceil(postingCount / 10)
+  const lastPageNum = Math.ceil(postingCount / limit)
   const numbering = Array.from({ length: lastPageNum }, (_, i) => (
     <Link
       key={i}

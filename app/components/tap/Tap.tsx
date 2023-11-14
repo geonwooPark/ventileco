@@ -1,12 +1,18 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import FavList from './FavList'
 import CommentList from './CommentList'
 
 const menuArr = [
-  { name: '댓글', content: <CommentList /> },
-  { name: '좋아요', content: <FavList /> },
+  {
+    name: '댓글',
+    content: <CommentList />,
+  },
+  {
+    name: '좋아요',
+    content: <FavList />,
+  },
 ]
 
 export default function Tap() {
@@ -30,7 +36,9 @@ export default function Tap() {
           )
         })}
       </div>
-      <div>{menuArr[currentTap].content}</div>
+      <Suspense fallback={<div>로딩중...</div>}>
+        <div>{menuArr[currentTap].content}</div>
+      </Suspense>
     </div>
   )
 }

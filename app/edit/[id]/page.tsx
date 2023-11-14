@@ -15,7 +15,7 @@ import {
 import { storage } from '../../firebase'
 import DropDownMenu from '../../components/dropdown/DropDownMenu'
 import EmptyState from '@/app/components/EmptyState'
-import { PostingType } from '@/app/actions/getPosting'
+import { PostingType } from '@/app/interfaces/interface'
 
 const categories = [
   'React.JS',
@@ -74,7 +74,7 @@ export default function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/postings?postingId=${postingId}`, { method: 'GET' })
+        await fetch(`/api/posting?postingId=${postingId}`, { method: 'GET' })
           .then((res) => res.json())
           .then((result) => {
             if (!result.error) {
@@ -200,16 +200,16 @@ export default function Edit() {
         throw new Error('설명은 90자 이하로 입력해주세요.')
       }
 
-      await fetch('/api/postings', {
+      await fetch('/api/posting', {
         method: 'PUT',
         body: JSON.stringify({ ...posting, thumbnailURL, postingId }),
       })
         .then((res) => res.json())
         .then((result) => {
           if (!result.error) {
-            toast.success(result.message)
             router.push(`/detail/${postingId}`)
             router.refresh()
+            toast.success(result.message)
           } else {
             if (!result.error) {
               toast.success(result.message)

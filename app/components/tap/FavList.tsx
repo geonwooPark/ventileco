@@ -1,38 +1,13 @@
-'use client'
-
+import getData from '@/app/actions/getData'
+import { FavoriteType } from '@/app/interfaces/interface'
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import React from 'react'
 
-interface Favorite {
-  _id: string
-  postingId: string
-  userId: string[]
-  title: string
-  createdAt: Date
-  updatedAt: Date
-}
-
-export default function CommentList() {
-  const [favoriteArr, setFavoriteArr] = useState<Favorite[]>([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch('/api/favoriteList', { method: 'GET' })
-          .then((res) => res.json())
-          .then((result) => {
-            setFavoriteArr(result)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      }
-    }
-    fetchData()
-  }, [])
+export default async function CommentList() {
+  const favoriteList: FavoriteType[] = await getData(
+    'http://localhost:3000/api/favoriteList',
+  )
 
   return (
     <table className="w-full">
@@ -43,7 +18,7 @@ export default function CommentList() {
         </tr>
       </thead>
       <tbody>
-        {favoriteArr.map((favoriteItem) => (
+        {favoriteList.map((favoriteItem) => (
           <tr key={favoriteItem._id} className="border-b">
             <td className="px-2 py-3">
               <Link href={`/detail/${favoriteItem.postingId}`}>

@@ -1,5 +1,5 @@
+import { PostingType } from '@/app/interfaces/interface'
 import { connectMongo } from '@/app/utils/database'
-import { PostingType } from '@/app/actions/getPosting'
 import { Comment } from '@/models/comment'
 import { Favorite } from '@/models/favorite'
 import { Posting } from '@/models/posting'

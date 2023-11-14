@@ -1,40 +1,20 @@
-'use client'
-
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { toast } from 'react-toastify'
-import { PostingType } from '@/app/actions/getPosting'
-import EmptyState from '@/app/components/EmptyState'
-import Listing from '@/app/components/listings/Listing'
+import { Suspense } from 'react'
+import SkeletonListings from '../components/listings/SkeletonListings'
+import Listings from '../components/listings/Listings'
 
-export default function page() {
-  const keyword = useSearchParams().get('keyword')
-  const [postings, setPostings] = useState<PostingType[]>([])
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      try {
-        await fetch(`/api/search?keyword=${keyword}`, { method: 'GET' })
-          .then((res) => res.json())
-          .then((result) => {
-            if (!result.error) {
-              setPostings(result)
-            }
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
-  }, [keyword])
+export default async function Search({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined }
+}) {
+  const page =
+    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1
+  const limit =
+    typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10
+  const search =
+    typeof searchParams.search === 'string' ? searchParams.search : ''
 
   return (
     <>
@@ -57,24 +37,20 @@ export default function page() {
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="my-10">
         <div className="my-container">
-          <div className="flex flex-col mb-5">
+          <div className="flex flex-col">
             <div className="w-full md:h-auto">
               <h1 className="md:text-lg mb-4">검색 결과</h1>
-              {isLoading ? (
-                <EmptyState label={'검색중이에요!'} />
-              ) : postings.length === 0 ? (
-                <EmptyState label={'검색 결과가 없어요!'} />
-              ) : (
-                <main>
-                  <ul>
-                    {postings?.map((posting) => {
-                      return <Listing key={posting._id} posting={posting} />
-                    })}
-                  </ul>
-                </main>
-              )}
+              <Suspense fallback={<SkeletonListings />}>
+                <Listings
+                  path="search"
+                  url={`http://localhost:3000/api/searchList?search=${search}&page=${page}&limit=${limit}`}
+                  page={page}
+                  limit={limit}
+                  search={search}
+                />
+              </Suspense>
             </div>
           </div>
         </div>

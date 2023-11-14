@@ -15,7 +15,7 @@ import {
 import { storage } from '../firebase'
 import DropDownMenu from '../components/dropdown/DropDownMenu'
 import EmptyState from '../components/EmptyState'
-import { PostingType } from '../actions/getPosting'
+import { PostingType } from '../interfaces/interface'
 
 const categories = [
   'React.JS',
@@ -172,16 +172,16 @@ export default function Write() {
         throw new Error('설명은 90자 이하로 입력해주세요.')
       }
 
-      await fetch('/api/postings', {
+      await fetch('/api/posting', {
         method: 'POST',
         body: JSON.stringify({ ...posting, thumbnailURL }),
       })
         .then((res) => res.json())
         .then((result) => {
           if (!result.error) {
-            toast.success(result.message)
             router.push(`/`)
             router.refresh()
+            toast.success(result.message)
           } else {
             if (result.focus === 'category') {
               categoryRef.current?.scrollIntoView({

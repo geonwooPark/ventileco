@@ -1,6 +1,5 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import getPosting from '@/app/actions/getPosting'
 import Image from 'next/image'
 import getCurrentUser, { UserType } from '@/app/actions/getCurrentUser'
 import AdminController from '@/app/components/AdminController'
@@ -8,7 +7,8 @@ import FavoriteBtn from '@/app/components/FavoriteBtn'
 import Comment from '@/app/components/comment/Comment'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/components/EmptyState'
-import DeleteModal from '@/app/components/modals/DeleteModal'
+import getData from '@/app/actions/getData'
+import { CommentUserType, PostingType } from '@/app/interfaces/interface'
 
 const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ssr: false,
@@ -17,15 +17,18 @@ const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ),
 })
 
-export default async function Postings({ params }: { params: { id: string } }) {
-  const posting = await getPosting(params.id)
+export default async function Detail({ params }: { params: { id: string } }) {
   const currentUser: UserType = await getCurrentUser()
-
-  if (!posting) return
+  // 전체 경로를 적지 않으면 URL을 parse하지 못하는 에러 발생
+  const posting: PostingType = await getData(
+    `http://localhost:3000/api/posting?postingId=${params.id}`,
+  )
+  const comments: CommentUserType[] = await getData(
+    `http://localhost:3000/api/comment?postingId=${params.id}`,
+  )
 
   return (
     <>
-      <DeleteModal />
       <section className="w-full h-[320px] md:h-[420px] mb-10">
         <div className="my-container h-full text-white flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
@@ -73,7 +76,7 @@ export default async function Postings({ params }: { params: { id: string } }) {
             />
           </div>
           <div className="mb-10">
-            <Comment postingId={posting._id} />
+            <Comment comments={comments} currentUser={currentUser} />
           </div>
           {currentUser && currentUser.role === 'admin' && (
             <div className="mb-5">

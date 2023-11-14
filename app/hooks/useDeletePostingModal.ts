@@ -1,15 +1,15 @@
 import { create } from 'zustand'
 
-interface DeleteStore {
+interface DeletePostingModalStore {
   isOpen: boolean
   onOpen: () => void
   onClose: () => void
 }
 
-const useDeleteModal = create<DeleteStore>((set) => ({
+const useDeletePostingModal = create<DeletePostingModalStore>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }))
 
-export default useDeleteModal
+export default useDeletePostingModal

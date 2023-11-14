@@ -6,16 +6,28 @@ import { UserType } from '@/app/actions/getCurrentUser'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
+import { CommentUserType } from '@/app/interfaces/interface'
 
-interface TextareaProps {
+interface CommentInputProps {
+  type: 'post' | 'edit'
+  comment?: CommentUserType
   currentUser?: UserType | null
+  buttonLabel: string
+  setEditMode?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Textarea({ currentUser }: TextareaProps) {
-  const [text, setText] = useState('')
+export default function CommentInput({
+  type,
+  comment,
+  currentUser,
+  buttonLabel,
+  setEditMode,
+}: CommentInputProps) {
   const params = useParams()
   const router = useRouter()
   const { id: postingId } = params
+
+  const [text, setText] = useState(comment ? comment.text : '')
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target
@@ -23,22 +35,39 @@ export default function Textarea({ currentUser }: TextareaProps) {
   }
 
   const onSubmit = async () => {
-    try {
+    if (type === 'post') {
+      try {
+        await fetch('/api/comment', {
+          method: 'POST',
+          body: JSON.stringify({
+            postingId: postingId,
+            currentUser: currentUser,
+            text,
+          }),
+        }).then(() => {
+          setText('')
+          router.refresh()
+        })
+      } catch (error) {
+        if (error instanceof Error) {
+          toast.error(error.message)
+        }
+      }
+    } else if (type === 'edit') {
       await fetch('/api/comment', {
-        method: 'POST',
+        method: 'PATCH',
         body: JSON.stringify({
           postingId: postingId,
+          commentId: comment?.commentId,
           currentUser: currentUser,
           text,
         }),
       }).then(() => {
-        setText('')
+        if (setEditMode) {
+          setEditMode(false)
+        }
         router.refresh()
       })
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message)
-      }
     }
   }
 
@@ -59,7 +88,7 @@ export default function Textarea({ currentUser }: TextareaProps) {
         type="button"
         level="primary"
         size="s"
-        label="댓글 작성"
+        label={buttonLabel}
         className="w-24"
         onClick={onSubmit}
         disabled={currentUser ? false : true}

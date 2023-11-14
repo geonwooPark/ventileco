@@ -33,10 +33,8 @@ export default function FavoriteBtn({
         })
           .then((res) => res.json())
           .then((result) => {
-            if (result === 1) {
+            if (result.status === 201) {
               setIsFav(true)
-            } else {
-              setIsFav(false)
             }
           })
       } catch (error) {

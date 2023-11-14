@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import EmptyState from '@/app/components/EmptyState'
-import Listing from '@/app/components/listings/Listing'
 import CategoryItem from '@/app/components/CategoryItem'
-import getCategoryList from '../actions/getCategoryList'
-import Pagenation from '../components/Pagenation'
+import { Suspense } from 'react'
+import SkeletonListings from '../components/listings/SkeletonListings'
+import Listings from '../components/listings/Listings'
 
 const categories = [
   'React.JS',
@@ -14,7 +13,7 @@ const categories = [
   '라이브러리',
 ]
 
-export default async function page({
+export default async function Categories({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
@@ -25,11 +24,6 @@ export default async function page({
     typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10
   const search =
     typeof searchParams.search === 'string' ? searchParams.search : ''
-  const { postings, postingCount } = await getCategoryList({
-    search,
-    page,
-    limit,
-  })
 
   return (
     <>
@@ -52,9 +46,9 @@ export default async function page({
         </div>
       </section>
 
-      <section className="mt-10">
+      <section className="my-10">
         <div className="my-container">
-          <div className="flex flex-col md:flex-row-reverse mb-5">
+          <div className="flex flex-col md:flex-row-reverse">
             <div className="min-w-[120px] mb-10 md:mb-0">
               <h1 className="md:text-lg mb-4">카테고리</h1>
               <ul className="flex flex-wrap md:flex-col gap-2">
@@ -65,26 +59,16 @@ export default async function page({
             </div>
             <div className="w-full flex flex-col md:w-[calc(100%-120px)]">
               <h1 className="md:text-lg mb-4">검색 결과</h1>
-              {postingCount === 0 ? (
-                <EmptyState label={'작성된 게시글이 없어요!'} />
-              ) : (
-                <main>
-                  <ul>
-                    {postings?.map((posting) => {
-                      return <Listing key={posting._id} posting={posting} />
-                    })}
-                  </ul>
-                </main>
-              )}
+              <Suspense fallback={<SkeletonListings />}>
+                <Listings
+                  path="categories"
+                  url={`http://localhost:3000/api/categoryList?search=${search}&page=${page}&limit=${limit}`}
+                  page={page}
+                  limit={limit}
+                  search={search}
+                />
+              </Suspense>
             </div>
-          </div>
-          <div className="mb-10">
-            <Pagenation
-              path="categories"
-              search={search}
-              postingCount={postingCount}
-              page={page}
-            />
           </div>
         </div>
       </section>

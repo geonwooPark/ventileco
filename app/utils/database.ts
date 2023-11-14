@@ -11,6 +11,7 @@ if (!cached) cached = global.mongoose = { conn: null }
 export const connectMongo = async () => {
   if (cached.conn) return cached.conn
 
+  mongoose.set('strictQuery', false)
   cached.conn = await mongoose.connect(MONGO_URI)
 
   return cached.conn

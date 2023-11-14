@@ -1,10 +1,9 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
-import getPostings from '../actions/getPostings'
-import Listing from '../components/listings/Listing'
 import CategoryItem from '../components/CategoryItem'
-import EmptyState from '../components/EmptyState'
-import Pagenation from '@/app/components/Pagenation'
+import { Suspense } from 'react'
+import SkeletonListings from '../components/listings/SkeletonListings'
+import Listings from '../components/listings/Listings'
 
 const categories = [
   'React.JS',
@@ -14,17 +13,15 @@ const categories = [
   '라이브러리',
 ]
 
-export default async function page({
+export default async function Postings({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams?: { [key: string]: string | string[] | undefined }
 }) {
   const page =
-    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1
+    typeof searchParams?.page === 'string' ? Number(searchParams.page) : 1
   const limit =
-    typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 10
-
-  const { postings, postingCount } = await getPostings({ page, limit })
+    typeof searchParams?.limit === 'string' ? Number(searchParams.limit) : 10
 
   return (
     <>
@@ -47,9 +44,9 @@ export default async function page({
         </div>
       </section>
 
-      <section className="mt-10 mb-10">
+      <section className="my-10">
         <div className="my-container">
-          <div className="flex flex-col md:flex-row-reverse mb-5">
+          <div className="flex flex-col md:flex-row-reverse">
             <div className="min-w-[120px] mb-10 md:mb-0">
               <h1 className="md:text-lg mb-4">카테고리</h1>
               <ul className="flex flex-wrap md:flex-col gap-2">
@@ -60,25 +57,15 @@ export default async function page({
             </div>
             <div className="w-full flex flex-col md:w-[calc(100%-120px)]">
               <h1 className="md:text-lg mb-4">전체 게시글</h1>
-              {postingCount === 0 ? (
-                <EmptyState label="작성된 게시글이 없어요!" />
-              ) : (
-                <main>
-                  <ul>
-                    {postings?.map((posting) => {
-                      return <Listing key={posting._id} posting={posting} />
-                    })}
-                  </ul>
-                </main>
-              )}
+              <Suspense fallback={<SkeletonListings />}>
+                <Listings
+                  path="postings"
+                  url={`http://localhost:3000/api/postingList?page=${page}&limit=${limit}`}
+                  page={page}
+                  limit={limit}
+                />
+              </Suspense>
             </div>
-          </div>
-          <div className="mb-10">
-            <Pagenation
-              path="postings"
-              postingCount={postingCount}
-              page={page}
-            />
           </div>
         </div>
       </section>

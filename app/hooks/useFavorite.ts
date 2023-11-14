@@ -19,7 +19,13 @@ export default function useFavorite({ postingId, currentUser }: UseFavorite) {
           postingId: postingId,
           userId: currentUser._id,
         }),
-      }).then(() => setIsFav(false))
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (!result.error) {
+            setIsFav(false)
+          }
+        })
     } else {
       await fetch('/api/favorite', {
         method: 'POST',
@@ -27,7 +33,13 @@ export default function useFavorite({ postingId, currentUser }: UseFavorite) {
           postingId: postingId,
           userId: currentUser._id,
         }),
-      }).then(() => setIsFav(true))
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (!result.error) {
+            setIsFav(true)
+          }
+        })
     }
   }
   return { isFav, setIsFav, handleFavoriteBtn }
