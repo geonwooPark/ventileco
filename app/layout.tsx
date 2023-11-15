@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/navbar/Navbar'
 import LoginModal from './components/modals/LoginModal'
@@ -8,13 +8,17 @@ import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './components/modals/SignUpModal'
 import getCurrentUser from './actions/getCurrentUser'
 import { UserType } from './interfaces/interface'
+import Footer from './components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ventileco 개발 블로그',
   description:
     '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default async function RootLayout({
@@ -26,7 +30,7 @@ export default async function RootLayout({
 
   return (
     <html lang="kr">
-      <body className={inter.className}>
+      <body className={noto.className}>
         <ToastContainer
           position="top-center"
           autoClose={3000}
@@ -35,7 +39,8 @@ export default async function RootLayout({
         <SignUpModal />
         <LoginModal />
         <Navbar currentUser={currentUser} />
-        {children}
+        <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
+        <Footer className="relative h-[56px] -translate-y-full w-full bg-gray-800" />
       </body>
     </html>
   )
