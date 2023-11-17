@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import SearchIcon from './SearchIcon'
 import Menu from './Menu'
 import Search from './Search'
