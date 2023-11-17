@@ -10,6 +10,7 @@ import EmptyState from '@/app/components/EmptyState'
 import { CommentUserType, UserType } from '@/app/interfaces/interface'
 import getComment from '@/app/actions/getComment'
 import getPosting from '@/app/actions/getPosting'
+import NotFound from '@/app/not-found'
 
 const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ssr: false,
@@ -20,11 +21,10 @@ const EditorWrapper = dynamic(() => import('../../components/Editor'), {
 
 export default async function Detail({ params }: { params: { id: string } }) {
   const currentUser: UserType = await getCurrentUser()
-  // 전체 경로를 적지 않으면 URL을 parse하지 못하는 에러 발생
   const posting = await getPosting(params.id)
   const comments: CommentUserType[] = await getComment(params.id)
 
-  if (!posting) return
+  if (!posting) return NotFound()
 
   return (
     <>
@@ -50,7 +50,7 @@ export default async function Detail({ params }: { params: { id: string } }) {
           <div className="flex items-center mb-2">
             <FavoriteBtn
               currentUser={currentUser}
-              postingId={posting._id}
+              postingId={posting._id.toString()}
               className="mr-3"
             />
             <p className="text-sm md:text-base">{posting.category}</p>
