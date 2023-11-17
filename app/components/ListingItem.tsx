@@ -16,7 +16,7 @@ export default function ListingItem({ posting }: ListingProps) {
         href={`/detail/${posting._id}`}
         className="flex flex-col md:flex-row"
       >
-        <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] rounded-lg overflow-hidden">
+        <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] border rounded-lg overflow-hidden">
           {posting.thumbnailURL ? (
             <Image
               src={posting.thumbnailURL && posting.thumbnailURL}
