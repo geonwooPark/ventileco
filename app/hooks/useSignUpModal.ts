@@ -1,12 +1,15 @@
 import { create } from 'zustand'
 
-interface SignUpModalStore {
+interface State {
   isOpen: boolean
+}
+
+interface Actions {
   onOpen: () => void
   onClose: () => void
 }
 
-const useSignUpModal = create<SignUpModalStore>((set) => ({
+const useSignUpModal = create<State & Actions>()((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),

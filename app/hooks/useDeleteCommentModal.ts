@@ -1,12 +1,15 @@
 import { create } from 'zustand'
 
-interface DeleteCommentModalStore {
+interface State {
   isOpen: boolean
+}
+
+interface Actions {
   onOpen: () => void
   onClose: () => void
 }
 
-const useDeleteCommentModal = create<DeleteCommentModalStore>((set) => ({
+const useDeleteCommentModal = create<State & Actions>()((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),

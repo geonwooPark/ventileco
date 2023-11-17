@@ -1,12 +1,15 @@
 import { create } from 'zustand'
 
-interface DeletePostingModalStore {
+interface State {
   isOpen: boolean
+}
+
+interface Actions {
   onOpen: () => void
   onClose: () => void
 }
 
-const useDeletePostingModal = create<DeletePostingModalStore>((set) => ({
+const useDeletePostingModal = create<State & Actions>()((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),

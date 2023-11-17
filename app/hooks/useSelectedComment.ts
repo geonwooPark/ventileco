@@ -1,11 +1,14 @@
 import { create } from 'zustand'
 
-interface SelectedCommentStore {
+interface State {
   commentId: string
+}
+
+interface Actions {
   onChange: (id: string) => void
 }
 
-const useSelectedComment = create<SelectedCommentStore>((set) => ({
+const useSelectedComment = create<State & Actions>()((set) => ({
   commentId: '',
   onChange: (id) => set({ commentId: id }),
 }))
