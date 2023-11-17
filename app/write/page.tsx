@@ -282,7 +282,7 @@ export default function Write() {
       </section>
       <section>
         <div className="my-container">
-          <div className="h-[500px] mb-10">
+          <div className="h-[600px] mb-24">
             <EditorWrapper
               content={content}
               theme="snow"
