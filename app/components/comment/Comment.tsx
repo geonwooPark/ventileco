@@ -35,7 +35,6 @@ export default function Comment({ comments, currentUser }: CommentProps) {
         .then((res) => res.json())
         .then((result) => {
           if (!result.error) {
-            toast.success(result.message)
             deleteCommentModal.onClose()
             router.refresh()
           }

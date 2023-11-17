@@ -22,10 +22,10 @@ export default function AdminController() {
         .then((res) => res.json())
         .then((result) => {
           if (!result.error) {
-            toast.success(result.message)
             deletePostingModal.onClose()
             router.push('/')
             router.refresh()
+            toast.success(result.message)
           }
         })
     } catch (error) {

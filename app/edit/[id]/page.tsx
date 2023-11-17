@@ -211,31 +211,25 @@ export default function Edit() {
             router.refresh()
             toast.success(result.message)
           } else {
-            if (!result.error) {
-              toast.success(result.message)
-              router.push(`/`)
-              router.refresh()
-            } else {
-              if (result.focus === 'category') {
-                categoryRef.current?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center',
-                })
-              }
-              if (result.focus === 'title') {
-                titleRef.current?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center',
-                })
-              }
-              if (result.focus === 'description') {
-                descriptionRef.current?.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'center',
-                })
-              }
-              throw new Error(result.error)
+            if (result.focus === 'category') {
+              categoryRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              })
             }
+            if (result.focus === 'title') {
+              titleRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              })
+            }
+            if (result.focus === 'description') {
+              descriptionRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              })
+            }
+            throw new Error(result.error)
           }
         })
     } catch (error) {
@@ -257,7 +251,7 @@ export default function Edit() {
 
   return (
     <>
-      <section className="w-full h-[320px] md:h-[420px]">
+      <section className="w-full h-[320px] md:h-[420px] mb-10">
         <div className="my-container h-full flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
             {previewURL ? (
@@ -323,13 +317,15 @@ export default function Edit() {
         </div>
       </section>
       <section>
-        <div className="my-container h-[500px]">
-          <EditorWrapper
-            content={content}
-            theme="snow"
-            setPosting={setPosting}
-            setUploadImages={setUploadImages}
-          />
+        <div className="my-container">
+          <div className="h-[600px] mb-24">
+            <EditorWrapper
+              content={content}
+              theme="snow"
+              setPosting={setPosting}
+              setUploadImages={setUploadImages}
+            />
+          </div>
           <Button
             type="button"
             level="primary"
@@ -337,7 +333,7 @@ export default function Edit() {
             label="수정하기"
             fullWidth={true}
             disabled={isLoading}
-            className="mt-20 md:mt-12 mb-6"
+            className="mb-6"
             onClick={onSubmit}
           />
         </div>
