@@ -61,6 +61,7 @@ export default async function Detail({ params }: IParams) {
                 alt="썸네일이미지"
                 fill
                 placeholder="blur"
+                loading="eager"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
                 className="object-cover brightness-50"
               />

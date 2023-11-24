@@ -37,6 +37,7 @@ export default async function Search({
               quality={100}
               fill
               placeholder="blur"
+              loading="eager"
               className="object-cover brightness-50"
             />
           </div>

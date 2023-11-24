@@ -22,6 +22,9 @@ export async function generateMetadata({
   return {
     title: searchParams.search as string,
     description: `${searchParams.search} 카테고리 페이지입니다.`,
+    alternates: {
+      canonical: `/categories?search=${searchParams.search}`,
+    },
   }
 }
 
@@ -56,6 +59,7 @@ export default async function Categories({
               quality={100}
               fill
               placeholder="blur"
+              loading="eager"
               className="object-cover brightness-50"
             />
           </div>

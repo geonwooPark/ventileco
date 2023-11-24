@@ -42,6 +42,7 @@ export default async function page() {
               quality={100}
               fill
               placeholder="blur"
+              loading="eager"
               className="object-cover brightness-50"
             />
           </div>
