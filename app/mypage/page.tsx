@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   title: {
     absolute: '마이페이지',
   },
-  description: '내 정보 및 활동 내역을 확인할 수 있는 페이지입니다.',
+  description: '내 정보 및 활동 내역을 확인해보세요',
+  robots: {
+    index: false,
+    nocache: true,
+  },
 }
 
 const menuArr = [

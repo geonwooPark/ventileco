@@ -3,6 +3,16 @@ import mainBg from '/public/images/main-bg.png'
 import { Suspense } from 'react'
 import SkeletonListings from '../components/listings/SkeletonListings'
 import Listings from '../components/listings/Listings'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '검색 결과',
+  description: '검색 결과 페이지입니다.',
+  robots: {
+    index: false,
+    nocache: true,
+  },
+}
 
 export default async function Search({
   searchParams,

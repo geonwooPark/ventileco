@@ -4,6 +4,26 @@ import CategoryItem from '@/app/components/CategoryItem'
 import { Suspense } from 'react'
 import SkeletonListings from '../components/listings/SkeletonListings'
 import Listings from '../components/listings/Listings'
+import { Metadata } from 'next'
+
+interface SearchParams {
+  searchParams?: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({
+  searchParams,
+}: SearchParams): Promise<Metadata> {
+  if (!searchParams)
+    return {
+      title: '404 페이지',
+      description: '존재하지 않는 페이지입니다.',
+    }
+
+  return {
+    title: searchParams.search as string,
+    description: `${searchParams.search} 카테고리 페이지입니다.`,
+  }
+}
 
 const categories = [
   'React.JS',
