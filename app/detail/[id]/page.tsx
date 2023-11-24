@@ -7,11 +7,23 @@ import FavoriteBtn from '@/app/components/FavoriteBtn'
 import Comment from '@/app/components/comment/Comment'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/components/EmptyState'
-import { CommentUserType, UserType } from '@/app/interfaces/interface'
+import {
+  CommentUserType,
+  GetListingsType,
+  UserType,
+} from '@/app/interfaces/interface'
 import getComment from '@/app/actions/getComment'
 import getPosting from '@/app/actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
+import getListings from '@/app/actions/getListings'
+
+const EditorWrapper = dynamic(() => import('../../components/Editor'), {
+  ssr: false,
+  loading: () => (
+    <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
+  ),
+})
 
 interface IParams {
   params: {
@@ -36,12 +48,17 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   }
 }
 
-const EditorWrapper = dynamic(() => import('../../components/Editor'), {
-  ssr: false,
-  loading: () => (
-    <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
-  ),
-})
+export async function generateStaticParams() {
+  const { postings }: GetListingsType = await getListings({
+    type: 'all',
+    page: 1,
+    limit: 100,
+  })
+
+  return postings.map((posting) => ({
+    id: posting._id.toString(),
+  }))
+}
 
 export default async function Detail({ params }: IParams) {
   const currentUser: UserType = await getCurrentUser()
