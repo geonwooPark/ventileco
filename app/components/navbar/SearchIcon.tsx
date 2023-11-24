@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai'
 

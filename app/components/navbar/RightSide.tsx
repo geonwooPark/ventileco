@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useState } from 'react'
 import SearchIcon from './SearchIcon'
 import Menu from './Menu'

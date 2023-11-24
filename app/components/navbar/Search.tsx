@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useEffect, useState } from 'react'
 import Input from '../Input'
 import { AiOutlineSearch } from 'react-icons/ai'

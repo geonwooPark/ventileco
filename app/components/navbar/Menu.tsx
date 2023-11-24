@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useEffect, useState } from 'react'
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
@@ -49,7 +47,7 @@ export default function Menu({ currentUser }: MenuProps) {
         }`}
       >
         {fade && (
-          <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[140px] bg-white overflow-hidden top-12 right-0  md:-right-10 text-sm">
+          <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[140px] bg-white overflow-hidden top-12 right-0 md:-right-10 text-sm">
             <div className="flex flex-col curser-pointer">
               {currentUser ? (
                 <>
