@@ -11,6 +11,30 @@ import { CommentUserType, UserType } from '@/app/interfaces/interface'
 import getComment from '@/app/actions/getComment'
 import getPosting from '@/app/actions/getPosting'
 import NotFound from '@/app/not-found'
+import { Metadata } from 'next'
+
+interface IParams {
+  params: {
+    id: string
+  }
+}
+
+export async function generateMetadata({ params }: IParams): Promise<Metadata> {
+  const posting = await getPosting(params.id)
+  if (!posting)
+    return {
+      title: '404 페이지',
+      description: '존재하지 않는 페이지입니다.',
+    }
+
+  return {
+    title: posting.title,
+    description: posting.description,
+    alternates: {
+      canonical: `/detail/${posting._id}`,
+    },
+  }
+}
 
 const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ssr: false,
@@ -19,7 +43,7 @@ const EditorWrapper = dynamic(() => import('../../components/Editor'), {
   ),
 })
 
-export default async function Detail({ params }: { params: { id: string } }) {
+export default async function Detail({ params }: IParams) {
   const currentUser: UserType = await getCurrentUser()
   const posting = await getPosting(params.id)
   const comments: CommentUserType[] = await getComment(params.id)

@@ -13,9 +13,13 @@ import Footer from './components/Footer'
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Ventileco 개발 블로그',
+  metadataBase: new URL('https://ventileco-blog.vercel.app/'),
+  title: {
+    default: 'Ventileco 개발 블로그',
+    template: `%s | Ventileco 개발 블로그`,
+  },
   description:
-    '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그',
+    '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그입니다.',
   icons: {
     icon: '/favicon.ico',
   },
@@ -30,6 +34,16 @@ export default async function RootLayout({
 
   return (
     <html lang="kr">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="iB35_cjnMF8iid4q7riM-UjORPcfV0-9o-ZaoVFSXJM"
+        />
+        <meta
+          name="naver-site-verification"
+          content="1d20d1ea80cc378d93a73cd7ab538842d5cc82cd"
+        />
+      </head>
       <body className={noto.className}>
         <ToastContainer
           position="top-center"

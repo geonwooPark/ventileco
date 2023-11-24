@@ -5,6 +5,14 @@ import Tap from '../components/tap/Tap'
 import getCurrentUser from '../actions/getCurrentUser'
 import CommentList from '../components/tap/CommentList'
 import FavList from '../components/tap/FavList'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: {
+    absolute: '마이페이지',
+  },
+  description: '내 정보 및 활동 내역을 확인할 수 있는 페이지입니다.',
+}
 
 const menuArr = [
   {
