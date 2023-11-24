@@ -48,18 +48,6 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   }
 }
 
-export async function generateStaticParams() {
-  const { postings }: GetListingsType = await getListings({
-    type: 'all',
-    page: 1,
-    limit: 100,
-  })
-
-  return postings.map((posting) => ({
-    id: posting._id.toString(),
-  }))
-}
-
 export default async function Detail({ params }: IParams) {
   const currentUser: UserType = await getCurrentUser()
   const posting = await getPosting(params.id)
@@ -128,4 +116,16 @@ export default async function Detail({ params }: IParams) {
       </section>
     </>
   )
+}
+
+export async function generateStaticParams() {
+  const { postings }: GetListingsType = await getListings({
+    type: 'all',
+    page: 1,
+    limit: 100,
+  })
+
+  return postings.map((posting) => ({
+    id: posting._id.toString(),
+  }))
 }
