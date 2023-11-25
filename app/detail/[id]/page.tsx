@@ -18,12 +18,12 @@ import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
 import getListings from '@/app/actions/getListings'
 
-const EditorWrapper = dynamic(() => import('../../components/Editor'), {
-  ssr: false,
-  loading: () => (
-    <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
-  ),
-})
+// const EditorWrapper = dynamic(() => import('../../components/Editor'), {
+//   ssr: false,
+//   loading: () => (
+//     <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
+//   ),
+// })
 
 interface IParams {
   params: {
@@ -98,11 +98,11 @@ export default async function Detail({ params }: IParams) {
       <section>
         <div className="my-container">
           <div className="mb-10">
-            <EditorWrapper
+            {/* <EditorWrapper
               content={posting.content}
               theme="bubble"
               readOnly={true}
-            />
+            /> */}
           </div>
           <div className="mb-10">
             <Comment comments={comments} currentUser={currentUser} />
