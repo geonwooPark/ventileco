@@ -2,28 +2,28 @@
 
 import React from 'react'
 import CommentItem from './CommentItem'
-import { CommentUserType, UserType } from '@/app/_interfaces/interface'
+import { CommentUserType } from '@/app/_interfaces/interface'
 import DeleteCommentModal from '../modals/DeleteCommentModal'
 import { toast } from 'react-toastify'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'
 import useSelectedComment from '@/app/_hooks/useSelectedComment'
 import CommentInput from './CommentInput'
+import { useSession } from 'next-auth/react'
 
 interface CommentProps {
   comments: CommentUserType[] | null
-  currentUser: UserType
+  postingId: string
 }
 
-export default function Comment({ comments, currentUser }: CommentProps) {
+export default function Comment({ comments, postingId }: CommentProps) {
+  const { data: session } = useSession()
   const router = useRouter()
-  const params = useParams()
-  const { id: postingId } = params
   const deleteCommentModal = useDeleteCommentModal()
   const selectedComment = useSelectedComment()
 
   const onSubmit = async () => {
-    if (!currentUser) return
+    if (!session) return
     try {
       await fetch('/api/comment', {
         method: 'DELETE',
@@ -52,18 +52,14 @@ export default function Comment({ comments, currentUser }: CommentProps) {
         <DeleteCommentModal onSubmit={onSubmit} />
       </div>
       <h1 className="md:text-lg mb-4">댓글</h1>
-      <CommentInput
-        type="post"
-        currentUser={currentUser}
-        buttonLabel="댓글 작성"
-      />
+      <CommentInput type="post" session={session} buttonLabel="댓글 작성" />
       <div>
         {comments?.map((comment) => {
           return (
             <CommentItem
               key={comment.commentId}
               comment={comment}
-              currentUser={currentUser}
+              session={session}
             />
           )
         })}

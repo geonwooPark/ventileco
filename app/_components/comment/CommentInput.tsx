@@ -1,16 +1,15 @@
-'use client'
-
 import React, { useState } from 'react'
 import Button from '../Button'
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { CommentUserType, UserType } from '@/app/_interfaces/interface'
+import { CommentUserType } from '@/app/_interfaces/interface'
+import { Session } from 'next-auth'
 
 interface CommentInputProps {
   type: 'post' | 'edit'
   comment?: CommentUserType
-  currentUser?: UserType | null
+  session?: Session | null
   buttonLabel: string
   setEditMode?: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -18,7 +17,7 @@ interface CommentInputProps {
 export default function CommentInput({
   type,
   comment,
-  currentUser,
+  session,
   buttonLabel,
   setEditMode,
 }: CommentInputProps) {
@@ -40,7 +39,7 @@ export default function CommentInput({
           method: 'POST',
           body: JSON.stringify({
             postingId: postingId,
-            currentUser: currentUser,
+            currentUser: session?.user,
             text,
           }),
         }).then(() => {
@@ -58,7 +57,7 @@ export default function CommentInput({
         body: JSON.stringify({
           postingId: postingId,
           commentId: comment?.commentId,
-          currentUser: currentUser,
+          currentUser: session?.user,
           text,
         }),
       }).then(() => {
@@ -76,10 +75,10 @@ export default function CommentInput({
         cols={30}
         rows={3}
         placeholder={
-          currentUser ? '댓글을 남겨보세요' : '로그인 후에 댓글을 남겨보세요'
+          session ? '댓글을 남겨보세요' : '로그인 후에 댓글을 남겨보세요'
         }
         value={text}
-        disabled={currentUser ? false : true}
+        disabled={session ? false : true}
         className="w-full px-3 py-2 border outline-none rounded resize-none disabled:cursor-not-allowed"
         onChange={onChange}
       />
@@ -90,7 +89,7 @@ export default function CommentInput({
         label={buttonLabel}
         className="w-24"
         onClick={onSubmit}
-        disabled={currentUser ? false : true}
+        disabled={session ? false : true}
       />
     </div>
   )

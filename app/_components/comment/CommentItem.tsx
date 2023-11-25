@@ -1,29 +1,25 @@
-'use client'
-
 import React, { useState } from 'react'
 import Avatar from '../Avatar'
 import dayjs from 'dayjs'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'
 import useSelectedComment from '@/app/_hooks/useSelectedComment'
-import { CommentUserType, UserType } from '@/app/_interfaces/interface'
+import { CommentUserType } from '@/app/_interfaces/interface'
 import CommentInput from './CommentInput'
+import { Session } from 'next-auth'
 
 interface CommentItemProps {
   comment: CommentUserType
-  currentUser?: UserType | null
+  session?: Session | null
 }
 
-export default function CommentItem({
-  comment,
-  currentUser,
-}: CommentItemProps) {
+export default function CommentItem({ comment, session }: CommentItemProps) {
   const [editMode, setEditMode] = useState(false)
   const deleteCommentModal = useDeleteCommentModal()
   const selectedComment = useSelectedComment()
 
   const onEdit = () => {
-    if (!currentUser) return
-    if (comment.userId !== currentUser._id) return
+    if (!session) return
+    if (comment.userId !== session.user.id) return
     setEditMode(!editMode)
   }
 
@@ -40,7 +36,7 @@ export default function CommentItem({
           <p className="ml-2">{comment.userName}</p>
         </div>
         <small className="text-gray-400 flex items-center gap-2">
-          {currentUser && currentUser._id === comment.userId && (
+          {session && session.user.id === comment.userId && (
             <>
               <button onClick={onEdit}>수정</button>
               <button onClick={onDelete}>삭제</button>
@@ -53,7 +49,7 @@ export default function CommentItem({
         <CommentInput
           type="edit"
           comment={comment}
-          currentUser={currentUser}
+          session={session}
           buttonLabel="댓글 수정"
           setEditMode={setEditMode}
         />
