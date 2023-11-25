@@ -1,30 +1,30 @@
 import React, { useState } from 'react'
 import Button from '../Button'
-import { useParams } from 'next/navigation'
-import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import { CommentUserType } from '@/app/_interfaces/interface'
 import { Session } from 'next-auth'
 
 interface CommentInputProps {
   type: 'post' | 'edit'
+  postingId: string
+  buttonLabel: string
+  setComments: React.Dispatch<
+    React.SetStateAction<CommentUserType[] | undefined>
+  >
   comment?: CommentUserType
   session?: Session | null
-  buttonLabel: string
   setEditMode?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function CommentInput({
   type,
+  postingId,
+  buttonLabel,
+  setComments,
   comment,
   session,
-  buttonLabel,
   setEditMode,
 }: CommentInputProps) {
-  const params = useParams()
-  const router = useRouter()
-  const { id: postingId } = params
-
   const [text, setText] = useState(comment ? comment.text : '')
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -42,10 +42,12 @@ export default function CommentInput({
             currentUser: session?.user,
             text,
           }),
-        }).then(() => {
-          setText('')
-          router.refresh()
         })
+          .then((res) => res.json())
+          .then((result) => {
+            setComments(result)
+            setText('')
+          })
       } catch (error) {
         if (error instanceof Error) {
           toast.error(error.message)
@@ -60,12 +62,14 @@ export default function CommentInput({
           currentUser: session?.user,
           text,
         }),
-      }).then(() => {
-        if (setEditMode) {
-          setEditMode(false)
-        }
-        router.refresh()
       })
+        .then((res) => res.json())
+        .then((result) => {
+          setComments(result)
+          if (setEditMode) {
+            setEditMode(false)
+          }
+        })
     }
   }
 

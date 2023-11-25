@@ -6,8 +6,7 @@ import FavoriteBtn from '@/app/_components/FavoriteBtn'
 import Comment from '@/app/_components/comment/Comment'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/_components/EmptyState'
-import { CommentUserType, GetListingsType } from '@/app/_interfaces/interface'
-import getComment from '@/app/_actions/getComment'
+import { GetListingsType } from '@/app/_interfaces/interface'
 import getPosting from '@/app/_actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
@@ -57,7 +56,6 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 
 export default async function Detail({ params }: IParams) {
   const posting = await getPosting(params.id)
-  const comments: CommentUserType[] = await getComment(params.id)
 
   if (!posting) return NotFound()
 
@@ -108,7 +106,7 @@ export default async function Detail({ params }: IParams) {
       </section>
       <section className="mb-10">
         <div className="my-container">
-          <Comment comments={comments} postingId={params.id} />
+          <Comment postingId={params.id} />
         </div>
       </section>
       <section className="mb-10">

@@ -8,14 +8,24 @@ import CommentInput from './CommentInput'
 import { Session } from 'next-auth'
 
 interface CommentItemProps {
+  postingId: string
   comment: CommentUserType
   session?: Session | null
+  setComments: React.Dispatch<
+    React.SetStateAction<CommentUserType[] | undefined>
+  >
 }
 
-export default function CommentItem({ comment, session }: CommentItemProps) {
-  const [editMode, setEditMode] = useState(false)
+export default function CommentItem({
+  postingId,
+  comment,
+  session,
+  setComments,
+}: CommentItemProps) {
   const deleteCommentModal = useDeleteCommentModal()
   const selectedComment = useSelectedComment()
+
+  const [editMode, setEditMode] = useState(false)
 
   const onEdit = () => {
     if (!session) return
@@ -48,7 +58,9 @@ export default function CommentItem({ comment, session }: CommentItemProps) {
       {editMode ? (
         <CommentInput
           type="edit"
+          postingId={postingId}
           comment={comment}
+          setComments={setComments}
           session={session}
           buttonLabel="댓글 수정"
           setEditMode={setEditMode}

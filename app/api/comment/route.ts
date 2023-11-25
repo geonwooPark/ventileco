@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await connectMongo()
-    await Comment.updateOne(
+    const comment = await Comment.findOneAndUpdate(
       {
         postingId,
       },
@@ -41,8 +41,9 @@ export async function POST(req: NextRequest) {
           },
         },
       },
+      { new: true },
     )
-    return NextResponse.json({ status: 200 })
+    return NextResponse.json(comment.user, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -56,14 +57,15 @@ export async function DELETE(req: NextRequest) {
 
   try {
     await connectMongo()
-    await Comment.updateOne(
+    const comment = await Comment.findOneAndUpdate(
       {
         postingId,
       },
       { $pull: { user: { commentId } } },
+      { new: true },
     )
 
-    return NextResponse.json({ status: 200 })
+    return NextResponse.json(comment.user, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -77,14 +79,14 @@ export async function PATCH(req: NextRequest) {
 
   try {
     await connectMongo()
-    await Comment.updateOne(
+    const comment = await Comment.findOneAndUpdate(
       {
         postingId,
       },
       { $set: { 'user.$[elem].text': text } },
-      { arrayFilters: [{ 'elem.commentId': commentId }] },
+      { arrayFilters: [{ 'elem.commentId': commentId }], new: true },
     )
-    return NextResponse.json({ status: 200 })
+    return NextResponse.json(comment.user, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
