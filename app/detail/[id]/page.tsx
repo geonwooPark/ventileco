@@ -1,29 +1,29 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import getCurrentUser from '@/app/actions/getCurrentUser'
-import AdminController from '@/app/components/AdminController'
-import FavoriteBtn from '@/app/components/FavoriteBtn'
-import Comment from '@/app/components/comment/Comment'
+import getCurrentUser from '@/app/_actions/getCurrentUser'
+import AdminController from '@/app/_components/AdminController'
+import FavoriteBtn from '@/app/_components/FavoriteBtn'
+import Comment from '@/app/_components/comment/Comment'
 import dayjs from 'dayjs'
-import EmptyState from '@/app/components/EmptyState'
+import EmptyState from '@/app/_components/EmptyState'
 import {
   CommentUserType,
   GetListingsType,
   UserType,
-} from '@/app/interfaces/interface'
-import getComment from '@/app/actions/getComment'
-import getPosting from '@/app/actions/getPosting'
+} from '@/app/_interfaces/interface'
+import getComment from '@/app/_actions/getComment'
+import getPosting from '@/app/_actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
-import getListings from '@/app/actions/getListings'
+import getListings from '@/app/_actions/getListings'
 
-// const EditorWrapper = dynamic(() => import('../../components/Editor'), {
-//   ssr: false,
-//   loading: () => (
-//     <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
-//   ),
-// })
+const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
+  ssr: false,
+  loading: () => (
+    <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
+  ),
+})
 
 interface IParams {
   params: {
@@ -98,11 +98,11 @@ export default async function Detail({ params }: IParams) {
       <section>
         <div className="my-container">
           <div className="mb-10">
-            {/* <EditorWrapper
+            <EditorWrapper
               content={posting.content}
               theme="bubble"
               readOnly={true}
-            /> */}
+            />
           </div>
           <div className="mb-10">
             <Comment comments={comments} currentUser={currentUser} />

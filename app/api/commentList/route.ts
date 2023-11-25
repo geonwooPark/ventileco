@@ -1,6 +1,6 @@
-import getCurrentUser from '@/app/actions/getCurrentUser'
-import { CommentType } from '@/app/interfaces/interface'
-import { connectMongo } from '@/app/utils/database'
+import getCurrentUser from '@/app/_actions/getCurrentUser'
+import { CommentType } from '@/app/_interfaces/interface'
+import { connectMongo } from '@/app/_utils/database'
 import { Comment } from '@/models/comment'
 import { NextRequest, NextResponse } from 'next/server'
 

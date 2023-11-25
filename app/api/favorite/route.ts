@@ -1,5 +1,5 @@
-import { connectMongo } from '@/app/utils/database'
-import getCurrentUser from '@/app/actions/getCurrentUser'
+import { connectMongo } from '@/app/_utils/database'
+import getCurrentUser from '@/app/_actions/getCurrentUser'
 import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 

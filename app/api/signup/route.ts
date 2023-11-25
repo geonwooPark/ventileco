@@ -1,4 +1,4 @@
-import { connectMongo } from '@/app/utils/database'
+import { connectMongo } from '@/app/_utils/database'
 import { User } from '@/models/user'
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'

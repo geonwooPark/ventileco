@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
 import { Suspense } from 'react'
-import SkeletonListings from '../components/listings/SkeletonListings'
-import Listings from '../components/listings/Listings'
+import SkeletonListings from '../_components/listings/SkeletonListings'
+import Listings from '../_components/listings/Listings'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

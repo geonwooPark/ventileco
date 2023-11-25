@@ -2,10 +2,10 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import Button from '../../components/Button'
+import Button from '../../_components/Button'
 import dynamic from 'next/dynamic'
 import { toast } from 'react-toastify'
-import Input from '../../components/Input'
+import Input from '../../_components/Input'
 import {
   deleteObject,
   getDownloadURL,
@@ -13,9 +13,9 @@ import {
   uploadBytes,
 } from 'firebase/storage'
 import { storage } from '../../firebase'
-import DropDownMenu from '../../components/dropdown/DropDownMenu'
-import EmptyState from '@/app/components/EmptyState'
-import { PostingType } from '@/app/interfaces/interface'
+import DropDownMenu from '../../_components/dropdown/DropDownMenu'
+import EmptyState from '@/app/_components/EmptyState'
+import { PostingType } from '@/app/_interfaces/interface'
 
 const categories = [
   'React.JS',
@@ -25,7 +25,7 @@ const categories = [
   '라이브러리',
 ]
 
-const EditorWrapper = dynamic(() => import('../../components/Editor'), {
+const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
   ssr: false,
   loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
 })

@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
 import React from 'react'
-import Tap from '../components/tap/Tap'
-import getCurrentUser from '../actions/getCurrentUser'
-import CommentList from '../components/tap/CommentList'
-import FavList from '../components/tap/FavList'
+import Tap from '../_components/tap/Tap'
+import getCurrentUser from '../_actions/getCurrentUser'
+import CommentList from '../_components/tap/CommentList'
+import FavList from '../_components/tap/FavList'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

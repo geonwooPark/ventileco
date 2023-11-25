@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
-import Navbar from './components/navbar/Navbar'
-import LoginModal from './components/modals/LoginModal'
+import Navbar from './_components/navbar/Navbar'
+import LoginModal from './_components/modals/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import SignUpModal from './components/modals/SignUpModal'
-import getCurrentUser from './actions/getCurrentUser'
-import { UserType } from './interfaces/interface'
-import Footer from './components/Footer'
+import SignUpModal from './_components/modals/SignUpModal'
+import getCurrentUser from './_actions/getCurrentUser'
+import { UserType } from './_interfaces/interface'
+import Footer from './_components/Footer'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 

@@ -3,7 +3,7 @@ import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcrypt'
-import { connectMongo } from '@/app/utils/database'
+import { connectMongo } from '@/app/_utils/database'
 import NextAuth from 'next-auth/next'
 import { User } from '@/models/user'
 

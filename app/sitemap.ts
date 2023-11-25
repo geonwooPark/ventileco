@@ -1,5 +1,5 @@
-import getListings from './actions/getListings'
-import { GetListingsType } from './interfaces/interface'
+import getListings from './_actions/getListings'
+import { GetListingsType } from './_interfaces/interface'
 
 export default async function sitemap() {
   const baseURL = 'https://ventileco-blog.vercel.app'

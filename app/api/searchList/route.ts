@@ -1,5 +1,5 @@
-import { PostingType } from '@/app/interfaces/interface'
-import { connectMongo } from '@/app/utils/database'
+import { PostingType } from '@/app/_interfaces/interface'
+import { connectMongo } from '@/app/_utils/database'
 import { Posting } from '@/models/posting'
 import { NextRequest, NextResponse } from 'next/server'
 

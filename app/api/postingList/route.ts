@@ -1,7 +1,7 @@
-import { connectMongo } from '@/app/utils/database'
+import { connectMongo } from '@/app/_utils/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { Posting } from '@/models/posting'
-import { PostingType } from '@/app/interfaces/interface'
+import { PostingType } from '@/app/_interfaces/interface'
 
 export async function GET(req: NextRequest) {
   const page = Number(req.nextUrl.searchParams.get('page') as string)
