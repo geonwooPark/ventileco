@@ -4,28 +4,24 @@ import React, { useEffect, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import useFavorite from '../_hooks/useFavorite'
 import { toast } from 'react-toastify'
-import { UserType } from '../_interfaces/interface'
+import { useSession } from 'next-auth/react'
 
 interface FavoriteBtn {
   className?: string
   postingId: string
-  currentUser: UserType | null
 }
 
-export default function FavoriteBtn({
-  className,
-  currentUser,
-  postingId,
-}: FavoriteBtn) {
+export default function FavoriteBtn({ className, postingId }: FavoriteBtn) {
+  const { data: session } = useSession()
   const { isFav, setIsFav, handleFavoriteBtn } = useFavorite({
     postingId,
-    currentUser,
+    session,
   })
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const getFav = async () => {
-      if (!currentUser) return
+      if (!session) return
 
       try {
         await fetch(`/api/favorite?postingId=${postingId}`, {
@@ -46,7 +42,7 @@ export default function FavoriteBtn({
       }
     }
     getFav()
-  }, [currentUser])
+  }, [session])
 
   return (
     <button

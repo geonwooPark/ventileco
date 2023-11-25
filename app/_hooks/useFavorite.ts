@@ -1,23 +1,23 @@
+import { Session } from 'next-auth'
 import React, { useState } from 'react'
-import { UserType } from '../_interfaces/interface'
 
-interface UseFavorite {
+interface UseFavoriteType {
   postingId: string
-  currentUser: UserType | null
+  session: Session | null
 }
 
-export default function useFavorite({ postingId, currentUser }: UseFavorite) {
+export default function useFavorite({ postingId, session }: UseFavoriteType) {
   const [isFav, setIsFav] = useState(false)
 
   const handleFavoriteBtn = async () => {
-    if (!currentUser) return
+    if (!session) return
 
     if (isFav) {
       await fetch('/api/favorite', {
         method: 'DELETE',
         body: JSON.stringify({
           postingId: postingId,
-          userId: currentUser._id,
+          userId: session.user.id,
         }),
       })
         .then((res) => res.json())
@@ -31,7 +31,7 @@ export default function useFavorite({ postingId, currentUser }: UseFavorite) {
         method: 'POST',
         body: JSON.stringify({
           postingId: postingId,
-          userId: currentUser._id,
+          userId: session.user.id,
         }),
       })
         .then((res) => res.json())

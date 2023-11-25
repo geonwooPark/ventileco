@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
           user: {
             commentId: uuid(),
             userImage: currentUser.image,
-            userId: currentUser._id,
+            userId: currentUser.id,
             userName: currentUser.name,
             createdAt: new Date(),
             text,
