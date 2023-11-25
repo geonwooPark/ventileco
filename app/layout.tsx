@@ -6,9 +6,8 @@ import LoginModal from './_components/modals/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './_components/modals/SignUpModal'
-import getCurrentUser from './_actions/getCurrentUser'
-import { UserType } from './_interfaces/interface'
 import Footer from './_components/Footer'
+import AuthSession from './_components/AuthSession'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -30,8 +29,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const currentUser: UserType = await getCurrentUser()
-
   return (
     <html lang="kr">
       <head>
@@ -52,8 +49,10 @@ export default async function RootLayout({
         />
         <SignUpModal />
         <LoginModal />
-        <Navbar currentUser={currentUser} />
-        <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
+        <AuthSession>
+          <Navbar />
+          <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
+        </AuthSession>
         <Footer className="relative h-[56px] -translate-y-full w-full bg-gray-800" />
       </body>
     </html>

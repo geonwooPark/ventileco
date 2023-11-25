@@ -4,12 +4,10 @@ import Menu from './Menu'
 import Search from './Search'
 import Link from 'next/link'
 import { AiOutlineEdit } from 'react-icons/ai'
-import { UserType } from '@/app/_interfaces/interface'
+import { useSession } from 'next-auth/react'
 
-interface RightSideProps {
-  currentUser?: UserType | null
-}
-export default function RightSide({ currentUser }: RightSideProps) {
+export default function RightSide() {
+  const { data: session } = useSession()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = () => {
@@ -22,13 +20,13 @@ export default function RightSide({ currentUser }: RightSideProps) {
   return (
     <div className="flex items-center gap-4">
       <Search isOpen={isOpen} setIsOpen={setIsOpen} />
-      {currentUser?.role === 'admin' && (
+      {session?.user?.role === 'admin' && (
         <Link href={'/write'} className="text-white z-50">
           <AiOutlineEdit size={24} />
         </Link>
       )}
       <SearchIcon isOpen={isOpen} toggleOpen={toggleOpen} />
-      <Menu currentUser={currentUser} />
+      <Menu session={session} />
     </div>
   )
 }

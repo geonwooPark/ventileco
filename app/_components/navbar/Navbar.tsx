@@ -3,13 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
 import RightSide from './RightSide'
-import { UserType } from '@/app/_interfaces/interface'
 
-interface NavbarProps {
-  currentUser?: UserType | null
-}
-
-export default function Navbar({ currentUser }: NavbarProps) {
+export default function Navbar() {
   const [headerColor, setHeaderColor] = useState(false)
   const scrollRef = useRef<HTMLHeadElement | null>(null)
 
@@ -35,7 +30,7 @@ export default function Navbar({ currentUser }: NavbarProps) {
     >
       <div className="my-container py-4 flex items-center justify-between">
         <Logo />
-        <RightSide currentUser={currentUser} />
+        <RightSide />
       </div>
     </header>
   )

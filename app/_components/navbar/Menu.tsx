@@ -5,13 +5,13 @@ import useLoginModal from '@/app/_hooks/useLoginModal'
 import useSignUpModal from '@/app/_hooks/useSignUpModal'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { UserType } from '@/app/_interfaces/interface'
+import { Session } from 'next-auth'
 
 interface MenuProps {
-  currentUser?: UserType | null
+  session: Session | null
 }
 
-export default function Menu({ currentUser }: MenuProps) {
+export default function Menu({ session }: MenuProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [fade, setFade] = useState(false)
@@ -39,7 +39,7 @@ export default function Menu({ currentUser }: MenuProps) {
   return (
     <div className="relative">
       <div onClick={toggleOpen} className="cursor-pointer">
-        <Avatar src={currentUser?.image} />
+        <Avatar src={session?.user?.image} />
       </div>
       <div
         className={`transition duration-200 ${
@@ -49,7 +49,7 @@ export default function Menu({ currentUser }: MenuProps) {
         {fade && (
           <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[140px] bg-white overflow-hidden top-12 right-0 md:-right-10 text-sm">
             <div className="flex flex-col curser-pointer">
-              {currentUser ? (
+              {session ? (
                 <>
                   <MenuItem
                     onClick={() => signOut()}
