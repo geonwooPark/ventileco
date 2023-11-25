@@ -2,22 +2,26 @@
 
 import React from 'react'
 import Button from './Button'
-import { useParams, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import useDeletePostingModal from '../_hooks/useDeletePostingModal'
 import DeletePostingModal from './modals/DeletePostingModal'
+import { useSession } from 'next-auth/react'
 
-export default function AdminController() {
-  const params = useParams()
+interface AdminControllerProps {
+  postingId: string
+}
+
+export default function AdminController({ postingId }: AdminControllerProps) {
+  const { data: session } = useSession()
   const router = useRouter()
-  const { id } = useParams()
   const deletePostingModal = useDeletePostingModal()
 
   const onSubmit = async () => {
     try {
       await fetch('/api/posting', {
         method: 'DELETE',
-        body: JSON.stringify(params.id),
+        body: JSON.stringify(postingId),
       })
         .then((res) => res.json())
         .then((result) => {
@@ -37,28 +41,32 @@ export default function AdminController() {
 
   return (
     <>
-      <div className="absolute top-0 left-0">
-        <DeletePostingModal onSubmit={onSubmit} />
-      </div>
-      <div className="flex gap-4">
-        <Button
-          type="button"
-          level="ghost"
-          size="l"
-          label="수정"
-          fullWidth={true}
-          onClick={() => router.push(`/edit/${id}`)}
-        />
-        <Button
-          type="button"
-          level="ghost"
-          size="l"
-          label="삭제"
-          fullWidth={true}
-          className="text-red-400 border-red-400"
-          onClick={deletePostingModal.onOpen}
-        />
-      </div>
+      {session && session.user.role === 'admin' && (
+        <div>
+          <div className="absolute top-0 left-0">
+            <DeletePostingModal onSubmit={onSubmit} />
+          </div>
+          <div className="flex gap-4">
+            <Button
+              type="button"
+              level="ghost"
+              size="l"
+              label="수정"
+              fullWidth={true}
+              onClick={() => router.push(`/edit/${postingId}`)}
+            />
+            <Button
+              type="button"
+              level="ghost"
+              size="l"
+              label="삭제"
+              fullWidth={true}
+              className="text-red-400 border-red-400"
+              onClick={deletePostingModal.onOpen}
+            />
+          </div>
+        </div>
+      )}
     </>
   )
 }
