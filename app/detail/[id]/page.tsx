@@ -1,17 +1,12 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import getCurrentUser from '@/app/_actions/getCurrentUser'
 import AdminController from '@/app/_components/AdminController'
 import FavoriteBtn from '@/app/_components/FavoriteBtn'
 import Comment from '@/app/_components/comment/Comment'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/_components/EmptyState'
-import {
-  CommentUserType,
-  GetListingsType,
-  UserType,
-} from '@/app/_interfaces/interface'
+import { CommentUserType, GetListingsType } from '@/app/_interfaces/interface'
 import getComment from '@/app/_actions/getComment'
 import getPosting from '@/app/_actions/getPosting'
 import NotFound from '@/app/not-found'
@@ -29,6 +24,18 @@ interface IParams {
   params: {
     id: string
   }
+}
+
+export async function generateStaticParams() {
+  const { postings }: GetListingsType = await getListings({
+    type: 'all',
+    page: 1,
+    limit: 100,
+  })
+
+  return postings.map((posting) => ({
+    id: posting._id.toString(),
+  }))
 }
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
@@ -49,7 +56,6 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 }
 
 export default async function Detail({ params }: IParams) {
-  const currentUser: UserType = await getCurrentUser()
   const posting = await getPosting(params.id)
   const comments: CommentUserType[] = await getComment(params.id)
 
@@ -78,11 +84,7 @@ export default async function Detail({ params }: IParams) {
             {dayjs(posting.createdAt).format('YYYY-MM-DD')}
           </p>
           <div className="flex items-center mb-2">
-            <FavoriteBtn
-              currentUser={currentUser}
-              postingId={posting._id.toString()}
-              className="mr-3"
-            />
+            <FavoriteBtn postingId={posting._id.toString()} className="mr-3" />
             <p className="text-sm md:text-base">{posting.category}</p>
           </div>
           <h1 className="w-full text-2xl md:text-4xl text-right font-bold mb-1 md:mb-3 truncate">
@@ -95,37 +97,25 @@ export default async function Detail({ params }: IParams) {
           )}
         </div>
       </section>
-      <section>
+      <section className="mb-10">
         <div className="my-container">
-          <div className="mb-10">
-            <EditorWrapper
-              content={posting.content}
-              theme="bubble"
-              readOnly={true}
-            />
-          </div>
-          <div className="mb-10">
-            <Comment comments={comments} currentUser={currentUser} />
-          </div>
-          {currentUser && currentUser.role === 'admin' && (
-            <div className="mb-5">
-              <AdminController />
-            </div>
-          )}
+          <EditorWrapper
+            content={posting.content}
+            theme="bubble"
+            readOnly={true}
+          />
+        </div>
+      </section>
+      <section className="mb-10">
+        <div className="my-container">
+          <Comment comments={comments} postingId={params.id} />
+        </div>
+      </section>
+      <section className="mb-10">
+        <div className="my-container">
+          <AdminController postingId={params.id} />
         </div>
       </section>
     </>
   )
-}
-
-export async function generateStaticParams() {
-  const { postings }: GetListingsType = await getListings({
-    type: 'all',
-    page: 1,
-    limit: 100,
-  })
-
-  return postings.map((posting) => ({
-    id: posting._id.toString(),
-  }))
 }
