@@ -1,4 +1,4 @@
-import { AuthOptions } from 'next-auth'
+import { AuthOptions, DefaultSession } from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
@@ -6,6 +6,25 @@ import bcrypt from 'bcrypt'
 import { connectMongo } from '@/app/_utils/database'
 import NextAuth from 'next-auth/next'
 import { User } from '@/models/user'
+
+declare module 'next-auth' {
+  interface User {
+    role: string
+  }
+  interface Session extends DefaultSession {
+    user: {
+      id: string
+      role: string
+    } & DefaultSession['user']
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id: string
+    role: string
+  }
+}
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -54,19 +73,24 @@ export const authOptions: AuthOptions = {
     signIn: '/',
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ account, profile }) {
       if (account?.type === 'oauth') {
         return await signInWithOAuth(account, profile)
       }
       return true
     },
-    async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+        token.role = user.role
       }
       return token
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id
+        session.user.role = token.role
+      }
       return session
     },
   },
