@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt'
 import { connectMongo } from '@/app/_utils/database'
 import NextAuth from 'next-auth/next'
 import { User } from '@/models/user'
+import { UserType } from '@/app/_interfaces/interface'
 
 declare module 'next-auth' {
   interface User {
@@ -80,9 +81,12 @@ export const authOptions: AuthOptions = {
       return true
     },
     async jwt({ token, user }) {
+      const userDB = await User.findOne<UserType>({ email: user?.email })
+      if (!userDB) return token
+
       if (user) {
-        token.id = user.id
-        token.role = user.role
+        token.id = userDB._id
+        token.role = userDB.role
       }
       return token
     },
