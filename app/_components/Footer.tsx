@@ -10,6 +10,7 @@ export default function Footer({ className }: { className: string }) {
         </span>
         <Link
           href="https://github.com/geonwooPark/myblog"
+          target="_black"
           className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
         >
           <svg

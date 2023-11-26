@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Modal from './Modal'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'

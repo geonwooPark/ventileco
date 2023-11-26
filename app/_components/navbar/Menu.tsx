@@ -18,7 +18,7 @@ export default function Menu({ session }: MenuProps) {
   const loginModal = useLoginModal()
   const signUpModal = useSignUpModal()
 
-  const toggleOpen = () => {
+  const handleToggle = () => {
     setIsOpen((prev) => !prev)
   }
 
@@ -38,7 +38,7 @@ export default function Menu({ session }: MenuProps) {
 
   return (
     <div className="relative">
-      <div onClick={toggleOpen} className="cursor-pointer">
+      <div onClick={handleToggle} className="cursor-pointer">
         <Avatar src={session?.user?.image} />
       </div>
       <div
@@ -57,15 +57,30 @@ export default function Menu({ session }: MenuProps) {
                     className="text-red-500"
                   />
                   <MenuItem
-                    onClick={() => router.push('/mypage')}
+                    onClick={() => {
+                      handleToggle()
+                      router.push('/mypage')
+                    }}
                     label="마이페이지"
                     className="border-t"
                   />
                 </>
               ) : (
                 <>
-                  <MenuItem onClick={loginModal.onOpen} label="로그인" />
-                  <MenuItem onClick={signUpModal.onOpen} label="회원가입" />
+                  <MenuItem
+                    onClick={() => {
+                      signUpModal.onClose()
+                      loginModal.onOpen()
+                    }}
+                    label="로그인"
+                  />
+                  <MenuItem
+                    onClick={() => {
+                      loginModal.onClose()
+                      signUpModal.onOpen()
+                    }}
+                    label="회원가입"
+                  />
                 </>
               )}
             </div>

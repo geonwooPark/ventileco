@@ -63,9 +63,8 @@ export default function LoginModal() {
         redirect: false,
       }).then((callback) => {
         if (callback?.ok) {
-          loginModal.onClose()
-          router.refresh()
           toast.success('로그인에 성공했습니다')
+          loginModal.onClose()
         }
         if (callback?.error) {
           if (callback.error === '존재하지 않는 회원입니다.') {
@@ -89,8 +88,10 @@ export default function LoginModal() {
   const onGoogleClick = async () => {
     setisLoading2(true)
     try {
-      await signIn('google')
-      toast.success('로그인에 성공했습니다')
+      await signIn('google').then(() => {
+        toast.success('로그인에 성공했습니다')
+        loginModal.onClose()
+      })
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message)
