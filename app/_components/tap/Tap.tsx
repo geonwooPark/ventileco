@@ -1,6 +1,6 @@
 'use client'
 
-import React, { Suspense, useState } from 'react'
+import React, { useState } from 'react'
 
 export default function Tap({
   menuArr,
@@ -30,10 +30,7 @@ export default function Tap({
           )
         })}
       </div>
-      {/* 서버 컴포넌트에서 이미 로드가 끝났기 때문에 suspense가 동작하지 않음 */}
-      <Suspense fallback={<div>로딩중...</div>}>
-        <div>{menuArr[currentTap].content}</div>
-      </Suspense>
+      <div>{menuArr[currentTap].content}</div>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 import SkeletonListings from '../_components/listings/SkeletonListings'
 import Listings from '../_components/listings/Listings'
 import { Metadata } from 'next'
+import HeroImage from '../_components/HeroImage'
 
 const categories = [
   'React.JS',
@@ -52,21 +53,10 @@ export default async function Categories({
     <>
       <section className="w-full h-[320px] md:h-[420px]">
         <div className="my-container h-full text-white text-right flex flex-col justify-center items-end">
-          <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
-            <Image
-              src={mainBg}
-              alt="메인 배경이미지"
-              quality={100}
-              fill
-              placeholder="blur"
-              loading="eager"
-              className="object-cover brightness-50"
-            />
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-5">Study Log</h1>
-          <p className="text-sm md:text-base">
-            프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그
-          </p>
+          <HeroImage
+            title="Study Log"
+            description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
+          />
         </div>
       </section>
 
