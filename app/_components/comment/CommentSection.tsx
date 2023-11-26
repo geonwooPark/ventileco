@@ -3,6 +3,8 @@ import CommentInput from './CommentInput'
 import Comments from './Comments'
 import getComments from '@/app/_actions/getComments'
 
+export const revalidate = 0
+
 interface CommentSectionProps {
   postingId: string
 }

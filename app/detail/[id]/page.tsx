@@ -12,7 +12,7 @@ import { Metadata } from 'next'
 import getListings from '@/app/_actions/getListings'
 import CommentSection from '@/app/_components/comment/CommentSection'
 
-export const revalidate = 0
+export const revalidate = 60
 
 const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
   ssr: false,

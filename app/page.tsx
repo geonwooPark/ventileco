@@ -5,6 +5,8 @@ import { Suspense } from 'react'
 import SkeletonListings from './_components/listings/SkeletonListings'
 import Listings from './_components/listings/Listings'
 
+export const revalidate = 600
+
 const categories = [
   'React.JS',
   'Next.JS',
