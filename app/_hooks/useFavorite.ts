@@ -24,6 +24,8 @@ export default function useFavorite({ postingId, session }: UseFavoriteType) {
         .then((result) => {
           if (!result.error) {
             setIsFav(false)
+          } else {
+            throw new Error(result.error)
           }
         })
     } else {
@@ -38,6 +40,8 @@ export default function useFavorite({ postingId, session }: UseFavoriteType) {
         .then((result) => {
           if (!result.error) {
             setIsFav(true)
+          } else {
+            throw new Error(result.error)
           }
         })
     }

@@ -37,6 +37,8 @@ export default function Comment({ postingId }: CommentSectionProps) {
           if (!result.error) {
             setComments(result)
             deleteCommentModal.onClose()
+          } else {
+            throw new Error(result.error)
           }
         })
     } catch (error) {
@@ -56,6 +58,8 @@ export default function Comment({ postingId }: CommentSectionProps) {
           .then((result) => {
             if (!result.error) {
               setComments(result)
+            } else {
+              throw new Error(result.error)
             }
           })
       } catch (error) {

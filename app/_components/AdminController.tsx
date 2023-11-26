@@ -30,6 +30,8 @@ export default function AdminController({ postingId }: AdminControllerProps) {
             router.push('/')
             router.refresh()
             toast.success(result.message)
+          } else {
+            throw new Error(result.error)
           }
         })
     } catch (error) {

@@ -31,6 +31,8 @@ export default function FavoriteBtn({ className, postingId }: FavoriteBtn) {
           .then((result) => {
             if (result.status === 201) {
               setIsFav(true)
+            } else if (result.error) {
+              throw new Error(result.error)
             }
           })
       } catch (error) {
