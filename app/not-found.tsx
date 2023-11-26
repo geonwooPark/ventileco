@@ -1,5 +1,5 @@
 import React from 'react'
-import EmptyState from './_components/EmptyState'
+import EmptyState from './_components/common/EmptyState'
 
 export default function NotFound() {
   return (

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import Button from '../Button'
+import Button from '../common/Button'
 
 interface ModalProps {
   isOpen: boolean

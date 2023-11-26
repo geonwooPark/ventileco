@@ -2,10 +2,10 @@
 
 import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Button from '../_components/Button'
+import Button from '../_components/common/Button'
 import dynamic from 'next/dynamic'
 import { toast } from 'react-toastify'
-import Input from '../_components/Input'
+import Input from '../_components/common/Input'
 import {
   deleteObject,
   getDownloadURL,
@@ -14,7 +14,7 @@ import {
 } from 'firebase/storage'
 import { storage } from '../firebase'
 import DropDownMenu from '../_components/dropdown/DropDownMenu'
-import EmptyState from '../_components/EmptyState'
+import EmptyState from '../_components/common/EmptyState'
 import { PostingType } from '../_interfaces/interface'
 
 const categories = [

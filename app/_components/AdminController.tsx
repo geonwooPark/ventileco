@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import Button from './Button'
+import Button from './common/Button'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import useDeletePostingModal from '../_hooks/useDeletePostingModal'

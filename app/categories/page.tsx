@@ -6,6 +6,14 @@ import SkeletonListings from '../_components/listings/SkeletonListings'
 import Listings from '../_components/listings/Listings'
 import { Metadata } from 'next'
 
+const categories = [
+  'React.JS',
+  'Next.JS',
+  'TypeScript',
+  '컴퓨터과학',
+  '라이브러리',
+]
+
 interface SearchParams {
   searchParams?: { [key: string]: string | string[] | undefined }
 }
@@ -27,14 +35,6 @@ export async function generateMetadata({
     },
   }
 }
-
-const categories = [
-  'React.JS',
-  'Next.JS',
-  'TypeScript',
-  '컴퓨터과학',
-  '라이브러리',
-]
 
 export default async function Categories({
   searchParams,

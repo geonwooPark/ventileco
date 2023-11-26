@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Input from '../Input'
+import Input from '../common/Input'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 

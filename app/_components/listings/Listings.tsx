@@ -1,7 +1,7 @@
 import React from 'react'
 import Pagenation from '../Pagenation'
-import EmptyState from '../EmptyState'
-import ListingItem from '../ListingItem'
+import EmptyState from '../common/EmptyState'
+import ListingItem from './ListingItem'
 import { GetListingsType } from '@/app/_interfaces/interface'
 import getListings from '@/app/_actions/getListings'
 
