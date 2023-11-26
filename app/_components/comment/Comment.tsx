@@ -47,7 +47,7 @@ export default function Comment({ postingId }: CommentSectionProps) {
   }
 
   useEffect(() => {
-    const getComments = async () => {
+    const fetchData = async () => {
       try {
         await fetch(`/api/comment?postingId=${postingId}`, {
           method: 'GET',
@@ -66,7 +66,7 @@ export default function Comment({ postingId }: CommentSectionProps) {
         setIsLoading(false)
       }
     }
-    getComments()
+    fetchData()
   }, [postingId])
 
   return (

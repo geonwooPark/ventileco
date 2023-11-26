@@ -69,7 +69,7 @@ export default function Edit() {
   const descriptionRef = useRef<HTMLDivElement>(null)
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
   const [uploadImages, setUploadImages] = useState<Images[]>([])
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -165,7 +165,7 @@ export default function Edit() {
   }
 
   const onSubmit = async () => {
-    setisLoading(true)
+    setIsLoading(true)
 
     const thumbnailURL = await thumbnailUpload()
     await deleteImage()
@@ -237,7 +237,7 @@ export default function Edit() {
         toast.error(error.message)
       }
     } finally {
-      setisLoading(false)
+      setIsLoading(false)
     }
   }
 

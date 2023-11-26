@@ -6,8 +6,8 @@ import React from 'react'
 export default function UserName() {
   const { data: session } = useSession()
   return (
-    <div className="text-3xl font-semibold mb-4">
+    <h2 className="text-xl md:text-3xl font-semibold mb-4">
       {session && session.user.name}님 환영합니다
-    </div>
+    </h2>
   )
 }
