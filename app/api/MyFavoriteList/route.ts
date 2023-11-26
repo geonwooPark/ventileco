@@ -8,11 +8,11 @@ export async function GET(req: NextRequest) {
   const currentUser = await getCurrentUser()
   try {
     await connectMongo()
-    const favoriteList = await Favorite.find<FavoriteType>({
+    const MyFavoriteList = await Favorite.find<FavoriteType>({
       userId: currentUser._id,
     }).sort({ createdAt: -1 })
 
-    return NextResponse.json(favoriteList, { status: 200 })
+    return NextResponse.json(MyFavoriteList, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

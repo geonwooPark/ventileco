@@ -3,7 +3,6 @@ import Tap from '../_components/tap/Tap'
 import { Metadata } from 'next'
 import UserName from '../_components/UserName'
 import HeroImage from '../_components/HeroImage'
-import dynamic from 'next/dynamic'
 
 export const metadata: Metadata = {
   title: {
@@ -15,28 +14,6 @@ export const metadata: Metadata = {
     nocache: true,
   },
 }
-
-const CommentListWrapper = dynamic(
-  () => import('../_components/tap/CommentList'),
-  {
-    loading: () => <div>댓글 불러오는중 ...</div>,
-  },
-)
-
-const FavListtWrapper = dynamic(() => import('../_components/tap/FavList'), {
-  loading: () => <div>좋아요 불러오는중 ...</div>,
-})
-
-const menuArr = [
-  {
-    name: '댓글',
-    content: <CommentListWrapper />,
-  },
-  {
-    name: '좋아요',
-    content: <FavListtWrapper />,
-  },
-]
 
 export default function page() {
   return (
@@ -56,7 +33,7 @@ export default function page() {
           <div>
             <h1 className="md:text-lg mb-3">나의 활동</h1>
             <div className="mb-10">
-              <Tap menuArr={menuArr} />
+              <Tap />
             </div>
           </div>
         </div>

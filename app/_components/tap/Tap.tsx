@@ -1,15 +1,21 @@
 'use client'
 
 import React, { useState } from 'react'
+import MyCommentList from './MyCommentList'
+import MyFavList from './MyFavList'
 
-export default function Tap({
-  menuArr,
-}: {
-  menuArr: {
-    name: string
-    content: React.JSX.Element
-  }[]
-}) {
+const menuArr = [
+  {
+    name: '댓글',
+    content: <MyCommentList />,
+  },
+  {
+    name: '좋아요',
+    content: <MyFavList />,
+  },
+]
+
+export default function Tap() {
   const [currentTap, setCurrentTap] = useState(0)
   return (
     <div>
@@ -30,7 +36,11 @@ export default function Tap({
           )
         })}
       </div>
-      <div>{menuArr[currentTap].content}</div>
+      <div className="relative pt-10">
+        <div className="h-[500px] bg-gray-50 overflow-y-scroll">
+          {menuArr[currentTap].content}
+        </div>
+      </div>
     </div>
   )
 }

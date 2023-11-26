@@ -9,15 +9,17 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const comments = await Comment.find<CommentType>({
+    const MyCommentList = await Comment.find<CommentType>({
       user: {
         $elemMatch: { userId: currentUser._id },
       },
     }).sort({ createdAt: -1 })
 
-    const result = comments.map((comment) => {
-      const res = comment.user.filter((elem) => elem.userId === currentUser._id)
-      return { ...comment._doc, user: res }
+    const result: CommentType[] = MyCommentList.map((MyComment) => {
+      const res = MyComment.user.filter(
+        (elem) => elem.userId === currentUser._id,
+      )
+      return { ...MyComment._doc, user: res }
     })
 
     return NextResponse.json(result, { status: 200 })
