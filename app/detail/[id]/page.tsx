@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import AdminController from '@/app/_components/AdminController'
 import FavoriteBtn from '@/app/_components/FavoriteBtn'
-import Comment from '@/app/_components/comment/Comment'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/_components/EmptyState'
 import { GetListingsType } from '@/app/_interfaces/interface'
@@ -11,6 +10,7 @@ import getPosting from '@/app/_actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
 import getListings from '@/app/_actions/getListings'
+import CommentSection from '@/app/_components/comment/CommentSection'
 
 const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
   ssr: false,
@@ -106,7 +106,7 @@ export default async function Detail({ params }: IParams) {
       </section>
       <section className="mb-10">
         <div className="my-container">
-          <Comment postingId={params.id} />
+          <CommentSection postingId={params.id} />
         </div>
       </section>
       <section className="mb-10">

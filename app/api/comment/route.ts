@@ -23,6 +23,10 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const { postingId, currentUser, text } = await req.json()
 
+  if (!text) {
+    return NextResponse.json({ error: '댓글을 입력하세요!' }, { status: 409 })
+  }
+
   try {
     await connectMongo()
     const comment = await Comment.findOneAndUpdate(
@@ -76,6 +80,10 @@ export async function DELETE(req: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   const { postingId, commentId, text } = await req.json()
+
+  if (!text) {
+    return NextResponse.json({ error: '댓글을 입력하세요!' }, { status: 409 })
+  }
 
   try {
     await connectMongo()
