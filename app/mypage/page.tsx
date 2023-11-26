@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 const CommentListWrapper = dynamic(
   () => import('../_components/tap/CommentList'),
   {
-    ssr: false,
+    loading: () => <div>댓글 불러오는중 ...</div>,
   },
 )
 
 const FavListtWrapper = dynamic(() => import('../_components/tap/FavList'), {
-  ssr: false,
+  loading: () => <div>좋아요 불러오는중 ...</div>,
 })
 
 const menuArr = [
