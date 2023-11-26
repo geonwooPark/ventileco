@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function SkeletonListings() {
   return (
-    <div>
-      <div className="group mb-6 md:mb-12 animate-pulse">
+    <div className="animate-pulse">
+      <div className="group mb-6 md:mb-12">
         <div className="flex flex-col md:flex-row">
           <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] rounded-lg overflow-hidden">
             <div className="w-full h-full bg-gray-300 flex justify-center items-center text-sm text-gray-100"></div>
@@ -18,7 +18,7 @@ export default function SkeletonListings() {
           </div>
         </div>
       </div>
-      <div className="group mb-6 md:mb-12 animate-pulse">
+      <div className="group mb-6 md:mb-12">
         <div className="flex flex-col md:flex-row">
           <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] rounded-lg overflow-hidden">
             <div className="w-full h-full bg-gray-300 flex justify-center items-center text-sm text-gray-100"></div>
@@ -33,7 +33,7 @@ export default function SkeletonListings() {
           </div>
         </div>
       </div>
-      <div className="group mb-6 md:mb-12 animate-pulse">
+      <div className="group mb-6 md:mb-12">
         <div className="flex flex-col md:flex-row">
           <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] rounded-lg overflow-hidden">
             <div className="w-full h-full bg-gray-300 flex justify-center items-center text-sm text-gray-100"></div>

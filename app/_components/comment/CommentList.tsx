@@ -1,8 +1,8 @@
 import React from 'react'
 import CommentItem from './CommentItem'
 import { CommentUserType } from '@/app/_interfaces/interface'
-import EmptyState from '../common/EmptyState'
 import { Session } from 'next-auth'
+import SkeletonCommentList from './SkeletonCommentList'
 
 interface CommentProps {
   postingId: string
@@ -21,7 +21,7 @@ export default function CommentList({
   session,
   isLoading,
 }: CommentProps) {
-  if (isLoading) return <EmptyState label="댓글을 불러오고 있어요!" />
+  if (isLoading) return <SkeletonCommentList />
 
   return (
     <ul>

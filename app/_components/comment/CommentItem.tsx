@@ -39,7 +39,7 @@ export default function CommentItem({
   }
 
   return (
-    <li className="text-sm mb-4">
+    <li className="text-sm mb-4 list-none">
       <div className="flex justify-between mb-2">
         <div className="flex items-center">
           <Avatar src={comment.userImage} />
