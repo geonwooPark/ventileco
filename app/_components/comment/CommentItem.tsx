@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Avatar from '../Avatar'
+import Avatar from '../common/Avatar'
 import dayjs from 'dayjs'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'
 import useSelectedComment from '@/app/_hooks/useSelectedComment'
@@ -11,12 +11,16 @@ interface CommentItemProps {
   postingId: string
   comment: CommentUserType
   session: Session | null
+  setComments: React.Dispatch<
+    React.SetStateAction<CommentUserType[] | undefined>
+  >
 }
 
 export default function CommentItem({
   postingId,
   comment,
   session,
+  setComments,
 }: CommentItemProps) {
   const deleteCommentModal = useDeleteCommentModal()
   const selectedComment = useSelectedComment()
@@ -35,7 +39,7 @@ export default function CommentItem({
   }
 
   return (
-    <div className="text-sm mb-4">
+    <li className="text-sm mb-4">
       <div className="flex justify-between mb-2">
         <div className="flex items-center">
           <Avatar src={comment.userImage} />
@@ -57,10 +61,11 @@ export default function CommentItem({
           comment={comment}
           setEditMode={setEditMode}
           session={session}
+          setComments={setComments}
         />
       ) : (
         <p>{comment.text}</p>
       )}
-    </div>
+    </li>
   )
 }

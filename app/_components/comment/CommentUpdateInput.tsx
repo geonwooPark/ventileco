@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '../Button'
+import Button from '../common/Button'
 import { CommentUserType } from '@/app/_interfaces/interface'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
@@ -10,6 +10,9 @@ interface CommentInputProps {
   comment?: CommentUserType
   setEditMode?: React.Dispatch<React.SetStateAction<boolean>>
   session: Session | null
+  setComments: React.Dispatch<
+    React.SetStateAction<CommentUserType[] | undefined>
+  >
 }
 
 export default function CommentUpdateInput({
@@ -17,9 +20,8 @@ export default function CommentUpdateInput({
   comment,
   setEditMode,
   session,
+  setComments,
 }: CommentInputProps) {
-  const router = useRouter()
-
   const [text, setText] = useState(comment?.text)
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -45,8 +47,8 @@ export default function CommentUpdateInput({
         .then((res) => res.json())
         .then((result) => {
           if (!result.error && setEditMode) {
+            setComments(result)
             setEditMode(false)
-            router.refresh()
           } else {
             throw new Error(result.error)
           }

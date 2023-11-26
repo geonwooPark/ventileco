@@ -1,18 +1,21 @@
-'use client'
-
 import React, { useState } from 'react'
-import Button from '../Button'
+import Button from '../common/Button'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { CommentUserType } from '@/app/_interfaces/interface'
 
 interface CommentInputProps {
   postingId: string
+  setComments: React.Dispatch<
+    React.SetStateAction<CommentUserType[] | undefined>
+  >
 }
 
-export default function CommentInput({ postingId }: CommentInputProps) {
+export default function CommentInput({
+  postingId,
+  setComments,
+}: CommentInputProps) {
   const { data: session } = useSession()
-  const router = useRouter()
 
   const [text, setText] = useState('')
 
@@ -38,8 +41,8 @@ export default function CommentInput({ postingId }: CommentInputProps) {
         .then((res) => res.json())
         .then((result) => {
           if (!result.error) {
+            setComments(result)
             setText('')
-            router.refresh()
           } else {
             throw new Error(result.error)
           }
