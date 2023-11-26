@@ -1,10 +1,9 @@
 import React from 'react'
 import Tap from '../_components/tap/Tap'
-import CommentList from '../_components/tap/CommentList'
-import FavList from '../_components/tap/FavList'
 import { Metadata } from 'next'
 import UserName from '../_components/UserName'
 import HeroImage from '../_components/HeroImage'
+import dynamic from 'next/dynamic'
 
 export const metadata: Metadata = {
   title: {
@@ -17,14 +16,25 @@ export const metadata: Metadata = {
   },
 }
 
+const CommentListWrapper = dynamic(
+  () => import('../_components/tap/CommentList'),
+  {
+    ssr: false,
+  },
+)
+
+const FavListtWrapper = dynamic(() => import('../_components/tap/FavList'), {
+  ssr: false,
+})
+
 const menuArr = [
   {
     name: '댓글',
-    content: <CommentList />,
+    content: <CommentListWrapper />,
   },
   {
     name: '좋아요',
-    content: <FavList />,
+    content: <FavListtWrapper />,
   },
 ]
 
