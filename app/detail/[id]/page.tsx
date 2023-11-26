@@ -63,7 +63,7 @@ export default async function Detail({ params }: IParams) {
 
   return (
     <>
-      <section className="w-full h-[320px] md:h-[420px] mb-10">
+      <section className="w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full text-white flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
             {posting.thumbnailURL ? (
@@ -97,7 +97,7 @@ export default async function Detail({ params }: IParams) {
           )}
         </div>
       </section>
-      <section className="mb-10">
+      <section className="mb-20">
         <div className="my-container">
           <EditorWrapper
             content={posting.content}

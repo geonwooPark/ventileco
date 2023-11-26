@@ -29,7 +29,7 @@ export default async function Search({
 
   return (
     <>
-      <section className="w-full h-[320px] md:h-[420px]">
+      <section className="w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full text-white text-right flex flex-col justify-center items-end">
           <HeroImage
             title="Study Log"
@@ -38,7 +38,7 @@ export default async function Search({
         </div>
       </section>
 
-      <section className="my-10">
+      <section className="mb-20">
         <div className="my-container">
           <div className="flex flex-col">
             <div className="w-full md:h-auto">

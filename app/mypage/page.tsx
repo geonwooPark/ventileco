@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <>
-      <section className="w-full h-[320px] md:h-[420px]">
+      <section className="w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full text-white text-right flex flex-col justify-center items-end">
           <HeroImage
             title="My Page"
@@ -27,7 +27,7 @@ export default function page() {
         </div>
       </section>
 
-      <section className="my-10">
+      <section className="mb-20">
         <div className="my-container">
           <UserName />
           <div>

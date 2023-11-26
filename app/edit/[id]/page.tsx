@@ -79,6 +79,8 @@ export default function Edit() {
           .then((result) => {
             if (!result.error) {
               setPosting(result)
+            } else {
+              throw new Error(result.error)
             }
           })
       } catch (error) {
@@ -251,7 +253,7 @@ export default function Edit() {
 
   return (
     <>
-      <section className="w-full h-[320px] md:h-[420px] mb-10">
+      <section className="w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
             {previewURL ? (
@@ -316,7 +318,7 @@ export default function Edit() {
           />
         </div>
       </section>
-      <section>
+      <section className="mb-10">
         <div className="my-container">
           <div className="h-[600px] mb-24">
             <EditorWrapper
@@ -333,7 +335,6 @@ export default function Edit() {
             label="수정하기"
             fullWidth={true}
             disabled={isLoading}
-            className="mb-6"
             onClick={onSubmit}
           />
         </div>
