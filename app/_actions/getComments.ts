@@ -3,8 +3,6 @@ import { CommentType } from '../_interfaces/interface'
 import { connectMongo } from '../_utils/database'
 import { cache } from 'react'
 
-export const revalidate = 10
-
 export default cache(async function getComments(postingId: string) {
   try {
     await connectMongo()

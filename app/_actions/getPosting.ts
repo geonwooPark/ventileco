@@ -3,8 +3,6 @@ import { PostingType } from '../_interfaces/interface'
 import { connectMongo } from '../_utils/database'
 import { Posting } from '@/models/posting'
 
-export const revalidate = 10
-
 export default cache(async function getPosting(postingId: string) {
   try {
     await connectMongo()
