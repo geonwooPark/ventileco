@@ -12,7 +12,7 @@ export default function MyFavList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/MyFavoriteList`, { method: 'GET' })
+        await fetch(`/api/myfavorite`, { method: 'GET' })
           .then((res) => res.json())
           .then((result) => {
             if (!result.error) {

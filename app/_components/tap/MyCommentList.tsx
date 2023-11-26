@@ -13,7 +13,7 @@ export default function MyCommentList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/MyCommentList`, { method: 'GET' })
+        await fetch(`/api/mycomment`, { method: 'GET' })
           .then((res) => res.json())
           .then((result) => {
             if (!result.error) {
