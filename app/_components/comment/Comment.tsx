@@ -32,14 +32,15 @@ export default function Comment({ postingId }: CommentSectionProps) {
           commentId: selectedComment.commentId,
         }),
       })
-        .then((res) => res.json())
-        .then((result) => {
-          if (!result.error) {
-            setComments(result)
-            deleteCommentModal.onClose()
-          } else {
-            throw new Error(result.error)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch data')
           }
+          return res.json()
+        })
+        .then((result) => {
+          setComments(result)
+          deleteCommentModal.onClose()
         })
     } catch (error) {
       if (error instanceof Error) {
@@ -54,13 +55,14 @@ export default function Comment({ postingId }: CommentSectionProps) {
         await fetch(`/api/comment?postingId=${postingId}`, {
           method: 'GET',
         })
-          .then((res) => res.json())
-          .then((result) => {
-            if (!result.error) {
-              setComments(result)
-            } else {
-              throw new Error(result.error)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error('Failed to fetch data')
             }
+            return res.json()
+          })
+          .then((result) => {
+            setComments(result)
           })
       } catch (error) {
         if (error instanceof Error) {

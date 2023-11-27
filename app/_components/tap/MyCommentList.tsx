@@ -13,14 +13,15 @@ export default function MyCommentList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/mycomment`, { method: 'GET' })
-          .then((res) => res.json())
-          .then((result) => {
-            if (!result.error) {
-              setMyCommentList(result)
-            } else {
-              throw new Error(result.error)
+        await fetch(`/api/my-comment`, { method: 'GET' })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error('Failed to fetch data')
             }
+            return res.json()
+          })
+          .then((result) => {
+            setMyCommentList(result)
           })
       } catch (error) {
         if (error instanceof Error) {
@@ -50,7 +51,10 @@ export default function MyCommentList() {
           return (
             <tr key={MyCommentItem._id} className="flex items-center border-b">
               <td className="flex-1 px-4 py-3">
-                <Link href={`/detail/${MyCommentItem.postingId}`}>
+                <Link
+                  href={`/detail/${MyCommentItem.postingId}`}
+                  target="_blank"
+                >
                   <p className="mb-2">{MyCommentItem.title}</p>
                   {MyCommentItem.user
                     .sort(

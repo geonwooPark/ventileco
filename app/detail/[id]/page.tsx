@@ -11,6 +11,7 @@ import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
 import getListings from '@/app/_actions/getListings'
 import Comment from '@/app/_components/comment/Comment'
+import InteractionMetrics from '@/app/_components/interactionMetrics/InteractionMetrics'
 
 export const revalidate = 60
 
@@ -63,7 +64,7 @@ export default async function Detail({ params }: IParams) {
 
   return (
     <>
-      <section className="w-full h-[320px] md:h-[420px] mb-20">
+      <section className="relative w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full text-white flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
             {posting.thumbnailURL ? (
@@ -96,6 +97,7 @@ export default async function Detail({ params }: IParams) {
             </p>
           )}
         </div>
+        <InteractionMetrics postingId={posting._id.toString()} />
       </section>
       <section className="mb-20">
         <div className="my-container">

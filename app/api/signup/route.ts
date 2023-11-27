@@ -55,10 +55,7 @@ export async function POST(req: NextRequest) {
     }
 
     await User.create({ name, email, password: hashedPassword, image: '' })
-    return NextResponse.json(
-      { message: '회원가입 성공!', status: '201' },
-      { status: 201 },
-    )
+    return NextResponse.json({ message: '회원가입 성공!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

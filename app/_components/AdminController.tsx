@@ -23,16 +23,16 @@ export default function AdminController({ postingId }: AdminControllerProps) {
         method: 'DELETE',
         body: JSON.stringify(postingId),
       })
-        .then((res) => res.json())
-        .then((result) => {
-          if (!result.error) {
-            deletePostingModal.onClose()
-            router.push('/')
-            router.refresh()
-            toast.success(result.message)
-          } else {
-            throw new Error(result.error)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Failed to fetch data')
           }
+          return res.json()
+        })
+        .then((result) => {
+          deletePostingModal.onClose()
+          router.push('/')
+          toast.success(result.message)
         })
     } catch (error) {
       if (error instanceof Error) {

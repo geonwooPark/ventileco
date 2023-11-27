@@ -12,14 +12,15 @@ export default function MyFavList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/myfavorite`, { method: 'GET' })
-          .then((res) => res.json())
-          .then((result) => {
-            if (!result.error) {
-              setMyFavoriteList(result)
-            } else {
-              throw new Error(result.error)
+        await fetch(`/api/my-favorite`, { method: 'GET' })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error('Failed to fetch data')
             }
+            return res.json()
+          })
+          .then((result) => {
+            setMyFavoriteList(result)
           })
       } catch (error) {
         if (error instanceof Error) {
@@ -48,7 +49,10 @@ export default function MyFavList() {
         {myFavoriteList.map((myFavoriteItem) => (
           <tr key={myFavoriteItem._id} className="flex items-center border-b">
             <td className="flex-1 px-4 py-3">
-              <Link href={`/detail/${myFavoriteItem.postingId}`}>
+              <Link
+                href={`/detail/${myFavoriteItem.postingId}`}
+                target="_blank"
+              >
                 <p className="text-sm">{myFavoriteItem.title}</p>
               </Link>
             </td>

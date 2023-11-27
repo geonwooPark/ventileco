@@ -35,7 +35,10 @@ export interface Images {
   imageURL: string
 }
 
-export type Posting = Omit<PostingType, '_id' | 'createdAt' | 'updatedAt'>
+export type Posting = Omit<
+  PostingType,
+  '_id' | 'createdAt' | 'updatedAt' | 'views'
+>
 
 export default function Edit() {
   const router = useRouter()
@@ -75,13 +78,14 @@ export default function Edit() {
     const fetchData = async () => {
       try {
         await fetch(`/api/posting?postingId=${postingId}`, { method: 'GET' })
-          .then((res) => res.json())
-          .then((result) => {
-            if (!result.error) {
-              setPosting(result)
-            } else {
-              throw new Error(result.error)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error('Failed to fetch data')
             }
+            return res.json()
+          })
+          .then((result) => {
+            setPosting(result)
           })
       } catch (error) {
         if (error instanceof Error) {

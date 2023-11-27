@@ -2,6 +2,7 @@ import { connectMongo } from '@/app/_utils/database'
 import getCurrentUser from '@/app/_actions/getCurrentUser'
 import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
+import { FavoriteType } from '@/app/_interfaces/interface'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
@@ -9,13 +10,15 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const isFav = await Favorite.findOne({
+    const isFav = await Favorite.findOne<FavoriteType>({
       postingId,
       userId: currentUser._id,
     })
-    if (isFav) {
-      return NextResponse.json({ status: 201 })
-    } else return NextResponse.json({ status: 204 })
+    if (isFav !== null) {
+      return NextResponse.json({ isFav: true }, { status: 201 })
+    } else {
+      return NextResponse.json({ isFav: false }, { status: 201 })
+    }
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -33,10 +36,10 @@ export async function POST(req: NextRequest) {
       {
         postingId,
       },
-      { $push: { userId } },
+      { $push: { userId }, $inc: { count: 1 } },
     )
 
-    return NextResponse.json({ status: 200 })
+    return NextResponse.json({ status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -54,10 +57,10 @@ export async function DELETE(req: NextRequest) {
       {
         postingId,
       },
-      { $pull: { userId } },
+      { $pull: { userId }, $inc: { count: -1 } },
     )
 
-    return NextResponse.json({ status: 200 })
+    return NextResponse.json({ status: 204 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

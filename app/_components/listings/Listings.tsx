@@ -43,7 +43,7 @@ export default async function Listings({
       {postingCount === 0 ? (
         <EmptyState label="작성된 게시글이 없어요!" />
       ) : (
-        <main>
+        <>
           <ul>
             {postings?.map((posting) => {
               return <ListingItem key={posting._id} posting={posting} />
@@ -58,7 +58,7 @@ export default async function Listings({
               limit={limit}
             />
           </div>
-        </main>
+        </>
       )}
     </>
   )

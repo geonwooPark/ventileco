@@ -17,6 +17,7 @@ export interface PostingType {
   description: string
   thumbnailURL: string
   content: string
+  views: number
   createdAt: Date
   updatedAt: Date
 }
@@ -46,6 +47,7 @@ export interface FavoriteType {
   title: string
   updatedAt: string
   userId: string[]
+  count: number
   _id: string
 }
 

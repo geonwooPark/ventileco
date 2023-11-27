@@ -19,15 +19,12 @@ export default function useFavorite({ postingId, session }: UseFavoriteType) {
           postingId: postingId,
           userId: session.user.id,
         }),
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch data')
+        }
+        setIsFav(false)
       })
-        .then((res) => res.json())
-        .then((result) => {
-          if (!result.error) {
-            setIsFav(false)
-          } else {
-            throw new Error(result.error)
-          }
-        })
     } else {
       await fetch('/api/favorite', {
         method: 'POST',
@@ -35,15 +32,12 @@ export default function useFavorite({ postingId, session }: UseFavoriteType) {
           postingId: postingId,
           userId: session.user.id,
         }),
+      }).then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch data')
+        }
+        setIsFav(true)
       })
-        .then((res) => res.json())
-        .then((result) => {
-          if (!result.error) {
-            setIsFav(true)
-          } else {
-            throw new Error(result.error)
-          }
-        })
     }
   }
   return { isFav, setIsFav, handleFavoriteBtn }

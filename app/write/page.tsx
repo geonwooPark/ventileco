@@ -35,7 +35,10 @@ export interface Images {
   imageURL: string
 }
 
-export type Posting = Omit<PostingType, '_id' | 'createdAt' | 'updatedAt'>
+export type Posting = Omit<
+  PostingType,
+  '_id' | 'createdAt' | 'updatedAt' | 'views'
+>
 
 export default function Write() {
   const router = useRouter()

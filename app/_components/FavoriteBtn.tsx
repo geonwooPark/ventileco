@@ -20,20 +20,21 @@ export default function FavoriteBtn({ className, postingId }: FavoriteBtn) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const getFav = async () => {
+    const fetchData = async () => {
       if (!session) return
 
       try {
         await fetch(`/api/favorite?postingId=${postingId}`, {
           method: 'GET',
         })
-          .then((res) => res.json())
-          .then((result) => {
-            if (result.status === 201) {
-              setIsFav(true)
-            } else if (result.error) {
-              throw new Error(result.error)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error('Failed to fetch data')
             }
+            return res.json()
+          })
+          .then((result) => {
+            setIsFav(result.isFav)
           })
       } catch (error) {
         if (error instanceof Error) {
@@ -43,7 +44,7 @@ export default function FavoriteBtn({ className, postingId }: FavoriteBtn) {
         setIsLoading(false)
       }
     }
-    getFav()
+    fetchData()
   }, [session])
 
   return (

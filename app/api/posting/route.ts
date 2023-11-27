@@ -60,10 +60,7 @@ export async function POST(req: NextRequest) {
       postingId: newPosting._id,
       title,
     })
-    return NextResponse.json(
-      { message: '글 작성 성공!', status: '201' },
-      { status: 201 },
-    )
+    return NextResponse.json({ message: '글 작성 성공!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -80,10 +77,7 @@ export async function DELETE(req: NextRequest) {
     await Favorite.deleteMany({ postingId: id })
     await Comment.deleteMany({ postingId: id })
 
-    return NextResponse.json(
-      { message: '글 삭제 성공!', status: '201' },
-      { status: 201 },
-    )
+    return NextResponse.json({ message: '글 삭제 성공!' }, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -129,10 +123,7 @@ export async function PUT(req: NextRequest) {
       { category, title, description, thumbnailURL, content },
     )
 
-    return NextResponse.json(
-      { message: '글 수정 성공!', status: '201' },
-      { status: 201 },
-    )
+    return NextResponse.json({ message: '글 수정 성공!' }, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

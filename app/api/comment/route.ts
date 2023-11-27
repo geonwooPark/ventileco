@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       },
       { new: true },
     )
-    return NextResponse.json(comment.user, { status: 200 })
+    return NextResponse.json(comment.user, { status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
