@@ -1,10 +1,14 @@
-import { Posting } from '@/app/edit/[id]/page'
+import { PostingType } from '@/app/_interfaces/interface'
 import React from 'react'
 
 interface DropDownItemProps {
   category: string
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  setPosting: React.Dispatch<React.SetStateAction<Posting>>
+  setPosting: React.Dispatch<
+    React.SetStateAction<
+      Omit<PostingType, '_id' | 'createdAt' | 'updatedAt' | 'views'>
+    >
+  >
 }
 
 export default function DropDownItem({

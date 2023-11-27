@@ -2,13 +2,16 @@
 
 import React, { useEffect, useState } from 'react'
 import DropDownItem from './DropDownItem'
-import { Posting } from '@/app/edit/[id]/page'
-
+import { PostingType } from '@/app/_interfaces/interface'
 interface DropDownMenuProps {
   categories: string[]
   category: string
   label: string
-  setPosting: React.Dispatch<React.SetStateAction<Posting>>
+  setPosting: React.Dispatch<
+    React.SetStateAction<
+      Omit<PostingType, '_id' | 'createdAt' | 'updatedAt' | 'views'>
+    >
+  >
 }
 
 export default function DropDownMenu({
