@@ -1,10 +1,9 @@
-import Image from 'next/image'
-import mainBg from '/public/images/main-bg.png'
 import CategoryItem from './_components/CategoryItem'
 import { Suspense } from 'react'
 import SkeletonListings from './_components/listings/SkeletonListings'
 import Listings from './_components/listings/Listings'
 import HeroImage from './_components/HeroImage'
+import PopularListings from './_components/popularListings/PopularListings'
 
 export const revalidate = 600
 
@@ -21,8 +20,8 @@ export default async function Home() {
   const limit = 10
 
   return (
-    <>
-      <section className="w-full h-[320px] md:h-[420px]">
+    <main>
+      <section className="w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full text-white text-right flex flex-col justify-center items-end">
           <HeroImage
             title="Study Log"
@@ -31,7 +30,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="my-10">
+      <section className="mb-20">
+        <div className="my-container">
+          <h1 className="md:text-lg mb-4">인기 게시글</h1>
+          <PopularListings />
+        </div>
+      </section>
+
+      <section className="mb-20">
         <div className="my-container">
           <div className="flex flex-col md:flex-row-reverse">
             <div className="min-w-[120px] mb-10 md:mb-0">
@@ -56,6 +62,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   )
 }
