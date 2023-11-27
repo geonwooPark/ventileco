@@ -49,6 +49,7 @@ export default function Pagenation({
           pathname: `/${path}`,
           query: { ...(search ? { search } : {}), page: page - 1 },
         }}
+        aria-label="뒤로 가기"
       >
         <button
           type="button"
@@ -58,14 +59,18 @@ export default function Pagenation({
           <AiOutlineLeft />
         </button>
       </Link>
+
       {boundNumbering[sequence]}
+
       <Link
         href={{
           pathname: `/${path}`,
           query: { ...(search ? { search } : {}), page: page + 1 },
         }}
+        aria-label="앞으로 가기"
       >
         <button
+          type="button"
           disabled={page === lastPageNum || postingCount === 0 ? true : false}
           className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
         >

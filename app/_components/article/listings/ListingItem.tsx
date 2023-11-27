@@ -1,9 +1,9 @@
+import { PostingType } from '@/app/_interfaces/interface'
 import getTimeDiff from '@/app/_utils/getTimeDiff'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { PostingType } from '../../_interfaces/interface'
 
 interface ListingProps {
   posting: PostingType

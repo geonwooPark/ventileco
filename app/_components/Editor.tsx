@@ -8,14 +8,18 @@ import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../firebase'
 import { toast } from 'react-toastify'
-import { Images, Posting } from '../write/page'
+import { Images, PostingType } from '../_interfaces/interface'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {
   content: string
   theme: string
   readOnly?: boolean
-  setPosting?: React.Dispatch<React.SetStateAction<Posting>>
+  setPosting?: React.Dispatch<
+    React.SetStateAction<
+      Omit<PostingType, '_id' | 'createdAt' | 'updatedAt' | 'views'>
+    >
+  >
   setUploadImages?: React.Dispatch<React.SetStateAction<Images[]>>
 }
 

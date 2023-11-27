@@ -10,6 +10,7 @@ interface FavCounterProps {
 
 export default function FavCounter({ postingId }: FavCounterProps) {
   const [favCount, setFavCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +31,8 @@ export default function FavCounter({ postingId }: FavCounterProps) {
         if (error instanceof Error) {
           toast.error(error.message)
         }
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchData()
@@ -40,7 +43,7 @@ export default function FavCounter({ postingId }: FavCounterProps) {
       <div>
         <AiFillHeart />
       </div>
-      <p className="ml-1">{favCount}</p>
+      <p className="ml-1">{isLoading ? '-' : favCount}</p>
     </div>
   )
 }

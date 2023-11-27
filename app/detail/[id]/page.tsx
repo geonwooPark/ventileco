@@ -12,6 +12,7 @@ import { Metadata } from 'next'
 import getListings from '@/app/_actions/getListings'
 import Comment from '@/app/_components/comment/Comment'
 import InteractionMetrics from '@/app/_components/interactionMetrics/InteractionMetrics'
+import Section from '@/app/_components/common/Section'
 
 export const revalidate = 60
 
@@ -63,7 +64,7 @@ export default async function Detail({ params }: IParams) {
   if (!posting) return NotFound()
 
   return (
-    <>
+    <main>
       <section className="relative w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full text-white flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
@@ -99,26 +100,22 @@ export default async function Detail({ params }: IParams) {
         </div>
         <InteractionMetrics postingId={posting._id.toString()} />
       </section>
-      <section className="mb-20">
-        <div className="my-container">
-          <EditorWrapper
-            content={posting.content}
-            theme="bubble"
-            readOnly={true}
-          />
-        </div>
-      </section>
-      <section className="mb-10">
-        <div className="my-container">
-          <h1 className="md:text-lg mb-4">댓글</h1>
-          <Comment postingId={params.id} />
-        </div>
-      </section>
-      <section className="mb-10">
-        <div className="my-container">
-          <AdminController postingId={params.id} />
-        </div>
-      </section>
-    </>
+
+      <Section>
+        <EditorWrapper
+          content={posting.content}
+          theme="bubble"
+          readOnly={true}
+        />
+      </Section>
+
+      <Section label="댓글" className="!mb-10">
+        <Comment postingId={params.id} />
+      </Section>
+
+      <Section className="!mb-10">
+        <AdminController postingId={params.id} />
+      </Section>
+    </main>
   )
 }

@@ -15,36 +15,22 @@ import {
 import { storage } from '../../firebase'
 import DropDownMenu from '../../_components/dropdown/DropDownMenu'
 import EmptyState from '@/app/_components/common/EmptyState'
-import { PostingType } from '@/app/_interfaces/interface'
-
-const categories = [
-  'React.JS',
-  'Next.JS',
-  'TypeScript',
-  '컴퓨터과학',
-  '라이브러리',
-]
+import { Images, PostingType } from '@/app/_interfaces/interface'
+import Section from '@/app/_components/common/Section'
+import { categories } from '@/app/_utils/categoryArr'
 
 const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
   ssr: false,
   loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
 })
 
-export interface Images {
-  imagePath: string
-  imageURL: string
-}
-
-export type Posting = Omit<
-  PostingType,
-  '_id' | 'createdAt' | 'updatedAt' | 'views'
->
-
 export default function Edit() {
   const router = useRouter()
   const { id: postingId } = useParams()
 
-  const [posting, setPosting] = useState<Posting>({
+  const [posting, setPosting] = useState<
+    Omit<PostingType, '_id' | 'createdAt' | 'updatedAt' | 'views'>
+  >({
     category: '',
     title: '',
     description: '',
@@ -256,7 +242,7 @@ export default function Edit() {
   }
 
   return (
-    <>
+    <main>
       <section className="w-full h-[320px] md:h-[420px] mb-20">
         <div className="my-container h-full flex flex-col justify-center items-end">
           <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
@@ -322,27 +308,26 @@ export default function Edit() {
           />
         </div>
       </section>
-      <section className="mb-10">
-        <div className="my-container">
-          <div className="h-[600px] mb-24">
-            <EditorWrapper
-              content={content}
-              theme="snow"
-              setPosting={setPosting}
-              setUploadImages={setUploadImages}
-            />
-          </div>
-          <Button
-            type="button"
-            level="primary"
-            size="l"
-            label="수정하기"
-            fullWidth={true}
-            disabled={isLoading}
-            onClick={onSubmit}
+
+      <Section>
+        <div className="h-[600px] mb-24">
+          <EditorWrapper
+            content={content}
+            theme="snow"
+            setPosting={setPosting}
+            setUploadImages={setUploadImages}
           />
         </div>
-      </section>
-    </>
+        <Button
+          type="button"
+          level="primary"
+          size="l"
+          label="수정하기"
+          fullWidth={true}
+          disabled={isLoading}
+          onClick={onSubmit}
+        />
+      </Section>
+    </main>
   )
 }

@@ -1,5 +1,4 @@
 import { PostingType } from '@/app/_interfaces/interface'
-import getTimeDiff from '@/app/_utils/getTimeDiff'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import Link from 'next/link'

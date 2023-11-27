@@ -10,6 +10,7 @@ interface ViewCounterProps {
 
 export default function ViewCounter({ postingId }: ViewCounterProps) {
   const [viewCount, setViewCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +31,8 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
         if (error instanceof Error) {
           toast.error(error.message)
         }
+      } finally {
+        setIsLoading(false)
       }
     }
     fetchData()
@@ -40,7 +43,7 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
       <div>
         <AiFillEye />
       </div>
-      <p className="ml-1">{viewCount}</p>
+      <p className="ml-1">{isLoading ? '-' : viewCount}</p>
     </div>
   )
 }

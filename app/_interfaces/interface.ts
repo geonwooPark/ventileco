@@ -55,3 +55,8 @@ export interface GetListingsType {
   postings: PostingType[]
   postingCount: number
 }
+
+export interface Images {
+  imagePath: string
+  imageURL: string
+}
