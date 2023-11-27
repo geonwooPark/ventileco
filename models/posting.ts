@@ -19,6 +19,10 @@ const postingSchema = new Schema(
     content: {
       type: String,
     },
+    views: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true, versionKey: false },
 )

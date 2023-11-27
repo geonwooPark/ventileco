@@ -15,6 +15,10 @@ const favoriteSchema = new Schema(
       type: Array,
       // unique: true,
     },
+    count: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true, versionKey: false },
 )
