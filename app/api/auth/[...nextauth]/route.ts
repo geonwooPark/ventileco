@@ -104,7 +104,7 @@ export const authOptions: AuthOptions = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
-  secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+  secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
 }
 
 // NextJS 13에서 경로 핸들러를 사용하기 때문에 핸들러가 필요
