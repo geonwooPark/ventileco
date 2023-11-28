@@ -18,6 +18,8 @@ import EmptyState from '../_components/common/EmptyState'
 import { Images, PostingType } from '../_interfaces/interface'
 import { categories } from '../_utils/categoryArr'
 import Section from '../_components/common/Section'
+import Image from 'next/image'
+import subBg from '/public/images/sub-bg.png'
 
 const EditorWrapper = dynamic(() => import('../_components/editor/Editor'), {
   ssr: false,
@@ -204,69 +206,72 @@ export default function Write() {
 
   return (
     <main>
-      <section className="w-full h-[320px] md:h-[420px] mb-20">
+      <section className="relative w-full h-[320px] md:h-[420px] mb-20">
+        <Image
+          src={previewURL ? previewURL : subBg}
+          alt="썸네일이미지"
+          fill
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          className="object-cover brightness-50"
+        />
         <div className="my-container h-full flex flex-col justify-center items-end">
-          <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
-            {previewURL ? (
-              <img
-                src={previewURL}
-                className="w-full h-full object-cover brightness-50"
+          <div className="absolute w-full">
+            <div
+              className="flex justify-end mt-10 md:mt-0 mb-4"
+              ref={categoryRef}
+            >
+              <DropDownMenu
+                categories={categories}
+                category={category}
+                label="카테고리를 선택하세요"
+                setPosting={setPosting}
               />
-            ) : (
-              <div className="w-full h-full bg-slate-400"></div>
-            )}
-          </div>
-          <div className="mt-10 md:mt-0 mb-4" ref={categoryRef}>
-            <DropDownMenu
-              categories={categories}
-              category={category}
-              label="카테고리를 선택하세요"
-              setPosting={setPosting}
+            </div>
+            <div
+              ref={titleRef}
+              className={`w-full ${
+                errorSign.title ? 'text-red-500' : 'text-white'
+              }`}
+            >
+              <Input
+                type="text"
+                name="title"
+                value={title}
+                placeholder="제목을 입력하세요"
+                onChange={onTextChange}
+                className={`w-full !text-2xl md:!text-4xl text-right font-bold !bg-transparent mb-3 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
+              />
+            </div>
+            <div
+              ref={descriptionRef}
+              className={`w-full ${
+                errorSign.description ? 'text-red-500' : 'text-white'
+              }`}
+            >
+              <Input
+                type="text"
+                name="description"
+                value={description}
+                placeholder="설명을 추가해보세요"
+                onChange={onTextChange}
+                className={`w-full !text-sm md:!text-base text-right !bg-transparent mb-6 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
+              />
+            </div>
+            <label
+              htmlFor="photo"
+              className="flex justify-center items-center ml-auto w-40 h-11 md:h-12 px-4 text-xs md:text-sm text-white bg-gray-700 rounded transition duration-200 ease-in-out hover:opacity-80 cursor-pointer"
+            >
+              썸네일 추가하기
+            </label>
+            <input
+              type="file"
+              id="photo"
+              accept="image/*"
+              className="hidden"
+              onChange={onThumbnailChange}
             />
           </div>
-          <div
-            ref={titleRef}
-            className={`w-full ${
-              errorSign.title ? 'text-red-500' : 'text-white'
-            }`}
-          >
-            <Input
-              type="text"
-              name="title"
-              value={title}
-              placeholder="제목을 입력하세요"
-              onChange={onTextChange}
-              className={`w-full !text-2xl md:!text-4xl text-right font-bold !bg-transparent mb-3 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
-            />
-          </div>
-          <div
-            ref={descriptionRef}
-            className={`w-full ${
-              errorSign.description ? 'text-red-500' : 'text-white'
-            }`}
-          >
-            <Input
-              type="text"
-              name="description"
-              value={description}
-              placeholder="설명을 추가해보세요"
-              onChange={onTextChange}
-              className={`w-full !text-sm md:!text-base text-right !bg-transparent mb-6 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
-            />
-          </div>
-          <label
-            htmlFor="photo"
-            className="flex justify-center items-center w-40 h-11 md:h-12 px-4 text-xs md:text-sm text-white bg-gray-700 rounded transition duration-200 ease-in-out hover:opacity-80 cursor-pointer"
-          >
-            썸네일 추가하기
-          </label>
-          <input
-            type="file"
-            id="photo"
-            accept="image/*"
-            className="hidden"
-            onChange={onThumbnailChange}
-          />
         </div>
       </section>
 

@@ -13,6 +13,7 @@ import getListings from '@/app/_actions/getListings'
 import Comment from '@/app/_components/comment/Comment'
 import InteractionMetrics from '@/app/_components/interactionMetrics/InteractionMetrics'
 import Section from '@/app/_components/common/Section'
+import subBg from '/public/images/sub-bg.png'
 
 export const revalidate = 60
 
@@ -66,37 +67,35 @@ export default async function Detail({ params }: IParams) {
   return (
     <main>
       <section className="relative w-full h-[320px] md:h-[420px] mb-20">
+        <Image
+          src={posting.thumbnailURL ? posting.thumbnailURL : subBg}
+          alt="썸네일이미지"
+          fill
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+          className="object-cover brightness-50"
+        />
         <div className="my-container h-full text-white flex flex-col justify-center items-end">
-          <div className="w-full h-[320px] md:h-[420px] absolute top-0 left-0 -z-10">
-            {posting.thumbnailURL ? (
-              <Image
-                src={posting.thumbnailURL}
-                alt="썸네일이미지"
-                fill
-                placeholder="blur"
-                loading="eager"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-                className="object-cover brightness-50"
+          <div className="absolute">
+            <p className="mb-2 text-sm text-right">
+              {dayjs(posting.createdAt).format('YYYY-MM-DD')}
+            </p>
+            <div className="flex justify-end items-center mb-2">
+              <FavoriteBtn
+                postingId={posting._id.toString()}
+                className="mr-3"
               />
-            ) : (
-              <div className="w-full h-full bg-slate-400"></div>
+              <p className="text-sm md:text-base">{posting.category}</p>
+            </div>
+            <h1 className="w-full text-2xl md:text-4xl text-right font-bold mb-1 md:mb-3">
+              {posting.title}
+            </h1>
+            {posting.description && (
+              <p className="w-full text-sm md:text-base text-right">
+                {posting.description}
+              </p>
             )}
           </div>
-          <p className="mb-2 text-sm">
-            {dayjs(posting.createdAt).format('YYYY-MM-DD')}
-          </p>
-          <div className="flex items-center mb-2">
-            <FavoriteBtn postingId={posting._id.toString()} className="mr-3" />
-            <p className="text-sm md:text-base">{posting.category}</p>
-          </div>
-          <h1 className="w-full text-2xl md:text-4xl text-right font-bold mb-1 md:mb-3 truncate">
-            {posting.title}
-          </h1>
-          {posting.description && (
-            <p className="w-full text-sm md:text-base text-right">
-              {posting.description}
-            </p>
-          )}
         </div>
         <InteractionMetrics postingId={posting._id.toString()} />
       </section>
@@ -109,11 +108,11 @@ export default async function Detail({ params }: IParams) {
         />
       </Section>
 
-      <Section label="댓글" className="!mb-10">
+      <Section label="댓글" className="!pb-10">
         <Comment postingId={params.id} />
       </Section>
 
-      <Section className="!mb-10">
+      <Section className="!pb-10">
         <AdminController postingId={params.id} />
       </Section>
     </main>

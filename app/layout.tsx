@@ -53,7 +53,7 @@ export default async function RootLayout({
           <Navbar />
           <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
         </AuthSession>
-        <Footer className="relative h-[56px] -translate-y-full w-full bg-gray-800" />
+        <Footer className="relative h-[56px] -translate-y-full w-full" />
       </body>
     </html>
   )

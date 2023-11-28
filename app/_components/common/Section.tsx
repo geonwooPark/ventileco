@@ -13,7 +13,7 @@ export default function Section({
   const title = <h3 className="md:text-lg mb-4">{label}</h3>
 
   return (
-    <section className={`mb-20 ${className}`}>
+    <section className={`pb-20 ${className}`}>
       <div className="my-container">
         {title}
         {children}
