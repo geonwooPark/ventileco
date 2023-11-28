@@ -1,18 +1,19 @@
 import { connectMongo } from '@/app/_utils/database'
-import getCurrentUser from '@/app/_actions/getCurrentUser'
 import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 import { FavoriteType } from '@/app/_interfaces/interface'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
-  const currentUser = await getCurrentUser()
+  const session = await getServerSession(authOptions)
 
   try {
     await connectMongo()
     const isFav = await Favorite.findOne<FavoriteType>({
       postingId,
-      userId: currentUser._id,
+      userId: session?.user.id,
     })
     if (isFav !== null) {
       return NextResponse.json({ isFav: true }, { status: 201 })

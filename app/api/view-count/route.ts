@@ -2,15 +2,16 @@ import { connectMongo } from '@/app/_utils/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { PostingType } from '@/app/_interfaces/interface'
 import { Posting } from '@/models/posting'
-import getCurrentUser from '@/app/_actions/getCurrentUser'
+import { authOptions } from '../auth/[...nextauth]/route'
+import { getServerSession } from 'next-auth'
 
 export async function GET(req: NextRequest) {
-  const currentUser = await getCurrentUser()
+  const session = await getServerSession(authOptions)
   const postingId = req.nextUrl.searchParams.get('postingId')
 
   try {
     await connectMongo()
-    if (!currentUser || currentUser.role !== 'admin') {
+    if (!session || session.user.role !== 'admin') {
       await Posting.updateOne(
         {
           _id: postingId,
