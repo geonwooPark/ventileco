@@ -99,7 +99,7 @@ export const authOptions: AuthOptions = {
     },
   },
   debug: process.env.NODE_ENV === 'development',
-  // JSON 웹 토큰 - 어댑터를 지정하지 않는 경우 기본적으로 활성화
+
   session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
