@@ -48,7 +48,14 @@ export default async function Categories({
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
           <Aside />
-          <Article title="카테고리" page={page} limit={limit} search={search} />
+          <Article
+            title="카테고리"
+            type="category"
+            path="categories"
+            page={page}
+            limit={limit}
+            search={search}
+          />
         </div>
       </Section>
     </main>

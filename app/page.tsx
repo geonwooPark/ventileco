@@ -24,7 +24,13 @@ export default async function Home() {
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
           <Aside />
-          <Article title="전체 게시글" page={page} limit={limit} />
+          <Article
+            title="전체 게시글"
+            type="all"
+            path="postings"
+            page={page}
+            limit={limit}
+          />
         </div>
       </Section>
     </main>

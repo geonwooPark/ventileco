@@ -32,7 +32,14 @@ export default async function Search({
       />
 
       <Section>
-        <Article title="검색결과" page={page} limit={limit} search={search} />
+        <Article
+          title="검색결과"
+          type="search"
+          path="search"
+          page={page}
+          limit={limit}
+          search={search}
+        />
       </Section>
     </main>
   )

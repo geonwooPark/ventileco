@@ -5,20 +5,9 @@ import getListings from '@/app/_actions/getListings'
 import EmptyState from '../../common/EmptyState'
 import Pagenation from '../../Pagenation'
 
-type ListingsProps = (
-  | {
-      path: 'postings'
-      type: 'all'
-    }
-  | {
-      path: 'search'
-      type: 'search'
-    }
-  | {
-      path: 'categories'
-      type: 'category'
-    }
-) & {
+type ListingsProps = {
+  type: 'all' | 'search' | 'category'
+  path: 'postings' | 'search' | 'categories'
   page: number
   limit: number
   search?: string
