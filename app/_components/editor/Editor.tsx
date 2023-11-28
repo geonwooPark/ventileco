@@ -6,9 +6,9 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.bubble.css'
 import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { storage } from '../firebase'
+import { storage } from '../../firebase'
 import { toast } from 'react-toastify'
-import { Images, PostingType } from '../_interfaces/interface'
+import { Images, PostingType } from '../../_interfaces/interface'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {

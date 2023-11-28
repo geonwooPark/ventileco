@@ -16,7 +16,7 @@ import Section from '@/app/_components/common/Section'
 
 export const revalidate = 60
 
-const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
+const EditorWrapper = dynamic(() => import('../../_components/editor/Editor'), {
   ssr: false,
   loading: () => (
     <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />

@@ -19,7 +19,7 @@ import { Images, PostingType } from '@/app/_interfaces/interface'
 import Section from '@/app/_components/common/Section'
 import { categories } from '@/app/_utils/categoryArr'
 
-const EditorWrapper = dynamic(() => import('../../_components/Editor'), {
+const EditorWrapper = dynamic(() => import('../../_components/editor/Editor'), {
   ssr: false,
   loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
 })
