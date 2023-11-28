@@ -42,7 +42,7 @@ export default function Modal({
 
   return (
     <div
-      className="w-full h-full fixed flex justify-center items-center bg-black/30 z-50"
+      className="w-full h-full fixed flex justify-center items-center bg-black/30 z-[200]"
       onClick={handleClose}
     >
       <div
