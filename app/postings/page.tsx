@@ -1,4 +1,4 @@
-import HeroSection from '../_components/hero/HeroSection'
+import HeroSection from '../_components/heroSection/HeroSection'
 import Section from '../_components/common/Section'
 import Aside from '../_components/aside/Aside'
 import Article from '../_components/article/Article'

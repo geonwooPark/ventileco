@@ -2,8 +2,7 @@ import React from 'react'
 import Tap from '../_components/tap/Tap'
 import { Metadata } from 'next'
 import UserName from '../_components/UserName'
-import HeroImage from '../_components/hero/HeroImage'
-import HeroSection from '../_components/hero/HeroSection'
+import HeroSection from '../_components/heroSection/HeroSection'
 import Section from '../_components/common/Section'
 
 export const metadata: Metadata = {

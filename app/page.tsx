@@ -1,6 +1,6 @@
 import PopularListings from './_components/popularListings/PopularListings'
 import Section from './_components/common/Section'
-import HeroSection from './_components/hero/HeroSection'
+import HeroSection from './_components/heroSection/HeroSection'
 import Aside from './_components/aside/Aside'
 import Article from './_components/article/Article'
 
