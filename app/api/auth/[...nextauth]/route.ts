@@ -107,7 +107,6 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXT_PUBLIC_JWT_SECRET,
 }
 
-// NextJS 13에서 경로 핸들러를 사용하기 때문에 핸들러가 필요
 const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
 
