@@ -6,10 +6,10 @@ import Article from './_components/article/Article'
 
 export const revalidate = 600
 
-export default async function Home() {
-  const page = 1
-  const limit = 10
+const PAGE = 1
+const LIMIT = 5
 
+export default async function Home() {
   return (
     <main>
       <HeroSection
@@ -28,8 +28,8 @@ export default async function Home() {
             title="전체 게시글"
             type="all"
             path="postings"
-            page={page}
-            limit={limit}
+            page={PAGE}
+            limit={LIMIT}
           />
         </div>
       </Section>
