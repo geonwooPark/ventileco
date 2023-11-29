@@ -3,7 +3,7 @@ import React from 'react'
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import getChunk from '../_utils/getChunk'
 
-interface PagenationProps {
+interface PaginationProps {
   path: string
   postingCount: number
   page: number
@@ -17,7 +17,7 @@ export default function Pagenation({
   page,
   limit,
   search,
-}: PagenationProps) {
+}: PaginationProps) {
   const lastPageNum = Math.ceil(postingCount / limit)
   const numbering = Array.from({ length: lastPageNum }, (_, i) => (
     <Link

@@ -3,7 +3,7 @@ import ListingItem from './ListingItem'
 import { GetListingsType } from '@/app/_interfaces/interface'
 import getListings from '@/app/_actions/getListings'
 import EmptyState from '../../common/EmptyState'
-import Pagenation from '../../Pagenation'
+import Pagination from '../../Pagination'
 
 type ListingsProps = {
   type: 'all' | 'search' | 'category'
@@ -39,7 +39,7 @@ export default async function Listings({
             })}
           </ul>
           <div>
-            <Pagenation
+            <Pagination
               path={path}
               search={search ? search : ''}
               postingCount={postingCount}
