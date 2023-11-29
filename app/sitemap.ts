@@ -1,18 +1,18 @@
 import getListings from './_actions/getListing'
-import { GetListingsType } from './_interfaces/interface'
+import { GetListingType } from './_interfaces/interface'
 
 export default async function sitemap() {
   const baseURL = 'https://ventileco-blog.vercel.app'
 
-  const { postings }: GetListingsType = await getListings({
+  const { listing }: GetListingType = await getListings({
     type: 'all',
     page: 1,
     limit: 100,
   })
 
-  const postURLs = postings.map((posting) => ({
-    url: `${baseURL}/detail/${posting._id}`,
-    lastModified: posting.updatedAt,
+  const postURLs = listing.map((listingItem) => ({
+    url: `${baseURL}/detail/${listingItem._id}`,
+    lastModified: listingItem.updatedAt,
   }))
 
   return [
