@@ -8,6 +8,7 @@ interface PaginationProps {
   postingCount: number
   page: number
   limit: number
+  category?: string
   search?: string
 }
 
@@ -16,6 +17,7 @@ export default function Pagenation({
   postingCount,
   page,
   limit,
+  category,
   search,
 }: PaginationProps) {
   const lastPageNum = Math.ceil(postingCount / limit)
@@ -23,8 +25,16 @@ export default function Pagenation({
     <Link
       key={i}
       href={{
-        pathname: `/${path}`,
-        query: { ...(search ? { search } : {}), page: i + 1 },
+        pathname: category
+          ? i === 0
+            ? `/${path}/${category}`
+            : `/${path}/${category}/${i + 1}`
+          : search
+          ? `${path}`
+          : i === 0
+          ? '/'
+          : `/${path}/${i + 1}`,
+        query: search && { ...(search ? { search } : {}), page: i + 1 },
       }}
     >
       <button
@@ -46,8 +56,16 @@ export default function Pagenation({
     <div className="flex items-center gap-2 text-sm">
       <Link
         href={{
-          pathname: `/${path}`,
-          query: { ...(search ? { search } : {}), page: page - 1 },
+          pathname: category
+            ? page === 2
+              ? `/${path}/${category}`
+              : `/${path}/${category}/${page - 1}`
+            : search
+            ? `${path}`
+            : page === 2
+            ? '/'
+            : `/${path}/${page - 1}`,
+          query: search && { ...(search ? { search } : {}), page: page - 1 },
         }}
         aria-label="뒤로 가기"
       >
@@ -64,8 +82,12 @@ export default function Pagenation({
 
       <Link
         href={{
-          pathname: `/${path}`,
-          query: { ...(search ? { search } : {}), page: page + 1 },
+          pathname: category
+            ? `/${path}/${category}/${page + 1}`
+            : search
+            ? `${path}`
+            : `/${path}/${page + 1}`,
+          query: search && { ...(search ? { search } : {}), page: page + 1 },
         }}
         aria-label="앞으로 가기"
       >

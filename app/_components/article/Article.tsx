@@ -19,6 +19,7 @@ type ArticleProps = (
   title: string
   page: number
   limit: number
+  category?: string
   search?: string
 }
 
@@ -28,6 +29,7 @@ export default function Article({
   path,
   page,
   limit,
+  category,
   search,
 }: ArticleProps) {
   return (
@@ -39,6 +41,7 @@ export default function Article({
           path={path}
           page={page}
           limit={limit}
+          category={category}
           search={search}
         />
       </Suspense>

@@ -4,21 +4,24 @@ import { GetListingsType, PostingType } from '../_interfaces/interface'
 
 interface GetListingsParams {
   type: 'all' | 'category' | 'search'
-  search?: string
   page: number
   limit: number
+  category?: string
+  search?: string
 }
 
 export default async function getListings({
   type,
+  page,
+  limit,
+  category,
   search,
-  page = 1,
-  limit = 10,
 }: GetListingsParams): Promise<GetListingsType> {
   try {
     await connectMongo()
     let postings: PostingType[] = []
     let postingCount = 0
+
     switch (type) {
       case 'all':
         const AllPostings = await Posting.find<PostingType>({})
@@ -34,9 +37,10 @@ export default async function getListings({
         postings = AllPostings
         postingCount = AllPostingsCount
         break
+
       case 'category':
         const CategoryPostings = await Posting.find<PostingType>({
-          category: search,
+          category,
         })
           .sort({
             createdAt: -1,
@@ -44,12 +48,13 @@ export default async function getListings({
           .skip((page - 1) * limit)
           .limit(limit)
         const CategoryPostingsCount = await Posting.find<PostingType>({
-          category: search,
+          category,
         }).countDocuments()
 
         postings = CategoryPostings
         postingCount = CategoryPostingsCount
         break
+
       case 'search':
         if (!search || search.trim() === '')
           return { postings: [], postingCount: 0 }

@@ -6,10 +6,11 @@ import EmptyState from '../../common/EmptyState'
 import Pagination from '../../Pagination'
 
 type ListingsProps = {
-  type: 'all' | 'search' | 'category'
-  path: 'postings' | 'search' | 'categories'
+  type: 'all' | 'category' | 'search'
+  path: 'postings' | 'categories' | 'search'
   page: number
   limit: number
+  category?: string
   search?: string
 }
 
@@ -18,37 +19,38 @@ export default async function Listings({
   type,
   page,
   limit,
+  category,
   search,
 }: ListingsProps) {
   const { postings, postingCount }: GetListingsType = await getListings({
     type,
-    search,
     page,
     limit,
+    category,
+    search,
   })
+
+  if (postingCount === 0) {
+    return <EmptyState label="작성된 게시글이 없어요!" />
+  }
 
   return (
     <>
-      {postingCount === 0 ? (
-        <EmptyState label="작성된 게시글이 없어요!" />
-      ) : (
-        <>
-          <ul>
-            {postings?.map((posting) => {
-              return <ListingItem key={posting._id} posting={posting} />
-            })}
-          </ul>
-          <div>
-            <Pagination
-              path={path}
-              search={search ? search : ''}
-              postingCount={postingCount}
-              page={page}
-              limit={limit}
-            />
-          </div>
-        </>
-      )}
+      <ul>
+        {postings?.map((posting) => {
+          return <ListingItem key={posting._id} posting={posting} />
+        })}
+      </ul>
+      <div>
+        <Pagination
+          path={path}
+          postingCount={postingCount}
+          page={page}
+          limit={limit}
+          category={category}
+          search={search}
+        />
+      </div>
     </>
   )
 }
