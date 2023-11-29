@@ -15,7 +15,7 @@ import {
 import { storage } from '../firebase'
 import DropDownMenu from '../_components/dropdown/DropDownMenu'
 import EmptyState from '../_components/common/EmptyState'
-import { Images, PostingType } from '../_interfaces/interface'
+import { ImagesType, PostingType } from '../_interfaces/interface'
 import { categories } from '../_utils/categoryArr'
 import Section from '../_components/common/Section'
 import Image from 'next/image'
@@ -52,7 +52,7 @@ export default function Write() {
   const descriptionRef = useRef<HTMLDivElement>(null)
   const [previewURL, setPreviewURL] = useState('')
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
-  const [uploadImages, setUploadImages] = useState<Images[]>([])
+  const [uploadImages, setUploadImages] = useState<ImagesType[]>([])
   const [isLoading, setisLoading] = useState(false)
 
   const onTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {

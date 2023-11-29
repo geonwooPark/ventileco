@@ -1,10 +1,10 @@
 import HeroSection from '../../_components/heroSection/HeroSection'
 import Section from '../../_components/common/Section'
-import Aside from '../../_components/aside/Aside'
 import Article from '../../_components/article/Article'
-import getPostingCount from '@/app/_actions/getPostingCount'
+import getListingCount from '@/app/_actions/getListingCount'
+import CategoryMenu from '@/app/_components/category/CategoryMenu'
 
-export const revalidate = 600
+export const revalidate = 1800
 
 const LIMIT = 5
 
@@ -15,8 +15,8 @@ interface IParams {
 }
 
 export async function generateStaticParams() {
-  const postingCount = await getPostingCount()
-  const lastPageNum = Math.ceil(postingCount / LIMIT)
+  const listingCount = await getListingCount()
+  const lastPageNum = Math.ceil(listingCount / LIMIT)
 
   return Array.from({ length: lastPageNum - 1 }).map((_, i) => ({
     page: (i + 2).toString(),
@@ -35,7 +35,7 @@ export default async function Postings({ params }: IParams) {
 
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
-          <Aside />
+          <CategoryMenu />
           <Article
             title="전체 게시글"
             type="all"

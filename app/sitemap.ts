@@ -1,4 +1,4 @@
-import getListings from './_actions/getListings'
+import getListings from './_actions/getListing'
 import { GetListingsType } from './_interfaces/interface'
 
 export default async function sitemap() {

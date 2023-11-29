@@ -6,12 +6,15 @@ import useFavorite from '../_hooks/useFavorite'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
 
-interface FavoriteBtn {
+interface FavoriteButtonProps {
   className?: string
   postingId: string
 }
 
-export default function FavoriteBtn({ className, postingId }: FavoriteBtn) {
+export default function FavoriteButton({
+  className,
+  postingId,
+}: FavoriteButtonProps) {
   const { data: session } = useSession()
   const { isFav, setIsFav, handleFavoriteBtn } = useFavorite({
     postingId,

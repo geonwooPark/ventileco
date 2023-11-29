@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
-import Listings from './listings/Listings'
-import SkeletonListings from './listings/SkeletonListings'
+import Listing from './listing/Listing'
+import SkeletonListing from './listing/SkeletonListing'
 
 type ArticleProps = (
   | {
@@ -35,8 +35,8 @@ export default function Article({
   return (
     <article className="w-full flex flex-col md:w-[calc(100%-120px)]">
       <h3 className="md:text-lg mb-4">{title}</h3>
-      <Suspense fallback={<SkeletonListings />}>
-        <Listings
+      <Suspense fallback={<SkeletonListing />}>
+        <Listing
           type={type}
           path={path}
           page={page}

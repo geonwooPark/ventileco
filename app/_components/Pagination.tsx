@@ -5,7 +5,7 @@ import getChunk from '../_utils/getChunk'
 
 interface PaginationProps {
   path: string
-  postingCount: number
+  listingCount: number
   page: number
   limit: number
   category?: string
@@ -14,13 +14,13 @@ interface PaginationProps {
 
 export default function Pagenation({
   path,
-  postingCount,
+  listingCount,
   page,
   limit,
   category,
   search,
 }: PaginationProps) {
-  const lastPageNum = Math.ceil(postingCount / limit)
+  const lastPageNum = Math.ceil(listingCount / limit)
   const numbering = Array.from({ length: lastPageNum }, (_, i) => (
     <Link
       key={i}
@@ -71,7 +71,7 @@ export default function Pagenation({
       >
         <button
           type="button"
-          disabled={page === 1 || postingCount === 0 ? true : false}
+          disabled={page === 1 || listingCount === 0 ? true : false}
           className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
         >
           <AiOutlineLeft />
@@ -93,7 +93,7 @@ export default function Pagenation({
       >
         <button
           type="button"
-          disabled={page === lastPageNum || postingCount === 0 ? true : false}
+          disabled={page === lastPageNum || listingCount === 0 ? true : false}
           className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
         >
           <AiOutlineRight />

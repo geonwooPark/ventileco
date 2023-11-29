@@ -15,7 +15,7 @@ import {
 import { storage } from '../../firebase'
 import DropDownMenu from '../../_components/dropdown/DropDownMenu'
 import EmptyState from '@/app/_components/common/EmptyState'
-import { Images, PostingType } from '@/app/_interfaces/interface'
+import { ImagesType, PostingType } from '@/app/_interfaces/interface'
 import Section from '@/app/_components/common/Section'
 import { categories } from '@/app/_utils/categoryArr'
 import Image from 'next/image'
@@ -59,7 +59,7 @@ export default function Edit() {
   const titleRef = useRef<HTMLDivElement>(null)
   const descriptionRef = useRef<HTMLDivElement>(null)
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
-  const [uploadImages, setUploadImages] = useState<Images[]>([])
+  const [uploadImages, setUploadImages] = useState<ImagesType[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {

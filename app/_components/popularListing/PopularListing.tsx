@@ -1,9 +1,9 @@
-import getPopularListings from '@/app/_actions/getPopularListings'
+import getPopularListing from '@/app/_actions/getPopularListing'
 import React from 'react'
 import PopularListingItem from './PopularListingItem'
 
-export default async function PopularListings() {
-  const postings = await getPopularListings()
+export default async function PopularListing() {
+  const postings = await getPopularListing()
   return (
     <div className="overflow-x-scroll md:overflow-x-visible overflow-y-hidden hide-scroll">
       <ul className="flex gap-6">

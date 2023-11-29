@@ -1,10 +1,10 @@
-import PopularListings from './_components/popularListings/PopularListings'
 import Section from './_components/common/Section'
 import HeroSection from './_components/heroSection/HeroSection'
-import Aside from './_components/aside/Aside'
 import Article from './_components/article/Article'
+import PopularListing from './_components/popularListing/PopularListing'
+import CategoryMenu from './_components/category/CategoryMenu'
 
-export const revalidate = 600
+export const revalidate = 1800
 
 const PAGE = 1
 const LIMIT = 5
@@ -18,12 +18,12 @@ export default async function Home() {
       />
 
       <Section label="인기 게시글">
-        <PopularListings />
+        <PopularListing />
       </Section>
 
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
-          <Aside />
+          <CategoryMenu />
           <Article
             title="전체 게시글"
             type="all"

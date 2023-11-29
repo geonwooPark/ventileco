@@ -1,8 +1,8 @@
 import { Posting } from '@/models/posting'
 import { connectMongo } from '../_utils/database'
-import { GetListingsType, PostingType } from '../_interfaces/interface'
+import { GetListingType, PostingType } from '../_interfaces/interface'
 
-interface GetListingsParams {
+interface GetListingParams {
   type: 'all' | 'category' | 'search'
   page: number
   limit: number
@@ -10,36 +10,36 @@ interface GetListingsParams {
   search?: string
 }
 
-export default async function getListings({
+export default async function getListing({
   type,
   page,
   limit,
   category,
   search,
-}: GetListingsParams): Promise<GetListingsType> {
+}: GetListingParams): Promise<GetListingType> {
   try {
     await connectMongo()
-    let postings: PostingType[] = []
-    let postingCount = 0
+    let listing: PostingType[] = []
+    let listingCount = 0
 
     switch (type) {
       case 'all':
-        const AllPostings = await Posting.find<PostingType>({})
+        const AllListing = await Posting.find<PostingType>({})
           .sort({
             createdAt: -1,
           })
           .skip((page - 1) * limit)
           .limit(limit)
-        const AllPostingsCount = await Posting.find<PostingType>(
+        const AllListingCount = await Posting.find<PostingType>(
           {},
         ).countDocuments()
 
-        postings = AllPostings
-        postingCount = AllPostingsCount
+        listing = AllListing
+        listingCount = AllListingCount
         break
 
       case 'category':
-        const CategoryPostings = await Posting.find<PostingType>({
+        const CategoryListing = await Posting.find<PostingType>({
           category,
         })
           .sort({
@@ -47,40 +47,40 @@ export default async function getListings({
           })
           .skip((page - 1) * limit)
           .limit(limit)
-        const CategoryPostingsCount = await Posting.find<PostingType>({
+        const CategoryListingCount = await Posting.find<PostingType>({
           category,
         }).countDocuments()
 
-        postings = CategoryPostings
-        postingCount = CategoryPostingsCount
+        listing = CategoryListing
+        listingCount = CategoryListingCount
         break
 
       case 'search':
         if (!search || search.trim() === '')
-          return { postings: [], postingCount: 0 }
+          return { listing: [], listingCount: 0 }
 
         const options = [
           { title: { $regex: new RegExp(search, 'i') } },
           { description: { $regex: new RegExp(search, 'i') } },
           { content: { $regex: new RegExp(search, 'i') } },
         ]
-        const searchedPostings = await Posting.find<PostingType>({
+        const searchListing = await Posting.find<PostingType>({
           $or: options,
         })
           .sort({ createdAt: -1 })
           .skip((page - 1) * limit)
           .limit(limit)
-        const searchedPostingsCount = await Posting.find<PostingType>({
+        const searchListingCount = await Posting.find<PostingType>({
           $or: options,
         }).countDocuments()
 
-        postings = searchedPostings
-        postingCount = searchedPostingsCount
+        listing = searchListing
+        listingCount = searchListingCount
         break
     }
 
-    return { postings, postingCount }
+    return { listing, listingCount }
   } catch (error) {
-    return { postings: [], postingCount: 0 }
+    return { listing: [], listingCount: 0 }
   }
 }

@@ -3,15 +3,15 @@ import { PostingType } from '../_interfaces/interface'
 import { connectMongo } from '../_utils/database'
 import { Posting } from '@/models/posting'
 
-export default cache(async function getPopularListings() {
+export default cache(async function getListingCount() {
   try {
     await connectMongo()
-    const posting = await Posting.find<PostingType>()
-      .sort({ views: -1 })
-      .limit(3)
+    const AllPostingsCount = await Posting.find<PostingType>(
+      {},
+    ).countDocuments()
 
-    return posting
+    return AllPostingsCount
   } catch (error) {
-    return []
+    return 0
   }
 })

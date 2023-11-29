@@ -1,21 +1,21 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import AdminController from '@/app/_components/AdminController'
-import FavoriteBtn from '@/app/_components/FavoriteBtn'
+import FavoriteButton from '@/app/_components/FavoriteButton'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/_components/common/EmptyState'
-import { GetListingsType } from '@/app/_interfaces/interface'
+import { GetListingType } from '@/app/_interfaces/interface'
 import getPosting from '@/app/_actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
-import getListings from '@/app/_actions/getListings'
+import getListing from '@/app/_actions/getListing'
 import Comment from '@/app/_components/comment/Comment'
 import InteractionMetrics from '@/app/_components/interactionMetrics/InteractionMetrics'
 import Section from '@/app/_components/common/Section'
 import subBg from '/public/images/sub-bg.png'
+import DeleteAndEdit from '@/app/_components/DeleteAndEdit'
 
-export const revalidate = 60
+export const revalidate = 1800
 
 const EditorWrapper = dynamic(() => import('../../_components/editor/Editor'), {
   ssr: false,
@@ -31,19 +31,20 @@ interface IParams {
 }
 
 export async function generateStaticParams() {
-  const { postings }: GetListingsType = await getListings({
+  const { listing }: GetListingType = await getListing({
     type: 'all',
     page: 1,
     limit: 100,
   })
 
-  return postings.map((posting) => ({
-    id: posting._id.toString(),
+  return listing.map((listingItem) => ({
+    id: listingItem._id.toString(),
   }))
 }
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
-  const posting = await getPosting(params.id)
+  const { id } = params
+  const posting = await getPosting(id)
   if (!posting)
     return {
       title: '404 페이지',
@@ -60,7 +61,8 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 }
 
 export default async function Detail({ params }: IParams) {
-  const posting = await getPosting(params.id)
+  const { id } = params
+  const posting = await getPosting(id)
 
   if (!posting) return NotFound()
 
@@ -81,7 +83,7 @@ export default async function Detail({ params }: IParams) {
               {dayjs(posting.createdAt).format('YYYY-MM-DD')}
             </p>
             <div className="flex justify-end items-center mb-2">
-              <FavoriteBtn
+              <FavoriteButton
                 postingId={posting._id.toString()}
                 className="mr-3"
               />
@@ -113,7 +115,7 @@ export default async function Detail({ params }: IParams) {
       </Section>
 
       <Section className="!pb-10">
-        <AdminController postingId={params.id} />
+        <DeleteAndEdit postingId={params.id} />
       </Section>
     </main>
   )

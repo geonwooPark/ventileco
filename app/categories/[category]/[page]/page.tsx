@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import HeroSection from '../../../_components/heroSection/HeroSection'
 import Section from '../../../_components/common/Section'
-import Aside from '../../../_components/aside/Aside'
 import Article from '../../../_components/article/Article'
 import { categories } from '@/app/_utils/categoryArr'
+import CategoryMenu from '@/app/_components/category/CategoryMenu'
 
-export const revalidate = 600
+export const revalidate = 1800
 
 const LIMIT = 5
 
@@ -54,7 +54,7 @@ export default async function Categories({ params }: IParams) {
 
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
-          <Aside paramsCategory={params.category} />
+          <CategoryMenu paramsCategory={params.category} />
           <Article
             title="카테고리"
             type="category"

@@ -8,11 +8,11 @@ import useDeletePostingModal from '../_hooks/useDeletePostingModal'
 import DeletePostingModal from './modals/DeletePostingModal'
 import { useSession } from 'next-auth/react'
 
-interface AdminControllerProps {
+interface DeleteAndEditProps {
   postingId: string
 }
 
-export default function AdminController({ postingId }: AdminControllerProps) {
+export default function DeleteAndEdit({ postingId }: DeleteAndEditProps) {
   const { data: session } = useSession()
   const router = useRouter()
   const deletePostingModal = useDeletePostingModal()

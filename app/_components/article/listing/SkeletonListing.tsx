@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function SkeletonListings() {
+export default function SkeletonListing() {
   return (
     <div className="animate-pulse">
       <div className="group mb-6 md:mb-12">

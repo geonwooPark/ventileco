@@ -51,12 +51,12 @@ export interface FavoriteType {
   _id: string
 }
 
-export interface GetListingsType {
-  postings: PostingType[]
-  postingCount: number
+export interface GetListingType {
+  listing: PostingType[]
+  listingCount: number
 }
 
-export interface Images {
+export interface ImagesType {
   imagePath: string
   imageURL: string
 }

@@ -2,11 +2,11 @@ import { categories } from '@/app/_utils/categoryArr'
 import React from 'react'
 import CategoryItem from './CategoryItem'
 
-interface AsideProps {
+interface CategoryMenuProps {
   paramsCategory?: string
 }
 
-export default function Aside({ paramsCategory }: AsideProps) {
+export default function CategoryMenu({ paramsCategory }: CategoryMenuProps) {
   return (
     <aside className="min-w-[120px] mb-10 md:mb-0">
       <h3 className="md:text-lg mb-4">카테고리</h3>

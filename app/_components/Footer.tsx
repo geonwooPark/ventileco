@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function Footer({ className }: { className: string }) {
+interface FooterProps {
+  className: string
+}
+
+export default function Footer({ className }: FooterProps) {
   return (
     <footer className={className}>
       <div className="my-container py-4 flex items-center justify-between">
