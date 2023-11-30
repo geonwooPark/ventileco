@@ -3,6 +3,8 @@ import HeroSection from './_components/heroSection/HeroSection'
 import Article from './_components/article/Article'
 import PopularListing from './_components/popularListing/PopularListing'
 import CategoryMenu from './_components/category/CategoryMenu'
+import getAllListing from './_actions/getAllListing'
+import { GetListingType } from './_interfaces/interface'
 
 export const revalidate = 1800
 
@@ -10,6 +12,11 @@ const PAGE = 1
 const LIMIT = 5
 
 export default async function Home() {
+  const { listing, listingCount }: GetListingType = await getAllListing({
+    page: PAGE,
+    limit: LIMIT,
+  })
+
   return (
     <main>
       <HeroSection
@@ -26,10 +33,11 @@ export default async function Home() {
           <CategoryMenu />
           <Article
             title="전체 게시글"
-            type="all"
             path="postings"
             page={PAGE}
             limit={LIMIT}
+            listing={listing}
+            listingCount={listingCount}
           />
         </div>
       </Section>

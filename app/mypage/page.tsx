@@ -23,7 +23,7 @@ export default function page() {
         title="My Page"
         description="내 정보 및 활동 내역을 확인해보세요"
       />
-      <Section className="!mb-10">
+      <Section className="!pb-10">
         <UserName />
       </Section>
 

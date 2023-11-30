@@ -1,34 +1,26 @@
 import React, { Suspense } from 'react'
 import Listing from './listing/Listing'
 import SkeletonListing from './listing/SkeletonListing'
+import { PostingType } from '@/app/_interfaces/interface'
 
-type ArticleProps = (
-  | {
-      type: 'all'
-      path: 'postings'
-    }
-  | {
-      type: 'search'
-      path: 'search'
-    }
-  | {
-      type: 'category'
-      path: 'categories'
-    }
-) & {
+type ArticleProps = {
+  path: 'postings' | 'categories' | 'search'
   title: string
   page: number
   limit: number
+  listing: PostingType[]
+  listingCount: number
   category?: string
   search?: string
 }
 
 export default function Article({
   title,
-  type,
   path,
   page,
   limit,
+  listing,
+  listingCount,
   category,
   search,
 }: ArticleProps) {
@@ -37,10 +29,11 @@ export default function Article({
       <h3 className="md:text-lg mb-4">{title}</h3>
       <Suspense fallback={<SkeletonListing />}>
         <Listing
-          type={type}
           path={path}
           page={page}
           limit={limit}
+          listing={listing}
+          listingCount={listingCount}
           category={category}
           search={search}
         />

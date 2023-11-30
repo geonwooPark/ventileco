@@ -8,12 +8,12 @@ import { GetListingType } from '@/app/_interfaces/interface'
 import getPosting from '@/app/_actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
-import getListing from '@/app/_actions/getListing'
 import Comment from '@/app/_components/comment/Comment'
 import InteractionMetrics from '@/app/_components/interactionMetrics/InteractionMetrics'
 import Section from '@/app/_components/common/Section'
 import subBg from '/public/images/sub-bg.png'
 import DeleteAndEdit from '@/app/_components/DeleteAndEdit'
+import getAllListing from '@/app/_actions/getAllListing'
 
 export const revalidate = 1800
 
@@ -31,8 +31,7 @@ interface IParams {
 }
 
 export async function generateStaticParams() {
-  const { listing }: GetListingType = await getListing({
-    type: 'all',
+  const { listing }: GetListingType = await getAllListing({
     page: 1,
     limit: 100,
   })

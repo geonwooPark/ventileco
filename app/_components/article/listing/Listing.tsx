@@ -1,35 +1,28 @@
 import React from 'react'
 import ListingItem from './ListingItem'
-import { GetListingType } from '@/app/_interfaces/interface'
-import getListings from '@/app/_actions/getListing'
+import { PostingType } from '@/app/_interfaces/interface'
 import EmptyState from '../../common/EmptyState'
 import Pagination from '../../Pagination'
 
 type ListingProps = {
-  type: 'all' | 'category' | 'search'
   path: 'postings' | 'categories' | 'search'
   page: number
   limit: number
+  listing: PostingType[]
+  listingCount: number
   category?: string
   search?: string
 }
 
 export default async function Listing({
   path,
-  type,
   page,
   limit,
+  listing,
+  listingCount,
   category,
   search,
 }: ListingProps) {
-  const { listing, listingCount }: GetListingType = await getListings({
-    type,
-    page,
-    limit,
-    category,
-    search,
-  })
-
   if (listingCount === 0) {
     return <EmptyState label="작성된 게시글이 없어요!" />
   }

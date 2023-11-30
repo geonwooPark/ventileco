@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import HeroSection from '../_components/heroSection/HeroSection'
 import Section from '../_components/common/Section'
 import Article from '../_components/article/Article'
+import getSearchListing from '../_actions/getSearchListing'
 
 export const metadata: Metadata = {
   title: '검색 결과',
@@ -24,6 +25,12 @@ export default async function Search({
   const search =
     typeof searchParams.search === 'string' ? searchParams.search : ''
 
+  const { listing, listingCount } = await getSearchListing({
+    page,
+    limit,
+    search,
+  })
+
   return (
     <main>
       <HeroSection
@@ -34,10 +41,11 @@ export default async function Search({
       <Section>
         <Article
           title="검색결과"
-          type="search"
           path="search"
           page={page}
           limit={limit}
+          listing={listing}
+          listingCount={listingCount}
           search={search}
         />
       </Section>

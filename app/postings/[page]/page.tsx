@@ -3,6 +3,8 @@ import Section from '../../_components/common/Section'
 import Article from '../../_components/article/Article'
 import getListingCount from '@/app/_actions/getListingCount'
 import CategoryMenu from '@/app/_components/category/CategoryMenu'
+import { GetListingType } from '@/app/_interfaces/interface'
+import getAllListing from '@/app/_actions/getAllListing'
 
 export const revalidate = 1800
 
@@ -25,6 +27,10 @@ export async function generateStaticParams() {
 
 export default async function Postings({ params }: IParams) {
   const { page } = params
+  const { listing, listingCount }: GetListingType = await getAllListing({
+    page: Number(page),
+    limit: LIMIT,
+  })
 
   return (
     <main>
@@ -38,10 +44,11 @@ export default async function Postings({ params }: IParams) {
           <CategoryMenu />
           <Article
             title="전체 게시글"
-            type="all"
             path="postings"
             page={Number(page)}
             limit={LIMIT}
+            listing={listing}
+            listingCount={listingCount}
           />
         </div>
       </Section>

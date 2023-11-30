@@ -4,6 +4,7 @@ import Section from '../../../_components/common/Section'
 import Article from '../../../_components/article/Article'
 import { categories } from '@/app/_utils/categoryArr'
 import CategoryMenu from '@/app/_components/category/CategoryMenu'
+import getCategoryListing from '@/app/_actions/getCategoryListing'
 
 export const revalidate = 1800
 
@@ -44,6 +45,11 @@ export async function generateStaticParams() {
 
 export default async function Categories({ params }: IParams) {
   const { category, page } = params
+  const { listing, listingCount } = await getCategoryListing({
+    page: Number(page),
+    limit: LIMIT,
+    category: decodeURI(category),
+  })
 
   return (
     <main>
@@ -57,10 +63,11 @@ export default async function Categories({ params }: IParams) {
           <CategoryMenu paramsCategory={params.category} />
           <Article
             title="카테고리"
-            type="category"
             path="categories"
             page={Number(page)}
             limit={LIMIT}
+            listing={listing}
+            listingCount={listingCount}
             category={category}
           />
         </div>
