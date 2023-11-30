@@ -104,7 +104,7 @@ export const authOptions: AuthOptions = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
-  secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+  secret: process.env.JWT_SECRET,
 }
 
 const handler = NextAuth(authOptions)
