@@ -65,9 +65,9 @@ export const authOptions: AuthOptions = {
     }),
   ],
 
-  // pages: {
-  //   signIn: '/',
-  // },
+  pages: {
+    signIn: '/',
+  },
 
   callbacks: {
     async signIn({ account, profile }) {
