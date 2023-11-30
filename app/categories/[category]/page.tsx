@@ -5,6 +5,7 @@ import Article from '../../_components/article/Article'
 import { categories } from '@/app/_utils/categoryArr'
 import CategoryMenu from '@/app/_components/category/CategoryMenu'
 import getCategoryListing from '@/app/_actions/getCategoryListing'
+import getCategoryListingCount from '@/app/_actions/getCategoryListingCount'
 
 export const revalidate = 1800
 
@@ -37,11 +38,12 @@ export async function generateStaticParams() {
 
 export default async function Categories({ params }: IParams) {
   const { category } = params
-  const { listing, listingCount } = await getCategoryListing({
+  const listing = await getCategoryListing({
     page: PAGE,
     limit: LIMIT,
     category: decodeURI(category),
   })
+  const listingCount = await getCategoryListingCount(category)
 
   return (
     <main>

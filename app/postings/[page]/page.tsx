@@ -1,9 +1,8 @@
 import HeroSection from '../../_components/heroSection/HeroSection'
 import Section from '../../_components/common/Section'
 import Article from '../../_components/article/Article'
-import getListingCount from '@/app/_actions/getListingCount'
+import getAllListingCount from '@/app/_actions/getAllListingCount'
 import CategoryMenu from '@/app/_components/category/CategoryMenu'
-import { GetListingType } from '@/app/_interfaces/interface'
 import getAllListing from '@/app/_actions/getAllListing'
 
 export const revalidate = 1800
@@ -17,7 +16,7 @@ interface IParams {
 }
 
 export async function generateStaticParams() {
-  const listingCount = await getListingCount()
+  const listingCount = await getAllListingCount()
   const lastPageNum = Math.ceil(listingCount / LIMIT)
 
   return Array.from({ length: lastPageNum - 1 }).map((_, i) => ({
@@ -27,10 +26,11 @@ export async function generateStaticParams() {
 
 export default async function Postings({ params }: IParams) {
   const { page } = params
-  const { listing, listingCount }: GetListingType = await getAllListing({
+  const listing = await getAllListing({
     page: Number(page),
     limit: LIMIT,
   })
+  const listingCount = await getAllListingCount()
 
   return (
     <main>

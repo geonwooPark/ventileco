@@ -4,7 +4,7 @@ import Article from './_components/article/Article'
 import PopularListing from './_components/popularListing/PopularListing'
 import CategoryMenu from './_components/category/CategoryMenu'
 import getAllListing from './_actions/getAllListing'
-import { GetListingType } from './_interfaces/interface'
+import getAllListingCount from './_actions/getAllListingCount'
 
 export const revalidate = 1800
 
@@ -12,10 +12,11 @@ const PAGE = 1
 const LIMIT = 5
 
 export default async function Home() {
-  const { listing, listingCount }: GetListingType = await getAllListing({
+  const listing = await getAllListing({
     page: PAGE,
     limit: LIMIT,
   })
+  const listingCount = await getAllListingCount()
 
   return (
     <main>

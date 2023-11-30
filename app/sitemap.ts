@@ -1,10 +1,9 @@
 import getAllListing from './_actions/getAllListing'
-import { GetListingType } from './_interfaces/interface'
 
 export default async function sitemap() {
   const baseURL = 'https://ventileco-blog.vercel.app'
 
-  const { listing }: GetListingType = await getAllListing({
+  const listing = await getAllListing({
     page: 1,
     limit: 100,
   })

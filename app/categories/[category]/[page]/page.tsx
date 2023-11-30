@@ -5,6 +5,7 @@ import Article from '../../../_components/article/Article'
 import { categories } from '@/app/_utils/categoryArr'
 import CategoryMenu from '@/app/_components/category/CategoryMenu'
 import getCategoryListing from '@/app/_actions/getCategoryListing'
+import getCategoryListingCount from '@/app/_actions/getCategoryListingCount'
 
 export const revalidate = 1800
 
@@ -30,26 +31,27 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  let arr: {
-    category: string
-    page: string
-  }[] = []
-  categories.map((category) => {
-    Array.from({ length: 2 }).forEach((_, i) => {
-      arr = [...arr, { category, page: (i + 2).toString() }]
+  let result: { category: string; page: string }[] = []
+  for (const category of categories) {
+    const listingCount = await getCategoryListingCount(category)
+    const lastPageNum = Math.ceil(listingCount / LIMIT)
+    const res = Array.from({ length: lastPageNum - 1 }).map((_, i) => {
+      return { category, page: (i + 2).toString() }
     })
-  })
+    result = [...result, ...res]
+  }
 
-  return arr
+  return result
 }
 
 export default async function Categories({ params }: IParams) {
   const { category, page } = params
-  const { listing, listingCount } = await getCategoryListing({
+  const listing = await getCategoryListing({
     page: Number(page),
     limit: LIMIT,
     category: decodeURI(category),
   })
+  const listingCount = await getCategoryListingCount(category)
 
   return (
     <main>

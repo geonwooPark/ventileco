@@ -1,6 +1,7 @@
 import { Posting } from '@/models/posting'
 import { connectMongo } from '../_utils/database'
-import { GetListingType, PostingType } from '../_interfaces/interface'
+import { PostingType } from '../_interfaces/interface'
+import { cache } from 'react'
 
 interface GetListingParams {
   page: number
@@ -8,11 +9,11 @@ interface GetListingParams {
   category: string
 }
 
-export default async function getCategoryListing({
+export default cache(async function getCategoryListing({
   page,
   limit,
   category,
-}: GetListingParams): Promise<GetListingType> {
+}: GetListingParams): Promise<PostingType[]> {
   try {
     await connectMongo()
     const listing = await Posting.find<PostingType>({
@@ -23,12 +24,9 @@ export default async function getCategoryListing({
       })
       .skip((page - 1) * limit)
       .limit(limit)
-    const listingCount = await Posting.find<PostingType>({
-      category,
-    }).countDocuments()
 
-    return { listing, listingCount }
+    return listing
   } catch (error) {
-    return { listing: [], listingCount: 0 }
+    return []
   }
-}
+})

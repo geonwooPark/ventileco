@@ -31,7 +31,7 @@ interface IParams {
 }
 
 export async function generateStaticParams() {
-  const { listing }: GetListingType = await getAllListing({
+  const listing = await getAllListing({
     page: 1,
     limit: 100,
   })
