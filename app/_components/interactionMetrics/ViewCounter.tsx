@@ -15,9 +15,12 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/view-count?postingId=${postingId}`, {
-          method: 'GET',
-        })
+        await fetch(
+          `${process.env.NEXT_PUBLIC_FE_URL}/api/view-count?postingId=${postingId}`,
+          {
+            method: 'GET',
+          },
+        )
           .then((res) => {
             if (!res.ok) {
               throw new Error('Failed to fetch data')

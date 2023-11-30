@@ -65,9 +65,10 @@ export const authOptions: AuthOptions = {
     }),
   ],
 
-  pages: {
-    signIn: '/',
-  },
+  // pages: {
+  //   signIn: '/',
+  // },
+
   callbacks: {
     async signIn({ account, profile }) {
       if (account?.type === 'oauth') {
@@ -93,6 +94,7 @@ export const authOptions: AuthOptions = {
       return session
     },
   },
+
   // 인증 흐름에서 문제를 파악하는 데 도움이 되도록 개발 전용이며 프로덕션에 배포할 때 이 옵션을 제거
   // debug: process.env.NODE_ENV === 'development',
 
