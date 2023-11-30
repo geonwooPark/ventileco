@@ -1,5 +1,4 @@
 import { AuthOptions, DefaultSession } from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcrypt'
@@ -60,10 +59,6 @@ export const authOptions: AuthOptions = {
         return user
       },
     }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
-    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
@@ -98,13 +93,14 @@ export const authOptions: AuthOptions = {
       return session
     },
   },
-  debug: process.env.NODE_ENV === 'development',
+  // 인증 흐름에서 문제를 파악하는 데 도움이 되도록 개발 전용이며 프로덕션에 배포할 때 이 옵션을 제거
+  // debug: process.env.NODE_ENV === 'development',
 
   session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
-  secret: process.env.JWT_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 }
 
 const handler = NextAuth(authOptions)
