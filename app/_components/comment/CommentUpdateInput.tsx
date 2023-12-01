@@ -67,7 +67,7 @@ export default function CommentUpdateInput({
         rows={3}
         value={text}
         disabled={session ? false : true}
-        className="w-full px-3 py-2 text-sm border outline-none rounded resize-none disabled:cursor-not-allowed"
+        className="w-full px-3 py-2 text-sm border rounded outline-none resize-none disabled:cursor-not-allowed"
         onChange={onChange}
       />
       <Button

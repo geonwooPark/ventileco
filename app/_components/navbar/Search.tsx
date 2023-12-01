@@ -53,7 +53,7 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
           className={`absolute w-full h-[320px] md:h-[420px] bg-black top-0 left-0`}
         >
           <form className="h-full" onSubmit={onSubmit}>
-            <div className="h-full flex justify-center items-center">
+            <div className="flex items-center justify-center h-full">
               <div className="w-[60%]">
                 <Input
                   type="text"
@@ -61,7 +61,7 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
                   value={text}
                   placeholder="검색어를 입력하세요"
                   onChange={onChange}
-                  className="w-full rounded-sm px-4 py-3 outline-none"
+                  className="w-full px-4 py-3 rounded-sm outline-none"
                   icon={AiOutlineSearch}
                   iconAction={() => onSubmit}
                   iconType="submit"

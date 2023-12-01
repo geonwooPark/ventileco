@@ -254,10 +254,10 @@ export default function Edit() {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           className="object-cover brightness-50"
         />
-        <div className="my-container h-full flex flex-col justify-center items-end">
+        <div className="flex flex-col items-end justify-center h-full my-container">
           <div className="absolute w-full">
             <div
-              className="flex justify-end mt-10 md:mt-0 mb-4"
+              className="flex justify-end mt-10 mb-4 md:mt-0"
               ref={categoryRef}
             >
               <DropDownMenu
@@ -299,7 +299,7 @@ export default function Edit() {
             </div>
             <label
               htmlFor="photo"
-              className="flex justify-center items-center ml-auto w-40 h-11 md:h-12 px-4 text-xs md:text-sm text-white bg-gray-700 rounded transition duration-200 ease-in-out hover:opacity-80 cursor-pointer"
+              className="flex items-center justify-center w-40 px-4 ml-auto text-xs text-white transition duration-200 ease-in-out bg-gray-700 rounded cursor-pointer h-11 md:h-12 md:text-sm hover:opacity-80"
             >
               썸네일 추가하기
             </label>

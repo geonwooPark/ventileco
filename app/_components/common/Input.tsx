@@ -46,7 +46,7 @@ export default function Input({
         <button
           type={iconType}
           onClick={iconAction}
-          className="absolute right-3 top-3 cursor-pointer"
+          className="absolute cursor-pointer right-3 top-3"
         >
           <Icon size={20} />
         </button>

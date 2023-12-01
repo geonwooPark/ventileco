@@ -26,7 +26,7 @@ export default function Article({
 }: ArticleProps) {
   return (
     <article className="w-full flex flex-col md:w-[calc(100%-120px)]">
-      <h3 className="md:text-lg mb-4">{title}</h3>
+      <h3 className="mb-4 md:text-lg">{title}</h3>
       <Suspense fallback={<SkeletonListing />}>
         <Listing
           path={path}

@@ -21,7 +21,7 @@ export default function RightSide() {
     <div className="flex items-center gap-4">
       <Search isOpen={isOpen} setIsOpen={setIsOpen} />
       {session?.user?.role === 'admin' && (
-        <Link href={'/write'} className="text-white z-50">
+        <Link href={'/write'} className="z-50 text-white">
           <AiOutlineEdit size={24} />
         </Link>
       )}

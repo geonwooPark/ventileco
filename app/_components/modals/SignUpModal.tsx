@@ -144,14 +144,14 @@ export default function SignUpModal() {
   const footerContent = (
     <div className="mt-3">
       <hr className="mb-3" />
-      <p className="text-xs text-gray-500 text-center mt-4 font-light">
+      <p className="mt-4 text-xs font-light text-center text-gray-500">
         이미 계정이 있으신가요?{' '}
         <span
           onClick={() => {
             signUpModal.onClose()
             loginModal.onOpen()
           }}
-          className="text-gray-800 font-normal cursor-pointer"
+          className="font-normal text-gray-800 cursor-pointer"
         >
           로그인
         </span>

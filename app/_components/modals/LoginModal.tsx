@@ -139,14 +139,14 @@ export default function LoginModal() {
         disabled={isLoading2}
         onClick={onGoogleClick}
       />
-      <p className="text-xs text-gray-500 text-center mt-4 font-light">
+      <p className="mt-4 text-xs font-light text-center text-gray-500">
         계정이 없으신가요?{' '}
         <span
           onClick={() => {
             loginModal.onClose()
             signUpModal.onOpen()
           }}
-          className="text-gray-800 font-normal cursor-pointer"
+          className="font-normal text-gray-800 cursor-pointer"
         >
           회원가입
         </span>

@@ -36,14 +36,14 @@ export default function DropDownMenu({
   }, [isOpen])
 
   return (
-    <div className="relative text-white text-xs">
+    <div className="relative text-xs text-white">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className="w-[140px] bg-gray-700 text-center p-2 cursor-pointer"
       >
         {category ? category : label}
       </div>
-      <div className="w-full absolute z-20 overflow-hidden">
+      <div className="absolute z-20 w-full overflow-hidden">
         <div
           className={`${
             isOpen ? 'animate-slideFadeIn' : 'animate-slideFadeOut'

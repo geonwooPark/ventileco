@@ -19,9 +19,9 @@ export default function HeroSection({ title, description }: HeroSectionProps) {
         loading="eager"
         className="object-cover brightness-50"
       />
-      <div className="my-container h-full text-white text-right flex flex-col justify-center items-end">
+      <div className="flex flex-col items-end justify-center h-full text-right text-white my-container">
         <div className="absolute">
-          <h1 className="text-4xl md:text-6xl font-bold mb-5">{title}</h1>
+          <h1 className="mb-5 text-4xl font-bold md:text-6xl">{title}</h1>
           <p className="text-sm md:text-base">{description}</p>
         </div>
       </div>

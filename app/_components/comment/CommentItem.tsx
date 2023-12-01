@@ -39,13 +39,13 @@ export default function CommentItem({
   }
 
   return (
-    <li className="text-sm mb-4 list-none">
+    <li className="mb-4 text-sm list-none">
       <div className="flex justify-between mb-2">
         <div className="flex items-center">
           <Avatar src={comment.userImage} />
           <p className="ml-2">{comment.userName}</p>
         </div>
-        <small className="text-gray-400 flex items-center gap-2">
+        <small className="flex items-center gap-2 text-gray-400">
           {session && session.user.id === comment.userId && (
             <>
               <button onClick={onEdit}>{editMode ? '취소' : '수정'}</button>

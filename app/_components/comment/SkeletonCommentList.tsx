@@ -3,7 +3,7 @@ import React from 'react'
 export default function SkeletonCommentList() {
   return (
     <div className="animate-pulse">
-      <div className="text-sm mb-4">
+      <div className="mb-4 text-sm">
         <div className="flex justify-between mb-2">
           <div className="flex items-center">
             <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
@@ -13,7 +13,7 @@ export default function SkeletonCommentList() {
         </div>
         <div className="w-[70%] h-5 bg-gray-300 rounded-lg"></div>
       </div>
-      <div className="text-sm mb-4">
+      <div className="mb-4 text-sm">
         <div className="flex justify-between mb-2">
           <div className="flex items-center">
             <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
@@ -23,7 +23,7 @@ export default function SkeletonCommentList() {
         </div>
         <div className="w-[70%] h-5 bg-gray-300 rounded-lg"></div>
       </div>
-      <div className="text-sm mb-4">
+      <div className="mb-4 text-sm">
         <div className="flex justify-between mb-2">
           <div className="flex items-center">
             <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>

@@ -9,8 +9,8 @@ interface CategoryMenuProps {
 export default function CategoryMenu({ paramsCategory }: CategoryMenuProps) {
   return (
     <aside className="min-w-[120px] mb-10 md:mb-0">
-      <h3 className="md:text-lg mb-4">카테고리</h3>
-      <ul className="flex flex-wrap md:flex-col gap-2">
+      <h3 className="mb-4 md:text-lg">카테고리</h3>
+      <ul className="flex flex-wrap gap-2 md:flex-col">
         {categories.map((category, i) => {
           return (
             <CategoryItem

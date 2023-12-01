@@ -11,7 +11,7 @@ interface ListingProps {
 
 export default function ListingItem({ posting }: ListingProps) {
   return (
-    <li className="group mb-6 md:mb-12">
+    <li className="mb-6 group md:mb-12">
       <Link
         href={`/detail/${posting._id}`}
         className="flex flex-col md:flex-row"
@@ -24,16 +24,16 @@ export default function ListingItem({ posting }: ListingProps) {
               fill
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-              className="object-cover transition-scale duration-200 ease-in group-hover:scale-110"
+              className="object-cover duration-200 ease-in transition-scale group-hover:scale-110"
             />
           ) : (
-            <div className="w-full h-full bg-gray-300 flex justify-center items-center text-sm text-gray-100">
+            <div className="flex items-center justify-center w-full h-full text-sm text-gray-100 bg-gray-300">
               No Thumbnail
             </div>
           )}
         </div>
         <div className="md:w-[calc(100%-270px)] flex flex-col justify-between md:px-6 md:py-2">
-          <div className="mt-3 md:mt-0 mb-4">
+          <div className="mt-3 mb-4 md:mt-0">
             <h6 className="text-sm text-gray-400 mb-1.5 md:mb-4">
               {posting.category}
             </h6>

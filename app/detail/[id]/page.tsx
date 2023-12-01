@@ -76,23 +76,23 @@ export default async function Detail({ params }: IParams) {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
           className="object-cover brightness-50"
         />
-        <div className="my-container h-full text-white flex flex-col justify-center items-end">
+        <div className="flex flex-col items-end justify-center h-full text-white my-container">
           <div className="absolute">
             <p className="mb-2 text-sm text-right">
               {dayjs(posting.createdAt).format('YYYY-MM-DD')}
             </p>
-            <div className="flex justify-end items-center mb-2">
+            <div className="flex items-center justify-end mb-2">
               <FavoriteButton
                 postingId={posting._id.toString()}
                 className="mr-3"
               />
               <p className="text-sm md:text-base">{posting.category}</p>
             </div>
-            <h1 className="w-full text-2xl md:text-4xl text-right font-bold mb-1 md:mb-3">
+            <h1 className="w-full mb-1 text-2xl font-bold text-right md:text-4xl md:mb-3">
               {posting.title}
             </h1>
             {posting.description && (
-              <p className="w-full text-sm md:text-base text-right">
+              <p className="w-full text-sm text-right md:text-base">
                 {posting.description}
               </p>
             )}

@@ -22,17 +22,17 @@ export default function PopularListingItem({
               fill
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-              className="object-cover transition-scale duration-200 ease-in group-hover:scale-110"
+              className="object-cover duration-200 ease-in transition-scale group-hover:scale-110"
             />
           ) : (
-            <div className="w-full h-full bg-gray-300 flex justify-center items-center text-sm text-gray-100">
+            <div className="flex items-center justify-center w-full h-full text-sm text-gray-100 bg-gray-300">
               No Thumbnail
             </div>
           )}
         </div>
         <div className="flex flex-col justify-between">
           <h6 className="text-sm text-gray-400">{posting.category}</h6>
-          <h4 className="text-lg font-semibold mb-3 truncate">
+          <h4 className="mb-3 text-lg font-semibold truncate">
             {posting.title}
           </h4>
           <p className="text-xs text-gray-400">
