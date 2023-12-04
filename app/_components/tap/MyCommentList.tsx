@@ -1,40 +1,23 @@
 import { CommentType } from '@/app/_interfaces/interface'
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { PiDotsThreeVerticalBold } from 'react-icons/pi'
-import { toast } from 'react-toastify'
 import EmptyState from '../common/EmptyState'
+import { useQuery } from '@tanstack/react-query'
+
+const fetchData = async () => {
+  const result = await fetch(`/api/my-comment`)
+  return result.json()
+}
 
 export default function MyCommentList() {
-  const [myCommentList, setMyCommentList] = useState<CommentType[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const { data: myCommentList, isPending } = useQuery<CommentType[]>({
+    queryKey: ['myCommentList'],
+    queryFn: fetchData,
+  })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch(`/api/my-comment`, { method: 'GET' })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Failed to fetch data')
-            }
-            return res.json()
-          })
-          .then((result) => {
-            setMyCommentList(result)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
-
-  if (isLoading) {
+  if (isPending) {
     return <EmptyState label="댓글 목록을 가져오고 있어요!" />
   }
 
@@ -47,7 +30,7 @@ export default function MyCommentList() {
         </tr>
       </thead>
       <tbody>
-        {myCommentList.map((MyCommentItem) => {
+        {myCommentList?.map((MyCommentItem) => {
           return (
             <tr key={MyCommentItem._id} className="flex items-center border-b">
               <td className="flex-1 px-4 py-3">

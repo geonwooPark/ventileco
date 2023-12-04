@@ -1,14 +1,41 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import useFavorite from '../_hooks/useFavorite'
-import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { Session } from 'next-auth'
 
 interface FavoriteButtonProps {
   className?: string
   postingId: string
+}
+
+interface handleFavoriteButtonType {
+  postingId: string
+  session: Session | null
+  method: 'POST' | 'DELETE'
+}
+
+const fetchData = async (postingId: string) => {
+  const result = await fetch(`/api/favorite?postingId=${postingId}`)
+  return result.json()
+}
+
+const handleFavoriteButton = async ({
+  postingId,
+  session,
+  method,
+}: handleFavoriteButtonType) => {
+  if (!session) return
+
+  await fetch('/api/favorite', {
+    method,
+    body: JSON.stringify({
+      postingId: postingId,
+      userId: session.user.id,
+    }),
+  })
 }
 
 export default function FavoriteButton({
@@ -16,48 +43,39 @@ export default function FavoriteButton({
   postingId,
 }: FavoriteButtonProps) {
   const { data: session } = useSession()
-  const { isFav, setIsFav, handleFavoriteBtn } = useFavorite({
-    postingId,
-    session,
+  const queryClient = useQueryClient()
+
+  const { data, isPending } = useQuery({
+    queryKey: ['isFav', { postingId }],
+    queryFn: () => fetchData(postingId),
   })
-  const [isLoading, setIsLoading] = useState(true)
+
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      handleFavoriteButton({
+        postingId,
+        session,
+        method: data.isFav ? 'DELETE' : 'POST',
+      }),
+    onSuccess: () => {
+      if (!session) return
+      queryClient.invalidateQueries({ queryKey: ['isFav', { postingId }] })
+      queryClient.invalidateQueries({ queryKey: ['favCount', { postingId }] })
+    },
+  })
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (!session) return
-
-      try {
-        await fetch(`/api/favorite?postingId=${postingId}`, {
-          method: 'GET',
-        })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Failed to fetch data')
-            }
-            return res.json()
-          })
-          .then((result) => {
-            setIsFav(result.isFav)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
+    queryClient.invalidateQueries({ queryKey: ['isFav', { postingId }] })
   }, [session])
 
   return (
     <button
       className={`border px-1.5 py-1 rounded transition cursor-pointer hover:opacity-70 disabled:cursor-not-allowed
-      ${className}`}
-      onClick={handleFavoriteBtn}
-      disabled={isLoading}
+        ${className}`}
+      onClick={() => mutate()}
+      disabled={isPending}
     >
-      {isFav ? (
+      {data?.isFav ? (
         <AiFillHeart size={30} className="text-rose-500" />
       ) : (
         <AiOutlineHeart size={30} />

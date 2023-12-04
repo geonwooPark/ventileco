@@ -1,39 +1,22 @@
 import { FavoriteType } from '@/app/_interfaces/interface'
 import dayjs from 'dayjs'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import React from 'react'
 import EmptyState from '../common/EmptyState'
+import { useQuery } from '@tanstack/react-query'
+
+const fetchData = async () => {
+  const result = await fetch(`/api/my-favorite`)
+  return result.json()
+}
 
 export default function MyFavList() {
-  const [myFavoriteList, setMyFavoriteList] = useState<FavoriteType[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const { data: myFavoriteList, isPending } = useQuery<FavoriteType[]>({
+    queryKey: ['myFavoriteList'],
+    queryFn: fetchData,
+  })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch(`/api/my-favorite`, { method: 'GET' })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Failed to fetch data')
-            }
-            return res.json()
-          })
-          .then((result) => {
-            setMyFavoriteList(result)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
-
-  if (isLoading) {
+  if (isPending) {
     return <EmptyState label="좋아요 목록을 가져오고 있어요!" />
   }
 
@@ -46,7 +29,7 @@ export default function MyFavList() {
         </tr>
       </thead>
       <tbody>
-        {myFavoriteList.map((myFavoriteItem) => (
+        {myFavoriteList?.map((myFavoriteItem) => (
           <tr key={myFavoriteItem._id} className="flex items-center border-b">
             <td className="flex-1 px-4 py-3">
               <Link

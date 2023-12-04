@@ -1,49 +1,33 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
-import { toast } from 'react-toastify'
+import Loading from '../common/Loading'
 
 interface FavCounterProps {
   postingId: string
 }
 
-export default function FavCounter({ postingId }: FavCounterProps) {
-  const [favCount, setFavCount] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+const fetchData = async (postingId: string) => {
+  const result = await fetch(`/api/favorite-count?postingId=${postingId}`)
+  return result.json()
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch(`/api/favorite-count?postingId=${postingId}`, {
-          method: 'GET',
-        })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Failed to fetch data')
-            }
-            return res.json()
-          })
-          .then((result) => {
-            setFavCount(result)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
-  }, [postingId])
+export default function FavCounter({ postingId }: FavCounterProps) {
+  const { data, isPending } = useQuery<number>({
+    queryKey: ['favCount', { postingId }],
+    queryFn: () => fetchData(postingId),
+  })
 
   return (
-    <div className="flex items-center ml-2">
+    <div className="flex justify-center items-center ml-2">
       <div>
         <AiFillHeart />
       </div>
-      <p className="ml-1">{isLoading ? '-' : favCount}</p>
+      <div className="ml-1">
+        {isPending ? <Loading width="w-3" height="w-3" /> : data}
+      </div>
     </div>
   )
 }

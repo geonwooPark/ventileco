@@ -1,49 +1,33 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import React from 'react'
 import { AiFillEye } from 'react-icons/ai'
-import { toast } from 'react-toastify'
+import Loading from '../common/Loading'
 
 interface ViewCounterProps {
   postingId: string
 }
 
-export default function ViewCounter({ postingId }: ViewCounterProps) {
-  const [viewCount, setViewCount] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+const fetchData = async (postingId: string) => {
+  const result = await fetch(`/api/view-count?postingId=${postingId}`)
+  return result.json()
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetch(`/api/view-count?postingId=${postingId}`, {
-          method: 'GET',
-        })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Failed to fetch data')
-            }
-            return res.json()
-          })
-          .then((result) => {
-            setViewCount(result)
-          })
-      } catch (error) {
-        if (error instanceof Error) {
-          toast.error(error.message)
-        }
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
-  }, [postingId])
+export default function ViewCounter({ postingId }: ViewCounterProps) {
+  const { data, isPending } = useQuery<number>({
+    queryKey: ['viewCount', { postingId }],
+    queryFn: () => fetchData(postingId),
+  })
 
   return (
-    <div className="flex items-center">
+    <div className="flex justify-center items-center">
       <div>
         <AiFillEye />
       </div>
-      <p className="ml-1">{isLoading ? '-' : viewCount}</p>
+      <div className="ml-1">
+        {isPending ? <Loading width="w-3" height="h-3" /> : data}
+      </div>
     </div>
   )
 }
