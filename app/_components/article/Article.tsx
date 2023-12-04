@@ -27,17 +27,15 @@ export default function Article({
   return (
     <article className="w-full flex flex-col md:w-[calc(100%-120px)]">
       <h3 className="mb-4 md:text-lg">{title}</h3>
-      <Suspense fallback={<SkeletonListing />}>
-        <Listing
-          path={path}
-          page={page}
-          limit={limit}
-          listing={listing}
-          listingCount={listingCount}
-          category={category}
-          search={search}
-        />
-      </Suspense>
+      <Listing
+        path={path}
+        page={page}
+        limit={limit}
+        listing={listing}
+        listingCount={listingCount}
+        category={category}
+        search={search}
+      />
     </article>
   )
 }

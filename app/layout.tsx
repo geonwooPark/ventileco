@@ -7,7 +7,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './_components/modals/SignUpModal'
 import Footer from './_components/Footer'
-import AuthSession from './_components/AuthSession'
+import AuthSession from './_components/provider/AuthSession'
+import TanstackProvider from './_components/provider/TanstackProvider'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -42,18 +43,20 @@ export default async function RootLayout({
         />
       </head>
       <body className={noto.className}>
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={true}
-        />
-        <SignUpModal />
-        <LoginModal />
         <AuthSession>
-          <Navbar />
-          <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
+          <TanstackProvider>
+            <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={true}
+            />
+            <SignUpModal />
+            <LoginModal />
+            <Navbar />
+            <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
+            <Footer className="relative h-[56px] -translate-y-full w-full" />
+          </TanstackProvider>
         </AuthSession>
-        <Footer className="relative h-[56px] -translate-y-full w-full" />
       </body>
     </html>
   )
