@@ -32,9 +32,9 @@ export default function PopularListingItem({
         </div>
         <div className="flex flex-col justify-between">
           <p className="text-sm text-gray-400">{posting.category}</p>
-          <h4 className="mb-3 text-lg font-semibold truncate">
+          <h3 className="mb-3 text-lg font-semibold truncate">
             {posting.title}
-          </h4>
+          </h3>
           <p className="text-xs text-gray-400">
             {dayjs(posting.createdAt).format('YYYY-MM-DD')}
           </p>

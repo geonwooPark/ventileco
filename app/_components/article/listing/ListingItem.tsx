@@ -37,9 +37,9 @@ export default function ListingItem({ posting }: ListingProps) {
             <p className="text-sm text-gray-400 mb-1.5 md:mb-4">
               {posting.category}
             </p>
-            <h4 className="text-lg font-semibold mb-1.5 truncate">
+            <h3 className="text-lg font-semibold mb-1.5 truncate">
               {posting.title}
-            </h4>
+            </h3>
             <p className="text-sm text-gray-500 break-words">
               {posting.description.length > 60
                 ? posting.description.slice(0, 60) + '...'

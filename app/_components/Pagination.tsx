@@ -36,14 +36,14 @@ export default function Pagenation({
           : `/${path}/${i + 1}`,
         query: search && { ...(search ? { search } : {}), page: i + 1 },
       }}
-      aria-label="페이지 이동"
+      aria-label={`${i + 1}페이지`}
     >
       <button
         type="button"
         className={`w-8 h-8 rounded-full ${
           page === i + 1 ? 'bg-gray-700 text-white' : 'bg-none'
         }`}
-        aria-label="페이지 이동"
+        aria-label={`${i + 1}페이지`}
       >
         {i + 1}
       </button>

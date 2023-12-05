@@ -21,7 +21,7 @@ export default function HeroSection({ title, description }: HeroSectionProps) {
       />
       <div className="flex flex-col items-end justify-center h-full text-right text-white my-container">
         <div className="absolute">
-          <h1 className="mb-5 text-4xl font-bold md:text-6xl">{title}</h1>
+          <p className="mb-5 text-4xl font-bold md:text-6xl">{title}</p>
           <p className="text-sm md:text-base">{description}</p>
         </div>
       </div>
