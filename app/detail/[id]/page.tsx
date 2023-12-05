@@ -56,7 +56,9 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
       title: posting.title,
       description: posting.description,
       url: `/detail/${posting._id}`,
-      images: posting.thumbnailURL,
+      images: {
+        url: posting.thumbnailURL,
+      },
       type: 'website',
     },
     alternates: {
