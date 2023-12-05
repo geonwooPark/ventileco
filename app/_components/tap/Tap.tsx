@@ -1,21 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import MyCommentList from './MyCommentList'
-import MyFavList from './MyFavList'
 
-const menuArr = [
-  {
-    name: '댓글',
-    content: <MyCommentList />,
-  },
-  {
-    name: '좋아요',
-    content: <MyFavList />,
-  },
-]
+interface TapProps {
+  menuArr: {
+    name: string
+    content: React.JSX.Element
+  }[]
+}
 
-export default function Tap() {
+export default function Tap({ menuArr }: TapProps) {
   const [currentTap, setCurrentTap] = useState(0)
   return (
     <div>

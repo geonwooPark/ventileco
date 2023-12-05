@@ -1,25 +1,23 @@
 import { CommentType } from '@/app/_interfaces/interface'
 import dayjs from 'dayjs'
+import { Session } from 'next-auth'
 import Link from 'next/link'
 import React from 'react'
 import { PiDotsThreeVerticalBold } from 'react-icons/pi'
-import EmptyState from '../common/EmptyState'
-import { useQuery } from '@tanstack/react-query'
 
-const fetchData = async () => {
-  const result = await fetch(`/api/my-comment`)
+const fetchData = async (userId: string | undefined) => {
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_FE_URL}/api/my-comment?userId=${userId}`,
+  )
   return result.json()
 }
 
-export default function MyCommentList() {
-  const { data: myCommentList, isPending } = useQuery<CommentType[]>({
-    queryKey: ['myCommentList'],
-    queryFn: fetchData,
-  })
+interface MyCommentListProps {
+  session: Session | null
+}
 
-  if (isPending) {
-    return <EmptyState label="댓글 목록을 가져오고 있어요!" />
-  }
+export default async function MyCommentList({ session }: MyCommentListProps) {
+  const myCommentList: CommentType[] = await fetchData(session?.user.id)
 
   return (
     <table className="w-full">

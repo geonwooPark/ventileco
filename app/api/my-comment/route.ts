@@ -1,25 +1,21 @@
 import { CommentType } from '@/app/_interfaces/interface'
 import { connectMongo } from '@/app/_utils/database'
 import { Comment } from '@/models/comment'
-import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
-import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions)
+  const userId = req.nextUrl.searchParams.get('userId')
 
   try {
     await connectMongo()
     const MyCommentList = await Comment.find<CommentType>({
       user: {
-        $elemMatch: { userId: session?.user.id },
+        $elemMatch: { userId },
       },
     }).sort({ createdAt: -1 })
 
     const result: CommentType[] = MyCommentList.map((MyComment) => {
-      const res = MyComment.user.filter(
-        (elem) => elem.userId === session?.user.id,
-      )
+      const res = MyComment.user.filter((elem) => elem.userId === userId)
       return { ...MyComment._doc, user: res }
     })
 

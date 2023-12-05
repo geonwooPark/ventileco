@@ -2,16 +2,14 @@ import { connectMongo } from '@/app/_utils/database'
 import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 import { FavoriteType } from '@/app/_interfaces/interface'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions)
+  const userId = req.nextUrl.searchParams.get('userId')
 
   try {
     await connectMongo()
     const MyFavoriteList = await Favorite.find<FavoriteType>({
-      userId: session?.user.id,
+      userId,
     }).sort({ createdAt: -1 })
 
     return NextResponse.json(MyFavoriteList, { status: 200 })

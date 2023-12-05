@@ -1,24 +1,22 @@
 import { FavoriteType } from '@/app/_interfaces/interface'
 import dayjs from 'dayjs'
+import { Session } from 'next-auth'
 import Link from 'next/link'
 import React from 'react'
-import EmptyState from '../common/EmptyState'
-import { useQuery } from '@tanstack/react-query'
 
-const fetchData = async () => {
-  const result = await fetch(`/api/my-favorite`)
+const fetchData = async (userId: string | undefined) => {
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_FE_URL}/api/my-favorite?userId=${userId}`,
+  )
   return result.json()
 }
 
-export default function MyFavList() {
-  const { data: myFavoriteList, isPending } = useQuery<FavoriteType[]>({
-    queryKey: ['myFavoriteList'],
-    queryFn: fetchData,
-  })
+interface MyFavListProps {
+  session: Session | null
+}
 
-  if (isPending) {
-    return <EmptyState label="좋아요 목록을 가져오고 있어요!" />
-  }
+export default async function MyFavList({ session }: MyFavListProps) {
+  const myFavoriteList: FavoriteType[] = await fetchData(session?.user.id)
 
   return (
     <table className="w-full">
