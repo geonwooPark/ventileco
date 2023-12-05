@@ -7,13 +7,26 @@ import dynamic from 'next/dynamic'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import UserInfo from '../_components/UserInfo'
+import Loading from '../_components/common/Loading'
 
 const MyCommentList = dynamic(
   () => import('../_components/tap/MyCommentList'),
-  { ssr: false },
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex justify-center items-center">
+        <Loading width="w-6" height="w-6" />
+      </div>
+    ),
+  },
 )
 const MyFavList = dynamic(() => import('../_components/tap/MyFavList'), {
   ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex justify-center items-center">
+      <Loading width="w-6" height="w-6" />
+    </div>
+  ),
 })
 
 export const metadata: Metadata = {
