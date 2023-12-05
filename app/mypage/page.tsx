@@ -3,11 +3,18 @@ import Tap from '../_components/tap/Tap'
 import { Metadata } from 'next'
 import HeroSection from '../_components/heroSection/HeroSection'
 import Section from '../_components/common/Section'
-import MyCommentList from '../_components/tap/MyCommentList'
-import MyFavList from '../_components/tap/MyFavList'
+import dynamic from 'next/dynamic'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import UserInfo from '../_components/UserInfo'
+
+const MyCommentList = dynamic(
+  () => import('../_components/tap/MyCommentList'),
+  { ssr: false },
+)
+const MyFavList = dynamic(() => import('../_components/tap/MyFavList'), {
+  ssr: false,
+})
 
 export const metadata: Metadata = {
   title: {
