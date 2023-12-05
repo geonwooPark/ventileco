@@ -35,6 +35,9 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  verification: {
+    google: 'iB35_cjnMF8iid4q7riM-UjORPcfV0-9o-ZaoVFSXJM',
+  },
 }
 
 export default async function RootLayout({
@@ -44,16 +47,6 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="kr">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="iB35_cjnMF8iid4q7riM-UjORPcfV0-9o-ZaoVFSXJM"
-        />
-        <meta
-          name="naver-site-verification"
-          content="1d20d1ea80cc378d93a73cd7ab538842d5cc82cd"
-        />
-      </head>
       <body className={noto.className}>
         <AuthSession>
           <TanstackProvider>
