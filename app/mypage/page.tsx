@@ -7,7 +7,6 @@ import dynamic from 'next/dynamic'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import UserInfo from '../_components/UserInfo'
-import { redirect } from 'next/navigation'
 
 const MyCommentList = dynamic(
   () => import('../_components/tap/MyCommentList'),
