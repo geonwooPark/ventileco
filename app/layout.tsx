@@ -20,6 +20,16 @@ export const metadata: Metadata = {
   },
   description:
     '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그입니다.',
+  openGraph: {
+    title: {
+      default: 'Ventileco 개발 블로그',
+      template: `%s | Ventileco 개발 블로그`,
+    },
+    description:
+      '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그입니다.',
+    url: 'https://ventileco-blog.vercel.app/',
+    type: 'website',
+  },
   icons: {
     icon: '/favicon.ico',
   },

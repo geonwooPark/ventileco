@@ -52,6 +52,13 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   return {
     title: posting.title,
     description: posting.description,
+    openGraph: {
+      title: posting.title,
+      description: posting.description,
+      url: `/detail/${posting._id}`,
+      images: posting.thumbnailURL,
+      type: 'website',
+    },
     alternates: {
       canonical: `/detail/${posting._id}`,
     },

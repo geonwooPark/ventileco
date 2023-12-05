@@ -24,6 +24,12 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   return {
     title: decodeURI(category) as string,
     description: `${decodeURI(category)} 카테고리 페이지입니다.`,
+    openGraph: {
+      title: decodeURI(category) as string,
+      description: `${decodeURI(category)} 카테고리 페이지입니다.`,
+      url: `/categories/${category}/${page}`,
+      type: 'website',
+    },
     alternates: {
       canonical: `/categories/${category}/${page}`,
     },
