@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
-import Loading from '../common/Loading'
+import Spinner from '../common/Spinner'
 
 interface FavCounterProps {
   postingId: string
@@ -26,7 +26,11 @@ export default function FavCounter({ postingId }: FavCounterProps) {
         <AiFillHeart />
       </div>
       <div className="ml-1">
-        {isPending ? <Loading width="w-3" height="w-3" /> : data}
+        {isPending ? (
+          <Spinner width="w-3" height="w-3" fillColor="fill-blue-600" />
+        ) : (
+          data
+        )}
       </div>
     </div>
   )

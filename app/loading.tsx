@@ -1,10 +1,10 @@
 import React from 'react'
-import Loading from './_components/common/Loading'
+import Spinner from './_components/common/Spinner'
 
 export default function loading() {
   return (
     <div className="bg-slate-100 w-full h-[100vh] flex justify-center items-center">
-      <Loading width="w-10" height="w-10" />
+      <Spinner width="w-8" height="w-8" fillColor="fill-gray-100" />
     </div>
   )
 }

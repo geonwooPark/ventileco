@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { AiFillEye } from 'react-icons/ai'
-import Loading from '../common/Loading'
+import Spinner from '../common/Spinner'
 
 interface ViewCounterProps {
   postingId: string
@@ -26,7 +26,11 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
         <AiFillEye />
       </div>
       <div className="ml-1">
-        {isPending ? <Loading width="w-3" height="h-3" /> : data}
+        {isPending ? (
+          <Spinner width="w-3" height="h-3" fillColor="fill-blue-600" />
+        ) : (
+          data
+        )}
       </div>
     </div>
   )
