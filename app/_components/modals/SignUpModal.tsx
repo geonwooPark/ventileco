@@ -38,21 +38,21 @@ export default function SignUpModal() {
         setFocus({ ...focus, email: true })
         throw new Error('이메일을 입력해주세요.')
       }
-      if (!name || name.trim() === '') {
-        setFocus({ ...focus, name: true })
-        throw new Error('이름을 입력해주세요.')
-      }
-      if (!password || password.trim() === '') {
-        setFocus({ ...focus, password: true })
-        throw new Error('비밀번호를 입력해주세요.')
-      }
       if (!emailRegex.test(email)) {
         setFocus({ ...focus, email: true })
         throw new Error('잘못된 이메일 형식입니다.')
       }
+      if (!name || name.trim() === '') {
+        setFocus({ ...focus, name: true })
+        throw new Error('이름을 입력해주세요.')
+      }
       if (name.length > 10) {
         setFocus({ ...focus, name: true })
         throw new Error('이름은 10자 이하로 입력해주세요.')
+      }
+      if (!password || password.trim() === '') {
+        setFocus({ ...focus, password: true })
+        throw new Error('비밀번호를 입력해주세요.')
       }
       if (
         parseInt(password.length.toString(), 10) < 8 ||

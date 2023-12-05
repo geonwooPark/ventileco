@@ -8,11 +8,9 @@ import { FcGoogle } from 'react-icons/fc'
 import Button from '../common/Button'
 import { toast } from 'react-toastify'
 import useSignUpModal from '@/app/_hooks/useSignUpModal'
-import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 
 export default function LoginModal() {
-  const router = useRouter()
   const loginModal = useLoginModal()
   const signUpModal = useSignUpModal()
   const [values, setValues] = useState({
@@ -42,13 +40,13 @@ export default function LoginModal() {
         setFocus({ ...focus, email: true })
         throw new Error('이메일을 입력해주세요.')
       }
-      if (!password || password.trim() === '') {
-        setFocus({ ...focus, password: true })
-        throw new Error('비밀번호를 입력해주세요.')
-      }
       if (!emailRegex.test(email)) {
         setFocus({ ...focus, email: true })
         throw new Error('잘못된 이메일 형식입니다.')
+      }
+      if (!password || password.trim() === '') {
+        setFocus({ ...focus, password: true })
+        throw new Error('비밀번호를 입력해주세요.')
       }
       if (
         parseInt(password.length.toString(), 10) < 8 ||
@@ -60,7 +58,6 @@ export default function LoginModal() {
 
       await signIn('credentials', {
         ...values,
-        redirect: false,
       }).then((callback) => {
         if (callback?.ok) {
           toast.success('로그인에 성공했습니다')
