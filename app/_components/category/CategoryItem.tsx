@@ -14,7 +14,7 @@ export default function CategoryItem({
     <div>
       <Link href={{ pathname: `/categories/${category}` }}>
         <button
-          className={`px-3 py-2 text-sm text-gray-700 bg-gray-100 rounded-sm transition hover:opacity-50
+          className={`w-full rounded-md px-3 py-2 text-sm text-gray-700 bg-gray-100 transition hover:opacity-50
           ${
             paramsCategory && decodeURI(paramsCategory) === category
               ? 'bg-gray-700 text-white'

@@ -53,8 +53,10 @@ export default async function RootLayout({
             <SignUpModal />
             <LoginModal />
             <Navbar />
-            <div className="h-auto min-h-[100%] pb-[56px]">{children}</div>
-            <Footer className="relative h-[56px] -translate-y-full w-full" />
+            <div className="h-auto min-h-[100%] pb-[56px] bg-white">
+              {children}
+            </div>
+            <Footer className="relative h-[56px] -translate-y-full w-full bg-[#070716]" />
           </TanstackProvider>
         </AuthSession>
       </body>
