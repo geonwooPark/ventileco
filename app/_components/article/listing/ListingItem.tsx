@@ -34,9 +34,9 @@ export default function ListingItem({ posting }: ListingProps) {
         </div>
         <div className="md:w-[calc(100%-270px)] flex flex-col justify-between md:px-6 md:py-2">
           <div className="mt-3 mb-4 md:mt-0">
-            <h6 className="text-sm text-gray-400 mb-1.5 md:mb-4">
+            <p className="text-sm text-gray-400 mb-1.5 md:mb-4">
               {posting.category}
-            </h6>
+            </p>
             <h4 className="text-lg font-semibold mb-1.5 truncate">
               {posting.title}
             </h4>

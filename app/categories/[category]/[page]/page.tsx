@@ -72,7 +72,7 @@ export default async function Categories({ params }: IParams) {
         <div className="flex flex-col md:flex-row-reverse">
           <CategoryMenu paramsCategory={params.category} />
           <Article
-            title="카테고리"
+            title="검색 결과"
             path="categories"
             page={Number(page)}
             limit={LIMIT}

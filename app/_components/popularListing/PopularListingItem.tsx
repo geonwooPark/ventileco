@@ -31,7 +31,7 @@ export default function PopularListingItem({
           )}
         </div>
         <div className="flex flex-col justify-between">
-          <h6 className="text-sm text-gray-400">{posting.category}</h6>
+          <p className="text-sm text-gray-400">{posting.category}</p>
           <h4 className="mb-3 text-lg font-semibold truncate">
             {posting.title}
           </h4>

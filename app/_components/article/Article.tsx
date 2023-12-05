@@ -1,6 +1,5 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import Listing from './listing/Listing'
-import SkeletonListing from './listing/SkeletonListing'
 import { PostingType } from '@/app/_interfaces/interface'
 
 type ArticleProps = {

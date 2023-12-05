@@ -36,12 +36,14 @@ export default function Pagenation({
           : `/${path}/${i + 1}`,
         query: search && { ...(search ? { search } : {}), page: i + 1 },
       }}
+      aria-label="페이지 이동"
     >
       <button
         type="button"
         className={`w-8 h-8 rounded-full ${
           page === i + 1 ? 'bg-gray-700 text-white' : 'bg-none'
         }`}
+        aria-label="페이지 이동"
       >
         {i + 1}
       </button>
@@ -73,6 +75,7 @@ export default function Pagenation({
           type="button"
           disabled={page === 1 || listingCount === 0 ? true : false}
           className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
+          aria-label="뒤로 가기"
         >
           <AiOutlineLeft />
         </button>
@@ -95,6 +98,7 @@ export default function Pagenation({
           type="button"
           disabled={page === lastPageNum || listingCount === 0 ? true : false}
           className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
+          aria-label="앞으로 가기"
         >
           <AiOutlineRight />
         </button>
