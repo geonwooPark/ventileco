@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt'
 import { connectMongo } from '@/app/_utils/database'
 import NextAuth from 'next-auth/next'
 import { User } from '@/models/user'
-import { UserType } from '@/app/_interfaces/interface'
 
 declare module 'next-auth' {
   interface User {
@@ -62,6 +61,15 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
       clientSecret: process.env.GOOGLE_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          role: profile.role ?? 'user',
+        }
+      },
     }),
   ],
 
@@ -70,19 +78,10 @@ export const authOptions: AuthOptions = {
   },
 
   callbacks: {
-    async signIn({ account, profile }) {
-      if (account?.type === 'oauth') {
-        return await signInWithOAuth(account, profile)
-      }
-      return true
-    },
     async jwt({ token, user }) {
-      const userDB = await User.findOne<UserType>({ email: user?.email })
-      if (!userDB) return token
-
       if (user) {
-        token.id = userDB._id
-        token.role = userDB.role
+        token.id = user.id
+        token.role = user.role
       }
       return token
     },
@@ -95,30 +94,12 @@ export const authOptions: AuthOptions = {
     },
   },
 
-  // 인증 흐름에서 문제를 파악하는 데 도움이 되도록 개발 전용이며 프로덕션에 배포할 때 이 옵션을 제거
-  // debug: process.env.NODE_ENV === 'development',
-
   session: {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET as string,
 }
 
 const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
-
-/* eslint-disable-next-line */
-const signInWithOAuth = async (account: any, profile: any) => {
-  await connectMongo()
-  const user = await User.findOne({ email: profile.email })
-  if (user) return true
-
-  await User.create({
-    name: profile.name,
-    email: profile.email,
-    image: account.provider === 'google' ? profile.picture : profile.avatar_url,
-    provider: account.provider,
-  })
-  return true
-}

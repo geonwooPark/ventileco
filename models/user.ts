@@ -21,10 +21,6 @@ const userSchema = new Schema(
       type: String,
       default: 'user',
     },
-    provider: {
-      type: String,
-      default: 'credentials',
-    },
   },
   { timestamps: true, versionKey: false },
 )

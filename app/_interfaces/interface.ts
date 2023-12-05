@@ -1,15 +1,3 @@
-export interface UserType {
-  _doc?: any
-  _id: string
-  name: string
-  email: string
-  image: string
-  role: string
-  provider: string
-  createdAt: Date
-  updatedAt: Date
-}
-
 export interface PostingType {
   _id: string
   category: string

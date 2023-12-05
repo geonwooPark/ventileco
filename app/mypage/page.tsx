@@ -30,16 +30,16 @@ export const metadata: Metadata = {
 export default async function page() {
   const session = await getServerSession(authOptions)
 
-  // const menuArr = [
-  //   {
-  //     name: '댓글',
-  //     content: <MyCommentList session={session} />,
-  //   },
-  //   {
-  //     name: '좋아요',
-  //     content: <MyFavList session={session} />,
-  //   },
-  // ]
+  const menuArr = [
+    {
+      name: '댓글',
+      content: <MyCommentList session={session} />,
+    },
+    {
+      name: '좋아요',
+      content: <MyFavList session={session} />,
+    },
+  ]
 
   return (
     <main>
@@ -51,9 +51,9 @@ export default async function page() {
         <UserInfo session={session} />
       </Section>
 
-      {/* <Section label="나의 활동">
+      <Section label="나의 활동">
         <Tap menuArr={menuArr} />
-      </Section> */}
+      </Section>
     </main>
   )
 }
