@@ -4,7 +4,10 @@ import { Metadata } from 'next'
 import HeroSection from '../_components/heroSection/HeroSection'
 import Section from '../_components/common/Section'
 import dynamic from 'next/dynamic'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
 import UserInfo from '../_components/UserInfo'
+import { redirect } from 'next/navigation'
 
 const MyCommentList = dynamic(
   () => import('../_components/tap/MyCommentList'),
@@ -26,6 +29,8 @@ export const metadata: Metadata = {
 }
 
 export default async function page() {
+  const session = await getServerSession(authOptions)
+
   // const menuArr = [
   //   {
   //     name: '댓글',
@@ -44,7 +49,7 @@ export default async function page() {
         description="내 정보 및 활동 내역을 확인해보세요"
       />
       <Section className="!pb-10">
-        <UserInfo />
+        <UserInfo session={session} />
       </Section>
 
       {/* <Section label="나의 활동">

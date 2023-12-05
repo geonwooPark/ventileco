@@ -1,10 +1,11 @@
-import { getServerSession } from 'next-auth'
+import { Session } from 'next-auth'
 import React from 'react'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 
-export default async function UserInfo() {
-  const session = await getServerSession(authOptions)
+interface UserInfoProps {
+  session: Session | null
+}
 
+export default function UserInfo({ session }: UserInfoProps) {
   return (
     <h2 className="mb-4 text-xl font-semibold md:text-3xl">
       {session?.user.name}님 환영합니다
