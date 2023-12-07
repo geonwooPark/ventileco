@@ -21,3 +21,37 @@
     display: none;
   }
 }
+
+/* React Quill */
+.ql-container p {
+  @apply !mb-1.5 !text-base !font-light;
+}
+.ql-size-small {
+  @apply !text-sm !font-light;
+}
+.ql-size-large {
+  @apply !text-xl !font-normal;
+}
+.ql-size-huge {
+  @apply !text-2xl !font-medium;
+}
+
+.ql-container img {
+  @apply !border;
+}
+
+.ql-container blockquote {
+  @apply !p-3 !m-0;
+}
+
+.ql-container ol,
+ul {
+  @apply !text-base !font-light !pl-0;
+}
+.ql-container li {
+  @apply !mb-1;
+}
+
+.ql-syntax {
+  @apply !bg-gray-100 !text-blue-400 !rounded-xl !p-4;
+}
