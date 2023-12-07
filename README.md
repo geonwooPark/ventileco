@@ -12,12 +12,18 @@
 
 Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용이나 포트폴리오 등을 기록할 수 있는 공간이 있으면 좋겠다고 생각하여 제작하였습니다. 최신 기술 동향, 개발 팁, 프로젝트 경험을 중심으로 다양한 주제를 다루고 있습니다. 함께 성장하는 개발자 커뮤니티의 일원으로, 지식을 나누고 공유하려 합니다.
 
+<br>
+
+#### - SSG 활용 (시간 기반 재검증)
+<img width="600" alt="스크린샷 2023-12-07 오후 12 22 28" src="https://github.com/geonwooPark/myblog/assets/136573728/b86d0c2e-c01b-4ead-8525-ebbb72590d1f">
+<img width="600" alt="스크린샷 2023-12-07 오후 12 24 26" src="https://github.com/geonwooPark/myblog/assets/136573728/a74da7df-5e63-4a10-bf21-8bf2b3f6171a">
+
+
 #### - Dynamic Routes별 정적 페이지 HTML 생성 자동화
+<img width="600" alt="스크린샷 2023-12-07 오후 12 23 34" src="https://github.com/geonwooPark/myblog/assets/136573728/e92f9429-4776-41fe-b559-3445b15d694a">
+
 #### - 페이지별 Dynamic Metadata 설정
-#### - Route Handlers를 사용하여 웹 API 생성
-#### - Next-Auth를 이용한 로그인 및 회원가입 기능 구현
-#### - MongoDB 데이터베이스 연동
-#### - React-Quill를 이용한 텍스트 에디터 제작
+<img width="600" alt="스크린샷 2023-12-07 오후 12 32 23" src="https://github.com/geonwooPark/myblog/assets/136573728/b9f433ed-c058-463e-88d8-161dff0466b7">
 
 ---
 
