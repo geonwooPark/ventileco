@@ -23,27 +23,35 @@
 }
 
 /* React Quill */
-.ql-container p {
-  @apply !mb-1.5 !text-base !font-light;
+/* 폰트 */
+.ql-editor > * {
+  @apply !mb-1.5 !mt-0;
 }
-.ql-size-small {
+.ql-editor p,
+.ql-picker-item {
+  @apply !text-base !font-light;
+}
+.ql-size-small,
+.ql-picker-item[data-value='small']::before {
   @apply !text-sm !font-light;
 }
-.ql-size-large {
+.ql-size-large,
+.ql-picker-item[data-value='large'] {
   @apply !text-xl !font-normal;
 }
-.ql-size-huge {
+.ql-size-huge,
+.ql-picker-item[data-value='huge'] {
   @apply !text-2xl !font-medium;
 }
-
+/* 이미지 */
 .ql-container img {
   @apply !border;
 }
-
+/* 인용문 */
 .ql-container blockquote {
-  @apply !p-3 !m-0;
+  @apply !text-sm !font-light !p-3;
 }
-
+/* 리스트 */
 .ql-container ol,
 ul {
   @apply !text-base !font-light !pl-0;
@@ -51,7 +59,7 @@ ul {
 .ql-container li {
   @apply !mb-1;
 }
-
+/* 코드 */
 .ql-syntax {
   @apply !bg-gray-100 !text-blue-400 !rounded-xl !p-4;
 }
