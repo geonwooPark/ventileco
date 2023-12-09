@@ -24,6 +24,8 @@ export default function MyComment() {
     queryKey: ['my-comment', { user: session?.user.id }],
     queryFn: () =>
       getData<myCommentType[]>(`/api/my-comment?userId=${session?.user.id}`),
+    staleTime: 1000 * 60 * 5, // 5분
+    gcTime: 1000 * 60 * 5, // 5분
   })
 
   if (isPending) {

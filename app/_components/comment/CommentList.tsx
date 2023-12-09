@@ -54,6 +54,8 @@ export default function CommentList({ postingId }: CommentListProps) {
     queryKey: ['comments', { postingId }],
     queryFn: () =>
       getData<CommentUserType[]>(`/api/comment?postingId=${postingId}`),
+    staleTime: 1000 * 60 * 3, // 3분
+    gcTime: 1000 * 60 * 5, // 5분
   })
 
   if (error) {
@@ -70,6 +72,12 @@ export default function CommentList({ postingId }: CommentListProps) {
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
+      queryClient.invalidateQueries({
+        queryKey: ['my-comment', { user: session.user.id }],
+      })
+      queryClient.invalidateQueries({
+        queryKey: ['my-commented-post', { user: session.user.id }],
+      })
       deleteCommentModal.onClose()
     },
     onError: () => {

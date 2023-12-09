@@ -14,6 +14,8 @@ export default function MyLikedPost() {
     queryKey: ['my-liked-post', { user: session?.user.id }],
     queryFn: () =>
       getData<LikeType[]>(`/api/my-liked-post?userId=${session?.user.id}`),
+    staleTime: 1000 * 60 * 5, // 5분
+    gcTime: 1000 * 60 * 5, // 5분
   })
 
   if (isPending) {

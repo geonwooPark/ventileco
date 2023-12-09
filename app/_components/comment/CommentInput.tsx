@@ -51,6 +51,13 @@ export default function CommentInput({ postingId }: CommentInputProps) {
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
+      queryClient.invalidateQueries({
+        queryKey: ['my-comment', { user: session.user.id }],
+      })
+      queryClient.invalidateQueries({
+        queryKey: ['my-commented-post', { user: session.user.id }],
+      })
+
       setText('')
     },
     onError: () => {

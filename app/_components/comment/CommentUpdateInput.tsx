@@ -65,6 +65,9 @@ export default function CommentUpdateInput({
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
+      queryClient.invalidateQueries({
+        queryKey: ['my-comment', { user: session.user.id }],
+      })
       selectedCommentForEdit.onChange('')
     },
     onError: () => {

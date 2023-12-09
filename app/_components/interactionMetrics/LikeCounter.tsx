@@ -15,6 +15,8 @@ export default function LikeCounter({ postingId }: LikeCounterProps) {
   const { data, isPending, error } = useQuery({
     queryKey: ['likeCount', { postingId }],
     queryFn: () => getData<number>(`/api/like-count?postingId=${postingId}`),
+    staleTime: 1000 * 60 * 3, // 3분
+    gcTime: 1000 * 60 * 5, // 5분
   })
 
   if (error) {

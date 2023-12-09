@@ -43,6 +43,8 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
     queryKey: ['isLiked', { postingId }],
     queryFn: () =>
       getData<{ isLiked: boolean }>(`/api/like?postingId=${postingId}`),
+    staleTime: 1000 * 60 * 3, // 3분
+    gcTime: 1000 * 60 * 5, // 5분
   })
 
   if (error) {
@@ -60,6 +62,9 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['isLiked', { postingId }] })
       queryClient.invalidateQueries({ queryKey: ['likeCount', { postingId }] })
+      queryClient.invalidateQueries({
+        queryKey: ['my-liked-post', { user: session.user.id }],
+      })
     },
   })
 
