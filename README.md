@@ -98,6 +98,7 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
  ┃ ┣ 📜getAllListingCount.ts
  ┃ ┣ 📜getCategoryListing.ts
  ┃ ┣ 📜getCategoryListingCount.ts
+ ┃ ┣ 📜getData.ts
  ┃ ┣ 📜getPopularListing.ts
  ┃ ┣ 📜getPosting.ts
  ┃ ┣ 📜getQueryClient.ts
@@ -134,8 +135,8 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
  ┃ ┣ 📂heroSection
  ┃ ┃ ┗ 📜HeroSection.tsx
  ┃ ┣ 📂interactionMetrics
- ┃ ┃ ┣ 📜FavCounter.tsx
  ┃ ┃ ┣ 📜InteractionMetrics.tsx
+ ┃ ┃ ┣ 📜LikeCounter.tsx
  ┃ ┃ ┗ 📜ViewCounter.tsx
  ┃ ┣ 📂modals
  ┃ ┃ ┣ 📜DeleteCommentModal.tsx
@@ -158,20 +159,23 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
  ┃ ┃ ┣ 📜AuthSession.tsx
  ┃ ┃ ┗ 📜TanstackProvider.tsx
  ┃ ┣ 📂tap
- ┃ ┃ ┣ 📜MyCommentList.tsx
- ┃ ┃ ┣ 📜MyFavList.tsx
+ ┃ ┃ ┣ 📂tapContent
+ ┃ ┃ ┃ ┣ 📜MyComment.tsx
+ ┃ ┃ ┃ ┣ 📜MyCommentedPost.tsx
+ ┃ ┃ ┃ ┗ 📜MyLikedPost.tsx
  ┃ ┃ ┗ 📜Tap.tsx
  ┃ ┣ 📜DeleteAndEdit.tsx
- ┃ ┣ 📜FavoriteButton.tsx
  ┃ ┣ 📜Footer.tsx
+ ┃ ┣ 📜LikeButton.tsx
  ┃ ┣ 📜Pagination.tsx
  ┃ ┗ 📜UserInfo.tsx
  ┣ 📂_hooks
  ┃ ┣ 📜useDeleteCommentModal.ts
  ┃ ┣ 📜useDeletePostingModal.ts
- ┃ ┣ 📜useFavorite.ts
  ┃ ┣ 📜useLoginModal.ts
  ┃ ┣ 📜useSelectedComment.ts
+ ┃ ┣ 📜useSelectedCommentForDeletion.ts
+ ┃ ┣ 📜useSelectedCommentForEdit.ts
  ┃ ┗ 📜useSignUpModal.ts
  ┣ 📂_interfaces
  ┃ ┗ 📜interface.ts
@@ -186,13 +190,15 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
  ┃ ┃ ┃ ┗ 📜route.ts
  ┃ ┣ 📂comment
  ┃ ┃ ┗ 📜route.ts
- ┃ ┣ 📂favorite
+ ┃ ┣ 📂like
  ┃ ┃ ┗ 📜route.ts
- ┃ ┣ 📂favorite-count
+ ┃ ┣ 📂like-count
  ┃ ┃ ┗ 📜route.ts
  ┃ ┣ 📂my-comment
  ┃ ┃ ┗ 📜route.ts
- ┃ ┣ 📂my-favorite
+ ┃ ┣ 📂my-commented-post
+ ┃ ┃ ┗ 📜route.ts
+ ┃ ┣ 📂my-liked-post
  ┃ ┃ ┗ 📜route.ts
  ┃ ┣ 📂posting
  ┃ ┃ ┗ 📜route.ts
