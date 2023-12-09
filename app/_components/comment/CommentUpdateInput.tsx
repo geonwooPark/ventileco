@@ -5,12 +5,11 @@ import { useSession } from 'next-auth/react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { Session } from 'next-auth'
-import useSelectedComment from '@/app/_hooks/useSelectedComment'
+import useSelectedCommentForEdit from '@/app/_hooks/useSelectedCommentForEdit'
 
 interface CommentInputProps {
   comment: CommentUserType
   postingId: string
-  setEditMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 interface editCommentType {
@@ -42,11 +41,10 @@ const editComment = async ({
 export default function CommentUpdateInput({
   comment,
   postingId,
-  setEditMode,
 }: CommentInputProps) {
   const { data: session } = useSession()
 
-  const selectedComment = useSelectedComment()
+  const selectedCommentForEdit = useSelectedCommentForEdit()
 
   const [text, setText] = useState(comment.text)
 
@@ -61,13 +59,13 @@ export default function CommentUpdateInput({
       editComment({
         session,
         postingId,
-        commentId: selectedComment.commentId,
+        commentId: selectedCommentForEdit.commentId,
         text,
       }),
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
-      setEditMode((prev) => !prev)
+      selectedCommentForEdit.onChange('')
     },
     onError: () => {
       toast.error('댓글 수정에 실패했습니다!')
@@ -89,7 +87,7 @@ export default function CommentUpdateInput({
         level="primary"
         size="s"
         label="댓글 수정"
-        className="w-24"
+        className="w-24 font-normal"
         onClick={() => mutate()}
         disabled={session ? false : true}
       />

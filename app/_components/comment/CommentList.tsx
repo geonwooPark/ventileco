@@ -10,8 +10,8 @@ import DeleteCommentModal from '../modals/DeleteCommentModal'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'
-import useSelectedComment from '@/app/_hooks/useSelectedComment'
 import getData from '@/app/_actions/getData'
+import useSelectedCommentForDeletion from '@/app/_hooks/useSelectedCommentForDeletion'
 
 interface CommentListProps {
   postingId: string
@@ -43,7 +43,7 @@ export default function CommentList({ postingId }: CommentListProps) {
   const { data: session } = useSession()
 
   const deleteCommentModal = useDeleteCommentModal()
-  const selectedComment = useSelectedComment()
+  const selectedCommentForDeletion = useSelectedCommentForDeletion()
 
   const queryClient = useQueryClient()
   const {
@@ -65,7 +65,7 @@ export default function CommentList({ postingId }: CommentListProps) {
       deleteComment({
         session,
         postingId,
-        commentId: selectedComment.commentId,
+        commentId: selectedCommentForDeletion.commentId,
       }),
     onSuccess: () => {
       if (!session) return
