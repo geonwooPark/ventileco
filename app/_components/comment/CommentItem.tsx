@@ -1,39 +1,33 @@
 import React, { useState } from 'react'
 import Avatar from '../common/Avatar'
 import dayjs from 'dayjs'
+import { CommentUserType } from '@/app/_interfaces/interface'
+import CommentUpdateInput from './CommentUpdateInput'
+import { useSession } from 'next-auth/react'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'
 import useSelectedComment from '@/app/_hooks/useSelectedComment'
-import { CommentUserType } from '@/app/_interfaces/interface'
-import { Session } from 'next-auth'
-import CommentUpdateInput from './CommentUpdateInput'
 
 interface CommentItemProps {
   postingId: string
   comment: CommentUserType
-  session: Session | null
-  setComments: React.Dispatch<
-    React.SetStateAction<CommentUserType[] | undefined>
-  >
 }
 
-export default function CommentItem({
-  postingId,
-  comment,
-  session,
-  setComments,
-}: CommentItemProps) {
+export default function CommentItem({ comment, postingId }: CommentItemProps) {
+  const { data: session } = useSession()
+
   const deleteCommentModal = useDeleteCommentModal()
   const selectedComment = useSelectedComment()
 
   const [editMode, setEditMode] = useState(false)
 
-  const onEdit = () => {
+  const handleEditMode = () => {
     if (!session) return
     if (comment.userId !== session.user.id) return
-    setEditMode(!editMode)
+    setEditMode((prev) => !prev)
+    selectedComment.onChange(comment.commentId)
   }
 
-  const onDelete = () => {
+  const handleModal = () => {
     deleteCommentModal.onOpen()
     selectedComment.onChange(comment.commentId)
   }
@@ -48,20 +42,20 @@ export default function CommentItem({
         <small className="flex items-center gap-2 text-gray-400">
           {session && session.user.id === comment.userId && (
             <>
-              <button onClick={onEdit}>{editMode ? '취소' : '수정'}</button>
-              <button onClick={onDelete}>삭제</button>
+              <button onClick={handleEditMode}>
+                {editMode ? '취소' : '수정'}
+              </button>
+              <button onClick={handleModal}>삭제</button>
             </>
           )}
           <p>{dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}</p>
         </small>
       </div>
-      {editMode ? (
+      {editMode && selectedComment.commentId === comment.commentId ? (
         <CommentUpdateInput
-          postingId={postingId}
           comment={comment}
+          postingId={postingId}
           setEditMode={setEditMode}
-          session={session}
-          setComments={setComments}
         />
       ) : (
         <p>{comment.text}</p>

@@ -1,20 +1,36 @@
+'use client'
+
 import React, { useState } from 'react'
 import Button from '../common/Button'
-import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
-import { CommentUserType } from '@/app/_interfaces/interface'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
+import { Session } from 'next-auth'
 
 interface CommentInputProps {
   postingId: string
-  setComments: React.Dispatch<
-    React.SetStateAction<CommentUserType[] | undefined>
-  >
 }
 
-export default function CommentInput({
-  postingId,
-  setComments,
-}: CommentInputProps) {
+interface postCommentType {
+  session: Session | null
+  postingId: string
+  text: string
+}
+
+const postComment = async ({ session, postingId, text }: postCommentType) => {
+  if (!session) return
+
+  await fetch('/api/comment', {
+    method: 'POST',
+    body: JSON.stringify({
+      postingId: postingId,
+      currentUser: session?.user,
+      text,
+    }),
+  })
+}
+
+export default function CommentInput({ postingId }: CommentInputProps) {
   const { data: session } = useSession()
 
   const [text, setText] = useState('')
@@ -24,35 +40,23 @@ export default function CommentInput({
     setText(value)
   }
 
-  const onSubmit = async () => {
-    try {
-      if (!text) {
-        throw new Error('댓글을 입력하세요!')
-      }
-
-      await fetch('/api/comment', {
-        method: 'POST',
-        body: JSON.stringify({
-          postingId: postingId,
-          currentUser: session?.user,
-          text,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (!result.error) {
-            setComments(result)
-            setText('')
-          } else {
-            throw new Error(result.error)
-          }
-        })
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message)
-      }
-    }
-  }
+  const queryClient = useQueryClient()
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      postComment({
+        session,
+        postingId,
+        text,
+      }),
+    onSuccess: () => {
+      if (!session) return
+      queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
+      setText('')
+    },
+    onError: () => {
+      toast.error('댓글 작성에 실패했습니다!')
+    },
+  })
 
   return (
     <div className="flex gap-2 mb-4">
@@ -73,7 +77,7 @@ export default function CommentInput({
         size="s"
         label="댓글 작성"
         className="w-24"
-        onClick={onSubmit}
+        onClick={() => mutate()}
         disabled={session ? false : true}
       />
     </div>

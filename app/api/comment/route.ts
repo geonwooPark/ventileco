@@ -82,7 +82,7 @@ export async function PATCH(req: NextRequest) {
   const { postingId, commentId, text } = await req.json()
 
   if (!text) {
-    return NextResponse.json({ error: '댓글을 입력하세요!' }, { status: 409 })
+    return NextResponse.json({ error: '댓글을 입력하세요!' }, { status: 406 })
   }
 
   try {

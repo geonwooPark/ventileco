@@ -1,64 +1,78 @@
 import React, { useState } from 'react'
 import Button from '../common/Button'
 import { CommentUserType } from '@/app/_interfaces/interface'
-import { useRouter } from 'next/navigation'
-import { Session } from 'next-auth'
+import { useSession } from 'next-auth/react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import { Session } from 'next-auth'
+import useSelectedComment from '@/app/_hooks/useSelectedComment'
 
 interface CommentInputProps {
+  comment: CommentUserType
   postingId: string
-  comment?: CommentUserType
-  setEditMode?: React.Dispatch<React.SetStateAction<boolean>>
+  setEditMode: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+interface editCommentType {
   session: Session | null
-  setComments: React.Dispatch<
-    React.SetStateAction<CommentUserType[] | undefined>
-  >
+  postingId: string
+  commentId: string
+  text: string
+}
+
+const editComment = async ({
+  session,
+  postingId,
+  commentId,
+  text,
+}: editCommentType) => {
+  if (!session) return
+
+  await fetch('/api/comment', {
+    method: 'PATCH',
+    body: JSON.stringify({
+      postingId,
+      commentId,
+      currentUser: session?.user,
+      text,
+    }),
+  })
 }
 
 export default function CommentUpdateInput({
-  postingId,
   comment,
+  postingId,
   setEditMode,
-  session,
-  setComments,
 }: CommentInputProps) {
-  const [text, setText] = useState(comment?.text)
+  const { data: session } = useSession()
+
+  const selectedComment = useSelectedComment()
+
+  const [text, setText] = useState(comment.text)
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target
     setText(value)
   }
 
-  const onSubmit = async () => {
-    try {
-      if (!text) {
-        throw new Error('댓글을 입력하세요!')
-      }
-
-      await fetch('/api/comment', {
-        method: 'PATCH',
-        body: JSON.stringify({
-          postingId: postingId,
-          commentId: comment?.commentId,
-          currentUser: session?.user,
-          text,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (!result.error && setEditMode) {
-            setComments(result)
-            setEditMode(false)
-          } else {
-            throw new Error(result.error)
-          }
-        })
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message)
-      }
-    }
-  }
+  const queryClient = useQueryClient()
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      editComment({
+        session,
+        postingId,
+        commentId: selectedComment.commentId,
+        text,
+      }),
+    onSuccess: () => {
+      if (!session) return
+      queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
+      setEditMode((prev) => !prev)
+    },
+    onError: () => {
+      toast.error('댓글 수정에 실패했습니다!')
+    },
+  })
 
   return (
     <div className="flex gap-2 mb-4">
@@ -76,7 +90,7 @@ export default function CommentUpdateInput({
         size="s"
         label="댓글 수정"
         className="w-24"
-        onClick={onSubmit}
+        onClick={() => mutate()}
         disabled={session ? false : true}
       />
     </div>
