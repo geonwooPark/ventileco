@@ -1,19 +1,30 @@
 'use client'
 
 import React, { useState } from 'react'
+import MyComment from './MyComment'
+import MyCommentedPost from './MyCommentedPost'
+import MyLikedPost from './MyLikedPost'
 
-interface TapProps {
-  menuArr: {
-    name: string
-    content: React.JSX.Element
-  }[]
-}
+const menuArr = [
+  {
+    name: '작성 댓글',
+    content: <MyComment />,
+  },
+  {
+    name: '댓글단 글',
+    content: <MyCommentedPost />,
+  },
+  {
+    name: '좋아요한 글',
+    content: <MyLikedPost />,
+  },
+]
 
-export default function Tap({ menuArr }: TapProps) {
+export default function Tap() {
   const [currentTap, setCurrentTap] = useState(0)
   return (
     <div>
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-4 mb-4">
         {menuArr.map((menu, i) => {
           return (
             <button

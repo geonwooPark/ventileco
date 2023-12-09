@@ -8,18 +8,26 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const MyCommentList = await Comment.find<CommentType>({
+    let myCommentedPost = await Comment.find<CommentType>({
       user: {
         $elemMatch: { userId },
       },
-    }).sort({ createdAt: -1 })
-
-    const result: CommentType[] = MyCommentList.map((MyComment) => {
-      const res = MyComment.user.filter((elem) => elem.userId === userId)
-      return { ...MyComment._doc, user: res }
     })
 
-    return NextResponse.json(result, { status: 200 })
+    let myComment = []
+    for (const posting of myCommentedPost) {
+      for (const elem of posting.user) {
+        if (elem.userId === userId) {
+          myComment.push({
+            title: posting.title,
+            postingId: posting.postingId,
+            ...elem,
+          })
+        }
+      }
+    }
+
+    return NextResponse.json(myComment, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
