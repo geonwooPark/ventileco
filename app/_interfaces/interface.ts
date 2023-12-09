@@ -29,7 +29,7 @@ export interface CommentType {
   updatedAt: Date
 }
 
-export interface FavoriteType {
+export interface LikeType {
   createdAt: string
   postingId: string
   title: string

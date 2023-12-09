@@ -1,5 +1,5 @@
 import getData from '@/app/_actions/getData'
-import { FavoriteType } from '@/app/_interfaces/interface'
+import { LikeType } from '@/app/_interfaces/interface'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useSession } from 'next-auth/react'
@@ -13,7 +13,7 @@ export default function MyLikedPost() {
   const { data: myLikedPost, isPending } = useQuery({
     queryKey: ['my-liked-post', { user: session?.user.id }],
     queryFn: () =>
-      getData<FavoriteType[]>(`/api/my-liked-post?userId=${session?.user.id}`),
+      getData<LikeType[]>(`/api/my-liked-post?userId=${session?.user.id}`),
   })
 
   if (isPending) {

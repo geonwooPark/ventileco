@@ -1,7 +1,6 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import FavoriteButton from '@/app/_components/FavoriteButton'
 import dayjs from 'dayjs'
 import EmptyState from '@/app/_components/common/EmptyState'
 import getPosting from '@/app/_actions/getPosting'
@@ -13,6 +12,7 @@ import Section from '@/app/_components/common/Section'
 import subBg from '/public/images/sub-bg.png'
 import DeleteAndEdit from '@/app/_components/DeleteAndEdit'
 import getAllListing from '@/app/_actions/getAllListing'
+import LikeButton from '@/app/_components/LikeButton'
 
 export const revalidate = 1800
 
@@ -90,10 +90,7 @@ export default async function Detail({ params }: IParams) {
               {dayjs(posting.createdAt).format('YYYY-MM-DD')}
             </p>
             <div className="flex items-center justify-end mb-2">
-              <FavoriteButton
-                postingId={posting._id.toString()}
-                className="mr-3"
-              />
+              <LikeButton postingId={posting._id.toString()} className="mr-3" />
               <p className="text-sm md:text-base">{posting.category}</p>
             </div>
             <h1 className="w-full mb-1 text-2xl font-bold text-right md:text-4xl md:mb-3">

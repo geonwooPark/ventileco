@@ -7,15 +7,14 @@ import Spinner from '../common/Spinner'
 import getData from '@/app/_actions/getData'
 import { toast } from 'react-toastify'
 
-interface FavCounterProps {
+interface LikeCounterProps {
   postingId: string
 }
 
-export default function FavCounter({ postingId }: FavCounterProps) {
+export default function LikeCounter({ postingId }: LikeCounterProps) {
   const { data, isPending, error } = useQuery({
-    queryKey: ['favCount', { postingId }],
-    queryFn: () =>
-      getData<number>(`/api/favorite-count?postingId=${postingId}`),
+    queryKey: ['likeCount', { postingId }],
+    queryFn: () => getData<number>(`/api/like-count?postingId=${postingId}`),
   })
 
   if (error) {

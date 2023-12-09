@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
@@ -8,25 +8,25 @@ import { Session } from 'next-auth'
 import getData from '../_actions/getData'
 import { toast } from 'react-toastify'
 
-interface FavoriteButtonProps {
+interface LikeButtonProps {
   className?: string
   postingId: string
 }
 
-interface handleFavoriteButtonType {
+interface handleLikeButtonType {
   postingId: string
   session: Session | null
   method: 'POST' | 'DELETE'
 }
 
-const handleFavoriteButton = async ({
+const handleLikeButton = async ({
   postingId,
   session,
   method,
-}: handleFavoriteButtonType) => {
+}: handleLikeButtonType) => {
   if (!session) return
 
-  await fetch('/api/favorite', {
+  await fetch('/api/like', {
     method,
     body: JSON.stringify({
       postingId: postingId,
@@ -35,17 +35,14 @@ const handleFavoriteButton = async ({
   })
 }
 
-export default function FavoriteButton({
-  className,
-  postingId,
-}: FavoriteButtonProps) {
+export default function LikeButton({ className, postingId }: LikeButtonProps) {
   const { data: session } = useSession()
-  const queryClient = useQueryClient()
 
+  const queryClient = useQueryClient()
   const { data, isPending, error } = useQuery({
-    queryKey: ['isFav', { postingId }],
+    queryKey: ['isLiked', { postingId }],
     queryFn: () =>
-      getData<{ isFav: boolean }>(`/api/favorite?postingId=${postingId}`),
+      getData<{ isLiked: boolean }>(`/api/like?postingId=${postingId}`),
   })
 
   if (error) {
@@ -54,21 +51,17 @@ export default function FavoriteButton({
 
   const { mutate } = useMutation({
     mutationFn: () =>
-      handleFavoriteButton({
+      handleLikeButton({
         postingId,
         session,
-        method: data?.isFav ? 'DELETE' : 'POST',
+        method: data?.isLiked ? 'DELETE' : 'POST',
       }),
     onSuccess: () => {
       if (!session) return
-      queryClient.invalidateQueries({ queryKey: ['isFav', { postingId }] })
-      queryClient.invalidateQueries({ queryKey: ['favCount', { postingId }] })
+      queryClient.invalidateQueries({ queryKey: ['isLiked', { postingId }] })
+      queryClient.invalidateQueries({ queryKey: ['likeCount', { postingId }] })
     },
   })
-
-  useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['isFav', { postingId }] })
-  }, [session])
 
   return (
     <button
@@ -77,7 +70,7 @@ export default function FavoriteButton({
       onClick={() => mutate()}
       disabled={isPending}
     >
-      {data?.isFav ? (
+      {data?.isLiked ? (
         <AiFillHeart size={30} className="text-rose-500" />
       ) : (
         <AiOutlineHeart size={30} />

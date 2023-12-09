@@ -1,7 +1,7 @@
 import { connectMongo } from '@/app/_utils/database'
 import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
-import { FavoriteType } from '@/app/_interfaces/interface'
+import { LikeType } from '@/app/_interfaces/interface'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../auth/[...nextauth]/route'
 
@@ -11,14 +11,14 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const isFav = await Favorite.findOne<FavoriteType>({
+    const isLike = await Favorite.findOne<LikeType>({
       postingId,
       userId: session?.user.id,
     })
-    if (isFav !== null) {
-      return NextResponse.json({ isFav: true }, { status: 201 })
+    if (isLike !== null) {
+      return NextResponse.json({ isLiked: true }, { status: 201 })
     } else {
-      return NextResponse.json({ isFav: false }, { status: 201 })
+      return NextResponse.json({ isLiked: false }, { status: 201 })
     }
   } catch (error) {
     return NextResponse.json(
