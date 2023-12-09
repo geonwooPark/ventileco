@@ -4,21 +4,22 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { AiFillEye } from 'react-icons/ai'
 import Spinner from '../common/Spinner'
+import getData from '@/app/_actions/getData'
+import { toast } from 'react-toastify'
 
 interface ViewCounterProps {
   postingId: string
 }
 
-const fetchData = async (postingId: string) => {
-  const result = await fetch(`/api/view-count?postingId=${postingId}`)
-  return result.json()
-}
-
 export default function ViewCounter({ postingId }: ViewCounterProps) {
-  const { data, isPending } = useQuery<number>({
+  const { data, isPending, error } = useQuery({
     queryKey: ['viewCount', { postingId }],
-    queryFn: () => fetchData(postingId),
+    queryFn: () => getData<number>(`/api/view-count?postingId=${postingId}`),
   })
+
+  if (error) {
+    toast.error(error.message)
+  }
 
   return (
     <div className="flex justify-center items-center">

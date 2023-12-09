@@ -5,6 +5,8 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
+import getData from '../_actions/getData'
+import { toast } from 'react-toastify'
 
 interface FavoriteButtonProps {
   className?: string
@@ -15,11 +17,6 @@ interface handleFavoriteButtonType {
   postingId: string
   session: Session | null
   method: 'POST' | 'DELETE'
-}
-
-const fetchData = async (postingId: string) => {
-  const result = await fetch(`/api/favorite?postingId=${postingId}`)
-  return result.json()
 }
 
 const handleFavoriteButton = async ({
@@ -45,17 +42,22 @@ export default function FavoriteButton({
   const { data: session } = useSession()
   const queryClient = useQueryClient()
 
-  const { data, isPending } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: ['isFav', { postingId }],
-    queryFn: () => fetchData(postingId),
+    queryFn: () =>
+      getData<{ isFav: boolean }>(`/api/favorite?postingId=${postingId}`),
   })
+
+  if (error) {
+    toast.error(error.message)
+  }
 
   const { mutate } = useMutation({
     mutationFn: () =>
       handleFavoriteButton({
         postingId,
         session,
-        method: data.isFav ? 'DELETE' : 'POST',
+        method: data?.isFav ? 'DELETE' : 'POST',
       }),
     onSuccess: () => {
       if (!session) return

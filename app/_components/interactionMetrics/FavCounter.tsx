@@ -4,21 +4,23 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
 import Spinner from '../common/Spinner'
+import getData from '@/app/_actions/getData'
+import { toast } from 'react-toastify'
 
 interface FavCounterProps {
   postingId: string
 }
 
-const fetchData = async (postingId: string) => {
-  const result = await fetch(`/api/favorite-count?postingId=${postingId}`)
-  return result.json()
-}
-
 export default function FavCounter({ postingId }: FavCounterProps) {
-  const { data, isPending } = useQuery<number>({
+  const { data, isPending, error } = useQuery({
     queryKey: ['favCount', { postingId }],
-    queryFn: () => fetchData(postingId),
+    queryFn: () =>
+      getData<number>(`/api/favorite-count?postingId=${postingId}`),
   })
+
+  if (error) {
+    toast.error(error.message)
+  }
 
   return (
     <div className="flex justify-center items-center ml-2">
