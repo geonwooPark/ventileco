@@ -4,7 +4,6 @@ import React from 'react'
 import CommentItem from './CommentItem'
 import { CommentUserType } from '@/app/_interfaces/interface'
 import { Session } from 'next-auth'
-import SkeletonCommentList from './SkeletonCommentList'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import DeleteCommentModal from '../modals/DeleteCommentModal'
 import { useSession } from 'next-auth/react'
@@ -12,6 +11,7 @@ import { toast } from 'react-toastify'
 import useDeleteCommentModal from '@/app/_hooks/useDeleteCommentModal'
 import getData from '@/app/_actions/getData'
 import useSelectedCommentForDeletion from '@/app/_hooks/useSelectedCommentForDeletion'
+import SkeletonCommentList from './SkeletonCommentList'
 
 interface CommentListProps {
   postingId: string
@@ -53,14 +53,12 @@ export default function CommentList({ postingId }: CommentListProps) {
   } = useQuery({
     queryKey: ['comments', { postingId }],
     queryFn: () =>
-      getData<CommentUserType[]>(`/api/comment?postingId=${postingId}`),
+      getData<CommentUserType[]>(
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/comment?postingId=${postingId}`,
+      ),
     staleTime: 1000 * 60 * 3, // 3분
     gcTime: 1000 * 60 * 5, // 5분
   })
-
-  if (error) {
-    toast.error(error.message)
-  }
 
   const { mutate } = useMutation({
     mutationFn: () =>
@@ -84,6 +82,10 @@ export default function CommentList({ postingId }: CommentListProps) {
       toast.error('댓글 삭제에 실패했습니다!')
     },
   })
+
+  if (error) {
+    toast.error(error.message)
+  }
 
   if (isPending) return <SkeletonCommentList />
 

@@ -14,7 +14,10 @@ interface ViewCounterProps {
 export default function ViewCounter({ postingId }: ViewCounterProps) {
   const { data, isPending, error } = useQuery({
     queryKey: ['viewCount', { postingId }],
-    queryFn: () => getData<number>(`/api/view-count?postingId=${postingId}`),
+    queryFn: () =>
+      getData<number>(
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/view-count?postingId=${postingId}`,
+      ),
   })
 
   if (error) {

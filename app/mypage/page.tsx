@@ -1,5 +1,6 @@
 import React from 'react'
 import Tap from '../_components/tap/Tap'
+import { Metadata } from 'next'
 import HeroSection from '../_components/heroSection/HeroSection'
 import Section from '../_components/common/Section'
 import { getServerSession } from 'next-auth'

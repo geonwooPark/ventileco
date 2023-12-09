@@ -5,7 +5,7 @@ import dayjs from 'dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
-import Spinner from '../common/Spinner'
+import Spinner from '../../common/Spinner'
 
 export default function MyCommentedPost() {
   const { data: session } = useSession()

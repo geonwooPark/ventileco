@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import MyComment from './MyComment'
-import MyCommentedPost from './MyCommentedPost'
-import MyLikedPost from './MyLikedPost'
+import MyComment from './tapContent/MyComment'
+import MyCommentedPost from './tapContent/MyCommentedPost'
+import MyLikedPost from './tapContent/MyLikedPost'
 
 const menuArr = [
   {

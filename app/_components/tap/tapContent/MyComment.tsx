@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
-import Spinner from '../common/Spinner'
+import Spinner from '../../common/Spinner'
 
 interface myCommentType {
   title: string
@@ -23,7 +23,9 @@ export default function MyComment() {
   const { data: myComment, isPending } = useQuery({
     queryKey: ['my-comment', { user: session?.user.id }],
     queryFn: () =>
-      getData<myCommentType[]>(`/api/my-comment?userId=${session?.user.id}`),
+      getData<myCommentType[]>(
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/my-comment?userId=${session?.user.id}`,
+      ),
     staleTime: 1000 * 60 * 5, // 5분
     gcTime: 1000 * 60 * 5, // 5분
   })
