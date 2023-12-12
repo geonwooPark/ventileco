@@ -25,12 +25,12 @@ export default function WeatherIcon({ main }: WeatherIconProps) {
 
   switch (main) {
     case 'Clear':
-      if (currentHour <= 18) {
+      if (currentHour <= 18 && currentHour >= 6) {
         return <WiDaySunny {...props} />
       }
       return <WiNightClear {...props} />
     case 'Clouds':
-      if (currentHour <= 18) {
+      if (currentHour <= 18 && currentHour >= 6) {
         return <WiCloud {...props} />
       }
       return <WiNightAltCloudy {...props} />
