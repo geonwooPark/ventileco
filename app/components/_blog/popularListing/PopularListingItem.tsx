@@ -1,5 +1,5 @@
 import { PostingType } from '@/app/interfaces/interface'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -36,7 +36,7 @@ export default function PopularListingItem({
             {posting.title}
           </h3>
           <p className="text-xs text-gray-400">
-            {dayjs(posting.createdAt).format('YYYY-MM-DD')}
+            {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
           </p>
         </div>
       </Link>

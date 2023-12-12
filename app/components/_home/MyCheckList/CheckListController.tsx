@@ -1,6 +1,6 @@
 import useAddListItemModal from '@/app/hooks/useAddListItemModal'
 import useCalendarModal from '@/app/hooks/useCalendarModal'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 import { useSession } from 'next-auth/react'
 import React from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
@@ -17,8 +17,8 @@ export default function CheckListController({
   const calendarModal = useCalendarModal()
   const addListItemModal = useAddListItemModal()
 
-  const date = dayjs(selectedDate).format('YYYY-MM-DD')
-  const today = dayjs(new Date()).format('YYYY-MM-DD')
+  const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
+  const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const openModal = () => {
     if (session?.user.role !== 'admin' && date === today) return

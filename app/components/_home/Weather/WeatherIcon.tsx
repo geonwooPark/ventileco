@@ -1,3 +1,4 @@
+import dayjs from '@/app/utils/dayjs'
 import React from 'react'
 import {
   WiCloud,
@@ -20,9 +21,7 @@ export default function WeatherIcon({ main }: WeatherIconProps) {
     size: '120',
     className: 'mx-auto',
   }
-
-  const currentDate = new Date()
-  const currentHour = currentDate.getHours()
+  const currentHour = dayjs(new Date()).tz().hour()
 
   switch (main) {
     case 'Clear':

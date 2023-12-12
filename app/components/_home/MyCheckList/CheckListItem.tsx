@@ -4,7 +4,7 @@ import { AiOutlineDelete } from 'react-icons/ai'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 
 interface CheckListItemProps {
   item: CheckListType
@@ -44,8 +44,8 @@ export default function CheckListItem({
 }: CheckListItemProps) {
   const { data: session } = useSession()
 
-  const date = dayjs(selectedDate).format('YYYY-MM-DD')
-  const today = dayjs(new Date()).format('YYYY-MM-DD')
+  const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
+  const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const queryClient = useQueryClient()
   const { mutate: deleteItemMutation } = useMutation({

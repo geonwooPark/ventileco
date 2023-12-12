@@ -3,7 +3,7 @@ import Modal from './Modal'
 import 'react-calendar/dist/Calendar.css'
 import useCalendarModal from '@/app/hooks/useCalendarModal'
 import Calendar from 'react-calendar'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 
 interface CalendarModalProps {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>
@@ -28,7 +28,7 @@ export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
       <Calendar
         onChange={changeDate}
         value={value}
-        formatDay={(locale, date) => dayjs(date).format('DD')}
+        formatDay={(locale, date) => dayjs(date).tz().format('DD')}
       ></Calendar>
     </div>
   )

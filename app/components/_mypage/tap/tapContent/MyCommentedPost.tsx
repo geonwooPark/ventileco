@@ -1,7 +1,7 @@
 import getData from '@/app/actions/getData'
 import { CommentType } from '@/app/interfaces/interface'
 import { useQuery } from '@tanstack/react-query'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
@@ -53,7 +53,7 @@ export default function MyCommentedPost() {
                 {posting.user.length}
               </td>
               <td className="w-[100px] text-sm text-center">
-                {dayjs(posting.createdAt).format('YYYY-MM-DD')}
+                {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
               </td>
             </tr>
           )

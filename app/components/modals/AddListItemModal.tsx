@@ -5,7 +5,7 @@ import useAddListItemModal from '@/app/hooks/useAddListItemModal'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 
 const addListItem = async (
   session: Session | null,
@@ -25,7 +25,7 @@ export default function AddListItemModal() {
   const addListItemModal = useAddListItemModal()
 
   const [value, setValue] = useState('')
-  const today = dayjs(new Date()).format('YYYY-MM-DD')
+  const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)

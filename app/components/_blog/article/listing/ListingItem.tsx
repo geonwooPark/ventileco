@@ -1,6 +1,6 @@
 import { PostingType } from '@/app/interfaces/interface'
 import getTimeDiff from '@/app/utils/getTimeDiff'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -47,7 +47,7 @@ export default function ListingItem({ posting }: ListingProps) {
             </p>
           </div>
           <p className="text-xs text-gray-400">
-            {getTimeDiff(dayjs(posting.createdAt))}
+            {getTimeDiff(dayjs(posting.createdAt).tz())}
           </p>
         </div>
       </Link>

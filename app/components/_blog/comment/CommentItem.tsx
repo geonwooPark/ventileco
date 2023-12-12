@@ -1,5 +1,5 @@
 import React from 'react'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 import { CommentUserType } from '@/app/interfaces/interface'
 import CommentUpdateInput from './CommentUpdateInput'
 import { useSession } from 'next-auth/react'
@@ -52,7 +52,7 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
               <button onClick={handleModal}>삭제</button>
             </>
           )}
-          <p>{dayjs(comment.createdAt).format('YYYY-MM-DD HH:mm')}</p>
+          <p>{dayjs(comment.createdAt).tz().format('YYYY-MM-DD HH:mm')}</p>
         </small>
       </div>
       {selectedCommentForEdit.commentId === comment.commentId ? (

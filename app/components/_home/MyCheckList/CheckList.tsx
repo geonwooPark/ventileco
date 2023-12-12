@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '@/app/actions/getData'
 import { CheckListType } from '@/app/interfaces/interface'
 import SkeletonCheckList from './SkeletonCheckList'
-import dayjs from 'dayjs'
+import dayjs from '@/app/utils/dayjs'
 
 interface CheckListProps {
   selectedDate: Date
 }
 
 export default function CheckList({ selectedDate }: CheckListProps) {
-  const date = dayjs(selectedDate).format('YYYY-MM-DD')
+  const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
 
   const { data: checkList, isPending } = useQuery({
     queryKey: ['checklist', { date }],

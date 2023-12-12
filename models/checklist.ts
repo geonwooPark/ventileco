@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import mongoose, { Schema, models } from 'mongoose'
 
 const checkListSchema = new Schema(
