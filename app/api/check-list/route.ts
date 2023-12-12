@@ -9,11 +9,13 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const checkList = await CheckList.findOne({
+    let result = await CheckList.findOne({
       date,
     })
 
-    return NextResponse.json(checkList.list, { status: 200 })
+    const checkList = [...result.list].reverse()
+
+    return NextResponse.json(checkList, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

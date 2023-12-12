@@ -24,19 +24,24 @@ export default function CheckList({ selectedDate }: CheckListProps) {
     retry: 0,
   })
 
+  const sortedCheckList = checkList?.sort((a, b) => {
+    return Number(a.status) - Number(b.status)
+  })
+
   if (isPending) return <SkeletonCheckList />
 
   return (
     <ul className="h-[220px] overflow-y-scroll hide-scroll">
-      {[...(checkList as CheckListType[])].reverse()?.map((item) => {
-        return (
-          <CheckListItem
-            key={item.listId}
-            item={item}
-            selectedDate={selectedDate}
-          />
-        )
-      })}
+      {checkList &&
+        sortedCheckList?.map((item) => {
+          return (
+            <CheckListItem
+              key={item.listId}
+              item={item}
+              selectedDate={selectedDate}
+            />
+          )
+        })}
     </ul>
   )
 }
