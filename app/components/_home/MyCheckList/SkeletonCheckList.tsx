@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function SkeletonCheckList() {
   return (
-    <ul className="animate-pulse">
+    <ul className="animate-pulse h-[220px] overflow-y-hidden">
       {Array.from({ length: 5 }).map((_, i) => {
         return (
           <li key={i} className="mb-3 last:mb-0 text-sm list-none">

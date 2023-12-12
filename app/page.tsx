@@ -11,7 +11,7 @@ export default function Home() {
           <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl">
             <Weather />
           </div>
-          <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl overflow-y-scroll">
+          <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl">
             <MyCheckList />
           </div>
         </div>

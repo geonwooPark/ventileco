@@ -66,12 +66,14 @@ export default function CheckListItem({
   })
 
   return (
-    <li className="mb-3 last:mb-0 text-sm">
+    <li className="mb-3 text-sm">
       <div className="flex items-center px-2 py-2 bg-slate-500 rounded-md">
         <input
           type="checkbox"
           checked={item.status}
-          className="mr-1.5 w-5 h-5"
+          className={`mr-1.5 w-5 h-5 ${
+            session?.user.role !== 'admin' && 'pointer-events-none'
+          }`}
           onChange={() => changeStatusMutation()}
         />
         <span className="w-full">{item.text}</span>

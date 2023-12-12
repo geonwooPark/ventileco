@@ -27,8 +27,8 @@ export default function CheckList({ selectedDate }: CheckListProps) {
   if (isPending) return <SkeletonCheckList />
 
   return (
-    <ul>
-      {checkList?.map((item) => {
+    <ul className="h-[220px] overflow-y-scroll hide-scroll">
+      {[...(checkList as CheckListType[])].reverse()?.map((item) => {
         return (
           <CheckListItem
             key={item.listId}
