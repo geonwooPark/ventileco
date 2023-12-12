@@ -67,7 +67,7 @@ export default function CheckListItem({
 
   return (
     <li className="mb-3 text-sm">
-      <div className="flex items-center px-2 py-2 bg-slate-500 rounded-md">
+      <div className="flex items-center px-2 py-2 bg-slate-600 rounded-md">
         <input
           type="checkbox"
           checked={item.status}

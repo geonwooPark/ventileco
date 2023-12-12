@@ -5,13 +5,18 @@ import useAddListItemModal from '@/app/hooks/useAddListItemModal'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
+import dayjs from 'dayjs'
 
-const addListItem = async (session: Session | null, value: string) => {
+const addListItem = async (
+  session: Session | null,
+  value: string,
+  date: string,
+) => {
   if (session?.user.role !== 'admin') return
 
   await fetch('/api/check-list', {
     method: 'POST',
-    body: JSON.stringify(value),
+    body: JSON.stringify({ value, date }),
   })
 }
 
@@ -20,6 +25,7 @@ export default function AddListItemModal() {
   const addListItemModal = useAddListItemModal()
 
   const [value, setValue] = useState('')
+  const date = dayjs(new Date()).format('YYYY-MM-DD')
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -27,7 +33,7 @@ export default function AddListItemModal() {
 
   const queryClient = useQueryClient()
   const { mutate } = useMutation({
-    mutationFn: () => addListItem(session, value),
+    mutationFn: () => addListItem(session, value, date),
     onSuccess: () => {
       setValue('')
       addListItemModal.onClose()

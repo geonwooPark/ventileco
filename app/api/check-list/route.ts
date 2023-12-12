@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const text = await req.json()
+  const { value: text, date } = await req.json()
 
   if (!text) {
     return NextResponse.json(
@@ -38,18 +38,19 @@ export async function POST(req: NextRequest) {
     await connectMongo()
 
     const result = await CheckList.findOne({
-      date: dayjs(new Date()).format('YYYY-MM-DD'),
+      date,
     })
+
     if (!result) {
       await CheckList.create({
-        date: dayjs(new Date()).format('YYYY-MM-DD'),
+        date,
         list: [],
       })
     }
 
     await CheckList.updateOne(
       {
-        date: dayjs(new Date()).format('YYYY-MM-DD'),
+        date,
       },
       {
         $push: {

@@ -19,7 +19,7 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
 <img width="600" alt="스크린샷 2023-12-07 오후 12 22 28" src="https://github.com/geonwooPark/myblog/assets/136573728/b86d0c2e-c01b-4ead-8525-ebbb72590d1f">
 <img width="600" alt="스크린샷 2023-12-07 오후 12 24 26" src="https://github.com/geonwooPark/myblog/assets/136573728/a74da7df-5e63-4a10-bf21-8bf2b3f6171a">
 
-#### - Dynamic Routes별 정적 페이지 HTML 생성 자동화
+#### - Dynamic Routes별 정적 페이지 HTML 생성
 
 <img width="600" alt="스크린샷 2023-12-07 오후 12 23 34" src="https://github.com/geonwooPark/myblog/assets/136573728/e92f9429-4776-41fe-b559-3445b15d694a">
 

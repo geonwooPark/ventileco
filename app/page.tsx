@@ -3,6 +3,8 @@ import NewArrivals from './components/_home/NewArrivals/NewArrivals'
 import Weather from './components/_home/Weather/Weather'
 import MyCheckList from './components/_home/MyCheckList/MyCheckList'
 
+export const revalidate = 1800
+
 export default function Home() {
   return (
     <div className="h-auto min-h-full py-[82px] md:py-[102px] flex items-center">
