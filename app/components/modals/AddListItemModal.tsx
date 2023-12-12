@@ -10,13 +10,13 @@ import dayjs from 'dayjs'
 const addListItem = async (
   session: Session | null,
   value: string,
-  date: string,
+  today: string,
 ) => {
   if (session?.user.role !== 'admin') return
 
   await fetch('/api/check-list', {
     method: 'POST',
-    body: JSON.stringify({ value, date }),
+    body: JSON.stringify({ value, today }),
   })
 }
 
@@ -25,7 +25,7 @@ export default function AddListItemModal() {
   const addListItemModal = useAddListItemModal()
 
   const [value, setValue] = useState('')
-  const date = dayjs(new Date()).format('YYYY-MM-DD')
+  const today = dayjs(new Date()).format('YYYY-MM-DD')
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -33,7 +33,7 @@ export default function AddListItemModal() {
 
   const queryClient = useQueryClient()
   const { mutate } = useMutation({
-    mutationFn: () => addListItem(session, value, date),
+    mutationFn: () => addListItem(session, value, today),
     onSuccess: () => {
       setValue('')
       addListItemModal.onClose()

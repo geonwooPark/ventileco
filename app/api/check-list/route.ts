@@ -1,6 +1,5 @@
 import { connectMongo } from '@/app/utils/database'
 import { CheckList } from '@/models/checklist'
-import dayjs from 'dayjs'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
 
@@ -25,7 +24,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const { value: text, date } = await req.json()
+  const { value: text, today } = await req.json()
 
   if (!text) {
     return NextResponse.json(
@@ -38,19 +37,19 @@ export async function POST(req: NextRequest) {
     await connectMongo()
 
     const result = await CheckList.findOne({
-      date,
+      date: today,
     })
 
     if (!result) {
       await CheckList.create({
-        date,
+        date: today,
         list: [],
       })
     }
 
     await CheckList.updateOne(
       {
-        date,
+        date: today,
       },
       {
         $push: {
@@ -73,13 +72,13 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const listId = await req.json()
+  const { listId, today } = await req.json()
 
   try {
     await connectMongo()
     await CheckList.updateOne(
       {
-        date: dayjs(new Date()).format('YYYY-MM-DD'),
+        date: today,
       },
       { $pull: { list: { listId } } },
     )
@@ -94,13 +93,13 @@ export async function DELETE(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  const { listId, status } = await req.json()
+  const { listId, status, today } = await req.json()
 
   try {
     await connectMongo()
     await CheckList.updateOne(
       {
-        date: dayjs(new Date()).format('YYYY-MM-DD'),
+        date: today,
       },
       { $set: { 'list.$[elem].status': !status } },
       { arrayFilters: [{ 'elem.listId': listId }] },

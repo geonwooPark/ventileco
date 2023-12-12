@@ -12,7 +12,7 @@ interface CheckListItemProps {
 }
 
 const deleteListItem = async (
-  itemId: string,
+  listId: string,
   session: Session | null,
   date: string,
   today: string,
@@ -20,7 +20,7 @@ const deleteListItem = async (
   if (session?.user.role !== 'admin' || date !== today) return
   await fetch('/api/check-list', {
     method: 'DELETE',
-    body: JSON.stringify(itemId),
+    body: JSON.stringify({ listId, today }),
   })
 }
 
@@ -34,7 +34,7 @@ const changeStatus = async (
   if (session?.user.role !== 'admin' || date !== today) return
   await fetch('/api/check-list', {
     method: 'PATCH',
-    body: JSON.stringify({ listId, status }),
+    body: JSON.stringify({ listId, status, today }),
   })
 }
 
