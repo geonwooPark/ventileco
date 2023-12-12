@@ -1,6 +1,6 @@
-import { connectMongo } from '@/app/_utils/database'
+import { connectMongo } from '@/app/utils/database'
 import { NextRequest, NextResponse } from 'next/server'
-import { PostingType } from '@/app/_interfaces/interface'
+import { PostingType } from '@/app/interfaces/interface'
 import { Posting } from '@/models/posting'
 import { authOptions } from '../auth/[...nextauth]/route'
 import { getServerSession } from 'next-auth'

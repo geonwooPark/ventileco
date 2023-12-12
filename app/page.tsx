@@ -1,47 +1,24 @@
-import Section from './_components/common/Section'
-import HeroSection from './_components/heroSection/HeroSection'
-import Article from './_components/article/Article'
-import PopularListing from './_components/popularListing/PopularListing'
-import CategoryMenu from './_components/category/CategoryMenu'
-import getAllListing from './_actions/getAllListing'
-import getAllListingCount from './_actions/getAllListingCount'
+import React from 'react'
+import NewArrivals from './components/_home/NewArrivals/NewArrivals'
+import Weather from './components/_home/Weather/Weather'
+import MyCheckList from './components/_home/MyCheckList/MyCheckList'
 
-export const revalidate = 1800
-
-const PAGE = 1
-const LIMIT = 5
-
-export default async function Home() {
-  const listing = await getAllListing({
-    page: PAGE,
-    limit: LIMIT,
-  })
-  const listingCount = await getAllListingCount()
-
+export default function Home() {
   return (
-    <main>
-      <HeroSection
-        title="Study Log"
-        description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
-      />
-
-      <Section label="인기 게시글">
-        <PopularListing />
-      </Section>
-
-      <Section>
-        <div className="flex flex-col md:flex-row-reverse">
-          <CategoryMenu />
-          <Article
-            title="전체 게시글"
-            path="postings"
-            page={PAGE}
-            limit={LIMIT}
-            listing={listing}
-            listingCount={listingCount}
-          />
+    <div className="h-auto min-h-full py-[82px] md:py-[102px] flex items-center">
+      <div className="my-container text-white">
+        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-5 mb-5">
+          <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl">
+            <Weather />
+          </div>
+          <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl overflow-y-scroll">
+            <MyCheckList />
+          </div>
         </div>
-      </Section>
-    </main>
+        <div className="w-full mx-auto max-w-[580px] bg-slate-700 px-4 py-3 rounded-xl">
+          <NewArrivals />
+        </div>
+      </div>
+    </div>
   )
 }

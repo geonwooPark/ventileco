@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/search', '/mypage', '/write', '/edit/'],
+      disallow: ['/blog/search', '/blog/mypage', '/blog/write', '/blog/edit/'],
     },
     sitemap: 'https://ventileco-blog.vercel.app/sitemap.xml',
   }

@@ -1,14 +1,13 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
-import Navbar from './_components/navbar/Navbar'
-import LoginModal from './_components/modals/LoginModal'
+import LoginModal from './components/modals/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import SignUpModal from './_components/modals/SignUpModal'
-import Footer from './_components/Footer'
-import AuthSession from './_components/provider/AuthSession'
-import TanstackProvider from './_components/provider/TanstackProvider'
+import SignUpModal from './components/modals/SignUpModal'
+import AuthSession from './components/provider/AuthSession'
+import TanstackProvider from './components/provider/TanstackProvider'
+import Header from './components/header/Header'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -57,11 +56,8 @@ export default async function RootLayout({
             />
             <SignUpModal />
             <LoginModal />
-            <Navbar />
-            <div className="h-auto min-h-[100%] pb-[56px] bg-white">
-              {children}
-            </div>
-            <Footer className="relative h-[56px] -translate-y-full w-full bg-[#070716]" />
+            <Header />
+            {children}
           </TanstackProvider>
         </AuthSession>
       </body>

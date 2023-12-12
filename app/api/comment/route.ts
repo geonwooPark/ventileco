@@ -1,5 +1,5 @@
-import { CommentType } from '@/app/_interfaces/interface'
-import { connectMongo } from '@/app/_utils/database'
+import { CommentType } from '@/app/interfaces/interface'
+import { connectMongo } from '@/app/utils/database'
 import { Comment } from '@/models/comment'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'

@@ -1,10 +1,10 @@
 import React from 'react'
-import Tap from '../_components/tap/Tap'
-import HeroSection from '../_components/heroSection/HeroSection'
-import Section from '../_components/common/Section'
+import HeroSection from '@/app/components/heroSection/HeroSection'
+import Section from '@/app/components/common/Section'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
-import UserInfo from '../_components/UserInfo'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import UserInfo from '../components/_mypage/UserInfo'
+import Tap from '../components/_mypage/tap/Tap'
 
 export default async function page() {
   const session = await getServerSession(authOptions)
