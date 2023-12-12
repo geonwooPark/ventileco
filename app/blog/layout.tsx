@@ -1,10 +1,7 @@
 import '../globals.css'
 import type { Metadata } from 'next'
-import { Noto_Sans_KR } from 'next/font/google'
 import Footer from '../components/footer/Footer'
 import 'react-toastify/dist/ReactToastify.css'
-
-const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ventileco-blog.vercel.app/blog'),
@@ -26,15 +23,9 @@ export const metadata: Metadata = {
     url: 'https://ventileco-blog.vercel.app/blog',
     type: 'website',
   },
-  icons: {
-    icon: '/favicon.ico',
-  },
-  verification: {
-    google: 'iB35_cjnMF8iid4q7riM-UjORPcfV0-9o-ZaoVFSXJM',
-  },
 }
 
-export default async function RootLayout({
+export default async function Layout({
   children,
 }: {
   children: React.ReactNode
