@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
-import HeroSection from '@/app/components/heroSection/HeroSection'
 import Section from '@/app/components/common/Section'
-import Article from '@/app/components/_blog/article/Article'
+import Article from '@/app/components/_blog/common/Article/Article'
 import { categories } from '@/app/utils/categoryArr'
 import getCategoryListing from '@/app/actions/getCategoryListing'
 import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
-import CategoryMenu from '@/app/components/_blog/sidebar/CategoryMenu'
+import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
+import HeroSection from '@/app/components/common/HeroSection'
 
 export const revalidate = 1800
 

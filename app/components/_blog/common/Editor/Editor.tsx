@@ -7,8 +7,9 @@ import 'react-quill/dist/quill.bubble.css'
 import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { toast } from 'react-toastify'
-import { ImagesType, PostingType } from '../../../interfaces/interface'
+import { ImagesType, PostingType } from '../../../../interfaces/interface'
 import { storage } from '@/app/firebase'
+import Section from '@/app/components/common/Section'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {
@@ -96,14 +97,18 @@ export default function Editor({
   }, [])
 
   return (
-    <ReactQuill
-      ref={quillRef}
-      value={content}
-      onChange={onChange}
-      modules={theme === 'snow' ? modules : undefined}
-      theme={theme}
-      readOnly={readOnly}
-      className="w-full h-full outline-none focus:outline-none"
-    />
+    <Section>
+      <ReactQuill
+        ref={quillRef}
+        value={content}
+        onChange={onChange}
+        modules={theme === 'snow' ? modules : undefined}
+        theme={theme}
+        readOnly={readOnly}
+        className={`w-full ${
+          theme === 'snow' ? 'h-[600px]' : 'h-full'
+        } outline-none focus:outline-none`}
+      />
+    </Section>
   )
 }

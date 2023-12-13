@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { CommentUserType } from '@/app/interfaces/interface'
-import { useSession } from 'next-auth/react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { Session } from 'next-auth'
-import Button from '../../common/Button'
 import {
   useSelectedCommentForEditActions,
   useSelectedCommentIdForEdit,
 } from '@/app/hooks/useSelectedCommentForEditStore'
+import Button from '@/app/components/common/Button'
 
 interface CommentInputProps {
-  comment: CommentUserType
+  session: Session | null
+  commentText: string
   postingId: string
 }
 
@@ -41,16 +40,15 @@ const editComment = async (
 }
 
 export default function CommentUpdateInput({
-  comment,
+  session,
+  commentText,
   postingId,
 }: CommentInputProps) {
-  const { data: session } = useSession()
-
   const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
   const { onReset: resetSelectedCommentIdForEdit } =
     useSelectedCommentForEditActions()
 
-  const [text, setText] = useState(comment.text)
+  const [text, setText] = useState(commentText)
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target

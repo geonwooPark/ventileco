@@ -5,7 +5,7 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
-import getData from '../../actions/getData'
+import getData from '../../../../actions/getData'
 import { toast } from 'react-toastify'
 
 interface LikeButtonProps {

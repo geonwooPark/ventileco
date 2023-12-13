@@ -1,15 +1,16 @@
 import React from 'react'
 import CommentInput from './CommentInput'
 import CommentList from './CommentList'
+import Section from '@/app/components/common/Section'
 
 interface CommentSectionProps {
   postingId: string
 }
-export default function Comment({ postingId }: CommentSectionProps) {
+export default function CommentSection({ postingId }: CommentSectionProps) {
   return (
-    <div>
+    <Section label="댓글" className="!pb-10">
       <CommentInput postingId={postingId} />
       <CommentList postingId={postingId} />
-    </div>
+    </Section>
   )
 }

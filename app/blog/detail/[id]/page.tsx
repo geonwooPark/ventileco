@@ -1,23 +1,19 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import EmptyState from '@/app/components/common/EmptyState'
 import getPosting from '@/app/actions/getPosting'
 import NotFound from '@/app/not-found'
 import { Metadata } from 'next'
-import Comment from '@/app/components/_blog/comment/Comment'
-import InteractionMetrics from '@/app/components/_blog/interactionMetrics/InteractionMetrics'
-import Section from '@/app/components/common/Section'
-import subBg from '/public/images/sub-bg.png'
-import DeleteAndEdit from '@/app/components/_blog/DeleteAndEdit'
 import getAllListing from '@/app/actions/getAllListing'
-import LikeButton from '@/app/components/_blog/LikeButton'
-import dayjs from '@/app/utils/dayjs'
+import CommentSection from '@/app/components/_blog/_detail/CommentSection/CommentSection'
+import AdminControlSection from '@/app/components/_blog/_detail/AdminControlSection/AdminControlSection'
+import Modals from '@/app/components/_blog/_detail/Modals/Modals'
+import DetailTopSection from '@/app/components/_blog/_detail/DetailTopSection/DetailTopSection'
 
 export const revalidate = 1800
 
-const EditorWrapper = dynamic(
-  () => import('@/app/components/_blog/editor/Editor'),
+const ContentSection = dynamic(
+  () => import('@/app/components/_blog/common/Editor/Editor'),
   {
     ssr: false,
     loading: () => (
@@ -78,52 +74,15 @@ export default async function Detail({ params }: IParams) {
 
   return (
     <main>
-      <section className="relative w-full h-[320px] md:h-[420px] mb-20">
-        <Image
-          src={posting.thumbnailURL ? posting.thumbnailURL : subBg}
-          alt="썸네일이미지"
-          fill
-          placeholder="blur"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-          className="object-cover brightness-50"
-        />
-        <div className="flex flex-col items-end justify-center h-full text-white my-container">
-          <div className="absolute">
-            <p className="mb-2 text-sm text-right">
-              {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
-            </p>
-            <div className="flex items-center justify-end mb-2">
-              <LikeButton postingId={posting._id.toString()} className="mr-3" />
-              <p className="text-sm md:text-base">{posting.category}</p>
-            </div>
-            <h1 className="w-full mb-1 text-2xl font-bold text-right md:text-4xl md:mb-3">
-              {posting.title}
-            </h1>
-            {posting.description && (
-              <p className="w-full text-sm text-right md:text-base">
-                {posting.description}
-              </p>
-            )}
-          </div>
-        </div>
-        <InteractionMetrics postingId={posting._id.toString()} />
-      </section>
-
-      <Section>
-        <EditorWrapper
-          content={posting.content}
-          theme="bubble"
-          readOnly={true}
-        />
-      </Section>
-
-      <Section label="댓글" className="!pb-10">
-        <Comment postingId={params.id} />
-      </Section>
-
-      <Section className="!pb-10">
-        <DeleteAndEdit postingId={params.id} />
-      </Section>
+      <DetailTopSection posting={posting} />
+      <ContentSection
+        content={posting.content}
+        theme="bubble"
+        readOnly={true}
+      />
+      <CommentSection postingId={id} />
+      <AdminControlSection postingId={id} />
+      <Modals postingId={id} />
     </main>
   )
 }

@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { Session } from 'next-auth'
-import Button from '../../common/Button'
+import Button from '@/app/components/common/Button'
 
 interface CommentInputProps {
   postingId: string

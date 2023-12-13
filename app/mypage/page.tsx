@@ -1,10 +1,10 @@
 import React from 'react'
-import HeroSection from '@/app/components/heroSection/HeroSection'
 import Section from '@/app/components/common/Section'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import UserInfo from '../components/_mypage/UserInfo'
-import Tap from '../components/_mypage/tap/Tap'
+import HeroSection from '../components/common/HeroSection'
+import ActionLogTab from '../components/_mypage/ActionLogtab/ActionLogTab'
 
 export default async function page() {
   const session = await getServerSession(authOptions)
@@ -20,7 +20,7 @@ export default async function page() {
       </Section>
 
       <Section label="나의 활동">
-        <Tap />
+        <ActionLogTab />
       </Section>
     </main>
   )

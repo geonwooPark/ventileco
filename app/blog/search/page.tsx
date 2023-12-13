@@ -1,7 +1,7 @@
-import HeroSection from '@/app/components/heroSection/HeroSection'
 import Section from '@/app/components/common/Section'
-import Article from '@/app/components/_blog/article/Article'
+import Article from '@/app/components/_blog/common/Article/Article'
 import getSearchListing from '@/app/actions/getSearchListing'
+import HeroSection from '@/app/components/common/HeroSection'
 
 export default async function Search({
   searchParams,

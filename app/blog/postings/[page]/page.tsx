@@ -1,9 +1,9 @@
-import HeroSection from '@/app/components/heroSection/HeroSection'
 import Section from '@/app/components/common/Section'
-import Article from '@/app/components/_blog/article/Article'
+import Article from '@/app/components/_blog/common/Article/Article'
 import getAllListingCount from '@/app/actions/getAllListingCount'
 import getAllListing from '@/app/actions/getAllListing'
-import CategoryMenu from '@/app/components/_blog/sidebar/CategoryMenu'
+import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
+import HeroSection from '@/app/components/common/HeroSection'
 
 export const revalidate = 1800
 

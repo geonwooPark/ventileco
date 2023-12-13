@@ -1,8 +1,8 @@
 import React from 'react'
-import ListingItem from './ListingItem'
 import { PostingType } from '@/app/interfaces/interface'
-import Pagination from '../../Pagination'
+import Pagination from '../../Pagination/Pagination'
 import EmptyState from '@/app/components/common/EmptyState'
+import ListingItem from './ListingItem'
 
 type ListingProps = {
   path: 'postings' | 'categories' | 'search'
@@ -14,15 +14,8 @@ type ListingProps = {
   search?: string
 }
 
-export default async function Listing({
-  path,
-  page,
-  limit,
-  listing,
-  listingCount,
-  category,
-  search,
-}: ListingProps) {
+export default async function Listing({ listing, ...props }: ListingProps) {
+  const { listingCount } = props
   if (listingCount === 0) {
     return (
       <div className="h-full">
@@ -39,14 +32,7 @@ export default async function Listing({
         })}
       </ul>
       <div>
-        <Pagination
-          path={path}
-          listingCount={listingCount}
-          page={page}
-          limit={limit}
-          category={category}
-          search={search}
-        />
+        <Pagination {...props} />
       </div>
     </>
   )

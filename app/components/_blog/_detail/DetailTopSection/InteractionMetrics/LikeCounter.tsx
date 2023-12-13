@@ -3,9 +3,9 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
-import Spinner from '../../common/Spinner'
 import getData from '@/app/actions/getData'
 import { toast } from 'react-toastify'
+import Spinner from '@/app/components/common/Spinner'
 
 interface LikeCounterProps {
   postingId: string

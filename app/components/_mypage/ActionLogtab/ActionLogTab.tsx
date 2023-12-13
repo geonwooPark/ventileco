@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import MyComment from './tapContent/MyComment'
-import MyCommentedPost from './tapContent/MyCommentedPost'
-import MyLikedPost from './tapContent/MyLikedPost'
+import MyComment from './ActionLogTabContent/MyComment'
+import MyCommentedPost from './ActionLogTabContent/MyCommentedPost'
+import MyLikedPost from './ActionLogTabContent/MyLikedPost'
 
 const menuArr = [
   {
@@ -20,8 +20,9 @@ const menuArr = [
   },
 ]
 
-export default function Tap() {
-  const [currentTap, setCurrentTap] = useState(0)
+export default function ActionLogTab() {
+  const [currentTab, setCurrentTab] = useState(0)
+
   return (
     <div>
       <div className="flex gap-4 mb-4">
@@ -29,9 +30,9 @@ export default function Tap() {
           return (
             <button
               key={i}
-              onClick={() => setCurrentTap(i)}
+              onClick={() => setCurrentTab(i)}
               className={
-                currentTap === i
+                currentTab === i
                   ? 'border-b-2 border-black'
                   : 'border-b-2 border-transparent text-gray-400'
               }
@@ -43,7 +44,7 @@ export default function Tap() {
       </div>
       <div className="relative pt-10">
         <div className="h-[500px] bg-gray-50 overflow-y-scroll">
-          {menuArr[currentTap].content}
+          {menuArr[currentTab].content}
         </div>
       </div>
     </div>

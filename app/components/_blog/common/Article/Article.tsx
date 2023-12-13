@@ -1,5 +1,5 @@
 import React from 'react'
-import Listing from './listing/Listing'
+import Listing from './Listing/Listing'
 import { PostingType } from '@/app/interfaces/interface'
 
 type ArticleProps = {
@@ -13,28 +13,11 @@ type ArticleProps = {
   search?: string
 }
 
-export default function Article({
-  title,
-  path,
-  page,
-  limit,
-  listing,
-  listingCount,
-  category,
-  search,
-}: ArticleProps) {
+export default function Article({ title, ...props }: ArticleProps) {
   return (
     <article className="w-full flex flex-col md:w-[calc(100%-120px)]">
       <h2 className="mb-4 md:text-lg">{title}</h2>
-      <Listing
-        path={path}
-        page={page}
-        limit={limit}
-        listing={listing}
-        listingCount={listingCount}
-        category={category}
-        search={search}
-      />
+      <Listing {...props} />
     </article>
   )
 }

@@ -10,6 +10,11 @@ export interface PostingType {
   updatedAt: Date
 }
 
+export type OmittedPostingType = Omit<
+  PostingType,
+  '_id' | 'createdAt' | 'updatedAt' | 'views'
+>
+
 export interface CommentUserType {
   commentId: string
   userImage: string
