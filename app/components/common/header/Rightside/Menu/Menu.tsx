@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Avatar from '../../../common/Avatar'
+import Avatar from '../../../../common/Avatar'
 import MenuItem from './MenuItem'
 import { useLoginModalActions } from '@/app/hooks/useLoginModalStore'
 import { useSignUpModalActions } from '@/app/hooks/useSignUpModalStore'

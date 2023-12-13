@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import CalendarModal from '../../modals/CalendarModal'
-import ModalContainer from '../../modals/ModalContainer'
 import CheckList from './CheckList'
-import AddListItemModal from '../../modals/AddListItemModal'
 import CheckListController from './CheckListController'
+import ModalContainer from '../../common/modals/ModalContainer'
+import CalendarModal from '../../common/modals/CalendarModal'
+import AddListItemModal from '../../common/modals/AddListItemModal'
 
 export default function CheckListWrapper() {
   const [selectedDate, setSelectedDate] = useState(new Date())

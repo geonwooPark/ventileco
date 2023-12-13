@@ -1,8 +1,8 @@
 'use client'
 
-import DeleteCommentModal from '@/app/components/modals/DeleteCommentModal'
-import DeletePostingModal from '@/app/components/modals/DeletePostingModal'
-import ModalContainer from '@/app/components/modals/ModalContainer'
+import DeleteCommentModal from '@/app/components/common/modals/DeleteCommentModal'
+import DeletePostingModal from '@/app/components/common/modals/DeletePostingModal'
+import ModalContainer from '@/app/components/common/modals/ModalContainer'
 import { useDeleteCommentModalActions } from '@/app/hooks/useDeleteCommentModalStore'
 import { useDeletePostingModalActions } from '@/app/hooks/useDeletePostingModalStore'
 import { useSelectedCommentIdForDeletion } from '@/app/hooks/useSelectedCommentForDeletionStore'

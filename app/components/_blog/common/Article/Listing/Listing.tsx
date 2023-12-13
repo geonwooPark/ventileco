@@ -31,9 +31,7 @@ export default async function Listing({ listing, ...props }: ListingProps) {
           return <ListingItem key={listingItem._id} posting={listingItem} />
         })}
       </ul>
-      <div>
-        <Pagination {...props} />
-      </div>
+      <Pagination {...props} />
     </>
   )
 }

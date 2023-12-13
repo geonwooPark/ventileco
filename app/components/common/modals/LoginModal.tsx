@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import Modal from './Modal'
-import Input from '../common/Input'
+import Input from '../../common/Input'
 import { FcGoogle } from 'react-icons/fc'
-import Button from '../common/Button'
+import Button from '../../common/Button'
 import { toast } from 'react-toastify'
 import { useSignUpModalActions } from '@/app/hooks/useSignUpModalStore'
 import { signIn } from 'next-auth/react'

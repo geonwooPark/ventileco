@@ -1,7 +1,7 @@
 import '../globals.css'
 import type { Metadata } from 'next'
-import Footer from '../components/footer/Footer'
 import 'react-toastify/dist/ReactToastify.css'
+import Footer from '../components/common/footer/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ventileco-blog.vercel.app/blog'),

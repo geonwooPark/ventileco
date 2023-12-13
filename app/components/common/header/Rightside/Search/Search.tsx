@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Input from '../../../common/Input'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
+import Input from '../../../Input'
 
 interface SearchProps {
   isOpen: boolean
