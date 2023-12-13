@@ -69,12 +69,7 @@ export default function Edit() {
     const fetchData = async () => {
       try {
         await fetch(`/api/posting?postingId=${postingId}`, { method: 'GET' })
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error('Failed to fetch data')
-            }
-            return res.json()
-          })
+          .then((res) => res.json())
           .then((result) => {
             setPosting(result)
           })

@@ -11,13 +11,11 @@ interface CommentInputProps {
   postingId: string
 }
 
-interface postCommentType {
-  session: Session | null
-  postingId: string
-  text: string
-}
-
-const postComment = async ({ session, postingId, text }: postCommentType) => {
+const postComment = async (
+  session: Session | null,
+  postingId: string,
+  text: string,
+) => {
   if (!session) return
 
   await fetch('/api/comment', {
@@ -28,6 +26,12 @@ const postComment = async ({ session, postingId, text }: postCommentType) => {
       text,
     }),
   })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error)
+      }
+    })
 }
 
 export default function CommentInput({ postingId }: CommentInputProps) {
@@ -41,13 +45,8 @@ export default function CommentInput({ postingId }: CommentInputProps) {
   }
 
   const queryClient = useQueryClient()
-  const { mutate } = useMutation({
-    mutationFn: () =>
-      postComment({
-        session,
-        postingId,
-        text,
-      }),
+  const { mutate: postCommentMutation } = useMutation({
+    mutationFn: () => postComment(session, postingId, text),
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
@@ -60,8 +59,8 @@ export default function CommentInput({ postingId }: CommentInputProps) {
 
       setText('')
     },
-    onError: () => {
-      toast.error('댓글 작성에 실패했습니다!')
+    onError: (error) => {
+      toast.error(error.message)
     },
   })
 
@@ -84,7 +83,7 @@ export default function CommentInput({ postingId }: CommentInputProps) {
         size="s"
         label="댓글 작성"
         className="w-24"
-        onClick={() => mutate()}
+        onClick={() => postCommentMutation()}
         disabled={session ? false : true}
       />
     </div>

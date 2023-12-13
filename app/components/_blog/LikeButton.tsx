@@ -13,17 +13,11 @@ interface LikeButtonProps {
   postingId: string
 }
 
-interface handleLikeButtonType {
-  postingId: string
-  session: Session | null
-  method: 'POST' | 'DELETE'
-}
-
-const handleLikeButton = async ({
-  postingId,
-  session,
-  method,
-}: handleLikeButtonType) => {
+const handleLikeButton = async (
+  postingId: string,
+  session: Session | null,
+  method: 'POST' | 'DELETE',
+) => {
   if (!session) return
 
   await fetch('/api/like', {
@@ -33,6 +27,12 @@ const handleLikeButton = async ({
       userId: session.user.id,
     }),
   })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error)
+      }
+    })
 }
 
 export default function LikeButton({ className, postingId }: LikeButtonProps) {
@@ -49,17 +49,9 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
     gcTime: 1000 * 60 * 5, // 5분
   })
 
-  if (error) {
-    toast.error(error.message)
-  }
-
-  const { mutate } = useMutation({
+  const { mutate: handleLikeMutation } = useMutation({
     mutationFn: () =>
-      handleLikeButton({
-        postingId,
-        session,
-        method: data?.isLiked ? 'DELETE' : 'POST',
-      }),
+      handleLikeButton(postingId, session, data?.isLiked ? 'DELETE' : 'POST'),
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['isLiked', { postingId }] })
@@ -68,13 +60,20 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
         queryKey: ['my-liked-post', { user: session.user.id }],
       })
     },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
+
+  if (error) {
+    toast.error(error.message)
+  }
 
   return (
     <button
       className={`border px-1.5 py-1 rounded transition cursor-pointer hover:opacity-70 disabled:cursor-not-allowed
         ${className}`}
-      onClick={() => mutate()}
+      onClick={() => handleLikeMutation()}
       disabled={isPending}
     >
       {data?.isLiked ? (

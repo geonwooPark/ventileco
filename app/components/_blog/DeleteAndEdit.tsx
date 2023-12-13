@@ -25,12 +25,7 @@ export default function DeleteAndEdit({ postingId }: DeleteAndEditProps) {
         method: 'DELETE',
         body: JSON.stringify(postingId),
       })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error('Failed to fetch data')
-          }
-          return res.json()
-        })
+        .then((res) => res.json())
         .then((result) => {
           closeDeletePostingModal()
           router.push('/blog')

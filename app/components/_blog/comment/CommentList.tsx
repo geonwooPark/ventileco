@@ -18,17 +18,11 @@ interface CommentListProps {
   postingId: string
 }
 
-interface deleteCommentType {
-  session: Session | null
-  postingId: string
-  commentId: string
-}
-
-const deleteComment = async ({
-  session,
-  postingId,
-  commentId,
-}: deleteCommentType) => {
+const deleteComment = async (
+  session: Session | null,
+  postingId: string,
+  commentId: string,
+) => {
   if (!session) return
 
   await fetch('/api/comment', {
@@ -38,6 +32,12 @@ const deleteComment = async ({
       commentId,
     }),
   })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error)
+      }
+    })
 }
 
 export default function CommentList({ postingId }: CommentListProps) {
@@ -61,13 +61,9 @@ export default function CommentList({ postingId }: CommentListProps) {
     gcTime: 1000 * 60 * 5, // 5분
   })
 
-  const { mutate } = useMutation({
+  const { mutate: deleteCommentMutation } = useMutation({
     mutationFn: () =>
-      deleteComment({
-        session,
-        postingId,
-        commentId: selectedCommentIdForDeletion,
-      }),
+      deleteComment(session, postingId, selectedCommentIdForDeletion),
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
@@ -79,8 +75,8 @@ export default function CommentList({ postingId }: CommentListProps) {
       })
       closeDeleteCommentModal()
     },
-    onError: () => {
-      toast.error('댓글 삭제에 실패했습니다!')
+    onError: (error) => {
+      toast.error(error.message)
     },
   })
 
@@ -93,7 +89,7 @@ export default function CommentList({ postingId }: CommentListProps) {
   return (
     <div>
       <ModalContainer>
-        <DeleteCommentModal onDelete={() => mutate()} />
+        <DeleteCommentModal onDelete={() => deleteCommentMutation()} />
       </ModalContainer>
       <ul>
         {comments?.map((comment) => {

@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
 import dayjs from '@/app/utils/dayjs'
+import { toast } from 'react-toastify'
 
 interface CheckListItemProps {
   item: CheckListType
@@ -22,6 +23,12 @@ const deleteListItem = async (
     method: 'DELETE',
     body: JSON.stringify({ listId, today }),
   })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error)
+      }
+    })
 }
 
 const changeStatus = async (
@@ -62,6 +69,9 @@ export default function CheckListItem({
     onSuccess: () => {
       if (session?.user.role !== 'admin' || date !== today) return
       queryClient.invalidateQueries({ queryKey: ['checklist'] })
+    },
+    onError: (error) => {
+      toast.error(error.message)
     },
   })
 

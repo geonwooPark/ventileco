@@ -9,6 +9,7 @@ import {
   useAddListItemModalActions,
   useAddListItemModalIsOpen,
 } from '@/app/hooks/useAddListItemModalStore'
+import { toast } from 'react-toastify'
 
 const addListItem = async (
   session: Session | null,
@@ -21,6 +22,12 @@ const addListItem = async (
     method: 'POST',
     body: JSON.stringify({ value, today }),
   })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error)
+      }
+    })
 }
 
 export default function AddListItemModal() {
@@ -42,6 +49,9 @@ export default function AddListItemModal() {
       setValue('')
       closeAddListItemModal()
       queryClient.invalidateQueries({ queryKey: ['checklist'] })
+    },
+    onError: (error) => {
+      toast.error(error.message)
     },
   })
 

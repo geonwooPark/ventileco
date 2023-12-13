@@ -15,19 +15,12 @@ interface CommentInputProps {
   postingId: string
 }
 
-interface editCommentType {
-  session: Session | null
-  postingId: string
-  commentId: string
-  text: string
-}
-
-const editComment = async ({
-  session,
-  postingId,
-  commentId,
-  text,
-}: editCommentType) => {
+const editComment = async (
+  session: Session | null,
+  postingId: string,
+  commentId: string,
+  text: string,
+) => {
   if (!session) return
 
   await fetch('/api/comment', {
@@ -39,6 +32,12 @@ const editComment = async ({
       text,
     }),
   })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.error) {
+        throw new Error(result.error)
+      }
+    })
 }
 
 export default function CommentUpdateInput({
@@ -48,10 +47,8 @@ export default function CommentUpdateInput({
   const { data: session } = useSession()
 
   const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
-  const {
-    onChange: changeSelectedCommentIdForEdit,
-    onReset: resetSelectedCommentIdForEdit,
-  } = useSelectedCommentForEditActions()
+  const { onReset: resetSelectedCommentIdForEdit } =
+    useSelectedCommentForEditActions()
 
   const [text, setText] = useState(comment.text)
 
@@ -61,14 +58,9 @@ export default function CommentUpdateInput({
   }
 
   const queryClient = useQueryClient()
-  const { mutate } = useMutation({
+  const { mutate: editCommentMutation } = useMutation({
     mutationFn: () =>
-      editComment({
-        session,
-        postingId,
-        commentId: selectedCommentIdForEdit,
-        text,
-      }),
+      editComment(session, postingId, selectedCommentIdForEdit, text),
     onSuccess: () => {
       if (!session) return
       queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
@@ -77,8 +69,8 @@ export default function CommentUpdateInput({
       })
       resetSelectedCommentIdForEdit()
     },
-    onError: () => {
-      toast.error('댓글 수정에 실패했습니다!')
+    onError: (error) => {
+      toast.error(error.message)
     },
   })
 
@@ -98,7 +90,7 @@ export default function CommentUpdateInput({
         size="s"
         label="댓글 수정"
         className="w-24 font-normal"
-        onClick={() => mutate()}
+        onClick={() => editCommentMutation()}
         disabled={session ? false : true}
       />
     </div>
