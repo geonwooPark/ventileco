@@ -1,5 +1,5 @@
-import useAddListItemModal from '@/app/hooks/useAddListItemModal'
-import useCalendarModal from '@/app/hooks/useCalendarModal'
+import { useAddListItemModalActions } from '@/app/hooks/useAddListItemModalStore'
+import { useCalendarModalActions } from '@/app/hooks/useCalendarModalStore'
 import dayjs from '@/app/utils/dayjs'
 import { useSession } from 'next-auth/react'
 import React from 'react'
@@ -14,20 +14,20 @@ export default function CheckListController({
 }: CheckListControllerProps) {
   const { data: session } = useSession()
 
-  const calendarModal = useCalendarModal()
-  const addListItemModal = useAddListItemModal()
+  const { onOpen: openCalendarModal } = useCalendarModalActions()
+  const { onOpen: openAddListItemModal } = useAddListItemModalActions()
 
   const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const openModal = () => {
     if (session?.user.role !== 'admin' && date === today) return
-    addListItemModal.onOpen()
+    openAddListItemModal()
   }
 
   return (
     <div className="flex justify-between items-center mb-4">
-      <button onClick={calendarModal.onOpen}>
+      <button onClick={openCalendarModal}>
         <span>🗓</span>
         <span className="text-sm ml-2">{date}</span>
       </button>

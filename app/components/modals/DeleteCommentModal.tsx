@@ -1,25 +1,29 @@
 import React from 'react'
 import Modal from './Modal'
-import useDeleteCommentModal from '@/app/hooks/useDeleteCommentModal'
 import { UseMutateFunction } from '@tanstack/react-query'
+import {
+  useDeleteCommentModalActions,
+  useDeleteCommentModalIsOpen,
+} from '@/app/hooks/useDeleteCommentModalStore'
 
 export default function DeleteCommentModal({
   onDelete,
 }: {
   onDelete: UseMutateFunction<void, Error, void, unknown>
 }) {
-  const deleteCommentModal = useDeleteCommentModal()
+  const deleteCommentModalIsOpen = useDeleteCommentModalIsOpen()
+  const { onClose: closeDeleteCommentModal } = useDeleteCommentModalActions()
   const bodyContent = <p>댓글을 삭제하시겠습니까?</p>
 
   return (
     <Modal
       title="삭제"
       body={bodyContent}
-      isOpen={deleteCommentModal.isOpen}
-      onClose={deleteCommentModal.onClose}
+      isOpen={deleteCommentModalIsOpen}
+      onClose={closeDeleteCommentModal}
       onSubmit={onDelete}
       actionLabel="삭제"
-      secondaryAction={deleteCommentModal.onClose}
+      secondaryAction={closeDeleteCommentModal}
       secondaryActionLabel="취소"
     />
   )

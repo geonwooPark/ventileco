@@ -3,10 +3,13 @@ import dayjs from '@/app/utils/dayjs'
 import { CommentUserType } from '@/app/interfaces/interface'
 import CommentUpdateInput from './CommentUpdateInput'
 import { useSession } from 'next-auth/react'
-import useDeleteCommentModal from '@/app/hooks/useDeleteCommentModal'
-import useSelectedCommentForDeletion from '@/app/hooks/useSelectedCommentForDeletion'
-import useSelectedCommentForEdit from '@/app/hooks/useSelectedCommentForEdit'
 import Avatar from '../../common/Avatar'
+import { useDeleteCommentModalActions } from '@/app/hooks/useDeleteCommentModalStore'
+import { useSelectedCommentForDeletionActions } from '@/app/hooks/useSelectedCommentForDeletionStore'
+import {
+  useSelectedCommentForEditActions,
+  useSelectedCommentIdForEdit,
+} from '@/app/hooks/useSelectedCommentForEditStore'
 
 interface CommentItemProps {
   postingId: string
@@ -16,22 +19,25 @@ interface CommentItemProps {
 export default function CommentItem({ comment, postingId }: CommentItemProps) {
   const { data: session } = useSession()
 
-  const deleteCommentModal = useDeleteCommentModal()
-  const selectedCommentForDeletion = useSelectedCommentForDeletion()
-  const selectedCommentForEdit = useSelectedCommentForEdit()
+  const { onOpen: openDeleteCommentModal } = useDeleteCommentModalActions()
+  const { onChange: changeSelectedCommentIdForDeletion } =
+    useSelectedCommentForDeletionActions()
+  const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
+  const { onChange: changeSelectedCommentIdForEdit } =
+    useSelectedCommentForEditActions()
 
   const handleEditMode = () => {
     if (!session || comment.userId !== session.user.id) return
-    if (selectedCommentForEdit.commentId === comment.commentId) {
-      selectedCommentForEdit.onChange('')
+    if (selectedCommentIdForEdit === comment.commentId) {
+      changeSelectedCommentIdForEdit('')
     } else {
-      selectedCommentForEdit.onChange(comment.commentId)
+      changeSelectedCommentIdForEdit(comment.commentId)
     }
   }
 
   const handleModal = () => {
-    deleteCommentModal.onOpen()
-    selectedCommentForDeletion.onChange(comment.commentId)
+    openDeleteCommentModal()
+    changeSelectedCommentIdForDeletion(comment.commentId)
   }
 
   return (
@@ -45,7 +51,7 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
           {session && session.user.id === comment.userId && (
             <>
               <button onClick={handleEditMode}>
-                {selectedCommentForEdit.commentId === comment.commentId
+                {selectedCommentIdForEdit === comment.commentId
                   ? '취소'
                   : '수정'}
               </button>
@@ -55,7 +61,7 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
           <p>{dayjs(comment.createdAt).tz().format('YYYY-MM-DD HH:mm')}</p>
         </small>
       </div>
-      {selectedCommentForEdit.commentId === comment.commentId ? (
+      {selectedCommentIdForEdit === comment.commentId ? (
         <CommentUpdateInput comment={comment} postingId={postingId} />
       ) : (
         <p>{comment.text}</p>

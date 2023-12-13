@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
 import Input from '../common/Input'
-import useAddListItemModal from '@/app/hooks/useAddListItemModal'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { Session } from 'next-auth'
 import dayjs from '@/app/utils/dayjs'
+import {
+  useAddListItemModalActions,
+  useAddListItemModalIsOpen,
+} from '@/app/hooks/useAddListItemModalStore'
 
 const addListItem = async (
   session: Session | null,
@@ -22,7 +25,8 @@ const addListItem = async (
 
 export default function AddListItemModal() {
   const { data: session } = useSession()
-  const addListItemModal = useAddListItemModal()
+  const addListItemModalIsOpen = useAddListItemModalIsOpen()
+  const { onClose: closeAddListItemModal } = useAddListItemModalActions()
 
   const [value, setValue] = useState('')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
@@ -36,7 +40,7 @@ export default function AddListItemModal() {
     mutationFn: () => addListItem(session, value, today),
     onSuccess: () => {
       setValue('')
-      addListItemModal.onClose()
+      closeAddListItemModal()
       queryClient.invalidateQueries({ queryKey: ['checklist'] })
     },
   })
@@ -56,8 +60,8 @@ export default function AddListItemModal() {
     <Modal
       title="리스트 추가"
       body={bodyContent}
-      isOpen={addListItemModal.isOpen}
-      onClose={addListItemModal.onClose}
+      isOpen={addListItemModalIsOpen}
+      onClose={closeAddListItemModal}
       onSubmit={mutate}
       actionLabel="등록"
     />

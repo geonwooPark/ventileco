@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
 import 'react-calendar/dist/Calendar.css'
-import useCalendarModal from '@/app/hooks/useCalendarModal'
 import Calendar from 'react-calendar'
 import dayjs from '@/app/utils/dayjs'
+import {
+  useCalendarModalActions,
+  useCalendarModalIsOpen,
+} from '@/app/hooks/useCalendarModalStore'
 
 interface CalendarModalProps {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>
@@ -12,7 +15,8 @@ interface CalendarModalProps {
 export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
   const [value, setValue] = useState(new Date())
 
-  const calendarModal = useCalendarModal()
+  const calendarModalIsOpen = useCalendarModalIsOpen()
+  const { onClose: closeCalendarModal } = useCalendarModalActions()
 
   const changeDate = (e: any) => {
     setValue(e)
@@ -20,7 +24,7 @@ export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
 
   const onSubmit = () => {
     setSelectedDate(value)
-    calendarModal.onClose()
+    closeCalendarModal()
   }
 
   const bodyContent = (
@@ -37,8 +41,8 @@ export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
     <Modal
       title="날짜"
       body={bodyContent}
-      isOpen={calendarModal.isOpen}
-      onClose={calendarModal.onClose}
+      isOpen={calendarModalIsOpen}
+      onClose={closeCalendarModal}
       onSubmit={onSubmit}
       actionLabel="조회"
     />

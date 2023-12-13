@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Avatar from '../../../common/Avatar'
 import MenuItem from './MenuItem'
-import useLoginModal from '@/app/hooks/useLoginModal'
-import useSignUpModal from '@/app/hooks/useSignUpModal'
+import { useLoginModalActions } from '@/app/hooks/useLoginModalStore'
+import { useSignUpModalActions } from '@/app/hooks/useSignUpModalStore'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
@@ -15,8 +15,10 @@ export default function Menu({ session }: MenuProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [fade, setFade] = useState(false)
-  const loginModal = useLoginModal()
-  const signUpModal = useSignUpModal()
+  const { onOpen: openLoginModal, onClose: closeLoginModal } =
+    useLoginModalActions()
+  const { onOpen: openSignUpModal, onClose: closeSignUpModal } =
+    useSignUpModalActions()
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev)
@@ -69,15 +71,15 @@ export default function Menu({ session }: MenuProps) {
                 <>
                   <MenuItem
                     onClick={() => {
-                      signUpModal.onClose()
-                      loginModal.onOpen()
+                      closeSignUpModal()
+                      openLoginModal()
                     }}
                     label="로그인"
                   />
                   <MenuItem
                     onClick={() => {
-                      loginModal.onClose()
-                      signUpModal.onOpen()
+                      openSignUpModal()
+                      closeLoginModal()
                     }}
                     label="회원가입"
                   />

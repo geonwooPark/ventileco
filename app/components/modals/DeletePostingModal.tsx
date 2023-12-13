@@ -1,24 +1,28 @@
 import React from 'react'
 import Modal from './Modal'
-import useDeletePostingModal from '@/app/hooks/useDeletePostingModal'
+import {
+  useDeletePostingModalActions,
+  useDeletePostingModalIsOpen,
+} from '@/app/hooks/useDeletePostingModalStore'
 
 export default function DeletePostingModal({
   onSubmit,
 }: {
   onSubmit: () => Promise<void>
 }) {
-  const deletePostingModal = useDeletePostingModal()
+  const deletePostingModalIsOpen = useDeletePostingModalIsOpen()
+  const { onClose: closeDeletePostingModal } = useDeletePostingModalActions()
   const bodyContent = <p>글을 삭제하시겠습니까?</p>
 
   return (
     <Modal
       title="삭제"
       body={bodyContent}
-      isOpen={deletePostingModal.isOpen}
-      onClose={deletePostingModal.onClose}
+      isOpen={deletePostingModalIsOpen}
+      onClose={closeDeletePostingModal}
       onSubmit={onSubmit}
       actionLabel="삭제"
-      secondaryAction={deletePostingModal.onClose}
+      secondaryAction={closeDeletePostingModal}
       secondaryActionLabel="취소"
     />
   )

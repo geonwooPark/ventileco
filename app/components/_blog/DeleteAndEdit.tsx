@@ -4,19 +4,20 @@ import React from 'react'
 import Button from '../common/Button'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
-import useDeletePostingModal from '../../hooks/useDeletePostingModal'
 import DeletePostingModal from '../modals/DeletePostingModal'
 import { useSession } from 'next-auth/react'
 import ModalContainer from '../modals/ModalContainer'
+import { useDeletePostingModalActions } from '@/app/hooks/useDeletePostingModalStore'
 
 interface DeleteAndEditProps {
   postingId: string
 }
 
 export default function DeleteAndEdit({ postingId }: DeleteAndEditProps) {
-  const { data: session } = useSession()
   const router = useRouter()
-  const deletePostingModal = useDeletePostingModal()
+  const { data: session } = useSession()
+  const { onClose: closeDeletePostingModal, onOpen: openDeletePostingModal } =
+    useDeletePostingModalActions()
 
   const onSubmit = async () => {
     try {
@@ -31,7 +32,7 @@ export default function DeleteAndEdit({ postingId }: DeleteAndEditProps) {
           return res.json()
         })
         .then((result) => {
-          deletePostingModal.onClose()
+          closeDeletePostingModal()
           router.push('/blog')
           toast.success(result.message)
         })
@@ -65,7 +66,7 @@ export default function DeleteAndEdit({ postingId }: DeleteAndEditProps) {
               label="삭제"
               fullWidth={true}
               className="text-red-400 border-red-400"
-              onClick={deletePostingModal.onOpen}
+              onClick={openDeletePostingModal}
             />
           </div>
         </div>

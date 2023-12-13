@@ -4,8 +4,11 @@ import { useSession } from 'next-auth/react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { Session } from 'next-auth'
-import useSelectedCommentForEdit from '@/app/hooks/useSelectedCommentForEdit'
 import Button from '../../common/Button'
+import {
+  useSelectedCommentForEditActions,
+  useSelectedCommentIdForEdit,
+} from '@/app/hooks/useSelectedCommentForEditStore'
 
 interface CommentInputProps {
   comment: CommentUserType
@@ -44,7 +47,9 @@ export default function CommentUpdateInput({
 }: CommentInputProps) {
   const { data: session } = useSession()
 
-  const selectedCommentForEdit = useSelectedCommentForEdit()
+  const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
+  const { onChange: changeSelectedCommentIdForEdit } =
+    useSelectedCommentForEditActions()
 
   const [text, setText] = useState(comment.text)
 
@@ -59,7 +64,7 @@ export default function CommentUpdateInput({
       editComment({
         session,
         postingId,
-        commentId: selectedCommentForEdit.commentId,
+        commentId: selectedCommentIdForEdit,
         text,
       }),
     onSuccess: () => {
@@ -68,7 +73,7 @@ export default function CommentUpdateInput({
       queryClient.invalidateQueries({
         queryKey: ['my-comment', { user: session.user.id }],
       })
-      selectedCommentForEdit.onChange('')
+      changeSelectedCommentIdForEdit('')
     },
     onError: () => {
       toast.error('댓글 수정에 실패했습니다!')

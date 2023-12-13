@@ -7,12 +7,12 @@ import { Session } from 'next-auth'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
-import useDeleteCommentModal from '@/app/hooks/useDeleteCommentModal'
 import getData from '@/app/actions/getData'
-import useSelectedCommentForDeletion from '@/app/hooks/useSelectedCommentForDeletion'
 import SkeletonCommentList from './SkeletonCommentList'
 import DeleteCommentModal from '../../modals/DeleteCommentModal'
 import ModalContainer from '../../modals/ModalContainer'
+import { useDeleteCommentModalActions } from '@/app/hooks/useDeleteCommentModalStore'
+import { useSelectedCommentIdForDeletion } from '@/app/hooks/useSelectedCommentForDeletionStore'
 
 interface CommentListProps {
   postingId: string
@@ -43,8 +43,8 @@ const deleteComment = async ({
 export default function CommentList({ postingId }: CommentListProps) {
   const { data: session } = useSession()
 
-  const deleteCommentModal = useDeleteCommentModal()
-  const selectedCommentForDeletion = useSelectedCommentForDeletion()
+  const selectedCommentIdForDeletion = useSelectedCommentIdForDeletion()
+  const { onClose: closeDeleteCommentModal } = useDeleteCommentModalActions()
 
   const queryClient = useQueryClient()
   const {
@@ -66,7 +66,7 @@ export default function CommentList({ postingId }: CommentListProps) {
       deleteComment({
         session,
         postingId,
-        commentId: selectedCommentForDeletion.commentId,
+        commentId: selectedCommentIdForDeletion,
       }),
     onSuccess: () => {
       if (!session) return
@@ -77,7 +77,7 @@ export default function CommentList({ postingId }: CommentListProps) {
       queryClient.invalidateQueries({
         queryKey: ['my-commented-post', { user: session.user.id }],
       })
-      deleteCommentModal.onClose()
+      closeDeleteCommentModal()
     },
     onError: () => {
       toast.error('댓글 삭제에 실패했습니다!')

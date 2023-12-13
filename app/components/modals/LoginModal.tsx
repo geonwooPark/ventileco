@@ -2,17 +2,22 @@
 
 import React, { useEffect, useState } from 'react'
 import Modal from './Modal'
-import useLoginModal from '@/app/hooks/useLoginModal'
 import Input from '../common/Input'
 import { FcGoogle } from 'react-icons/fc'
 import Button from '../common/Button'
 import { toast } from 'react-toastify'
-import useSignUpModal from '@/app/hooks/useSignUpModal'
+import { useSignUpModalActions } from '@/app/hooks/useSignUpModalStore'
 import { signIn } from 'next-auth/react'
+import {
+  useLoginModalActions,
+  useLoginModalIsOpen,
+} from '@/app/hooks/useLoginModalStore'
 
 export default function LoginModal() {
-  const loginModal = useLoginModal()
-  const signUpModal = useSignUpModal()
+  const loginModalIsOpen = useLoginModalIsOpen()
+  const { onClose: closeLoginModal } = useLoginModalActions()
+  const { onOpen: openSignUpModal } = useSignUpModalActions()
+
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -61,7 +66,7 @@ export default function LoginModal() {
       }).then((callback) => {
         if (callback?.ok) {
           toast.success('로그인에 성공했습니다')
-          loginModal.onClose()
+          closeLoginModal()
         }
         if (callback?.error) {
           if (callback.error === '존재하지 않는 회원입니다.') {
@@ -87,7 +92,7 @@ export default function LoginModal() {
     try {
       await signIn('google').then(() => {
         toast.success('로그인에 성공했습니다')
-        loginModal.onClose()
+        closeLoginModal()
       })
     } catch (error) {
       if (error instanceof Error) {
@@ -140,8 +145,8 @@ export default function LoginModal() {
         계정이 없으신가요?{' '}
         <span
           onClick={() => {
-            loginModal.onClose()
-            signUpModal.onOpen()
+            closeLoginModal()
+            openSignUpModal()
           }}
           className="font-normal text-gray-800 cursor-pointer"
         >
@@ -163,8 +168,8 @@ export default function LoginModal() {
       title="로그인"
       body={bodyContent}
       footer={footerContent}
-      isOpen={loginModal.isOpen}
-      onClose={loginModal.onClose}
+      isOpen={loginModalIsOpen}
+      onClose={closeLoginModal}
       onSubmit={onSubmit}
       actionLabel="계속"
       isLoading={isLoading}

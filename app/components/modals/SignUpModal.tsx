@@ -4,12 +4,16 @@ import React, { useEffect, useState } from 'react'
 import Modal from './Modal'
 import Input from '../common/Input'
 import { toast } from 'react-toastify'
-import useSignUpModal from '@/app/hooks/useSignUpModal'
-import useLoginModal from '@/app/hooks/useLoginModal'
+import {
+  useSignUpModalActions,
+  useSignUpModalIsOpen,
+} from '@/app/hooks/useSignUpModalStore'
+import { useLoginModalActions } from '@/app/hooks/useLoginModalStore'
 
 export default function SignUpModal() {
-  const signUpModal = useSignUpModal()
-  const loginModal = useLoginModal()
+  const signUpModalIsOpen = useSignUpModalIsOpen()
+  const { onClose: closeSignUpModal } = useSignUpModalActions()
+  const { onOpen: openLoginModal } = useLoginModalActions()
   const [values, setValues] = useState({
     email: '',
     name: '',
@@ -69,7 +73,7 @@ export default function SignUpModal() {
         .then((res) => res.json())
         .then((result) => {
           if (!result.error) {
-            signUpModal.onClose()
+            closeSignUpModal()
             toast.success(result.message)
             setValues({
               email: '',
@@ -148,8 +152,8 @@ export default function SignUpModal() {
         이미 계정이 있으신가요?{' '}
         <span
           onClick={() => {
-            signUpModal.onClose()
-            loginModal.onOpen()
+            closeSignUpModal()
+            openLoginModal()
           }}
           className="font-normal text-gray-800 cursor-pointer"
         >
@@ -164,8 +168,8 @@ export default function SignUpModal() {
       title="회원가입"
       body={bodyContent}
       footer={footerContent}
-      isOpen={signUpModal.isOpen}
-      onClose={signUpModal.onClose}
+      isOpen={signUpModalIsOpen}
+      onClose={closeSignUpModal}
       onSubmit={onSubmit}
       actionLabel="계속"
       isLoading={isLoading}
