@@ -7,6 +7,7 @@ interface State {
 interface Actions {
   actions: {
     onChange: (id: string) => void
+    onReset: () => void
   }
 }
 
@@ -14,6 +15,7 @@ const useSelectedCommentForEditStore = create<State & Actions>()((set) => ({
   commentId: '',
   actions: {
     onChange: (id) => set({ commentId: id }),
+    onReset: () => set({ commentId: '' }),
   },
 }))
 

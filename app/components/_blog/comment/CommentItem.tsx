@@ -23,13 +23,15 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
   const { onChange: changeSelectedCommentIdForDeletion } =
     useSelectedCommentForDeletionActions()
   const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
-  const { onChange: changeSelectedCommentIdForEdit } =
-    useSelectedCommentForEditActions()
+  const {
+    onChange: changeSelectedCommentIdForEdit,
+    onReset: resetSelectedCommentIdForEdit,
+  } = useSelectedCommentForEditActions()
 
   const handleEditMode = () => {
     if (!session || comment.userId !== session.user.id) return
     if (selectedCommentIdForEdit === comment.commentId) {
-      changeSelectedCommentIdForEdit('')
+      resetSelectedCommentIdForEdit()
     } else {
       changeSelectedCommentIdForEdit(comment.commentId)
     }

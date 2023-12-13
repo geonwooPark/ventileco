@@ -48,8 +48,10 @@ export default function CommentUpdateInput({
   const { data: session } = useSession()
 
   const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
-  const { onChange: changeSelectedCommentIdForEdit } =
-    useSelectedCommentForEditActions()
+  const {
+    onChange: changeSelectedCommentIdForEdit,
+    onReset: resetSelectedCommentIdForEdit,
+  } = useSelectedCommentForEditActions()
 
   const [text, setText] = useState(comment.text)
 
@@ -73,7 +75,7 @@ export default function CommentUpdateInput({
       queryClient.invalidateQueries({
         queryKey: ['my-comment', { user: session.user.id }],
       })
-      changeSelectedCommentIdForEdit('')
+      resetSelectedCommentIdForEdit()
     },
     onError: () => {
       toast.error('댓글 수정에 실패했습니다!')
