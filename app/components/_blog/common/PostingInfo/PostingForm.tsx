@@ -32,7 +32,7 @@ export default function PostingForm({
     <div>
       <RefWrapper
         ref={categoryRef}
-        className="flex justify-end mt-10 mb-4 md:mt-0"
+        className="mb-4 mt-10 flex justify-end md:mt-0"
       >
         <DropDownMenu
           categories={categories}
@@ -51,7 +51,7 @@ export default function PostingForm({
           value={title}
           placeholder="제목을 입력하세요"
           onChange={onTextChange}
-          className={`w-full !text-2xl md:!text-4xl text-right font-bold !bg-transparent mb-3 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
+          className={`mb-3 w-full border-none !bg-transparent !p-0 text-right !text-2xl font-bold outline-none placeholder:text-gray-300 focus:outline-none md:!text-4xl`}
         />
       </RefWrapper>
       <RefWrapper
@@ -64,7 +64,7 @@ export default function PostingForm({
           value={description}
           placeholder="설명을 추가해보세요"
           onChange={onTextChange}
-          className={`w-full !text-sm md:!text-base text-right !bg-transparent mb-6 !p-0 border-none outline-none focus:outline-none placeholder:text-gray-300`}
+          className={`mb-6 w-full border-none !bg-transparent !p-0 text-right !text-sm outline-none placeholder:text-gray-300 focus:outline-none md:!text-base`}
         />
       </RefWrapper>
     </div>

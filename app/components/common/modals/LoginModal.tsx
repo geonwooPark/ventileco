@@ -111,7 +111,7 @@ export default function LoginModal() {
         value={email}
         placeholder="이메일"
         onChange={onChange}
-        className={`w-full mb-2 ${
+        className={`mb-2 w-full ${
           focus.email ? 'border-red-400' : 'border-gray-300'
         }`}
       />
@@ -121,7 +121,7 @@ export default function LoginModal() {
         value={password}
         placeholder="비밀번호"
         onChange={onChange}
-        className={`w-full mb-2 ${
+        className={`mb-2 w-full ${
           focus.password ? 'border-red-400' : 'border-gray-300'
         }`}
       />
@@ -141,14 +141,14 @@ export default function LoginModal() {
         disabled={isLoading2}
         onClick={onGoogleClick}
       />
-      <p className="mt-4 text-xs font-light text-center text-gray-500">
+      <p className="mt-4 text-center text-xs font-light text-gray-500">
         계정이 없으신가요?{' '}
         <span
           onClick={() => {
             closeLoginModal()
             openSignUpModal()
           }}
-          className="font-normal text-gray-800 cursor-pointer"
+          className="cursor-pointer font-normal text-gray-800"
         >
           회원가입
         </span>

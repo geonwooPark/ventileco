@@ -22,8 +22,8 @@ export default function NextPageButton({
         pathname: category
           ? `/blog/${path}/${category}/${page + 1}`
           : search
-          ? `/blog/${path}`
-          : `/blog/${path}/${page + 1}`,
+            ? `/blog/${path}`
+            : `/blog/${path}/${page + 1}`,
         query: search && { ...(search ? { search } : {}), page: page + 1 },
       }}
       aria-label="앞으로 가기"
@@ -31,7 +31,7 @@ export default function NextPageButton({
       <button
         type="button"
         disabled={page === lastPageNum ? true : false}
-        className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
+        className={`flex h-8 w-8 items-center justify-center disabled:text-gray-300`}
         aria-label="앞으로 가기"
       >
         <AiOutlineRight />

@@ -5,5 +5,5 @@ export default function ModalContainer({
 }: {
   children: React.ReactNode
 }) {
-  return <div className="absolute top-0 left-0 text-black">{children}</div>
+  return <div className="absolute left-0 top-0 text-black">{children}</div>
 }

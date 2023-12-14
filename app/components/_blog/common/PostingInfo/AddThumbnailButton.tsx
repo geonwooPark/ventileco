@@ -11,7 +11,7 @@ export default function AddThumbnailButton({
     <div>
       <label
         htmlFor="photo"
-        className="flex items-center justify-center w-40 px-4 ml-auto text-xs text-white transition duration-200 ease-in-out bg-gray-700 rounded cursor-pointer h-11 md:h-12 md:text-sm hover:opacity-80"
+        className="ml-auto flex h-11 w-40 cursor-pointer items-center justify-center rounded bg-gray-700 px-4 text-xs text-white transition duration-200 ease-in-out hover:opacity-80 md:h-12 md:text-sm"
       >
         썸네일 추가하기
       </label>

@@ -8,7 +8,7 @@ interface SearchIconProps {
 
 export default function SearchIcon({ isOpen, toggleOpen }: SearchIconProps) {
   return (
-    <div onClick={toggleOpen} className="z-50 text-white cursor-pointer">
+    <div onClick={toggleOpen} className="z-50 cursor-pointer text-white">
       {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineSearch size={24} />}
     </div>
   )

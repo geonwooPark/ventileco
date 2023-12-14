@@ -49,8 +49,8 @@ export default function Menu({ session }: MenuProps) {
         }`}
       >
         {fade && (
-          <div className="absolute rounded-sm shadow-md w-[40vw] md:w-[140px] bg-white overflow-hidden top-12 right-0 md:-right-10 text-sm">
-            <div className="flex flex-col curser-pointer">
+          <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-sm bg-white text-sm shadow-md md:-right-10 md:w-[140px]">
+            <div className="curser-pointer flex flex-col">
               {session ? (
                 <>
                   <MenuItem

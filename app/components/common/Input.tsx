@@ -38,7 +38,7 @@ export default function Input({
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChange}
-        className={`px-4 py-3 text-sm bg-white border border-gray-300 rounded outline-none focus:border-black
+        className={`rounded border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-black
         ${className}
         `}
       />
@@ -46,7 +46,7 @@ export default function Input({
         <button
           type={iconType}
           onClick={iconAction}
-          className="absolute cursor-pointer right-3 top-3"
+          className="absolute right-3 top-3 cursor-pointer"
         >
           <Icon size={20} />
         </button>

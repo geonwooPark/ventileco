@@ -3,7 +3,6 @@
 import getData from '@/app/actions/getData'
 import weatherDescEngToKor from '@/app/utils/weatherDescEngToKor'
 import { useQuery } from '@tanstack/react-query'
-import Image from 'next/image'
 import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
@@ -36,16 +35,16 @@ export default function WeatherInfo() {
         <WeatherIcon main={weatherData?.weather[0].main} />
       </div>
 
-      <div className="flex-1 text-center mb-3">
+      <div className="mb-3 flex-1 text-center">
         <p className="text-sm">서울특별시</p>
-        <p className="relative text-5xl font-bold mb-1 after:content-['°'] after:absolute after:top-0 after:text-3xl">
+        <p className="relative mb-1 text-5xl font-bold after:absolute after:top-0 after:text-3xl after:content-['°']">
           {parseInt(weatherData?.main.temp)}
         </p>
         <div className="text-sm text-gray-400">
-          <span className="mr-2 relative after:content-['°'] after:absolute after:top-0 after:text-sm">
+          <span className="relative mr-2 after:absolute after:top-0 after:text-sm after:content-['°']">
             최고 {parseInt(weatherData?.main.temp_max)}
           </span>
-          <span className="relative after:content-['°'] after:absolute after:top-0 after:text-sm">
+          <span className="relative after:absolute after:top-0 after:text-sm after:content-['°']">
             최저 {parseInt(weatherData?.main.temp_min)}
           </span>
         </div>

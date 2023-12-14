@@ -26,10 +26,10 @@ export default function CheckListController({
   }
 
   return (
-    <div className="flex justify-between items-center mb-4">
+    <div className="mb-4 flex items-center justify-between">
       <button onClick={openCalendarModal}>
         <span>🗓</span>
-        <span className="text-sm ml-2">{date}</span>
+        <span className="ml-2 text-sm">{date}</span>
       </button>
       {session?.user.role === 'admin' && date === today && (
         <button onClick={openModal}>

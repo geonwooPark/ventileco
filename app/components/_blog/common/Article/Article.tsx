@@ -15,7 +15,7 @@ type ArticleProps = {
 
 export default function Article({ title, ...props }: ArticleProps) {
   return (
-    <article className="w-full flex flex-col md:w-[calc(100%-120px)]">
+    <article className="flex w-full flex-col md:w-[calc(100%-120px)]">
       <h2 className="mb-4 md:text-lg">{title}</h2>
       <Listing {...props} />
     </article>

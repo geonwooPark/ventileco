@@ -65,7 +65,7 @@ export default function CommentInput({ postingId }: CommentInputProps) {
   })
 
   return (
-    <div className="flex gap-2 mb-4">
+    <div className="mb-4 flex gap-2">
       <textarea
         cols={30}
         rows={3}
@@ -74,7 +74,7 @@ export default function CommentInput({ postingId }: CommentInputProps) {
         }
         value={text}
         disabled={session ? false : true}
-        className="w-full px-3 py-2 text-sm border rounded outline-none resize-none disabled:cursor-not-allowed"
+        className="w-full resize-none rounded border px-3 py-2 text-sm outline-none disabled:cursor-not-allowed"
         onChange={onChange}
       />
       <Button

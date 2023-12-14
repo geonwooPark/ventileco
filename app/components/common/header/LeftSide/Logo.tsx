@@ -11,7 +11,7 @@ export default function Logo({ className }: LogoProps) {
 
   return (
     <div
-      className={`w-[50px] h-[50px] md:w-[70px] md:h-[70px] cursor-pointer z-50 relative ${className}`}
+      className={`relative z-50 h-[50px] w-[50px] cursor-pointer md:h-[70px] md:w-[70px] ${className}`}
     >
       <Image
         src={logo}

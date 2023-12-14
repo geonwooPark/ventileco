@@ -8,7 +8,7 @@ interface FooterProps {
 export default function Footer({ className }: FooterProps) {
   return (
     <footer className={className}>
-      <div className="flex items-center justify-between py-4 my-container">
+      <div className="my-container flex items-center justify-between py-4">
         <span className="text-sm text-gray-400 sm:text-center">
           © 2023 Ventilco All Rights Reserved
         </span>
@@ -18,7 +18,7 @@ export default function Footer({ className }: FooterProps) {
           className="text-gray-400 hover:text-gray-200"
         >
           <svg
-            className="w-6 h-6"
+            className="h-6 w-6"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

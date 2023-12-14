@@ -5,18 +5,18 @@ export default function SkeletonListing() {
     <ul className="animate-pulse">
       {Array.from({ length: 3 }).map((_, i) => {
         return (
-          <li key={i} className="mb-6 group md:mb-12">
+          <li key={i} className="group mb-6 md:mb-12">
             <div className="flex flex-col md:flex-row">
-              <div className="relative w-full md:w-[270px] h-[280px] md:h-[180px] rounded-lg overflow-hidden">
-                <div className="flex items-center justify-center w-full h-full text-sm text-gray-100 bg-gray-300"></div>
+              <div className="relative h-[280px] w-full overflow-hidden rounded-lg md:h-[180px] md:w-[270px]">
+                <div className="flex h-full w-full items-center justify-center bg-gray-300 text-sm text-gray-100"></div>
               </div>
-              <div className="md:w-[calc(100%-270px)] flex flex-col justify-between md:px-6 md:py-2">
-                <div className="mt-3 mb-4 md:mt-0">
-                  <div className="bg-gray-300 w-[60px] h-4 rounded-sm mb-1.5 md:mb-4"></div>
-                  <div className="bg-gray-300 w-[70%] h-4 rounded-sm  mb-1.5"></div>
-                  <div className="bg-gray-300 w-[60%] h-4 rounded-sm"></div>
+              <div className="flex flex-col justify-between md:w-[calc(100%-270px)] md:px-6 md:py-2">
+                <div className="mb-4 mt-3 md:mt-0">
+                  <div className="mb-1.5 h-4 w-[60px] rounded-sm bg-gray-300 md:mb-4"></div>
+                  <div className="mb-1.5 h-4 w-[70%] rounded-sm  bg-gray-300"></div>
+                  <div className="h-4 w-[60%] rounded-sm bg-gray-300"></div>
                 </div>
-                <div className="bg-gray-300 w-[40px] h-4 rounded-sm"></div>
+                <div className="h-4 w-[40px] rounded-sm bg-gray-300"></div>
               </div>
             </div>
           </li>

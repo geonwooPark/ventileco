@@ -20,10 +20,10 @@ export default function PrevPageButton({ ...props }: PrevPageButtonProps) {
             ? `/blog/${path}/${category}`
             : `/blog/${path}/${category}/${page - 1}`
           : search
-          ? `${path}`
-          : page === 2
-          ? '/blog'
-          : `/blog/${path}/${page - 1}`,
+            ? `${path}`
+            : page === 2
+              ? '/blog'
+              : `/blog/${path}/${page - 1}`,
         query: search && { ...(search ? { search } : {}), page: page - 1 },
       }}
       aria-label="뒤로 가기"
@@ -31,7 +31,7 @@ export default function PrevPageButton({ ...props }: PrevPageButtonProps) {
       <button
         type="button"
         disabled={page === 1 ? true : false}
-        className={`flex justify-center items-center w-8 h-8 disabled:text-gray-300`}
+        className={`flex h-8 w-8 items-center justify-center disabled:text-gray-300`}
         aria-label="뒤로 가기"
       >
         <AiOutlineLeft />

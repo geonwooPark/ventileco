@@ -42,12 +42,12 @@ export default function Modal({
 
   return (
     <div
-      className="w-full h-full fixed flex justify-center items-center bg-black/30 z-[200]"
+      className="fixed z-[200] flex h-full w-full items-center justify-center bg-black/30"
       onClick={handleClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`bg-white w-full h-full md:w-[300px] md:h-[auto] mx-auto rounded-sm transition duration-300
+        className={`mx-auto h-full w-full rounded-sm bg-white transition duration-300 md:h-[auto] md:w-[300px]
       ${showModal ? 'translate-y-0' : 'translate-y-full'}
       ${showModal ? 'opacity-100' : 'opacity-0'}
       `}

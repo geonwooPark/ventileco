@@ -6,14 +6,14 @@ export default function SkeletonCommentList() {
       {Array.from({ length: 3 }).map((_, i) => {
         return (
           <li key={i} className="mb-4 text-sm">
-            <div className="flex justify-between mb-2">
+            <div className="mb-2 flex justify-between">
               <div className="flex items-center">
-                <div className="w-[30px] h-[30px] bg-gray-300 rounded-full"></div>
-                <div className="w-[100px] h-5 bg-gray-300 rounded-lg ml-2"></div>
+                <div className="h-[30px] w-[30px] rounded-full bg-gray-300"></div>
+                <div className="ml-2 h-5 w-[100px] rounded-lg bg-gray-300"></div>
               </div>
-              <div className="w-[50px] h-5 bg-gray-300 rounded-lg"></div>
+              <div className="h-5 w-[50px] rounded-lg bg-gray-300"></div>
             </div>
-            <div className="w-[70%] h-5 bg-gray-300 rounded-lg"></div>
+            <div className="h-5 w-[70%] rounded-lg bg-gray-300"></div>
           </li>
         )
       })}

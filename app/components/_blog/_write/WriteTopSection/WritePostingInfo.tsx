@@ -63,7 +63,7 @@ export default function WritePostingInfo({ ...props }: WritePostingInfoProps) {
   }
 
   return (
-    <div className="flex flex-col items-end justify-center h-full my-container">
+    <div className="my-container flex h-full flex-col items-end justify-center">
       <div className="absolute w-full">
         <PostingForm
           posting={posting}

@@ -25,7 +25,7 @@ export default function DropDownItem({
 
   return (
     <li
-      className="px-4 py-2 text-xs bg-gray-600 border-b border-gray-500 cursor-pointer"
+      className="cursor-pointer border-b border-gray-500 bg-gray-600 px-4 py-2 text-xs"
       onClick={onClick}
     >
       {category}
