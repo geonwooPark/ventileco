@@ -27,6 +27,10 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
 
 <img width="600" alt="스크린샷 2023-12-07 오후 12 32 23" src="https://github.com/geonwooPark/myblog/assets/136573728/b9f433ed-c058-463e-88d8-161dff0466b7">
 
+#### - 페이지네이션 구현
+
+<img width="600" alt="스크린샷 2023-12-14 오후 1 31 32" src="https://github.com/geonwooPark/myblog/assets/136573728/7615462a-e3e3-4463-9a46-567e5d8ae952">
+
 ---
 
 ## 💪🏻 주요 기능
@@ -79,18 +83,84 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
 
 ## 🖥 화면 구성
 
-|                                                                            메인 페이지                                                                             |                                                                         로그인 및 회원가입                                                                         |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img width="400" alt="스크린샷 2023-11-11 오후 8 43 57" src="https://github.com/geonwooPark/myblog/assets/136573728/2ae1d0b2-486b-4a3b-9820-61c1fc41b2cc"> | <img width="400" alt="스크린샷 2023-11-11 오후 8 44 24" src="https://github.com/geonwooPark/myblog/assets/136573728/46e37087-cabf-4ff9-b4d1-68b6560e485e"> |
-|                                                                            상세 페이지                                                                             |                                                                            작성 페이지                                                                             |
-| <img width="400" alt="스크린샷 2023-11-11 오후 4 38 32" src="https://github.com/geonwooPark/myblog/assets/136573728/d556ae42-6b1c-440e-a3f6-c358f228ed8f"> | <img width="400" alt="스크린샷 2023-11-11 오후 4 38 20" src="https://github.com/geonwooPark/myblog/assets/136573728/775235c4-a0ae-4f1e-93a8-3f9def62b126"> |
-|                                                                            검색 페이지                                                                             |                                                                            마이 페이지                                                                             |
-| <img width="400" alt="스크린샷 2023-11-11 오후 4 39 48" src="https://github.com/geonwooPark/myblog/assets/136573728/bd5c1c06-d070-4c90-9348-7b482ab33534"> | <img width="400" alt="스크린샷 2023-11-11 오후 8 44 15" src="https://github.com/geonwooPark/myblog/assets/136573728/23383793-bcf6-49a8-a73d-5a0c781d9ce0"> |
+|                                                                    홈 페이지                                                                     |                                                                    로그인 및 회원가입                                                                    |
+| :----------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|          <img width="400" alt="홈" src="https://github.com/geonwooPark/myblog/assets/136573728/f97c433a-f441-4fc2-a8b5-8fab7a9ef93d">          | <img width="400" alt="로그인 및 회원가입" src="https://github.com/geonwooPark/myblog/assets/136573728/9f990c6b-d98d-4fcf-aa1d-f001c9db8820"> |
+|                                                                      블로그                                                                      |                                                                       상세 페이지                                                                        |
+|         <img width="400" alt="블로그" src="https://github.com/geonwooPark/myblog/assets/136573728/e70479a9-b8ec-485e-aa2a-cd2ba25b8409">         |      <img width="400" alt="디테일페이지" src="https://github.com/geonwooPark/myblog/assets/136573728/77fbbbdd-bf1b-454e-9fa8-003d84d12242">       |
+|                                                                작성 페이지 페이지                                                                |                                                                       마이 페이지                                                                        |
+| <img width="400" alt="글 작성페이지" src="https://github.com/geonwooPark/myblog/assets/136573728/19ae9ff1-f9ee-42d6-a218-a1eac5117ee9"> |        <img width="400" alt="마이페이지" src="https://github.com/geonwooPark/myblog/assets/136573728/cd804ca1-e263-4e37-aee9-100d1d47db45">         |
 
 ---
 
 ## 🗂 폴더 구조
 
 ```
-
+📦app
+ ┣ 📂about ------------ *소개 페이지
+ ┣ 📂actions ---------- 자주 사용되는 함수를 모아 놓은 폴더
+ ┣ 📂api -------------- API 폴더
+ ┣ 📂blog ------------- *블로그 페이지
+ ┃ ┣ 📂categories ------------- *블로그 카테고리 페이지
+ ┃ ┃ ┗ 📂[category]
+ ┃ ┃ ┃ ┗ 📂[page]
+ ┃ ┣ 📂detail ----------------- *블로그 상세 페이지
+ ┃ ┃ ┗ 📂[id]
+ ┃ ┣ 📂edit ------------------- *블로그 글 수정 페이지
+ ┃ ┃ ┗ 📂[id]
+ ┃ ┣ 📂postings --------------- *블로그 포스팅 페이지
+ ┃ ┃ ┗ 📂[page]
+ ┃ ┣ 📂search ----------------- *블로그 검색 페이지
+ ┃ ┣ 📂write ------------------ *블로그 글 작성 페이지
+ ┣ 📂components ------- 컴포넌트를 모아 놓은 폴더
+ ┃ ┣ 📂_blog ------------------------- 블로그 페이지에서 사용되는 컴포넌트를 모아 놓은 폴더
+ ┃ ┃ ┣ 📂_detail
+ ┃ ┃ ┃ ┣ 📂AdminControlSection
+ ┃ ┃ ┃ ┣ 📂CommentSection
+ ┃ ┃ ┃ ┣ 📂DetailTopSection
+ ┃ ┃ ┃ ┃ ┗ 📂InteractionMetrics
+ ┃ ┃ ┃ ┗ 📂Modals
+ ┃ ┃ ┣ 📂_edit
+ ┃ ┃ ┃ ┗ 📂EditTopSection
+ ┃ ┃ ┣ 📂_posting
+ ┃ ┃ ┃ ┗ 📂PopularListing
+ ┃ ┃ ┣ 📂_write
+ ┃ ┃ ┃ ┗ 📂WriteTopSection
+ ┃ ┃ ┗ 📂common
+ ┃ ┃ ┃ ┣ 📂Article
+ ┃ ┃ ┃ ┃ ┗ 📂Listing
+ ┃ ┃ ┃ ┣ 📂Dropdown
+ ┃ ┃ ┃ ┣ 📂Editor
+ ┃ ┃ ┃ ┣ 📂Pagination
+ ┃ ┃ ┃ ┣ 📂PostingInfo
+ ┃ ┃ ┃ ┗ 📂Sidebar
+ ┃ ┣ 📂_home ------------------------- 홈 페이지에서 사용되는 컴포넌트를 모아 놓은 폴더
+ ┃ ┃ ┣ 📂MyCheckList
+ ┃ ┃ ┣ 📂NewArrivals
+ ┃ ┃ ┗ 📂Weather
+ ┃ ┣ 📂_mypage ----------------------- 마이 페이지에서 사용되는 컴포넌트를 모아 놓은 폴더
+ ┃ ┃ ┣ 📂ActionLogtab
+ ┃ ┃ ┃ ┗ 📂ActionLogTabContent
+ ┃ ┣ 📂common ------------------------ 프로젝트 전체에서 공용으로 사용되는 컴포넌트를 모아 놓은 폴더
+ ┃ ┃ ┣ 📂footer
+ ┃ ┃ ┣ 📂header
+ ┃ ┃ ┃ ┣ 📂LeftSide
+ ┃ ┃ ┃ ┣ 📂Rightside
+ ┃ ┃ ┃ ┃ ┣ 📂Menu
+ ┃ ┃ ┃ ┃ ┗ 📂Search
+ ┃ ┃ ┣ 📂modals
+ ┃ ┗ 📂provider ---------------------- 사용하는 provider를 모아 놓은 폴더
+ ┣ 📂hooks ------------ 커스텀 훅을 모아 놓은 폴더
+ ┣ 📂interfaces ------- 공통적으로 쓰이는 타입을 모아 놓은 폴더
+ ┣ 📂mypage ----------- *마이 페이지
+ ┣ 📂utils ------------ 기타 유틸리티 함수를 모아 놓은 폴더
+ ┣ 📜favicon.ico
+ ┣ 📜firebase.ts
+ ┣ 📜globals.css
+ ┣ 📜layout.tsx
+ ┣ 📜loading.tsx
+ ┣ 📜not-found.tsx
+ ┣ 📜page.tsx --------- *홈 페이지
+ ┣ 📜robots.ts
+ ┗ 📜sitemap.ts
 ```
