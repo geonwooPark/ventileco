@@ -7,10 +7,10 @@ export default function LeftSide() {
     <div className="flex items-center">
       <Logo className="mr-6" />
       <div>
-        <Link href={'/blog'} className="text-sm text-white font-light mr-4">
+        <Link href={'/blog'} className="mr-4 text-sm font-light text-white">
           블로그
         </Link>
-        <Link href={'/about'} className="text-sm text-white font-light mr-4">
+        <Link href={'/about'} className="mr-4 text-sm font-light text-white">
           소개
         </Link>
       </div>

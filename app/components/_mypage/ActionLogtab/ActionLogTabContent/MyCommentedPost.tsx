@@ -22,7 +22,7 @@ export default function MyCommentedPost() {
 
   if (isPending) {
     return (
-      <div className="w-full h-full flex justify-center items-center">
+      <div className="flex h-full w-full items-center justify-center">
         <Spinner width="w-6" height="w-6" fillColor="fill-blue-600" />
       </div>
     )
@@ -31,10 +31,10 @@ export default function MyCommentedPost() {
   return (
     <table className="w-full">
       <thead className="absolute top-0 w-full border-b border-gray-400">
-        <tr className="w-full flex bg-white text-center">
+        <tr className="flex w-full bg-white text-center">
           <th className="flex-1 py-2">제목</th>
-          <th className="py-2 w-[100px]">댓글 수</th>
-          <th className="py-2 w-[100px]">작성일</th>
+          <th className="w-[100px] py-2">댓글 수</th>
+          <th className="w-[100px] py-2">작성일</th>
         </tr>
       </thead>
       <tbody>
@@ -49,10 +49,10 @@ export default function MyCommentedPost() {
                   <p>{posting.title}</p>
                 </Link>
               </td>
-              <td className="w-[100px] text-sm text-center">
+              <td className="w-[100px] text-center text-sm">
                 {posting.user.length}
               </td>
-              <td className="w-[100px] text-sm text-center">
+              <td className="w-[100px] text-center text-sm">
                 {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
               </td>
             </tr>

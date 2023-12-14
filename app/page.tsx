@@ -7,17 +7,17 @@ export const revalidate = 1800
 
 export default function Home() {
   return (
-    <div className="h-auto min-h-full py-[82px] md:py-[102px] flex items-center">
+    <div className="flex h-auto min-h-full items-center py-[82px] md:py-[102px]">
       <div className="my-container text-white">
-        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-5 mb-5">
-          <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl">
+        <div className="mb-5 flex w-full flex-col items-center justify-center gap-5 md:flex-row">
+          <div className="h-[300px] w-full rounded-xl bg-slate-700 px-4 py-3 md:max-w-[280px]">
             <Weather />
           </div>
-          <div className="w-full md:max-w-[280px] h-[300px] bg-slate-700 px-4 py-3 rounded-xl">
+          <div className="h-[300px] w-full rounded-xl bg-slate-700 px-4 py-3 md:max-w-[280px]">
             <MyCheckList />
           </div>
         </div>
-        <div className="w-full mx-auto max-w-[580px] bg-slate-700 px-4 py-3 rounded-xl">
+        <div className="mx-auto w-full max-w-[580px] rounded-xl bg-slate-700 px-4 py-3">
           <NewArrivals />
         </div>
       </div>

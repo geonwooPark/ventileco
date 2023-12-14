@@ -118,7 +118,7 @@ export default function SignUpModal() {
         value={email}
         placeholder="이메일"
         onChange={onChange}
-        className={`w-full mb-2 ${
+        className={`mb-2 w-full ${
           focus.email ? 'border-red-400' : 'border-gray-300'
         }`}
       />
@@ -128,7 +128,7 @@ export default function SignUpModal() {
         value={name}
         placeholder="이름"
         onChange={onChange}
-        className={`w-full mb-2 ${
+        className={`mb-2 w-full ${
           focus.name ? 'border-red-400' : 'border-gray-300'
         }`}
       />
@@ -138,7 +138,7 @@ export default function SignUpModal() {
         value={password}
         placeholder="비밀번호"
         onChange={onChange}
-        className={`w-full mb-2 ${
+        className={`mb-2 w-full ${
           focus.password ? 'border-red-400' : 'border-gray-300'
         }`}
       />
@@ -148,14 +148,14 @@ export default function SignUpModal() {
   const footerContent = (
     <div className="mt-3">
       <hr className="mb-3" />
-      <p className="mt-4 text-xs font-light text-center text-gray-500">
+      <p className="mt-4 text-center text-xs font-light text-gray-500">
         이미 계정이 있으신가요?{' '}
         <span
           onClick={() => {
             closeSignUpModal()
             openLoginModal()
           }}
-          className="font-normal text-gray-800 cursor-pointer"
+          className="cursor-pointer font-normal text-gray-800"
         >
           로그인
         </span>

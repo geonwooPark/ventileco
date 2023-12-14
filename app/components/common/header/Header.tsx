@@ -23,12 +23,12 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-[100] transition duration-200 ${
+      className={`fixed top-0 z-[100] w-full transition duration-200 ${
         headerColor ? 'bg-black/90' : 'bg-transparent'
       }`}
       ref={scrollRef}
     >
-      <div className="flex items-center justify-between py-4 my-container">
+      <div className="my-container flex items-center justify-between py-4">
         <LeftSide />
         <RightSide />
       </div>

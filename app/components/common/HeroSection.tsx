@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ title, description }: HeroSectionProps) {
   return (
-    <section className="relative w-full h-[320px] md:h-[420px] mb-20">
+    <section className="relative mb-20 h-[320px] w-full md:h-[420px]">
       <Image
         src={mainBg}
         alt="메인 배경이미지"
@@ -19,7 +19,7 @@ export default function HeroSection({ title, description }: HeroSectionProps) {
         loading="eager"
         className="object-cover brightness-50"
       />
-      <div className="flex flex-col items-end justify-center h-full text-right text-white my-container">
+      <div className="my-container flex h-full flex-col items-end justify-center text-right text-white">
         <div className="absolute">
           <p className="mb-5 text-4xl font-bold md:text-6xl">{title}</p>
           <p className="text-sm md:text-base">{description}</p>

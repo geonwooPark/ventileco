@@ -18,7 +18,7 @@ interface EditTopSectionProps {
 export default function EditTopSection({ ...props }: EditTopSectionProps) {
   const { thumbnailURL: previewURL } = props.posting
   return (
-    <section className="relative w-full h-[320px] md:h-[420px] mb-20">
+    <section className="relative mb-20 h-[320px] w-full md:h-[420px]">
       <Image
         src={previewURL ? previewURL : subBg}
         alt="썸네일이미지"

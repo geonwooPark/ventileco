@@ -39,7 +39,7 @@ export default function DropDownMenu({
     <div className="relative text-xs text-white">
       <div
         onClick={() => setIsOpen(!isOpen)}
-        className="w-[140px] bg-gray-700 text-center p-2 cursor-pointer"
+        className="w-[140px] cursor-pointer bg-gray-700 p-2 text-center"
       >
         {category ? category : label}
       </div>

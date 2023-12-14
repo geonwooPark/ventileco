@@ -1,13 +1,22 @@
 import React from 'react'
 import CheckListItem from './CheckListItem'
 import { useQuery } from '@tanstack/react-query'
-import getData from '@/app/actions/getData'
 import { CheckListType } from '@/app/interfaces/interface'
 import SkeletonCheckList from './SkeletonCheckList'
 import dayjs from '@/app/utils/dayjs'
 
 interface CheckListProps {
   selectedDate: Date
+}
+
+export async function getData<T>(url: string): Promise<T> {
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    throw new Error('데이터를 불러오는데 실패했습니다!')
+  }
+
+  return res.json()
 }
 
 export default function CheckList({ selectedDate }: CheckListProps) {
@@ -31,7 +40,7 @@ export default function CheckList({ selectedDate }: CheckListProps) {
   if (isPending) return <SkeletonCheckList />
 
   return (
-    <ul className="h-[220px] overflow-y-scroll hide-scroll">
+    <ul className="hide-scroll h-[220px] overflow-y-scroll">
       {checkList &&
         sortedCheckList?.map((item) => {
           return (

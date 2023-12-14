@@ -11,7 +11,7 @@ export default function InteractionMetrics({
 }: InteractionMetricsProps) {
   return (
     <div className="my-container">
-      <div className="absolute flex items-center text-xs text-gray-200 bottom-4">
+      <div className="absolute bottom-4 flex items-center text-xs text-gray-200">
         <ViewCounter postingId={postingId} />
         <LikeCounter postingId={postingId} />
       </div>

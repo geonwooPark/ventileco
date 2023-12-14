@@ -33,7 +33,7 @@ export default function DeleteAndEdit({ postingId }: DeleteAndEditProps) {
             size="l"
             label="삭제"
             fullWidth={true}
-            className="text-red-400 border-red-400"
+            className="border-red-400 text-red-400"
             onClick={openDeletePostingModal}
           />
         </div>

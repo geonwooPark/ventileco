@@ -53,7 +53,7 @@ export default function Button({
       className={`
         ${btnSize[size]}
         ${btnLevel[level]}
-        ${Icon && 'flex justify-center items-center'}
+        ${Icon && 'flex items-center justify-center'}
         ${fullWidth && '!w-full'}
         ${className}`}
     >

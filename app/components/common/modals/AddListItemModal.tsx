@@ -62,7 +62,7 @@ export default function AddListItemModal() {
       value={value}
       placeholder="할 일을 작성해보세요."
       onChange={onChange}
-      className={`w-full mb-2`}
+      className={`mb-2 w-full`}
     />
   )
 

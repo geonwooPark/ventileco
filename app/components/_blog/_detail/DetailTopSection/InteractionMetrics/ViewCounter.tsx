@@ -25,7 +25,7 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
   }
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex items-center justify-center">
       <div>
         <AiFillEye />
       </div>

@@ -71,7 +71,7 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
 
   return (
     <button
-      className={`border px-1.5 py-1 rounded transition cursor-pointer hover:opacity-70 disabled:cursor-not-allowed
+      className={`cursor-pointer rounded border px-1.5 py-1 transition hover:opacity-70 disabled:cursor-not-allowed
         ${className}`}
       onClick={() => handleLikeMutation()}
       disabled={isPending}

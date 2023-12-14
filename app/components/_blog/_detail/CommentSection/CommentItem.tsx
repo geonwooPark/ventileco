@@ -1,7 +1,6 @@
 import React from 'react'
 import dayjs from '@/app/utils/dayjs'
 import { CommentUserType } from '@/app/interfaces/interface'
-import { useSession } from 'next-auth/react'
 import { useDeleteCommentModalActions } from '@/app/hooks/useDeleteCommentModalStore'
 import { useSelectedCommentForDeletionActions } from '@/app/hooks/useSelectedCommentForDeletionStore'
 import {
@@ -48,8 +47,8 @@ export default function CommentItem({
   }
 
   return (
-    <li className="mb-4 text-sm list-none">
-      <div className="flex justify-between mb-2">
+    <li className="mb-4 list-none text-sm">
+      <div className="mb-2 flex justify-between">
         <div className="flex items-center">
           <Avatar src={userImage} />
           <p className="ml-2">{userName}</p>

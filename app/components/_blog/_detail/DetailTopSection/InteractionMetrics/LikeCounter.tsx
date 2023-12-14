@@ -27,7 +27,7 @@ export default function LikeCounter({ postingId }: LikeCounterProps) {
   }
 
   return (
-    <div className="flex justify-center items-center ml-2">
+    <div className="ml-2 flex items-center justify-center">
       <div>
         <AiFillHeart />
       </div>

@@ -11,7 +11,7 @@ export default function Spinner({ width, height, fillColor }: LoadingProps) {
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`inline ${width} ${height} ${fillColor} text-gray-200 animate-spin dark:text-gray-600`}
+        className={`inline ${width} ${height} ${fillColor} animate-spin text-gray-200 dark:text-gray-600`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

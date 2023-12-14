@@ -2,16 +2,16 @@ import React from 'react'
 
 export default function SkeletonWeatherInfo() {
   return (
-    <div className="w-full flex flex-col items-center animate-pulse -translate-y-2">
-      <div className="w-[100px] h-[100px] bg-slate-500 rounded-full mb-4" />
+    <div className="flex w-full -translate-y-2 animate-pulse flex-col items-center">
+      <div className="mb-4 h-[100px] w-[100px] rounded-full bg-slate-500" />
 
-      <div className="flex-1 flex flex-col items-center mb-3 rounded-md">
-        <div className="w-24 h-4 bg-slate-500 mb-1.5 rounded-md"></div>
-        <div className="w-[60px] h-12 bg-slate-500 mb-1.5 rounded-md"></div>
-        <div className="w-[120px] h-4 bg-slate-500 rounded-md"></div>
+      <div className="mb-3 flex flex-1 flex-col items-center rounded-md">
+        <div className="mb-1.5 h-4 w-24 rounded-md bg-slate-500"></div>
+        <div className="mb-1.5 h-12 w-[60px] rounded-md bg-slate-500"></div>
+        <div className="h-4 w-[120px] rounded-md bg-slate-500"></div>
       </div>
 
-      <div className="w-20 h-5 bg-slate-500 rounded-md"></div>
+      <div className="h-5 w-20 rounded-md bg-slate-500"></div>
     </div>
   )
 }

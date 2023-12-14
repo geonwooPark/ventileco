@@ -25,7 +25,7 @@ export default function ActionLogTab() {
 
   return (
     <div>
-      <div className="flex gap-4 mb-4">
+      <div className="mb-4 flex gap-4">
         {menuArr.map((menu, i) => {
           return (
             <button
@@ -43,7 +43,7 @@ export default function ActionLogTab() {
         })}
       </div>
       <div className="relative pt-10">
-        <div className="h-[500px] bg-gray-50 overflow-y-scroll">
+        <div className="h-[500px] overflow-y-scroll bg-gray-50">
           {menuArr[currentTab].content}
         </div>
       </div>

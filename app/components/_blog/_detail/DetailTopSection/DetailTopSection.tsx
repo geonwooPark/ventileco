@@ -11,7 +11,7 @@ interface TopSectionProps {
 
 export default function DetailTopSection({ posting }: TopSectionProps) {
   return (
-    <section className="relative w-full h-[320px] md:h-[420px] mb-20">
+    <section className="relative mb-20 h-[320px] w-full md:h-[420px]">
       <Image
         src={posting.thumbnailURL ? posting.thumbnailURL : subBg}
         alt="썸네일이미지"

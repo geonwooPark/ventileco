@@ -8,13 +8,13 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    let myCommentedPost = await Comment.find<CommentType>({
+    const myCommentedPost = await Comment.find<CommentType>({
       user: {
         $elemMatch: { userId },
       },
     })
 
-    let myComment = []
+    const myComment = []
     for (const posting of myCommentedPost) {
       for (const elem of posting.user) {
         if (elem.userId === userId) {

@@ -32,8 +32,8 @@ export default async function Layout({
 }) {
   return (
     <div className="h-full">
-      <div className="h-auto min-h-[100%] pb-[56px] bg-white">{children}</div>
-      <Footer className="relative h-[56px] -translate-y-full w-full bg-[#070716]" />
+      <div className="h-auto min-h-[100%] bg-white pb-[56px]">{children}</div>
+      <Footer className="relative h-[56px] w-full -translate-y-full bg-[#070716]" />
     </div>
   )
 }

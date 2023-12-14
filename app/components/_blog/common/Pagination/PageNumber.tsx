@@ -24,17 +24,17 @@ export default function PageNumber({
             ? `/blog/${path}/${category}`
             : `/blog/${path}/${category}/${i + 1}`
           : search
-          ? `/blog/${path}`
-          : i === 0
-          ? '/blog'
-          : `/blog/${path}/${i + 1}`,
+            ? `/blog/${path}`
+            : i === 0
+              ? '/blog'
+              : `/blog/${path}/${i + 1}`,
         query: search && { ...(search ? { search } : {}), page: i + 1 },
       }}
       aria-label={`${i + 1}페이지`}
     >
       <button
         type="button"
-        className={`w-8 h-8 rounded-full ${
+        className={`h-8 w-8 rounded-full ${
           page === i + 1 ? 'bg-gray-700 text-white' : 'bg-none'
         }`}
         aria-label={`${i + 1}페이지`}

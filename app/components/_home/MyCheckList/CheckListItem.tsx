@@ -77,11 +77,11 @@ export default function CheckListItem({
 
   return (
     <li className="mb-3 text-sm">
-      <div className="flex items-center px-2 py-2 bg-slate-600 rounded-md">
+      <div className="flex items-center rounded-md bg-slate-600 p-2">
         <input
           type="checkbox"
           checked={item.status}
-          className={`mr-1.5 w-5 h-5 ${
+          className={`mr-1.5 h-5 w-5 ${
             session?.user.role !== 'admin' && 'pointer-events-none'
           }`}
           onChange={() => changeStatusMutation()}

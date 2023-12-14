@@ -4,7 +4,7 @@ import NewArrivalsList from './NewArrivalsList'
 export default async function NewArrivals() {
   return (
     <div>
-      <h4 className="text-lg font-medium mb-2">최신 게시글</h4>
+      <h4 className="mb-2 text-lg font-medium">최신 게시글</h4>
       <NewArrivalsList />
     </div>
   )
