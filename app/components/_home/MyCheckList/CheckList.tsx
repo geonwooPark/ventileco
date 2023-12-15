@@ -11,7 +11,6 @@ interface CheckListProps {
 }
 
 export default function CheckList({ selectedDate }: CheckListProps) {
-  // 프리패칭이 안되고 있음
   const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
 
   const { data: checkList, isPending } = useQuery({

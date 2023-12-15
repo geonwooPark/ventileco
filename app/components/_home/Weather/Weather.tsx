@@ -12,7 +12,7 @@ export default async function Weather() {
   await queryClient.prefetchQuery({
     queryKey: ['weather'],
     queryFn: () =>
-      getData<any>(
+      getData(
         `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKEY}&units=metric`,
       ),
   })
