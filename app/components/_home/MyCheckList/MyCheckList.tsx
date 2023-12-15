@@ -1,9 +1,22 @@
 import React from 'react'
 import CheckListWrapper from './CheckListWrapper'
 import getQueryClient from '@/app/actions/getQueryClient'
-import getData from '@/app/actions/getData'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import dayjs from '@/app/utils/dayjs'
+import { connectMongo } from '@/app/utils/database'
+import { CheckList } from '@/models/checklist'
+
+const getCheckList = async (date: string) => {
+  await connectMongo()
+  try {
+    const checkList = await CheckList.findOne({
+      date,
+    })
+    return [...checkList.list].reverse()
+  } catch (error) {
+    return []
+  }
+}
 
 export default async function MyCheckList() {
   const date = dayjs(new Date()).tz().format('YYYY-MM-DD')
@@ -11,8 +24,7 @@ export default async function MyCheckList() {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
     queryKey: ['checklist', { date }],
-    queryFn: () =>
-      getData(`${process.env.NEXT_PUBLIC_FE_URL}/api/check-list?date=${date}`),
+    queryFn: () => getCheckList(date),
   })
   const dehydratedState = dehydrate(queryClient)
 
