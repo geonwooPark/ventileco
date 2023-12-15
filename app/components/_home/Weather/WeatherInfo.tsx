@@ -6,10 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
-
-const CITY = 'Seoul'
-// 브라우저 fetch 요청에 다 보이는데 무슨 의미가 있지?
-const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY
+import { APIKEY, CITY } from './Weather'
 
 export default function WeatherInfo() {
   const { data: weatherData, isPending } = useQuery({

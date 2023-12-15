@@ -3,7 +3,7 @@ import NewArrivals from './components/_home/NewArrivals/NewArrivals'
 import Weather from './components/_home/Weather/Weather'
 import MyCheckList from './components/_home/MyCheckList/MyCheckList'
 
-export const revalidate = 1800
+export const revalidate = 0
 
 export default function Home() {
   return (

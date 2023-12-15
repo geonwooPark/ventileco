@@ -4,22 +4,14 @@ import { useQuery } from '@tanstack/react-query'
 import { CheckListType } from '@/app/interfaces/interface'
 import SkeletonCheckList from './SkeletonCheckList'
 import dayjs from '@/app/utils/dayjs'
+import getData from '@/app/actions/getData'
 
 interface CheckListProps {
   selectedDate: Date
 }
 
-export async function getData<T>(url: string): Promise<T> {
-  const res = await fetch(url)
-
-  if (!res.ok) {
-    throw new Error('데이터를 불러오는데 실패했습니다!')
-  }
-
-  return res.json()
-}
-
 export default function CheckList({ selectedDate }: CheckListProps) {
+  // 프리패칭이 안되고 있음
   const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
 
   const { data: checkList, isPending } = useQuery({
