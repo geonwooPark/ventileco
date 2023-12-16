@@ -1,9 +1,9 @@
 import Section from '@/app/components/common/Section'
 import Article from '@/app/components/_blog/common/Article/Article'
 import getAllListingCount from '@/app/actions/getAllListingCount'
-import getAllListing from '@/app/actions/getAllListing'
 import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
+import AllListing from '@/app/components/_blog/_posting/AllListing'
 
 export const revalidate = 1800
 
@@ -26,11 +26,6 @@ export async function generateStaticParams() {
 
 export default async function Postings({ params }: IParams) {
   const { page } = params
-  const listing = await getAllListing({
-    page: Number(page),
-    limit: LIMIT,
-  })
-  const listingCount = await getAllListingCount()
 
   return (
     <main>
@@ -42,14 +37,9 @@ export default async function Postings({ params }: IParams) {
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
           <CategoryMenu />
-          <Article
-            title="전체 게시글"
-            path="postings"
-            page={Number(page)}
-            limit={LIMIT}
-            listing={listing}
-            listingCount={listingCount}
-          />
+          <Article title="전체 게시글">
+            <AllListing path="postings" page={Number(page)} limit={LIMIT} />
+          </Article>
         </div>
       </Section>
     </main>

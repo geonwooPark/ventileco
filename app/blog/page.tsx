@@ -1,10 +1,9 @@
 import Section from '../components/common/Section'
 import Article from '../components/_blog/common/Article/Article'
 import PopularListing from '../components/_blog/_posting/PopularListing/PopularListing'
-import getAllListing from '../actions/getAllListing'
-import getAllListingCount from '../actions/getAllListingCount'
 import CategoryMenu from '../components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '../components/common/HeroSection'
+import AllListing from '../components/_blog/_posting/AllListing'
 
 export const revalidate = 1800
 
@@ -12,12 +11,6 @@ const PAGE = 1
 const LIMIT = 5
 
 export default async function Home() {
-  const listing = await getAllListing({
-    page: PAGE,
-    limit: LIMIT,
-  })
-  const listingCount = await getAllListingCount()
-
   return (
     <main>
       <HeroSection
@@ -32,14 +25,9 @@ export default async function Home() {
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
           <CategoryMenu />
-          <Article
-            title="전체 게시글"
-            path="postings"
-            page={PAGE}
-            limit={LIMIT}
-            listing={listing}
-            listingCount={listingCount}
-          />
+          <Article title="전체 게시글">
+            <AllListing path="postings" page={PAGE} limit={LIMIT} />
+          </Article>
         </div>
       </Section>
     </main>

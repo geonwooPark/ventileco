@@ -2,10 +2,10 @@ import { Metadata } from 'next'
 import Section from '@/app/components/common/Section'
 import Article from '@/app/components/_blog/common/Article/Article'
 import { categories } from '@/app/utils/categoryArr'
-import getCategoryListing from '@/app/actions/getCategoryListing'
 import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
 import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
+import CategoryListing from '@/app/components/_blog/_categories/CategoryListing'
 
 export const revalidate = 1800
 
@@ -57,13 +57,6 @@ export default async function Categories({ params }: IParams) {
   const { page } = params
   const category = decodeURI(params.category)
 
-  const listing = await getCategoryListing({
-    page: Number(page),
-    limit: LIMIT,
-    category,
-  })
-  const listingCount = await getCategoryListingCount(category)
-
   return (
     <main>
       <HeroSection
@@ -74,15 +67,14 @@ export default async function Categories({ params }: IParams) {
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
           <CategoryMenu paramsCategory={category} />
-          <Article
-            title="검색 결과"
-            path="categories"
-            page={Number(page)}
-            limit={LIMIT}
-            listing={listing}
-            listingCount={listingCount}
-            category={category}
-          />
+          <Article title="검색 결과">
+            <CategoryListing
+              path="categories"
+              page={Number(page)}
+              limit={LIMIT}
+              category={category}
+            />
+          </Article>
         </div>
       </Section>
     </main>

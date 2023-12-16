@@ -1,7 +1,9 @@
 import Section from '@/app/components/common/Section'
-import Article from '@/app/components/_blog/common/Article/Article'
-import getSearchListing from '@/app/actions/getSearchListing'
 import HeroSection from '@/app/components/common/HeroSection'
+import { Suspense } from 'react'
+import SearchListing from '@/app/components/_blog/_search/SearchListing'
+import Article from '@/app/components/_blog/common/Article/Article'
+import SkeletonListing from '@/app/components/_blog/common/Listing/SkeletonListing'
 
 export default async function Search({
   searchParams,
@@ -15,12 +17,6 @@ export default async function Search({
   const search =
     typeof searchParams.search === 'string' ? searchParams.search : ''
 
-  const { listing, listingCount } = await getSearchListing({
-    page,
-    limit,
-    search,
-  })
-
   return (
     <main>
       <HeroSection
@@ -29,15 +25,16 @@ export default async function Search({
       />
 
       <Section>
-        <Article
-          title="검색 결과"
-          path="search"
-          page={page}
-          limit={limit}
-          listing={listing}
-          listingCount={listingCount}
-          search={search}
-        />
+        <Article title="검색 결과">
+          <Suspense fallback={<SkeletonListing />}>
+            <SearchListing
+              path="search"
+              page={page}
+              limit={limit}
+              search={search}
+            />
+          </Suspense>
+        </Article>
       </Section>
     </main>
   )
