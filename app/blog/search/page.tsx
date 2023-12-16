@@ -5,15 +5,14 @@ import SearchListing from '@/app/components/_blog/_search/SearchListing'
 import Article from '@/app/components/_blog/common/Article/Article'
 import SkeletonListing from '@/app/components/_blog/common/Listing/SkeletonListing'
 
+const PAGE = 1
+const LIMIT = 5
+
 export default async function Search({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined }
 }) {
-  const page =
-    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1
-  const limit =
-    typeof searchParams.limit === 'string' ? Number(searchParams.limit) : 5
   const search =
     typeof searchParams.search === 'string' ? searchParams.search : ''
 
@@ -29,8 +28,8 @@ export default async function Search({
           <Suspense fallback={<SkeletonListing />}>
             <SearchListing
               path="search"
-              page={page}
-              limit={limit}
+              page={PAGE}
+              limit={LIMIT}
               search={search}
             />
           </Suspense>
