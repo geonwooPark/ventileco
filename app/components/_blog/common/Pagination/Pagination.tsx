@@ -15,10 +15,9 @@ interface PaginationProps {
 
 export default function Pagenation({
   listingCount,
-  limit,
   ...props
 }: PaginationProps) {
-  const { page } = props
+  const { page, limit } = props
   const lastPageNum = Math.ceil(listingCount / limit)
   const numbering = Array.from({ length: lastPageNum }, (_, i) => (
     <PageNumber key={i} index={i} {...props} />
