@@ -4,6 +4,8 @@ import Weather from './components/_home/Weather/Weather'
 import MyCheckList from './components/_home/MyCheckList/MyCheckList'
 import LoadingUI from './components/_home/LoadingUI'
 
+export const dynamic = 'force-dynamic'
+
 export default function Home() {
   return (
     <section className="flex h-auto min-h-full items-center py-[82px] md:py-[102px]">
