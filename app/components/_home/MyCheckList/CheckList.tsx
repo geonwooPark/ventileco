@@ -1,10 +1,8 @@
 import React from 'react'
 import CheckListItem from './CheckListItem'
-import { useQuery } from '@tanstack/react-query'
-import { CheckListType } from '@/app/interfaces/interface'
 import SkeletonCheckList from './SkeletonCheckList'
 import dayjs from '@/app/utils/dayjs'
-import getData from '@/app/actions/getData'
+import useCheckListQuery from '@/app/hooks/useCheckListQuery'
 
 interface CheckListProps {
   selectedDate: Date
@@ -13,16 +11,7 @@ interface CheckListProps {
 export default function CheckList({ selectedDate }: CheckListProps) {
   const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
 
-  const { data: checkList, isPending } = useQuery({
-    queryKey: ['checklist', { date }],
-    queryFn: () =>
-      getData<CheckListType[]>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/check-list?date=${date}`,
-      ),
-    staleTime: 1000 * 60, // 1분
-    gcTime: 1000 * 60 * 3, // 3분
-    retry: 0,
-  })
+  const { checkList, isPending, error } = useCheckListQuery(date)
 
   const sortedCheckList = checkList?.sort((a, b) => {
     return Number(a.status) - Number(b.status)

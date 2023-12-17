@@ -3,10 +3,10 @@
 import React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
-import getData from '../../../../actions/getData'
 import { toast } from 'react-toastify'
+import useIsLikedQuery from '@/app/hooks/useIsLikedQuery'
 
 interface LikeButtonProps {
   className?: string
@@ -37,17 +37,8 @@ const handleLikeButton = async (
 
 export default function LikeButton({ className, postingId }: LikeButtonProps) {
   const { data: session } = useSession()
-
+  const { data, isPending, error } = useIsLikedQuery(postingId)
   const queryClient = useQueryClient()
-  const { data, isPending, error } = useQuery({
-    queryKey: ['isLiked', { postingId }],
-    queryFn: () =>
-      getData<{ isLiked: boolean }>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/like?postingId=${postingId}`,
-      ),
-    staleTime: 1000 * 60 * 3, // 3분
-    gcTime: 1000 * 60 * 5, // 5분
-  })
 
   const { mutate: handleLikeMutation } = useMutation({
     mutationFn: () =>

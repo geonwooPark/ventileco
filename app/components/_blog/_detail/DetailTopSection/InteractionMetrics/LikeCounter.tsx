@@ -1,26 +1,17 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
-import getData from '@/app/actions/getData'
 import { toast } from 'react-toastify'
 import Spinner from '@/app/components/common/Spinner'
+import useLikeCountQuery from '@/app/hooks/useLikeCountQuery'
 
 interface LikeCounterProps {
   postingId: string
 }
 
 export default function LikeCounter({ postingId }: LikeCounterProps) {
-  const { data, isPending, error } = useQuery({
-    queryKey: ['likeCount', { postingId }],
-    queryFn: () =>
-      getData<number>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/like-count?postingId=${postingId}`,
-      ),
-    staleTime: 1000 * 60 * 3, // 3분
-    gcTime: 1000 * 60 * 5, // 5분
-  })
+  const { likeCount, isPending, error } = useLikeCountQuery(postingId)
 
   if (error) {
     toast.error(error.message)
@@ -35,7 +26,7 @@ export default function LikeCounter({ postingId }: LikeCounterProps) {
         {isPending ? (
           <Spinner width="w-3" height="w-3" fillColor="fill-blue-600" />
         ) : (
-          data
+          likeCount
         )}
       </div>
     </div>

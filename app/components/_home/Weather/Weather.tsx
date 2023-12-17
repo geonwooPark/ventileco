@@ -5,7 +5,7 @@ import getData from '@/app/actions/getData'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
 export const CITY = 'Seoul'
-export const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY
+export const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY as string
 
 export default async function Weather() {
   const queryClient = getQueryClient()

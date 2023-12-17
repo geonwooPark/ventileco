@@ -1,28 +1,14 @@
 'use client'
 
-import getData from '@/app/actions/getData'
 import weatherDescEngToKor from '@/app/utils/weatherDescEngToKor'
-import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
 import { APIKEY, CITY } from './Weather'
+import useWeatherQuery from '@/app/hooks/useWeatherQuery'
 
 export default function WeatherInfo() {
-  const { data: weatherData, isPending } = useQuery({
-    queryKey: ['weather'],
-    queryFn: () =>
-      getData<any>(
-        `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKEY}&units=metric`,
-      ),
-    select: (data) => ({
-      main: data.main,
-      weather: data.weather,
-      rain: data.rain,
-    }),
-    staleTime: 1000 * 6 * 60,
-    gcTime: 1000 * 6 * 60,
-  })
+  const { weatherData, isPending, error } = useWeatherQuery(CITY, APIKEY)
 
   if (isPending) return <SkeletonWeatherInfo />
 

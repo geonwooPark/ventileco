@@ -59,3 +59,14 @@ export interface CheckListType {
   text: string
   status: boolean
 }
+
+export interface myCommentType {
+  title: string
+  postingId: string
+  commentId: string
+  userImage: string
+  userId: string
+  userName: string
+  createdAt: Date
+  text: string
+}

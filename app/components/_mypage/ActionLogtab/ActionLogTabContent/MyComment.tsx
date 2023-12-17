@@ -1,34 +1,13 @@
-import getData from '@/app/actions/getData'
-import { useQuery } from '@tanstack/react-query'
 import dayjs from '@/app/utils/dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Spinner from '../../../common/Spinner'
-
-interface myCommentType {
-  title: string
-  postingId: string
-  commentId: string
-  userImage: string
-  userId: string
-  userName: string
-  createdAt: Date
-  text: string
-}
+import useMyCommentQuery from '@/app/hooks/useMyCommentQuery'
 
 export default function MyComment() {
   const { data: session } = useSession()
-
-  const { data: myComment, isPending } = useQuery({
-    queryKey: ['my-comment', { user: session?.user.id }],
-    queryFn: () =>
-      getData<myCommentType[]>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/my-comment?userId=${session?.user.id}`,
-      ),
-    staleTime: 1000 * 60 * 5, // 5분
-    gcTime: 1000 * 60 * 5, // 5분
-  })
+  const { myComment, isPending, error } = useMyCommentQuery(session)
 
   if (isPending) {
     return (

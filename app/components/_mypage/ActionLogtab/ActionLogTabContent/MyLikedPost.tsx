@@ -1,24 +1,13 @@
-import getData from '@/app/actions/getData'
-import { LikeType } from '@/app/interfaces/interface'
-import { useQuery } from '@tanstack/react-query'
 import dayjs from '@/app/utils/dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Spinner from '../../../common/Spinner'
+import useMyLikedPostQuery from '@/app/hooks/useMyLikedPostQuery'
 
 export default function MyLikedPost() {
   const { data: session } = useSession()
-
-  const { data: myLikedPost, isPending } = useQuery({
-    queryKey: ['my-liked-post', { user: session?.user.id }],
-    queryFn: () =>
-      getData<LikeType[]>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/my-liked-post?userId=${session?.user.id}`,
-      ),
-    staleTime: 1000 * 60 * 5, // 5분
-    gcTime: 1000 * 60 * 5, // 5분
-  })
+  const { myLikedPost, isPending, error } = useMyLikedPostQuery(session)
 
   if (isPending) {
     return (
