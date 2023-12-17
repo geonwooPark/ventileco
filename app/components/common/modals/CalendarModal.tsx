@@ -6,7 +6,7 @@ import dayjs from '@/app/utils/dayjs'
 import {
   useCalendarModalActions,
   useCalendarModalIsOpen,
-} from '@/app/hooks/useCalendarModalStore'
+} from '@/app/hooks/store/useCalendarModalStore'
 
 interface CalendarModalProps {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>

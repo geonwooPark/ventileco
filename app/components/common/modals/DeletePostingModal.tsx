@@ -3,7 +3,7 @@ import Modal from './Modal'
 import {
   useDeletePostingModalActions,
   useDeletePostingModalIsOpen,
-} from '@/app/hooks/useDeletePostingModalStore'
+} from '@/app/hooks/store/useDeletePostingModalStore'
 
 export default function DeletePostingModal({
   onSubmit,

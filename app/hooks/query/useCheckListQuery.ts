@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../actions/getData'
-import { CheckListType } from '../interfaces/interface'
+import getData from '../../actions/getData'
+import { CheckListType } from '../../interfaces/interface'
 
 export default function useCheckListQuery(date: string) {
   const {

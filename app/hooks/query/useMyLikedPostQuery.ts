@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../actions/getData'
-import { LikeType } from '../interfaces/interface'
+import getData from '../../actions/getData'
+import { LikeType } from '../../interfaces/interface'
 import { Session } from 'next-auth'
 
 export default function useMyLikedPostQuery(session: Session | null) {

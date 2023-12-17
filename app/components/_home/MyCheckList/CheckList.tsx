@@ -2,7 +2,7 @@ import React from 'react'
 import CheckListItem from './CheckListItem'
 import SkeletonCheckList from './SkeletonCheckList'
 import dayjs from '@/app/utils/dayjs'
-import useCheckListQuery from '@/app/hooks/useCheckListQuery'
+import useCheckListQuery from '@/app/hooks/query/useCheckListQuery'
 
 interface CheckListProps {
   selectedDate: Date

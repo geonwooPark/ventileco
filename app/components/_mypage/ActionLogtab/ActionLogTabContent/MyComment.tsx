@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Spinner from '../../../common/Spinner'
-import useMyCommentQuery from '@/app/hooks/useMyCommentQuery'
+import useMyCommentQuery from '@/app/hooks/query/useMyCommentQuery'
 
 export default function MyComment() {
   const { data: session } = useSession()

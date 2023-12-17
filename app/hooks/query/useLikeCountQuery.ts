@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../actions/getData'
+import getData from '../../actions/getData'
 
 export default function useLikeCountQuery(postingId: string) {
   const {

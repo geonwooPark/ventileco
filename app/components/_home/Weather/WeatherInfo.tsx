@@ -5,7 +5,7 @@ import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
 import { APIKEY, CITY } from './Weather'
-import useWeatherQuery from '@/app/hooks/useWeatherQuery'
+import useWeatherQuery from '@/app/hooks/query/useWeatherQuery'
 
 export default function WeatherInfo() {
   const { weatherData, isPending, error } = useWeatherQuery(CITY, APIKEY)

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import CommentItem from './CommentItem'
 import SkeletonCommentList from './SkeletonCommentList'
 import { useSession } from 'next-auth/react'
-import useCommentListQuery from '@/app/hooks/useCommentListQuery'
+import useCommentListQuery from '@/app/hooks/query/useCommentListQuery'
 
 interface CommentListProps {
   postingId: string

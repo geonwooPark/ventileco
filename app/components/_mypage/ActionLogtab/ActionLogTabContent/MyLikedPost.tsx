@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Spinner from '../../../common/Spinner'
-import useMyLikedPostQuery from '@/app/hooks/useMyLikedPostQuery'
+import useMyLikedPostQuery from '@/app/hooks/query/useMyLikedPostQuery'
 
 export default function MyLikedPost() {
   const { data: session } = useSession()

@@ -1,12 +1,12 @@
 import React from 'react'
 import dayjs from '@/app/utils/dayjs'
 import { CommentUserType } from '@/app/interfaces/interface'
-import { useDeleteCommentModalActions } from '@/app/hooks/useDeleteCommentModalStore'
-import { useSelectedCommentForDeletionActions } from '@/app/hooks/useSelectedCommentForDeletionStore'
+import { useDeleteCommentModalActions } from '@/app/hooks/store/useDeleteCommentModalStore'
+import { useSelectedCommentForDeletionActions } from '@/app/hooks/store/useSelectedCommentForDeletionStore'
 import {
   useSelectedCommentForEditActions,
   useSelectedCommentIdForEdit,
-} from '@/app/hooks/useSelectedCommentForEditStore'
+} from '@/app/hooks/store/useSelectedCommentForEditStore'
 import Avatar from '@/app/components/common/Avatar'
 import CommentUpdateInput from './CommentUpdateInput'
 import { Session } from 'next-auth'

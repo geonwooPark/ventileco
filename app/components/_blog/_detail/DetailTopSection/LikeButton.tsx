@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 import { toast } from 'react-toastify'
-import useIsLikedQuery from '@/app/hooks/useIsLikedQuery'
+import useIsLikedQuery from '@/app/hooks/query/useIsLikedQuery'
 
 interface LikeButtonProps {
   className?: string

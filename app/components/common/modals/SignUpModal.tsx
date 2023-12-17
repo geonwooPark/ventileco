@@ -7,8 +7,8 @@ import { toast } from 'react-toastify'
 import {
   useSignUpModalActions,
   useSignUpModalIsOpen,
-} from '@/app/hooks/useSignUpModalStore'
-import { useLoginModalActions } from '@/app/hooks/useLoginModalStore'
+} from '@/app/hooks/store/useSignUpModalStore'
+import { useLoginModalActions } from '@/app/hooks/store/useLoginModalStore'
 
 export default function SignUpModal() {
   const signUpModalIsOpen = useSignUpModalIsOpen()

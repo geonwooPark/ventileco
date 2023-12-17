@@ -4,7 +4,7 @@ import React from 'react'
 import Button from '../../../common/Button'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { useDeletePostingModalActions } from '@/app/hooks/useDeletePostingModalStore'
+import { useDeletePostingModalActions } from '@/app/hooks/store/useDeletePostingModalStore'
 
 interface DeleteAndEditProps {
   postingId: string

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../actions/getData'
+import getData from '../../actions/getData'
 import { Session } from 'next-auth'
-import { myCommentType } from '../interfaces/interface'
+import { myCommentType } from '../../interfaces/interface'
 
 export default function useMyCommentQuery(session: Session | null) {
   const {

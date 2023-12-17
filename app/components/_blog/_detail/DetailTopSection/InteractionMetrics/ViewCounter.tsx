@@ -4,7 +4,7 @@ import React from 'react'
 import { AiFillEye } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 import Spinner from '@/app/components/common/Spinner'
-import useViewCountQuery from '@/app/hooks/useViewCountQuery'
+import useViewCountQuery from '@/app/hooks/query/useViewCountQuery'
 
 interface ViewCounterProps {
   postingId: string

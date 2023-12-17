@@ -6,12 +6,12 @@ import Input from '../../common/Input'
 import { FcGoogle } from 'react-icons/fc'
 import Button from '../../common/Button'
 import { toast } from 'react-toastify'
-import { useSignUpModalActions } from '@/app/hooks/useSignUpModalStore'
+import { useSignUpModalActions } from '@/app/hooks/store/useSignUpModalStore'
 import { signIn } from 'next-auth/react'
 import {
   useLoginModalActions,
   useLoginModalIsOpen,
-} from '@/app/hooks/useLoginModalStore'
+} from '@/app/hooks/store/useLoginModalStore'
 
 export default function LoginModal() {
   const loginModalIsOpen = useLoginModalIsOpen()
