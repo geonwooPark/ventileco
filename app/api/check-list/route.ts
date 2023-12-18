@@ -1,3 +1,4 @@
+import { CheckListType } from '@/app/interfaces/interface'
 import { connectMongo } from '@/app/utils/database'
 import { CheckList } from '@/models/checklist'
 import { NextRequest, NextResponse } from 'next/server'
@@ -8,9 +9,12 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const result = await CheckList.findOne({
+    const result = await CheckList.findOne<CheckListType>({
       date,
     })
+    if (!result) {
+      return NextResponse.json([], { status: 200 })
+    }
 
     const checkList = [...result.list].reverse()
 

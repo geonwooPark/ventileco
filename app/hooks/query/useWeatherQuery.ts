@@ -2,11 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 
 export default function useWeatherQuery(CITY: string, APIKEY: string) {
-  const {
-    data: weatherData,
-    isPending,
-    error,
-  } = useQuery({
+  const { data: weatherData, isPending } = useQuery({
     // eslint-disable-next-line
     queryKey: ['weather'],
     queryFn: () =>
@@ -20,6 +16,7 @@ export default function useWeatherQuery(CITY: string, APIKEY: string) {
     }),
     staleTime: 1000 * 6 * 60,
     gcTime: 1000 * 6 * 60,
+    throwOnError: true,
   })
-  return { weatherData, isPending, error }
+  return { weatherData, isPending }
 }

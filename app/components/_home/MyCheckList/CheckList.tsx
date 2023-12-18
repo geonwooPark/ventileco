@@ -10,27 +10,20 @@ interface CheckListProps {
 
 export default function CheckList({ selectedDate }: CheckListProps) {
   const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
-
-  const { checkList, isPending, error } = useCheckListQuery(date)
-
-  const sortedCheckList = checkList?.sort((a, b) => {
-    return Number(a.status) - Number(b.status)
-  })
-
+  const { checkList, isPending } = useCheckListQuery(date)
   if (isPending) return <SkeletonCheckList />
 
   return (
     <ul className="hide-scroll h-[220px] overflow-y-scroll">
-      {checkList &&
-        sortedCheckList?.map((item) => {
-          return (
-            <CheckListItem
-              key={item.listId}
-              item={item}
-              selectedDate={selectedDate}
-            />
-          )
-        })}
+      {checkList?.map((item) => {
+        return (
+          <CheckListItem
+            key={item.listId}
+            item={item}
+            selectedDate={selectedDate}
+          />
+        )
+      })}
     </ul>
   )
 }

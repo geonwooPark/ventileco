@@ -55,6 +55,11 @@ export interface ImagesType {
 }
 
 export interface CheckListType {
+  date: string
+  list: CheckListItemType[]
+}
+
+export interface CheckListItemType {
   listId: string
   text: string
   status: boolean

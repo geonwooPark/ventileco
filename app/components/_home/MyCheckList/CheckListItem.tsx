@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckListType } from '@/app/interfaces/interface'
+import { CheckListItemType } from '@/app/interfaces/interface'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
@@ -8,7 +8,7 @@ import dayjs from '@/app/utils/dayjs'
 import { toast } from 'react-toastify'
 
 interface CheckListItemProps {
-  item: CheckListType
+  item: CheckListItemType
   selectedDate: Date
 }
 

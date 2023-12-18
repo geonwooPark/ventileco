@@ -5,14 +5,18 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import dayjs from '@/app/utils/dayjs'
 import { connectMongo } from '@/app/utils/database'
 import { CheckList } from '@/models/checklist'
+import { CheckListType } from '@/app/interfaces/interface'
 
 const getCheckList = async (date: string) => {
   await connectMongo()
   try {
-    const checkList = await CheckList.findOne({
+    const result = await CheckList.findOne<CheckListType>({
       date,
     })
-    return [...checkList.list].reverse()
+    if (!result) return
+    const checkList = [...result.list].reverse()
+
+    return checkList
   } catch (error) {
     return []
   }

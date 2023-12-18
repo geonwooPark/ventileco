@@ -8,8 +8,7 @@ import { APIKEY, CITY } from './Weather'
 import useWeatherQuery from '@/app/hooks/query/useWeatherQuery'
 
 export default function WeatherInfo() {
-  const { weatherData, isPending, error } = useWeatherQuery(CITY, APIKEY)
-
+  const { weatherData, isPending } = useWeatherQuery(CITY, APIKEY)
   if (isPending) return <SkeletonWeatherInfo />
 
   return (
