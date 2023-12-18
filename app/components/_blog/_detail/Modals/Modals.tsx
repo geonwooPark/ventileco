@@ -3,11 +3,10 @@
 import DeleteCommentModal from '@/app/components/common/modals/DeleteCommentModal'
 import DeletePostingModal from '@/app/components/common/modals/DeletePostingModal'
 import ModalContainer from '@/app/components/common/modals/ModalContainer'
+import useDeleteCommentMutation from '@/app/hooks/mutation/useDeleteCommentMutation'
 import { useDeleteCommentModalActions } from '@/app/hooks/store/useDeleteCommentModalStore'
 import { useDeletePostingModalActions } from '@/app/hooks/store/useDeletePostingModalStore'
 import { useSelectedCommentIdForDeletion } from '@/app/hooks/store/useSelectedCommentForDeletionStore'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Session } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -15,28 +14,6 @@ import { toast } from 'react-toastify'
 
 interface ModalsProps {
   postingId: string
-}
-
-const deleteComment = async (
-  session: Session | null,
-  postingId: string,
-  commentId: string,
-) => {
-  if (!session) return
-
-  await fetch('/api/comment', {
-    method: 'DELETE',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-    }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
 }
 
 export default function Modals({ postingId }: ModalsProps) {
@@ -47,27 +24,26 @@ export default function Modals({ postingId }: ModalsProps) {
   const { onClose: closeDeleteCommentModal } = useDeleteCommentModalActions()
   const selectedCommentIdForDeletion = useSelectedCommentIdForDeletion()
 
-  const queryClient = useQueryClient()
-  const { mutate: deleteCommentMutation } = useMutation({
-    mutationFn: () =>
-      deleteComment(session, postingId, selectedCommentIdForDeletion),
-    onSuccess: () => {
-      if (!session) return
-      queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
-      queryClient.invalidateQueries({
-        queryKey: ['my-comment', { user: session.user.id }],
-      })
-      queryClient.invalidateQueries({
-        queryKey: ['my-commented-post', { user: session.user.id }],
-      })
-      closeDeleteCommentModal()
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
+  const { mutation: deleteCommentMutation } = useDeleteCommentMutation({
+    session,
+    postingId,
   })
+  const deleteComment = () => {
+    deleteCommentMutation.mutate(
+      {
+        session,
+        postingId,
+        selectedCommentIdForDeletion,
+      },
+      {
+        onSuccess: () => closeDeleteCommentModal(),
+        onError: (error) => {
+          toast.error(error.message)
+        },
+      },
+    )
+  }
 
-  // ssr 리액트 쿼리 적용해야함
   const deletePosting = async () => {
     try {
       await fetch('/api/posting', {
@@ -90,7 +66,7 @@ export default function Modals({ postingId }: ModalsProps) {
   return (
     <ModalContainer>
       <DeletePostingModal onSubmit={deletePosting} />
-      <DeleteCommentModal onDelete={() => deleteCommentMutation()} />
+      <DeleteCommentModal onDelete={deleteComment} />
     </ModalContainer>
   )
 }

@@ -8,7 +8,7 @@ import {
   useSelectedCommentIdForEdit,
 } from '@/app/hooks/store/useSelectedCommentForEditStore'
 import Avatar from '@/app/components/common/Avatar'
-import CommentUpdateInput from './CommentUpdateInput'
+import CommentEditInput from './CommentEditInput'
 import { Session } from 'next-auth'
 
 interface CommentItemProps {
@@ -66,7 +66,7 @@ export default function CommentItem({
         </small>
       </div>
       {selectedCommentIdForEdit === commentId ? (
-        <CommentUpdateInput
+        <CommentEditInput
           session={session}
           commentText={text}
           postingId={postingId}

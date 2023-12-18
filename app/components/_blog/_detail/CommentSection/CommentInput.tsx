@@ -2,36 +2,12 @@
 
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import { Session } from 'next-auth'
 import Button from '@/app/components/common/Button'
+import usePostCommentMutation from '@/app/hooks/mutation/usePostCommentMutation'
 
 interface CommentInputProps {
   postingId: string
-}
-
-const postComment = async (
-  session: Session | null,
-  postingId: string,
-  text: string,
-) => {
-  if (!session) return
-
-  await fetch('/api/comment', {
-    method: 'POST',
-    body: JSON.stringify({
-      postingId: postingId,
-      currentUser: session?.user,
-      text,
-    }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
 }
 
 export default function CommentInput({ postingId }: CommentInputProps) {
@@ -44,25 +20,21 @@ export default function CommentInput({ postingId }: CommentInputProps) {
     setText(value)
   }
 
-  const queryClient = useQueryClient()
-  const { mutate: postCommentMutation } = useMutation({
-    mutationFn: () => postComment(session, postingId, text),
-    onSuccess: () => {
-      if (!session) return
-      queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
-      queryClient.invalidateQueries({
-        queryKey: ['my-comment', { user: session.user.id }],
-      })
-      queryClient.invalidateQueries({
-        queryKey: ['my-commented-post', { user: session.user.id }],
-      })
-
-      setText('')
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
+  const { mutation: postCommentMutation } = usePostCommentMutation({
+    session,
+    postingId,
   })
+  const postComment = () => {
+    postCommentMutation.mutate(
+      { session, postingId, text },
+      {
+        onSuccess: () => setText(''),
+        onError: (error) => {
+          toast.error(error.message)
+        },
+      },
+    )
+  }
 
   return (
     <div className="mb-4 flex gap-2">
@@ -83,7 +55,7 @@ export default function CommentInput({ postingId }: CommentInputProps) {
         size="s"
         label="댓글 작성"
         className="w-24"
-        onClick={() => postCommentMutation()}
+        onClick={postComment}
         disabled={session ? false : true}
       />
     </div>

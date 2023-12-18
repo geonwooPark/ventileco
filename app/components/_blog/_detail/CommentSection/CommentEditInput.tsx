@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { Session } from 'next-auth'
 import {
@@ -7,6 +6,7 @@ import {
   useSelectedCommentIdForEdit,
 } from '@/app/hooks/store/useSelectedCommentForEditStore'
 import Button from '@/app/components/common/Button'
+import useEditCommentMutation from '@/app/hooks/mutation/useEditCommentMutation'
 
 interface CommentInputProps {
   session: Session | null
@@ -14,32 +14,7 @@ interface CommentInputProps {
   postingId: string
 }
 
-const editComment = async (
-  session: Session | null,
-  postingId: string,
-  commentId: string,
-  text: string,
-) => {
-  if (!session) return
-
-  await fetch('/api/comment', {
-    method: 'PATCH',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-      currentUser: session?.user,
-      text,
-    }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
-}
-
-export default function CommentUpdateInput({
+export default function CommentEditInput({
   session,
   commentText,
   postingId,
@@ -55,22 +30,26 @@ export default function CommentUpdateInput({
     setText(value)
   }
 
-  const queryClient = useQueryClient()
-  const { mutate: editCommentMutation } = useMutation({
-    mutationFn: () =>
-      editComment(session, postingId, selectedCommentIdForEdit, text),
-    onSuccess: () => {
-      if (!session) return
-      queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
-      queryClient.invalidateQueries({
-        queryKey: ['my-comment', { user: session.user.id }],
-      })
-      resetSelectedCommentIdForEdit()
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
+  const { mutation: editCommentMutation } = useEditCommentMutation({
+    session,
+    postingId,
   })
+  const editComment = () => {
+    editCommentMutation.mutate(
+      {
+        session,
+        postingId,
+        selectedCommentIdForEdit,
+        text,
+      },
+      {
+        onSuccess: () => resetSelectedCommentIdForEdit(),
+        onError: (error) => {
+          toast.error(error.message)
+        },
+      },
+    )
+  }
 
   return (
     <div className="mb-4 flex gap-2">
@@ -88,7 +67,7 @@ export default function CommentUpdateInput({
         size="s"
         label="댓글 수정"
         className="w-24 font-normal"
-        onClick={() => editCommentMutation()}
+        onClick={editComment}
         disabled={session ? false : true}
       />
     </div>

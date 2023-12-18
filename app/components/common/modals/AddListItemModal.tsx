@@ -1,34 +1,14 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
 import Input from '../../common/Input'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from 'next-auth/react'
-import { Session } from 'next-auth'
 import dayjs from '@/app/utils/dayjs'
 import {
   useAddListItemModalActions,
   useAddListItemModalIsOpen,
 } from '@/app/hooks/store/useAddListItemModalStore'
 import { toast } from 'react-toastify'
-
-const addListItem = async (
-  session: Session | null,
-  value: string,
-  today: string,
-) => {
-  if (session?.user.role !== 'admin') return
-
-  await fetch('/api/check-list', {
-    method: 'POST',
-    body: JSON.stringify({ value, today }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
-}
+import useAddCheckListItemMutation from '@/app/hooks/mutation/useAddCheckListItemMutation'
 
 export default function AddListItemModal() {
   const { data: session } = useSession()
@@ -42,18 +22,21 @@ export default function AddListItemModal() {
     setValue(e.target.value)
   }
 
-  const queryClient = useQueryClient()
-  const { mutate } = useMutation({
-    mutationFn: () => addListItem(session, value, today),
-    onSuccess: () => {
-      setValue('')
-      closeAddListItemModal()
-      queryClient.invalidateQueries({ queryKey: ['checklist'] })
-    },
-    onError: (error) => {
-      toast.error(error.message)
-    },
-  })
+  const { mutation: addCheckListItemMutation } = useAddCheckListItemMutation()
+  const addCheckListItem = () => {
+    addCheckListItemMutation.mutate(
+      { session, value, today },
+      {
+        onSuccess: () => {
+          setValue('')
+          closeAddListItemModal()
+        },
+        onError: (error) => {
+          toast.error(error.message)
+        },
+      },
+    )
+  }
 
   const bodyContent = (
     <Input
@@ -72,7 +55,7 @@ export default function AddListItemModal() {
       body={bodyContent}
       isOpen={addListItemModalIsOpen}
       onClose={closeAddListItemModal}
-      onSubmit={mutate}
+      onSubmit={addCheckListItem}
       actionLabel="등록"
     />
   )
