@@ -1,6 +1,6 @@
-import { categories } from '@/app/utils/categoryArr'
 import React from 'react'
 import CategoryItem from './CategoryItem'
+import { categories } from '@/app/constants'
 
 interface CategoryMenuProps {
   paramsCategory?: string

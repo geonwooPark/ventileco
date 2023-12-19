@@ -2,9 +2,9 @@ import React from 'react'
 import Section from '@/app/components/common/Section'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import UserInfo from '../components/_mypage/UserInfo'
-import HeroSection from '../components/common/HeroSection'
-import ActionLogTab from '../components/_mypage/ActionLogtab/ActionLogTab'
+import UserInfo from '@/app/components/_mypage/UserInfo'
+import HeroSection from '@/app/components/common/HeroSection'
+import ActionLogTab from '@/app/components/_mypage/ActionLogtab/ActionLogTab'
 
 export default async function page() {
   const session = await getServerSession(authOptions)

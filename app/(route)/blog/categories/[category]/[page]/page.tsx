@@ -1,23 +1,25 @@
 import { Metadata } from 'next'
 import Section from '@/app/components/common/Section'
 import Article from '@/app/components/_blog/common/Article/Article'
-import { categories } from '@/app/utils/categoryArr'
+import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
 import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
 import CategoryListing from '@/app/components/_blog/_categories/CategoryListing'
+import { categories } from '@/app/constants'
 
 export const revalidate = 1800
 
-const PAGE = 1
 const LIMIT = 5
 
 interface IParams {
   params: {
     category: string
+    page: string
   }
 }
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
+  const { page } = params
   const category = decodeURI(params.category)
 
   return {
@@ -28,22 +30,31 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
       description: `${category} 카테고리 페이지입니다.`,
       images:
         'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
-      url: `/categories/${category}`,
+      url: `/categories/${category}/${page}`,
       type: 'website',
     },
     alternates: {
-      canonical: `/categories/${category}`,
+      canonical: `/categories/${category}/${page}`,
     },
   }
 }
 
 export async function generateStaticParams() {
-  return categories.map((category) => ({
-    category,
-  }))
+  let result: { category: string; page: string }[] = []
+  for (const category of categories) {
+    const listingCount = await getCategoryListingCount(category)
+    const lastPageNum = Math.ceil(listingCount / LIMIT)
+    const res = Array.from({ length: lastPageNum - 1 }).map((_, i) => {
+      return { category, page: (i + 2).toString() }
+    })
+    result = [...result, ...res]
+  }
+
+  return result
 }
 
 export default async function Categories({ params }: IParams) {
+  const { page } = params
   const category = decodeURI(params.category)
 
   return (
@@ -59,7 +70,7 @@ export default async function Categories({ params }: IParams) {
           <Article title="검색 결과">
             <CategoryListing
               path="categories"
-              page={PAGE}
+              page={Number(page)}
               limit={LIMIT}
               category={category}
             />

@@ -1,9 +1,9 @@
-import Section from '../components/common/Section'
-import Article from '../components/_blog/common/Article/Article'
-import PopularListing from '../components/_blog/_posting/PopularListing/PopularListing'
-import CategoryMenu from '../components/_blog/common/Sidebar/CategoryMenu'
-import HeroSection from '../components/common/HeroSection'
-import AllListing from '../components/_blog/_posting/AllListing'
+import AllListing from '@/app/components/_blog/_posting/AllListing'
+import PopularListing from '@/app/components/_blog/_posting/PopularListing/PopularListing'
+import Article from '@/app/components/_blog/common/Article/Article'
+import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
+import HeroSection from '@/app/components/common/HeroSection'
+import Section from '@/app/components/common/Section'
 
 export const revalidate = 1800
 

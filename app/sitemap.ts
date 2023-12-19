@@ -1,7 +1,7 @@
 import getAllListing from './actions/getAllListing'
 import getAllListingCount from './actions/getAllListingCount'
 import getCategoryListingCount from './actions/getCategoryListingCount'
-import { categories } from './utils/categoryArr'
+import { categories } from './constants'
 
 const LIMIT = 5
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
-import './globals.css'
+import '../app/styles/globals.css'
 import LoginModal from './components/common/modals/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'

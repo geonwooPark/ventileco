@@ -2,8 +2,8 @@ import React from 'react'
 import RefWrapper from '../../../common/RefWrapper'
 import DropDownMenu from '../Dropdown/DropDownMenu'
 import Input from '../../../common/Input'
-import { categories } from '@/app/utils/categoryArr'
 import { OmittedPostingType } from '@/app/interfaces/interface'
+import { categories } from '@/app/constants'
 
 interface PostingInfoProps {
   posting: OmittedPostingType
