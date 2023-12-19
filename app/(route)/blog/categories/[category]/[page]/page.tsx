@@ -5,11 +5,9 @@ import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
 import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
 import CategoryListing from '@/app/components/_blog/_categories/CategoryListing'
-import { categories } from '@/app/constants'
+import { LIMIT, categories } from '@/app/constants'
 
 export const revalidate = 1800
-
-const LIMIT = 5
 
 interface IParams {
   params: {

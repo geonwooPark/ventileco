@@ -4,8 +4,8 @@ import weatherDescEngToKor from '@/app/utils/weatherDescEngToKor'
 import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
-import { APIKEY, CITY } from './Weather'
 import useWeatherQuery from '@/app/hooks/query/useWeatherQuery'
+import { APIKEY, CITY } from '@/app/constants'
 
 export default function WeatherInfo() {
   const { weatherData, isPending } = useWeatherQuery(CITY, APIKEY)

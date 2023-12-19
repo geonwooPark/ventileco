@@ -3,9 +3,7 @@ import WeatherInfo from './WeatherInfo'
 import getQueryClient from '@/app/actions/getQueryClient'
 import getData from '@/app/actions/getData'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-
-export const CITY = 'Seoul'
-export const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY as string
+import { APIKEY, CITY } from '@/app/constants'
 
 export default async function Weather() {
   const queryClient = getQueryClient()

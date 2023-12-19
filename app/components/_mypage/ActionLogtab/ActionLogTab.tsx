@@ -7,14 +7,17 @@ import MyLikedPost from './ActionLogTabContent/MyLikedPost'
 
 const menuArr = [
   {
+    _id: 1,
     name: '작성 댓글',
     content: <MyComment />,
   },
   {
+    _id: 2,
     name: '댓글단 글',
     content: <MyCommentedPost />,
   },
   {
+    _id: 3,
     name: '좋아요한 글',
     content: <MyLikedPost />,
   },
@@ -29,7 +32,7 @@ export default function ActionLogTab() {
         {menuArr.map((menu, i) => {
           return (
             <button
-              key={i}
+              key={menu._id}
               onClick={() => setCurrentTab(i)}
               className={
                 currentTab === i

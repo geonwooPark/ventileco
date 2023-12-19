@@ -4,11 +4,9 @@ import Article from '@/app/components/_blog/common/Article/Article'
 import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
 import Section from '@/app/components/common/Section'
+import { LIMIT, PAGE } from '@/app/constants'
 
 export const revalidate = 1800
-
-const PAGE = 1
-const LIMIT = 5
 
 export default async function Home() {
   return (

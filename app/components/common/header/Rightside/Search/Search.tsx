@@ -53,7 +53,7 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
           className={`absolute left-0 top-0 h-[320px] w-full bg-black md:h-[420px]`}
         >
           <form
-            className="container mx-auto h-full px-4 sm:px-2 md:px-10 xl:px-20"
+            className="mx-auto h-full max-w-[1120px] px-4 sm:px-2 md:px-10 xl:px-20"
             onSubmit={onSubmit}
           >
             <div className="flex h-full items-center justify-center">

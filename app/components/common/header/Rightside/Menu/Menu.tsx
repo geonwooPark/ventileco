@@ -50,11 +50,11 @@ export default function Menu({ session }: MenuProps) {
       >
         {fade && (
           <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-sm bg-white text-sm shadow-md md:-right-10 md:w-[140px]">
-            <div className="curser-pointer flex flex-col">
+            <div className="flex cursor-pointer flex-col">
               {session ? (
                 <>
                   <MenuItem
-                    onClick={() => signOut()}
+                    onClick={signOut}
                     label="로그아웃"
                     className="text-red-500"
                   />

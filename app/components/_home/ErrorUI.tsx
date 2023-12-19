@@ -4,7 +4,7 @@ import React from 'react'
 import { FallbackProps } from 'react-error-boundary'
 import { IoRefresh } from 'react-icons/io5'
 
-export default function ErrorUI({ error, resetErrorBoundary }: FallbackProps) {
+export default function ErrorUI({ resetErrorBoundary }: FallbackProps) {
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="text-center">

@@ -4,9 +4,7 @@ import { Suspense } from 'react'
 import SearchListing from '@/app/components/_blog/_search/SearchListing'
 import Article from '@/app/components/_blog/common/Article/Article'
 import SkeletonListing from '@/app/components/_blog/common/Listing/SkeletonListing'
-
-const PAGE = 1
-const LIMIT = 5
+import { LIMIT, PAGE } from '@/app/constants'
 
 export default async function Search({
   searchParams,

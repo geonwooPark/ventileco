@@ -4,12 +4,9 @@ import Article from '@/app/components/_blog/common/Article/Article'
 import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
 import CategoryListing from '@/app/components/_blog/_categories/CategoryListing'
-import { categories } from '@/app/constants'
+import { LIMIT, PAGE, categories } from '@/app/constants'
 
 export const revalidate = 1800
-
-const PAGE = 1
-const LIMIT = 5
 
 interface IParams {
   params: {

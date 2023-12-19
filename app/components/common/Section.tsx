@@ -11,12 +11,10 @@ export default function Section({
   className,
   label,
 }: PropsWithChildren<SectionProps>) {
-  const title = <h3 className="mb-4 md:text-lg">{label}</h3>
-
   return (
     <section className={`pb-20 ${className}`}>
       <Container>
-        {title}
+        <h3 className="mb-4 md:text-lg">{label}</h3>
         {children}
       </Container>
     </section>
