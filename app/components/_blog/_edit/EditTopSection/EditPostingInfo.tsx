@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddThumbnailButton from '../../common/PostingInfo/AddThumbnailButton'
 import { OmittedPostingType } from '@/app/interfaces/interface'
 import PostingForm from '../../common/PostingInfo/PostingForm'
+import Container from '@/app/components/common/Container'
 
 interface EditPostingInfoProps {
   posting: OmittedPostingType
@@ -61,7 +62,7 @@ export default function EditPostingInfo({ ...props }: EditPostingInfoProps) {
   }
 
   return (
-    <div className="my-container flex h-full flex-col items-end justify-center">
+    <Container className="flex h-full flex-col items-end justify-center">
       <div className="absolute w-full">
         <PostingForm
           posting={posting}
@@ -72,6 +73,6 @@ export default function EditPostingInfo({ ...props }: EditPostingInfoProps) {
         />
         <AddThumbnailButton onThumbnailChange={onThumbnailChange} />
       </div>
-    </div>
+    </Container>
   )
 }

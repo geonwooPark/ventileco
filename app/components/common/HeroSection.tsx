@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import mainBg from '/public/images/main-bg.png'
+import Container from './Container'
 
 interface HeroSectionProps {
   title: string
@@ -19,12 +20,12 @@ export default function HeroSection({ title, description }: HeroSectionProps) {
         loading="eager"
         className="object-cover brightness-50"
       />
-      <div className="my-container flex h-full flex-col items-end justify-center text-right text-white">
+      <Container className="flex h-full flex-col items-end justify-center text-right text-white">
         <div className="absolute">
           <p className="mb-5 text-4xl font-bold md:text-6xl">{title}</p>
           <p className="text-sm md:text-base">{description}</p>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }

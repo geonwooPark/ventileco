@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import RightSide from './Rightside/RightSide'
 import LeftSide from './LeftSide/LeftSide'
+import Container from '../Container'
 
 export default function Header() {
   const [headerColor, setHeaderColor] = useState(false)
@@ -28,10 +29,10 @@ export default function Header() {
       }`}
       ref={scrollRef}
     >
-      <div className="my-container flex items-center justify-between py-4">
+      <Container className="flex items-center justify-between py-4">
         <LeftSide />
         <RightSide />
-      </div>
+      </Container>
     </header>
   )
 }

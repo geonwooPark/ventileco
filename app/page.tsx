@@ -5,13 +5,14 @@ import MyCheckList from './components/_home/MyCheckList/MyCheckList'
 import LoadingUI from './components/_home/LoadingUI'
 import ErrorUI from './components/_home/ErrorUI'
 import { ErrorBoundary } from 'react-error-boundary'
+import Container from './components/common/Container'
 
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
   return (
-    <section className="flex h-auto min-h-full items-center py-[82px] md:py-[102px]">
-      <div className="my-container text-white">
+    <section className="flex h-auto min-h-full items-center py-[82px] text-white md:py-[102px]">
+      <Container>
         <div className="mb-5 flex w-full flex-col items-center justify-center gap-5 md:flex-row">
           <article className="h-[300px] w-full rounded-xl bg-slate-700 px-4 py-3 md:max-w-[280px]">
             <ErrorBoundary FallbackComponent={ErrorUI}>
@@ -35,7 +36,7 @@ export default function Home() {
             </Suspense>
           </ErrorBoundary>
         </article>
-      </div>
+      </Container>
     </section>
   )
 }

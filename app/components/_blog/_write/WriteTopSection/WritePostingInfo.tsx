@@ -2,6 +2,7 @@ import { OmittedPostingType } from '@/app/interfaces/interface'
 import React, { useState } from 'react'
 import AddThumbnailButton from '../../common/PostingInfo/AddThumbnailButton'
 import PostingForm from '../../common/PostingInfo/PostingForm'
+import Container from '@/app/components/common/Container'
 
 interface WritePostingInfoProps {
   posting: OmittedPostingType
@@ -63,7 +64,7 @@ export default function WritePostingInfo({ ...props }: WritePostingInfoProps) {
   }
 
   return (
-    <div className="my-container flex h-full flex-col items-end justify-center">
+    <Container className="flex h-full flex-col items-end justify-center">
       <div className="absolute w-full">
         <PostingForm
           posting={posting}
@@ -74,6 +75,6 @@ export default function WritePostingInfo({ ...props }: WritePostingInfoProps) {
         />
         <AddThumbnailButton onThumbnailChange={onThumbnailChange} />
       </div>
-    </div>
+    </Container>
   )
 }

@@ -2,6 +2,7 @@ import dayjs from '@/app/utils/dayjs'
 import React from 'react'
 import LikeButton from './LikeButton'
 import { PostingType } from '@/app/interfaces/interface'
+import Container from '@/app/components/common/Container'
 
 interface PostingInfoProps {
   posting: PostingType
@@ -9,7 +10,7 @@ interface PostingInfoProps {
 
 export default function DetailPostingInfo({ posting }: PostingInfoProps) {
   return (
-    <div className="my-container flex h-full flex-col items-end justify-center text-white">
+    <Container className="flex h-full flex-col items-end justify-center text-white">
       <div className="absolute">
         <p className="mb-2 text-right text-sm">
           {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
@@ -27,6 +28,6 @@ export default function DetailPostingInfo({ posting }: PostingInfoProps) {
           </p>
         )}
       </div>
-    </div>
+    </Container>
   )
 }

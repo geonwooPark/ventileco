@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react'
+import Container from './Container'
 
 interface SectionProps {
   className?: string
@@ -14,10 +15,10 @@ export default function Section({
 
   return (
     <section className={`pb-20 ${className}`}>
-      <div className="my-container">
+      <Container>
         {title}
         {children}
-      </div>
+      </Container>
     </section>
   )
 }
