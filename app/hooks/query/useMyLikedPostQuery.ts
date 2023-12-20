@@ -4,11 +4,7 @@ import { LikeType } from '../../interfaces/interface'
 import { Session } from 'next-auth'
 
 export default function useMyLikedPostQuery(session: Session | null) {
-  const {
-    data: myLikedPost,
-    isPending,
-    error,
-  } = useQuery({
+  const { data: myLikedPost, isPending } = useQuery({
     queryKey: ['my-liked-post', { user: session?.user.id }],
     queryFn: () =>
       getData<LikeType[]>(
@@ -17,5 +13,5 @@ export default function useMyLikedPostQuery(session: Session | null) {
     staleTime: 1000 * 60 * 5, // 5분
     gcTime: 1000 * 60 * 5, // 5분
   })
-  return { myLikedPost, isPending, error }
+  return { myLikedPost, isPending }
 }

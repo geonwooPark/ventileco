@@ -10,7 +10,7 @@ interface PageNumberProps {
 }
 
 export default function PageNumber({
-  index: i,
+  index: idx,
   path,
   page,
   category,
@@ -20,26 +20,26 @@ export default function PageNumber({
     <Link
       href={{
         pathname: category
-          ? i === 0
+          ? idx === 0
             ? `/blog/${path}/${category}`
-            : `/blog/${path}/${category}/${i + 1}`
+            : `/blog/${path}/${category}/${idx + 1}`
           : search
             ? `/blog/${path}`
-            : i === 0
+            : idx === 0
               ? '/blog'
-              : `/blog/${path}/${i + 1}`,
-        query: search && { ...(search ? { search } : {}), page: i + 1 },
+              : `/blog/${path}/${idx + 1}`,
+        query: search && { ...(search ? { search } : {}), page: idx + 1 },
       }}
-      aria-label={`${i + 1}페이지`}
+      aria-label={`${idx + 1}페이지`}
     >
       <button
         type="button"
         className={`h-8 w-8 rounded-full ${
-          page === i + 1 ? 'bg-gray-700 text-white' : 'bg-none'
+          page === idx + 1 && 'bg-gray-700 text-white'
         }`}
-        aria-label={`${i + 1}페이지`}
+        aria-label={`${idx + 1}페이지`}
       >
-        {i + 1}
+        {idx + 1}
       </button>
     </Link>
   )

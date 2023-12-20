@@ -2,7 +2,7 @@ import getSearchListing from '@/app/actions/getSearchListing'
 import React from 'react'
 import Pagination from '../common/Pagination/Pagination'
 import EmptyState from '../../common/EmptyState'
-import ListingItem from '../common/Listing/ListingItem'
+import Listing from '../common/Listing/Listing'
 
 interface SearchListingProps {
   path: 'search'
@@ -29,11 +29,7 @@ export default async function SearchListing({ ...props }: SearchListingProps) {
 
   return (
     <div>
-      <ul>
-        {listing?.map((listingItem) => {
-          return <ListingItem key={listingItem._id} posting={listingItem} />
-        })}
-      </ul>
+      <Listing listing={listing} />
       <Pagination {...props} listingCount={listingCount} />
     </div>
   )

@@ -5,12 +5,13 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import UserInfo from '@/app/components/_mypage/UserInfo'
 import HeroSection from '@/app/components/common/HeroSection'
 import ActionLogTab from '@/app/components/_mypage/ActionLogtab/ActionLogTab'
+import Main from '@/app/components/common/Main'
 
 export default async function page() {
   const session = await getServerSession(authOptions)
 
   return (
-    <main>
+    <Main>
       <HeroSection
         title="My Page"
         description="내 정보 및 활동 내역을 확인해보세요"
@@ -22,6 +23,6 @@ export default async function page() {
       <Section label="나의 활동">
         <ActionLogTab />
       </Section>
-    </main>
+    </Main>
   )
 }

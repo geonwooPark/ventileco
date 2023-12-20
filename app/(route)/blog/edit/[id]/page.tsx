@@ -15,6 +15,7 @@ import EmptyState from '@/app/components/common/EmptyState'
 import { ImagesType, OmittedPostingType } from '@/app/interfaces/interface'
 import { storage } from '@/app/utils/firebase'
 import EditTopSection from '@/app/components/_blog/_edit/EditTopSection/EditTopSection'
+import Main from '@/app/components/common/Main'
 
 const EditorSection = dynamic(
   () => import('@/app/components/_blog/common/Editor/Editor'),
@@ -185,7 +186,7 @@ export default function Edit() {
   }
 
   return (
-    <main>
+    <Main>
       <EditTopSection
         posting={posting}
         setPosting={setPosting}
@@ -207,6 +208,6 @@ export default function Edit() {
         disabled={isLoading}
         onClick={editPosting}
       />
-    </main>
+    </Main>
   )
 }

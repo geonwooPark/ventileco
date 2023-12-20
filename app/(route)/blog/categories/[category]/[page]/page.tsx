@@ -2,10 +2,11 @@ import { Metadata } from 'next'
 import Section from '@/app/components/common/Section'
 import Article from '@/app/components/_blog/common/Article/Article'
 import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
-import CategoryMenu from '@/app/components/_blog/common/Sidebar/CategoryMenu'
 import HeroSection from '@/app/components/common/HeroSection'
 import CategoryListing from '@/app/components/_blog/_categories/CategoryListing'
 import { LIMIT, categories } from '@/app/constants'
+import SideBar from '@/app/components/_blog/common/Sidebar/SideBar'
+import Main from '@/app/components/common/Main'
 
 export const revalidate = 1800
 
@@ -56,7 +57,7 @@ export default async function Categories({ params }: IParams) {
   const category = decodeURI(params.category)
 
   return (
-    <main>
+    <Main>
       <HeroSection
         title="Study Log"
         description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
@@ -64,7 +65,7 @@ export default async function Categories({ params }: IParams) {
 
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
-          <CategoryMenu paramsCategory={category} />
+          <SideBar paramsCategory={category} />
           <Article title="검색 결과">
             <CategoryListing
               path="categories"
@@ -75,6 +76,6 @@ export default async function Categories({ params }: IParams) {
           </Article>
         </div>
       </Section>
-    </main>
+    </Main>
   )
 }

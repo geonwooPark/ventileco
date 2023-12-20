@@ -9,6 +9,7 @@ import CommentSection from '@/app/components/_blog/_detail/CommentSection/Commen
 import AdminControlSection from '@/app/components/_blog/_detail/AdminControlSection/AdminControlSection'
 import Modals from '@/app/components/_blog/_detail/Modals/Modals'
 import DetailTopSection from '@/app/components/_blog/_detail/DetailTopSection/DetailTopSection'
+import Main from '@/app/components/common/Main'
 
 export const revalidate = 1800
 
@@ -73,7 +74,7 @@ export default async function Detail({ params }: IParams) {
   if (!posting) return NotFound()
 
   return (
-    <main>
+    <Main>
       <DetailTopSection posting={posting} />
       <ContentSection
         content={posting.content}
@@ -83,6 +84,6 @@ export default async function Detail({ params }: IParams) {
       <CommentSection postingId={id} />
       <AdminControlSection postingId={id} />
       <Modals postingId={id} />
-    </main>
+    </Main>
   )
 }

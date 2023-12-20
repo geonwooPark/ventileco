@@ -2,8 +2,8 @@ import getCategoryListing from '@/app/actions/getCategoryListing'
 import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
 import React from 'react'
 import Pagination from '../common/Pagination/Pagination'
-import ListingItem from '../common/Listing/ListingItem'
 import EmptyState from '../../common/EmptyState'
+import Listing from '../common/Listing/Listing'
 
 interface CategoryListingProps {
   path: 'categories'
@@ -34,11 +34,7 @@ export default async function CategoryListing({
 
   return (
     <div>
-      <ul>
-        {listing?.map((listingItem) => {
-          return <ListingItem key={listingItem._id} posting={listingItem} />
-        })}
-      </ul>
+      <Listing listing={listing} />
       <Pagination {...props} listingCount={listingCount} />
     </div>
   )

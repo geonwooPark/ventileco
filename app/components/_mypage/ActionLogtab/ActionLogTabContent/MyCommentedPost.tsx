@@ -7,7 +7,7 @@ import useMyCommentedPostQuery from '@/app/hooks/query/useMyCommentedPostQuery'
 
 export default function MyCommentedPost() {
   const { data: session } = useSession()
-  const { myCommentedPost, isPending, error } = useMyCommentedPostQuery(session)
+  const { myCommentedPost, isPending } = useMyCommentedPostQuery(session)
 
   if (isPending) {
     return (

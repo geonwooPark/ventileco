@@ -4,6 +4,7 @@ import React from 'react'
 import EmptyState from '../../common/EmptyState'
 import Pagination from '../common/Pagination/Pagination'
 import ListingItem from '../common/Listing/ListingItem'
+import Listing from '../common/Listing/Listing'
 
 interface AllListingProps {
   path: 'postings'
@@ -29,11 +30,7 @@ export default async function AllListing({ ...props }: AllListingProps) {
 
   return (
     <div>
-      <ul>
-        {listing?.map((listingItem) => {
-          return <ListingItem key={listingItem._id} posting={listingItem} />
-        })}
-      </ul>
+      <Listing listing={listing} />
       <Pagination {...props} listingCount={listingCount} />
     </div>
   )

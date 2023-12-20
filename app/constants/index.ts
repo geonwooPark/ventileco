@@ -26,6 +26,5 @@ export const PAGE = 1
 export const LIMIT = 5
 
 // 날씨 정보
-
 export const CITY = 'Seoul'
 export const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY as string

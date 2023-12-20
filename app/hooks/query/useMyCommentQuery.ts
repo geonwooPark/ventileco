@@ -4,11 +4,7 @@ import { Session } from 'next-auth'
 import { myCommentType } from '../../interfaces/interface'
 
 export default function useMyCommentQuery(session: Session | null) {
-  const {
-    data: myComment,
-    isPending,
-    error,
-  } = useQuery({
+  const { data: myComment, isPending } = useQuery({
     queryKey: ['my-comment', { user: session?.user.id }],
     queryFn: () =>
       getData<myCommentType[]>(
@@ -18,5 +14,5 @@ export default function useMyCommentQuery(session: Session | null) {
     gcTime: 1000 * 60 * 5, // 5분
   })
 
-  return { myComment, isPending, error }
+  return { myComment, isPending }
 }

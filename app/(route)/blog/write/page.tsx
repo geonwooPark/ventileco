@@ -15,6 +15,7 @@ import EmptyState from '@/app/components/common/EmptyState'
 import { ImagesType, OmittedPostingType } from '@/app/interfaces/interface'
 import { storage } from '@/app/utils/firebase'
 import WriteTopSection from '@/app/components/_blog/_write/WriteTopSection/WriteTopSection'
+import Main from '@/app/components/common/Main'
 
 const EditorSection = dynamic(
   () => import('@/app/components/_blog/common/Editor/Editor'),
@@ -156,7 +157,7 @@ export default function Write() {
   }
 
   return (
-    <main>
+    <Main>
       <WriteTopSection
         posting={posting}
         setPosting={setPosting}
@@ -178,6 +179,6 @@ export default function Write() {
         disabled={isLoading}
         onClick={createPosting}
       />
-    </main>
+    </Main>
   )
 }

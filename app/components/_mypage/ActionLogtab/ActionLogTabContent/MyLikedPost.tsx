@@ -7,7 +7,7 @@ import useMyLikedPostQuery from '@/app/hooks/query/useMyLikedPostQuery'
 
 export default function MyLikedPost() {
   const { data: session } = useSession()
-  const { myLikedPost, isPending, error } = useMyLikedPostQuery(session)
+  const { myLikedPost, isPending } = useMyLikedPostQuery(session)
 
   if (isPending) {
     return (

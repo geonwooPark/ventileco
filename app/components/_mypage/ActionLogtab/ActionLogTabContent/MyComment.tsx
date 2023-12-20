@@ -7,7 +7,7 @@ import useMyCommentQuery from '@/app/hooks/query/useMyCommentQuery'
 
 export default function MyComment() {
   const { data: session } = useSession()
-  const { myComment, isPending, error } = useMyCommentQuery(session)
+  const { myComment, isPending } = useMyCommentQuery(session)
 
   if (isPending) {
     return (
