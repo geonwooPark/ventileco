@@ -4,12 +4,12 @@ import getQueryClient from '@/app/actions/getQueryClient'
 import getData from '@/app/actions/getData'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { APIKEY, CITY } from '@/app/constants'
-import { weatherKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/app/constants/queryKey'
 
 export default async function Weather() {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: weatherKeys.base,
+    queryKey: homeKeys.weather(),
     queryFn: () =>
       getData(
         `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKEY}&units=metric`,

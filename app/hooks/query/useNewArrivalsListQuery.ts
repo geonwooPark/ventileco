@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { PostingType } from '../../interfaces/interface'
-import { newArrivalsKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/app/constants/queryKey'
 
 export default function useNewArrivalsQuery() {
   const { data: newArrivalsList, isPending } = useQuery({
-    queryKey: newArrivalsKeys.base,
+    queryKey: homeKeys.newArrivals(),
     queryFn: () =>
       getData<PostingType[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/new-arrivals`,

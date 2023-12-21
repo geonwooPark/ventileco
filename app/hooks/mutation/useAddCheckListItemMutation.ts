@@ -1,4 +1,4 @@
-import { checkListKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -38,7 +38,7 @@ export default function useAddCheckListItemMutation({
       addCheckListItem({ session, value, today }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: checkListKeys.checkList(today),
+        queryKey: homeKeys.checkList(today),
       })
     },
   })

@@ -5,7 +5,7 @@ import getQueryClient from '@/app/actions/getQueryClient'
 import { connectMongo } from '@/app/utils/database'
 import { Posting } from '@/models/posting'
 import { PostingType } from '@/app/interfaces/interface'
-import { newArrivalsKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/app/constants/queryKey'
 
 const getNewArrivals = async () => {
   await connectMongo()
@@ -25,7 +25,7 @@ const getNewArrivals = async () => {
 export default async function NewArrivals() {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: newArrivalsKeys.base,
+    queryKey: homeKeys.newArrivals(),
     queryFn: getNewArrivals,
   })
   const dehydratedState = dehydrate(queryClient)

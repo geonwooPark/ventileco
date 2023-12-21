@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { CheckListItemType } from '../../interfaces/interface'
-import { checkListKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/app/constants/queryKey'
 
 export default function useCheckListQuery(date: string) {
   const { data: checkList, isPending } = useQuery({
-    queryKey: checkListKeys.checkList(date),
+    queryKey: homeKeys.checkList(date),
     queryFn: () =>
       getData<CheckListItemType[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/check-list?date=${date}`,

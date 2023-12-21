@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
-import { likeCountKeys } from '@/app/constants/queryKey'
+import { detailKeys } from '@/app/constants/queryKey'
 
 export default function useLikeCountQuery(postingId: string) {
   const {
@@ -8,7 +8,7 @@ export default function useLikeCountQuery(postingId: string) {
     isPending,
     error,
   } = useQuery({
-    queryKey: likeCountKeys.likeCount(postingId),
+    queryKey: detailKeys.likeCount(postingId),
     queryFn: () =>
       getData<number>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/like-count?postingId=${postingId}`,

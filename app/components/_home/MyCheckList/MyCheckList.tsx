@@ -6,7 +6,7 @@ import dayjs from '@/app/utils/dayjs'
 import { connectMongo } from '@/app/utils/database'
 import { CheckList } from '@/models/checklist'
 import { CheckListType } from '@/app/interfaces/interface'
-import { checkListKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/app/constants/queryKey'
 
 const getCheckList = async (date: string) => {
   await connectMongo()
@@ -28,7 +28,7 @@ export default async function MyCheckList() {
 
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: checkListKeys.checkList(date),
+    queryKey: homeKeys.checkList(date),
     queryFn: () => getCheckList(date),
   })
   const dehydratedState = dehydrate(queryClient)

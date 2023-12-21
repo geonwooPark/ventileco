@@ -1,4 +1,4 @@
-import { commentsKey, myCommentKeys } from '@/app/constants/queryKey'
+import { detailKeys, myPageKeys } from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -49,10 +49,10 @@ export default function useEditCommentMutation({
       editComment({ session, postingId, selectedCommentIdForEdit, text }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: commentsKey.comments(postingId),
+        queryKey: detailKeys.comment(postingId),
       })
       queryClient.invalidateQueries({
-        queryKey: myCommentKeys.myComment(session?.user.id),
+        queryKey: myPageKeys.myComment(session?.user.id),
       })
     },
   })

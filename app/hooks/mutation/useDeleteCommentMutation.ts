@@ -1,8 +1,4 @@
-import {
-  commentsKey,
-  myCommentKeys,
-  myCommentedPostKeys,
-} from '@/app/constants/queryKey'
+import { detailKeys, myPageKeys } from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -48,13 +44,13 @@ export default function useDeleteCommentMutation({
       deleteComment({ session, postingId, selectedCommentIdForDeletion }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: commentsKey.comments(postingId),
+        queryKey: detailKeys.comment(postingId),
       })
       queryClient.invalidateQueries({
-        queryKey: myCommentKeys.myComment(session?.user.id),
+        queryKey: myPageKeys.myComment(session?.user.id),
       })
       queryClient.invalidateQueries({
-        queryKey: myCommentedPostKeys.myCommentedPost(session?.user.id),
+        queryKey: myPageKeys.myCommentedPost(session?.user.id),
       })
     },
   })
