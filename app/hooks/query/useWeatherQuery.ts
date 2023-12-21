@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
+import { weatherKeys } from '@/app/constants/queryKey'
 
 export default function useWeatherQuery(CITY: string, APIKEY: string) {
   const { data: weatherData, isPending } = useQuery({
     // eslint-disable-next-line
-    queryKey: ['weather'],
+    queryKey: weatherKeys.base,
     queryFn: () =>
       getData<any>(
         `https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${APIKEY}&units=metric`,

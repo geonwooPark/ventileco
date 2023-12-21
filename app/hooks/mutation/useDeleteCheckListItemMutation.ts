@@ -1,3 +1,4 @@
+import { checkListKeys } from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -38,7 +39,9 @@ export default function useDeleteCheckListItemMutation({
       deleteCheckListItem({ listId, session, date, today }),
     onSuccess: () => {
       if (session?.user.role !== 'admin' || date !== today) return
-      queryClient.invalidateQueries({ queryKey: ['checklist'] })
+      queryClient.invalidateQueries({
+        queryKey: checkListKeys.checkList(today),
+      })
     },
   })
 

@@ -1,3 +1,8 @@
+import {
+  isLikedKeys,
+  likeCountKeys,
+  myLikedPostKeys,
+} from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -42,10 +47,14 @@ export default function useHandleLikeButtonMutation({
         isLiked,
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['isLiked', { postingId }] })
-      queryClient.invalidateQueries({ queryKey: ['likeCount', { postingId }] })
       queryClient.invalidateQueries({
-        queryKey: ['my-liked-post', { user: session?.user.id }],
+        queryKey: isLikedKeys.isLiked(postingId),
+      })
+      queryClient.invalidateQueries({
+        queryKey: likeCountKeys.likeCount(postingId),
+      })
+      queryClient.invalidateQueries({
+        queryKey: myLikedPostKeys.myLikedPost(session?.user.id),
       })
     },
   })

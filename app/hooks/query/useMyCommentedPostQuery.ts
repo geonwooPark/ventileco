@@ -2,10 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { CommentType } from '../../interfaces/interface'
 import { Session } from 'next-auth'
+import { myCommentedPostKeys } from '@/app/constants/queryKey'
 
 export default function useMyCommentedPostQuery(session: Session | null) {
   const { data: myCommentedPost, isPending } = useQuery({
-    queryKey: ['my-commented-post', { user: session?.user.id }],
+    queryKey: myCommentedPostKeys.myCommentedPost(session?.user.id),
     queryFn: () =>
       getData<CommentType[]>(
         `/api/my-commented-post?userId=${session?.user.id}`,

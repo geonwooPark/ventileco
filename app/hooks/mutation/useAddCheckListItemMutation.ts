@@ -1,3 +1,4 @@
+import { checkListKeys } from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -26,13 +27,19 @@ const addCheckListItem = async ({
     })
 }
 
-export default function useAddCheckListItemMutation() {
+export default function useAddCheckListItemMutation({
+  today,
+}: {
+  today: string
+}) {
   const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: ({ session, value, today }: AddCheckListItemParams) =>
       addCheckListItem({ session, value, today }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['checklist'] })
+      queryClient.invalidateQueries({
+        queryKey: checkListKeys.checkList(today),
+      })
     },
   })
   return { mutation }

@@ -22,7 +22,9 @@ export default function AddListItemModal() {
     setValue(e.target.value)
   }
 
-  const { mutation: addCheckListItemMutation } = useAddCheckListItemMutation()
+  const { mutation: addCheckListItemMutation } = useAddCheckListItemMutation({
+    today,
+  })
   const addCheckListItem = () => {
     addCheckListItemMutation.mutate(
       { session, value, today },

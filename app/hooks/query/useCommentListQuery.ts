@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { CommentUserType } from '../../interfaces/interface'
+import { commentsKey } from '@/app/constants/queryKey'
 
 export default function useCommentListQuery(postingId: string) {
   const {
@@ -8,7 +9,7 @@ export default function useCommentListQuery(postingId: string) {
     isPending,
     error,
   } = useQuery({
-    queryKey: ['comments', { postingId }],
+    queryKey: commentsKey.comments(postingId),
     queryFn: () =>
       getData<CommentUserType[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/comment?postingId=${postingId}`,

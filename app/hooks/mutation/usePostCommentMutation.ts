@@ -1,3 +1,8 @@
+import {
+  commentsKey,
+  myCommentKeys,
+  myCommentedPostKeys,
+} from '@/app/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -35,12 +40,14 @@ export default function usePostCommentMutation({
     mutationFn: ({ session, postingId, text }: PostCommentParams) =>
       postComment({ session, postingId, text }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['comments', { postingId }] })
       queryClient.invalidateQueries({
-        queryKey: ['my-comment', { user: session?.user.id }],
+        queryKey: commentsKey.comments(postingId),
       })
       queryClient.invalidateQueries({
-        queryKey: ['my-commented-post', { user: session?.user.id }],
+        queryKey: myCommentKeys.myComment(session?.user.id),
+      })
+      queryClient.invalidateQueries({
+        queryKey: myCommentedPostKeys.myCommentedPost(session?.user.id),
       })
     },
   })
