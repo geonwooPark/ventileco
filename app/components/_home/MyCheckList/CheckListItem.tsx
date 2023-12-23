@@ -57,7 +57,7 @@ export default function CheckListItem({
         <input
           type="checkbox"
           checked={item.status}
-          className={`mr-1.5 h-5 w-5 ${
+          className={`mr-1.5 h-5 w-5 accent-pink-500 ${
             session?.user.role !== 'admin' && 'pointer-events-none'
           }`}
           onChange={updateCheckListItem}
