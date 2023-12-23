@@ -1,6 +1,12 @@
+import StageContainer from '@/app/components/_about/StageContainer/StageContainer'
 import React from 'react'
-import EmptyState from '@/app/components/common/EmptyState'
 
 export default function page() {
-  return <EmptyState label="현재 준비중 입니다." />
+  return (
+    <div
+      className={`h-full w-full text-center text-2xl text-gray-400 sm:text-4xl lg:text-6xl`}
+    >
+      <StageContainer />
+    </div>
+  )
 }

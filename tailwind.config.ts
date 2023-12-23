@@ -25,10 +25,15 @@ const config: Config = {
           '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(-100%)' },
         },
+        wheelDown: {
+          '0%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
       },
       animation: {
         slideFadeIn: 'slideFadeIn 0.3s ease-in-out',
         slideFadeOut: 'slideFadeOut 0.3s ease-in-out',
+        wheelDown: 'wheelDown 2s linear infinite',
       },
     },
   },

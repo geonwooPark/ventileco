@@ -31,7 +31,7 @@ export default function PostingForm({
   return (
     <div>
       <RefWrapper
-        ref={categoryRef}
+        innerRef={categoryRef}
         className="mb-4 mt-10 flex justify-end md:mt-0"
       >
         <DropDownMenu
@@ -42,7 +42,7 @@ export default function PostingForm({
         />
       </RefWrapper>
       <RefWrapper
-        ref={titleRef}
+        innerRef={titleRef}
         className={`w-full ${titleError ? 'text-red-500' : 'text-white'}`}
       >
         <Input
@@ -55,7 +55,7 @@ export default function PostingForm({
         />
       </RefWrapper>
       <RefWrapper
-        ref={descriptionRef}
+        innerRef={descriptionRef}
         className={`w-full ${descriptionError ? 'text-red-500' : 'text-white'}`}
       >
         <Input
