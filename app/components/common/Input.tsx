@@ -38,6 +38,7 @@ export default function Input({
         disabled={disabled}
         placeholder={placeholder}
         onChange={onChange}
+        autoComplete="off"
         className={`rounded border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-black
         ${className}
         `}

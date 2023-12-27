@@ -14,33 +14,48 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
 
 <br>
 
-#### - SSG 활용 (시간 기반 재검증)
+#### ⭐️ SSG 활용 (시간 기반 재검증)
 
-> [Next.JS SSG가 적용되지 않던 이유](https://ventileco.notion.site/Next-JS-SSG-dd81a49472954dbdb03f24e6bb8a6a66?pvs=4) > <img width="600" alt="스크린샷 2023-12-07 오후 12 22 28" src="https://github.com/geonwooPark/myblog/assets/136573728/b86d0c2e-c01b-4ead-8525-ebbb72590d1f"> > <img width="600" alt="스크린샷 2023-12-07 오후 12 24 26" src="https://github.com/geonwooPark/myblog/assets/136573728/a74da7df-5e63-4a10-bf21-8bf2b3f6171a">
+[Next.JS SSG가 적용되지 않던 이유](https://ventileco.notion.site/Next-JS-SSG-dd81a49472954dbdb03f24e6bb8a6a66?pvs=4)
 
-#### - Streaming을 활용한 빠른 서버 사이드 렌더링
+<img width="600" alt="스크린샷 2023-12-07 오후 12 22 28" src="https://github.com/geonwooPark/myblog/assets/136573728/b86d0c2e-c01b-4ead-8525-ebbb72590d1f">
+<img width="600" alt="스크린샷 2023-12-07 오후 12 24 26" src="https://github.com/geonwooPark/myblog/assets/136573728/a74da7df-5e63-4a10-bf21-8bf2b3f6171a">
 
-> [Suspense으로 Streaming 적용하기](https://ventileco.notion.site/Suspense-Streaming-46372d8cb5014d46a2d7808e4ec4d0f6?pvs=4) > <img width="600" alt="스크린샷 2023-12-17 오전 12 59 10" src="https://github.com/geonwooPark/myblog/assets/136573728/d880de75-2b88-4926-a9d7-d8b718adfca8">
+#### ⭐️ Streaming을 활용한 빠른 서버 사이드 렌더링
 
-#### - SSR + Tanstack Query로 데이터 캐싱
+[Suspense으로 Streaming 적용하기](https://ventileco.notion.site/Suspense-Streaming-46372d8cb5014d46a2d7808e4ec4d0f6?pvs=4)
 
-> [SSR에서 Tanstack Query 사용하기](https://ventileco.notion.site/SSR-Tanstack-Query-73541234920441f78465c770ffcfd042?pvs=4) > <img width="600" alt="스크린샷 2023-12-17 오전 1 17 03" src="https://github.com/geonwooPark/myblog/assets/136573728/2b9834e6-4aab-440c-accd-1304725c8e68">
+<img width="600" alt="스크린샷 2023-12-17 오전 12 59 10" src="https://github.com/geonwooPark/myblog/assets/136573728/d880de75-2b88-4926-a9d7-d8b718adfca8">
 
-#### - Dynamic Routes별 정적 페이지 HTML 생성
+#### ⭐️ SSR + Tanstack Query로 데이터 캐싱
 
-> [Next.JS Dynamic Routes](https://ventileco.notion.site/Dynamic-route-e5cad9937b214e459a196b6dcc9530c2?pvs=4) > <img width="600" alt="스크린샷 2023-12-07 오후 12 23 34" src="https://github.com/geonwooPark/myblog/assets/136573728/e92f9429-4776-41fe-b559-3445b15d694a">
+[SSR에서 Tanstack Query 사용하기](https://ventileco.notion.site/SSR-Tanstack-Query-73541234920441f78465c770ffcfd042?pvs=4)
 
-#### - 페이지별 Dynamic Metadata 설정
+<img width="600" alt="스크린샷 2023-12-17 오전 1 17 03" src="https://github.com/geonwooPark/myblog/assets/136573728/2b9834e6-4aab-440c-accd-1304725c8e68">
 
-> [Next.JS SEO](https://ventileco.notion.site/SEO-336ffee359684571bc6561a474e71ea5?pvs=4) > <img width="600" alt="스크린샷 2023-12-07 오후 12 32 23" src="https://github.com/geonwooPark/myblog/assets/136573728/b9f433ed-c058-463e-88d8-161dff0466b7">
+#### ⭐️ Dynamic Routes별 정적 페이지 HTML 생성
 
-#### - 페이지네이션 구현
+[Next.JS Dynamic Routes](https://ventileco.notion.site/Dynamic-route-e5cad9937b214e459a196b6dcc9530c2?pvs=4)
 
-> [Next.JS 서버 사이드 페이지네이션 구현하기](https://ventileco.notion.site/Next-JS-4bdb9079995642d29196d8ebad4cdf99?pvs=4) > <img width="600" alt="스크린샷 2023-12-14 오후 1 31 32" src="https://github.com/geonwooPark/myblog/assets/136573728/7615462a-e3e3-4463-9a46-567e5d8ae952">
+<img width="600" alt="스크린샷 2023-12-07 오후 12 23 34" src="https://github.com/geonwooPark/myblog/assets/136573728/e92f9429-4776-41fe-b559-3445b15d694a">
 
-#### - 에러 핸들링
+#### ⭐️ 페이지별 Dynamic Metadata 설정
 
-> [Error Handling과 Error Boundary](https://ventileco.notion.site/Error-Handling-Error-Boundary-4e8e27e9e32846b6b860487dad55ccf8?pvs=4) > <img width="600" alt="스크린샷 2023-12-27 오전 1 49 08" src="https://github.com/geonwooPark/myblog/assets/136573728/7686b69f-8fdc-4091-b106-1791bae707cb">
+[Next.JS SEO](https://ventileco.notion.site/SEO-336ffee359684571bc6561a474e71ea5?pvs=4)
+
+<img width="600" alt="스크린샷 2023-12-07 오후 12 32 23" src="https://github.com/geonwooPark/myblog/assets/136573728/b9f433ed-c058-463e-88d8-161dff0466b7">
+
+#### ⭐️ 페이지네이션 구현
+
+[Next.JS 서버 사이드 페이지네이션 구현하기](https://ventileco.notion.site/Next-JS-4bdb9079995642d29196d8ebad4cdf99?pvs=4)
+
+<img width="600" alt="스크린샷 2023-12-14 오후 1 31 32" src="https://github.com/geonwooPark/myblog/assets/136573728/7615462a-e3e3-4463-9a46-567e5d8ae952">
+
+#### ⭐️ 에러 핸들링
+
+[Error Handling과 Error Boundary](https://ventileco.notion.site/Error-Handling-Error-Boundary-4e8e27e9e32846b6b860487dad55ccf8?pvs=4)
+
+<img width="600" alt="스크린샷 2023-12-27 오전 1 49 08" src="https://github.com/geonwooPark/myblog/assets/136573728/7686b69f-8fdc-4091-b106-1791bae707cb">
 
 ## 🛠 기술 스택
 
@@ -64,7 +79,7 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
 ![TanStack Query](https://img.shields.io/badge/ReactQuery-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white)
 ![Zustand](https://img.shields.io/badge/Zustand-EA4AAA?style=for-the-badge&logo=Zustand&logoColor=white)
 
-<img width="500" alt="Welcome to FigJam" src="https://github.com/geonwooPark/myblog/assets/136573728/6e887024-4d1e-489f-89f3-2f3592abc53d">
+<img width="600" alt="Welcome to FigJam" src="https://github.com/geonwooPark/Real-estate/assets/136573728/ac4292d3-e774-41b8-b0de-db29c49a9dd3">
 
 ---
 
