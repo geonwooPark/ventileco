@@ -26,14 +26,20 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     if (text.trim() === '') return
 
     const storage = localStorage.getItem('keyword')
-    if (!storage) return localStorage.setItem('keyword', JSON.stringify([text]))
-    const storageArr: string[] = JSON.parse(storage)
-    storageArr && storageArr.length < 5
-      ? localStorage.setItem('keyword', JSON.stringify([text, ...storageArr]))
-      : localStorage.setItem(
-          'keyword',
-          JSON.stringify([text, ...storageArr.slice(0, storageArr.length - 1)]),
-        )
+    if (storage) {
+      const storageArr: string[] = JSON.parse(storage)
+      storageArr && storageArr.length < 5
+        ? localStorage.setItem('keyword', JSON.stringify([text, ...storageArr]))
+        : localStorage.setItem(
+            'keyword',
+            JSON.stringify([
+              text,
+              ...storageArr.slice(0, storageArr.length - 1),
+            ]),
+          )
+    } else {
+      localStorage.setItem('keyword', JSON.stringify([text]))
+    }
 
     router.push(`/blog/search?search=${text}`)
     setText('')
