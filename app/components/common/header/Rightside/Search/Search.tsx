@@ -106,6 +106,8 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
                 <SearchHistory
                   keywords={keywords}
                   onKeywordDelete={onKeywordDelete}
+                  setText={setText}
+                  setIsOpen={setIsOpen}
                 />
               </div>
             </div>
