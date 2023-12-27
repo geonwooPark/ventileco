@@ -20,7 +20,6 @@ export default async function getSearchListing({
     const options = [
       { title: { $regex: new RegExp(search, 'i') } },
       { description: { $regex: new RegExp(search, 'i') } },
-      { content: { $regex: new RegExp(search, 'i') } },
     ]
     const listing = await Posting.find<PostingType>({
       $or: options,

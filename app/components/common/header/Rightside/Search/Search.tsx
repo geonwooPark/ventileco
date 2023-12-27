@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import Input from '../../../Input'
+import SearchHistory from './SearchHistory'
 
 interface SearchProps {
   isOpen: boolean
@@ -12,6 +13,7 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
   const router = useRouter()
   const [fade, setFade] = useState(false)
   const [text, setText] = useState('')
+  const [keywords, setKeywords] = useState<string[]>([])
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
@@ -23,9 +25,33 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     if (!text) return
     if (text.trim() === '') return
 
+    const storage = localStorage.getItem('keyword')
+    if (storage) {
+      const storageArr: string[] = JSON.parse(storage)
+      storageArr && storageArr.length < 5
+        ? localStorage.setItem('keyword', JSON.stringify([text, ...storageArr]))
+        : localStorage.setItem(
+            'keyword',
+            JSON.stringify([
+              text,
+              ...storageArr.slice(0, storageArr.length - 1),
+            ]),
+          )
+    } else {
+      localStorage.setItem('keyword', JSON.stringify([text]))
+    }
+
     router.push(`/blog/search?search=${text}`)
     setText('')
     setIsOpen(false)
+  }
+
+  const onKeywordDelete = (keyword: string) => {
+    setKeywords((prev) => {
+      const arr = prev.filter((s) => s !== keyword)
+      localStorage.setItem('keyword', JSON.stringify(arr))
+      return arr
+    })
   }
 
   useEffect(() => {
@@ -42,6 +68,14 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    const storage = localStorage.getItem('keyword')
+    if (storage) {
+      const storageArr: string[] = JSON.parse(storage)
+      setKeywords(storageArr)
+    }
+  }, [isOpen])
+
   return (
     <div
       className={`transition duration-200 ${
@@ -50,14 +84,14 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     >
       {fade && (
         <div
-          className={`absolute left-0 top-0 h-[320px] w-full bg-black md:h-[420px]`}
+          className={`absolute left-0 top-0 h-[320px] w-full overflow-hidden bg-black md:h-[420px]`}
         >
           <form
             className="mx-auto h-full max-w-[1120px] px-4 sm:px-2 md:px-10 xl:px-20"
             onSubmit={onSubmit}
           >
             <div className="flex h-full items-center justify-center">
-              <div className="w-[80%] md:w-[60%]">
+              <div className="relative w-[80%] md:w-[60%]">
                 <Input
                   type="text"
                   name="search"
@@ -68,6 +102,12 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
                   icon={AiOutlineSearch}
                   iconAction={() => onSubmit}
                   iconType="submit"
+                />
+                <SearchHistory
+                  keywords={keywords}
+                  onKeywordDelete={onKeywordDelete}
+                  setText={setText}
+                  setIsOpen={setIsOpen}
                 />
               </div>
             </div>
