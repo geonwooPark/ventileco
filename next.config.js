@@ -9,6 +9,7 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'firebasestorage.googleapis.com',
       'openweathermap.org',
+      'img.shields.io',
     ],
   },
   eslint: {
