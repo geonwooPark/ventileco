@@ -31,12 +31,64 @@ export const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY as string
 
 // 스킬
 export const skills = [
-  'React.JS',
-  'Next.JS',
-  'TypeScript',
-  'RTK',
-  'React-Query',
-  'Zustand',
-  'Firebase',
-  'Tailwind',
+  {
+    id: 1,
+    name: 'HTML5',
+    color: 'E34F26',
+  },
+  {
+    id: 2,
+    name: 'CSS',
+    color: '1572B6',
+  },
+  {
+    id: 3,
+    name: 'JavaScript',
+    color: 'F7DF1E',
+  },
+  {
+    id: 4,
+    name: 'TypeScript',
+    color: '3178C6',
+  },
+  {
+    id: 5,
+    name: 'React',
+    color: '61DAFB',
+  },
+  {
+    id: 6,
+    name: 'Next.JS',
+    color: '000000',
+  },
+  {
+    id: 7,
+    name: 'Tailwind CSS',
+    color: '06B6D4',
+  },
+  {
+    id: 8,
+    name: 'MongoDB',
+    color: '47A248',
+  },
+  {
+    id: 9,
+    name: 'Firebase',
+    color: 'FFCA28',
+  },
+  {
+    id: 10,
+    name: 'Redux_Toolkit',
+    color: '764ABC',
+  },
+  {
+    id: 10,
+    name: 'React_Query',
+    color: 'FF4154',
+  },
+  {
+    id: 11,
+    name: 'Zustand',
+    color: 'EA4AAA',
+  },
 ]

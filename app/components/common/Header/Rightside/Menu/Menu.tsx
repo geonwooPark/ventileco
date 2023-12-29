@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Avatar from '../../../../common/Avatar'
-import MenuItem from './MenuItem'
 import { useLoginModalActions } from '@/app/hooks/store/useLoginModalStore'
 import { useSignUpModalActions } from '@/app/hooks/store/useSignUpModalStore'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
+import MenuItem from './MenuItem'
 
 interface MenuProps {
   session: Session | null

@@ -7,9 +7,9 @@ import { Metadata } from 'next'
 import getAllListing from '@/app/actions/getAllListing'
 import CommentSection from '@/app/components/_blog/_detail/CommentSection/CommentSection'
 import AdminControlSection from '@/app/components/_blog/_detail/AdminControlSection/AdminControlSection'
-import Modals from '@/app/components/_blog/_detail/Modals/Modals'
 import DetailTopSection from '@/app/components/_blog/_detail/DetailTopSection/DetailTopSection'
 import Main from '@/app/components/common/Main'
+import Modals from '@/app/components/_blog/_detail/Modals/Modals'
 
 export const revalidate = 1800
 

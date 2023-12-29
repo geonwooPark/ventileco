@@ -1,7 +1,6 @@
 import React from 'react'
 import HighLight from './HighLight'
 import { skills } from '@/app/constants'
-import SkillBadge from './SkillBadge'
 import Container from '../../../common/Container'
 
 export default function StageFour() {
@@ -14,8 +13,12 @@ export default function StageFour() {
           <span>을 사용해요.</span>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-          {skills.map((item, i) => (
-            <SkillBadge key={i} label={item} />
+          {skills.map((skill) => (
+            <img
+              key={skill.id}
+              src={`https://img.shields.io/badge/${skill.name}-${skill.color}?style=for-the-badge&logo=${skill.name}&logoColor=white`}
+              alt="skill-badge"
+            />
           ))}
         </div>
       </Container>

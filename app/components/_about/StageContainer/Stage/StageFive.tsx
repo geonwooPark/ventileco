@@ -6,7 +6,7 @@ import Container from '../../../common/Container'
 
 export default function StageFive() {
   return (
-    <section className="flex h-full w-full items-center justify-center">
+    <section className="relative flex h-full w-full items-center justify-center">
       <Container className="flex flex-col items-center">
         <div className="mb-2 sm:mb-4 lg:mb-6">
           <span className="mr-3 sm:mr-4 lg:mr-6">더 많은</span>
@@ -21,7 +21,7 @@ export default function StageFive() {
         <Link
           href={'https://github.com/geonwooPark'}
           target="_black"
-          className="flex items-center text-base text-blue-600 duration-300 hover:opacity-70"
+          className="flex items-center text-lg text-blue-600 duration-300 hover:opacity-70"
         >
           바로가기
           <MdKeyboardArrowRight size={20} className="mt-1" />

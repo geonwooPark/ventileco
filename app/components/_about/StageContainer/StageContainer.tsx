@@ -7,6 +7,7 @@ import StageOne from '@/app/components/_about/StageContainer/Stage/StageOne'
 import StageThree from '@/app/components/_about/StageContainer/Stage/StageThree'
 import StageTwo from '@/app/components/_about/StageContainer/Stage/StageTwo'
 import ScrollIcon from './ScrollIcon'
+import FireworkAnimation from '../../common/Animation/FireworkAnimation'
 
 export default function StageContainer() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -60,12 +61,13 @@ export default function StageContainer() {
       className="hide-scroll h-full w-full overflow-scroll"
       ref={containerRef}
     >
+      {showScrollIcon && <ScrollIcon />}
+      {!showScrollIcon && <FireworkAnimation />}
       <StageOne />
       <StageTwo />
       <StageThree />
       <StageFour />
       <StageFive />
-      {showScrollIcon && <ScrollIcon />}
     </div>
   )
 }

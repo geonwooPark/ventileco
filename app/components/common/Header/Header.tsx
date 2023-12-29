@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import RightSide from './Rightside/RightSide'
 import LeftSide from './LeftSide/LeftSide'
 import Container from '../Container'
+import RightSide from './Rightside/RightSide'
 
 export default function Header() {
   const [headerColor, setHeaderColor] = useState(false)
