@@ -13,7 +13,6 @@ export const dynamic = 'force-dynamic'
 export default async function Home() {
   return (
     <main className="h-full w-full">
-      <MenAnimation />
       <section className="flex min-h-full items-center py-[82px] text-white md:py-[102px]">
         <Container>
           <div className="mb-5 flex w-full flex-col items-center justify-center gap-5 md:flex-row">
@@ -41,6 +40,7 @@ export default async function Home() {
           </article>
         </Container>
       </section>
+      <MenAnimation />
     </main>
   )
 }
