@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './components/common/Modal/SignUpModal'
 import AuthSession from './components/provider/AuthSession'
 import TanstackProvider from './components/provider/TanstackProvider'
-import Header from './components/common/Header/Header'
+import Header from './components/common/Header1/Header'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
