@@ -1,4 +1,4 @@
-import Footer from '@/app/components/common/footer/Footer'
+import Footer from '@/app/components/common/Footer/Footer'
 import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'

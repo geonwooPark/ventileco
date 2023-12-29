@@ -85,7 +85,7 @@ Next.JS 13 App Router를 기반으로 한 개인 블로그로 공부한 내용�
 
 ## 🗂 폴더 구조
 
-<img width="1000" alt="FigJam basics" src="https://github.com/geonwooPark/myblog/assets/136573728/8010ae22-3dbc-4624-92dc-8f8c93c18278">
+<img width="1000" alt="FigJam basics" src="https://github.com/geonwooPark/myblog/assets/136573728/5cca4f19-b57e-4791-a8c0-ad6d68a1f466">
 
 ---
 

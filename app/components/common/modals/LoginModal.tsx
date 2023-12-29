@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import Modal from './Modal'
 import Input from '../../common/Input'
 import { FcGoogle } from 'react-icons/fc'
 import Button from '../../common/Button'
@@ -12,6 +11,7 @@ import {
   useLoginModalActions,
   useLoginModalIsOpen,
 } from '@/app/hooks/store/useLoginModalStore'
+import Modal from './Modal'
 
 export default function LoginModal() {
   const loginModalIsOpen = useLoginModalIsOpen()
