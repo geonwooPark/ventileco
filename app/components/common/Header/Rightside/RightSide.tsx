@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import SearchIcon from './Search/SearchIcon'
-import Menu from './Menu/Menu'
-import Search from './Search/Search'
 import Link from 'next/link'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
+import Search from './Search/Search'
+import SearchIcon from './Search/SearchIcon'
+import Menu from './Menu/Menu'
 
 export default function RightSide() {
   const { data: session } = useSession()
