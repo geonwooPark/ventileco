@@ -4,19 +4,8 @@ import React, { useEffect, useState } from 'react'
 import dayjs from '@/app/utils/dayjs'
 import Lottie from 'react-lottie-player'
 import lottieJson from '@/public/animation/men-animation.json'
-
-const setSessionStorageWithExpire = (key: string, value: any) => {
-  const values = { value, expires: dayjs() }
-  sessionStorage.setItem(key, JSON.stringify(values))
-}
-
-const getSessionStorageWithExpire = (key: string) => {
-  const storage = sessionStorage.getItem(key)
-  if (!storage) return
-
-  const values = JSON.parse(storage)
-  return values
-}
+import { getSessionStorageWithExpire } from '@/app/utils/getSessionStorageWithExpire'
+import { setSessionStorageWithExpire } from '@/app/utils/setSessionStorageWithExpire'
 
 export default function Men() {
   const [show, setShow] = useState(true)
