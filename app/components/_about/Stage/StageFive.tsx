@@ -2,7 +2,7 @@ import React from 'react'
 import HighLight from './HighLight'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import Link from 'next/link'
-import Container from '../../../common/Container'
+import Container from '@/app/components/common/Container'
 
 export default function StageFive() {
   return (

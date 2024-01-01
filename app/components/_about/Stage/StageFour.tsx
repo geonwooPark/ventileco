@@ -1,7 +1,7 @@
 import React from 'react'
 import HighLight from './HighLight'
 import { skills } from '@/app/constants'
-import Container from '../../../common/Container'
+import Container from '@/app/components/common/Container'
 
 export default function StageFour() {
   return (

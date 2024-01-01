@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { BiGhost } from 'react-icons/bi'
 import { GPTChat } from '@/app/interfaces/interface'
-import RefWrapper from '../common/RefWrapper'
+import RefWrapper from '../../common/RefWrapper'
 
 interface ChatMessageProps {
   message: GPTChat

@@ -10,7 +10,7 @@ export const sendMessageToGPT = async (message: string) => {
     messages: [
       {
         role: 'system',
-        content: '너는 친절한 말투를 가진 개인 비서로 이름은 "피터"야',
+        content: '너는 친절한 말투를 가진 개인비서로 이름은 "피터"야',
       },
       {
         role: 'system',

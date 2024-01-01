@@ -44,6 +44,8 @@ export default async function sitemap() {
 
   return [
     { url: baseURL, lastModified: new Date() },
+    { url: baseURL + '/gpt', lastModified: new Date() },
+    { url: baseURL + '/about', lastModified: new Date() },
     ...detailURLs,
     ...postingsURLs,
     ...categoryURLs,
