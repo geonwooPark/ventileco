@@ -16,6 +16,11 @@ export const headerListItem = [
   },
   {
     _id: 2,
+    title: 'GPT',
+    link: '/gpt',
+  },
+  {
+    _id: 3,
     title: '소개',
     link: '/about',
   },
@@ -82,12 +87,12 @@ export const skills = [
     color: '764ABC',
   },
   {
-    id: 10,
+    id: 11,
     name: 'React_Query',
     color: 'FF4154',
   },
   {
-    id: 11,
+    id: 12,
     name: 'Zustand',
     color: 'EA4AAA',
   },
