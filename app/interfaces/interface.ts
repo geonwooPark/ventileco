@@ -75,3 +75,9 @@ export interface myCommentType {
   createdAt: Date
   text: string
 }
+
+export interface GPTChat {
+  id: number
+  content: string
+  sender: string
+}

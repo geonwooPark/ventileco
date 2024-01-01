@@ -1,0 +1,19 @@
+'use client'
+
+import React from 'react'
+import { useChatLog } from '@/app/hooks/store/useChatLogStore'
+import ChatMessage from './ChatMessage'
+
+export default function ChatView() {
+  const chatLog = useChatLog()
+
+  return (
+    <div className="relative h-[calc(100%-44px)] overflow-y-scroll p-4 text-sm">
+      <div className="flex flex-col gap-4">
+        {chatLog.map((message) => (
+          <ChatMessage key={message.id} message={message} />
+        ))}
+      </div>
+    </div>
+  )
+}
