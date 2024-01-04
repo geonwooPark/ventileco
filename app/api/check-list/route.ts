@@ -1,5 +1,5 @@
 import { CheckListType } from '@/app/interfaces/interface'
-import { connectMongo } from '@/app/utils/database'
+import { connectMongo } from '@/app/lib/database'
 import { CheckList } from '@/models/checklist'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'

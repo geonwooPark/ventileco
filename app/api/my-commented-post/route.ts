@@ -1,5 +1,5 @@
 import { CommentType } from '@/app/interfaces/interface'
-import { connectMongo } from '@/app/utils/database'
+import { connectMongo } from '@/app/lib/database'
 import { Comment } from '@/models/comment'
 import { NextRequest, NextResponse } from 'next/server'
 

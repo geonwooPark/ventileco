@@ -1,4 +1,4 @@
-import { connectMongo } from '@/app/utils/database'
+import { connectMongo } from '@/app/lib/database'
 import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 import { LikeType } from '@/app/interfaces/interface'

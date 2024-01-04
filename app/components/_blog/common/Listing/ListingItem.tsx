@@ -1,6 +1,6 @@
 import { PostingType } from '@/app/interfaces/interface'
 import getTimeDiff from '@/app/utils/getTimeDiff'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

@@ -1,5 +1,5 @@
 import { PostingType } from '@/app/interfaces/interface'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'

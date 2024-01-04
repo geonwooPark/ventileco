@@ -1,5 +1,5 @@
 import React from 'react'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import { CommentUserType } from '@/app/interfaces/interface'
 import { useDeleteCommentModalActions } from '@/app/hooks/store/useDeleteCommentModalStore'
 import { useSelectedCommentForDeletionActions } from '@/app/hooks/store/useSelectedCommentForDeletionStore'

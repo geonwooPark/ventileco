@@ -1,5 +1,5 @@
-import { sendMessageToGPT } from '@/app/utils/sendMessageToGPT'
 import { NextRequest, NextResponse } from 'next/server'
+import { sendMessageToGPT } from '@/app/lib/sendMessageToGPT'
 
 export async function POST(req: NextRequest) {
   const { text: message } = await req.json()

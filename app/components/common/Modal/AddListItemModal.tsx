@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Modal from './Modal'
 import Input from '../../common/Input'
 import { useSession } from 'next-auth/react'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import {
   useAddListItemModalActions,
   useAddListItemModalIsOpen,

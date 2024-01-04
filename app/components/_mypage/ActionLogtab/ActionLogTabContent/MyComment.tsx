@@ -1,4 +1,4 @@
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'

@@ -1,4 +1,4 @@
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 
 export const setSessionStorageWithExpire = (key: string, value: any) => {
   const values = { value, expires: dayjs() }

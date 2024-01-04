@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Modal from './Modal'
 import 'react-calendar/dist/Calendar.css'
 import Calendar from 'react-calendar'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import {
   useCalendarModalActions,
   useCalendarModalIsOpen,

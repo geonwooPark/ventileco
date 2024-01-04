@@ -1,7 +1,7 @@
 import React from 'react'
 import Section from '@/app/components/common/Section'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/utils/authOptions'
+import { authOptions } from '@/app/lib/authOptions'
 import UserInfo from '@/app/components/_mypage/UserInfo'
 import HeroSection from '@/app/components/common/HeroSection'
 import ActionLogTab from '@/app/components/_mypage/ActionLogtab/ActionLogTab'

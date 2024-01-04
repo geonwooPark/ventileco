@@ -1,5 +1,5 @@
 import { Posting } from '@/models/posting'
-import { connectMongo } from '../utils/database'
+import { connectMongo } from '../lib/database'
 import { GetListingType, PostingType } from '../interfaces/interface'
 
 interface GetListingParams {

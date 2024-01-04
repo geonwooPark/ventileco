@@ -13,7 +13,7 @@ import {
 } from 'firebase/storage'
 import EmptyState from '@/app/components/common/EmptyState'
 import { ImagesType, OmittedPostingType } from '@/app/interfaces/interface'
-import { storage } from '@/app/utils/firebase'
+import { storage } from '@/app/lib/firebase'
 import WriteTopSection from '@/app/components/_blog/_write/WriteTopSection/WriteTopSection'
 import Main from '@/app/components/common/Main'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import Lottie from 'react-lottie-player'
 import lottieJson from '@/public/animation/men-animation.json'
 import { getSessionStorageWithExpire } from '@/app/utils/getSessionStorageWithExpire'

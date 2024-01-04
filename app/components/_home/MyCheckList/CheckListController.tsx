@@ -1,6 +1,6 @@
 import { useAddListItemModalActions } from '@/app/hooks/store/useAddListItemModalStore'
 import { useCalendarModalActions } from '@/app/hooks/store/useCalendarModalStore'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import { useSession } from 'next-auth/react'
 import React from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'

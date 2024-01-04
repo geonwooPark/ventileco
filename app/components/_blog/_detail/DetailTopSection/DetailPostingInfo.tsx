@@ -1,4 +1,4 @@
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/app/lib/dayjs'
 import React from 'react'
 import LikeButton from './LikeButton'
 import { PostingType } from '@/app/interfaces/interface'
