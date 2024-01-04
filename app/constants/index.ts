@@ -10,17 +10,22 @@ export const categories = [
 // 헤더
 export const headerListItem = [
   {
-    _id: 1,
+    id: 1,
     title: '블로그',
     link: '/blog',
   },
   {
-    _id: 2,
+    id: 2,
+    title: '맛집',
+    link: '/hot-place',
+  },
+  {
+    id: 3,
     title: 'GPT',
     link: '/gpt',
   },
   {
-    _id: 3,
+    id: 4,
     title: '소개',
     link: '/about',
   },
