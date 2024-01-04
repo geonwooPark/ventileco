@@ -2,8 +2,6 @@
 
 import { useMap } from '@/app/hooks/store/useMap'
 import React, { useEffect, useState } from 'react'
-import marker from '@/public/images/marker.png'
-import selectedMarker from '@/public/images/selected-marker.png'
 import { HotPlacelistings } from '@/app/(route)/hot-place/page'
 import { useRouter } from 'next/navigation'
 
@@ -32,10 +30,10 @@ export default function Markers({
       // })
       // // 마커가 지도 위에 표시되도록 설정합니다
       // marker.setMap(map)
-      const normalImage = new window.kakao.maps.MarkerImage(
-        marker,
-        new window.kakao.maps.Size(48, 48),
-      )
+      // const normalImage = new window.kakao.maps.MarkerImage(
+      //   marker,
+      //   new window.kakao.maps.Size(48, 48),
+      // )
       // const clickImage = new window.kakao.maps.MarkerImage(
       //   selectedMarker,
       //   new window.kakao.maps.Size(48, 48),
