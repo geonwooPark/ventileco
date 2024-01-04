@@ -2,7 +2,7 @@ import { connectMongo } from '@/app/utils/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { PostingType } from '@/app/interfaces/interface'
 import { Posting } from '@/models/posting'
-import { authOptions } from '../auth/[...nextauth]/route'
+import { authOptions } from '@/app/utils/authOptions'
 import { getServerSession } from 'next-auth'
 
 export async function GET(req: NextRequest) {

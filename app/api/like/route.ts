@@ -3,7 +3,7 @@ import { Favorite } from '@/models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 import { LikeType } from '@/app/interfaces/interface'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../auth/[...nextauth]/route'
+import { authOptions } from '@/app/utils/authOptions'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
