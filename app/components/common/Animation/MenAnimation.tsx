@@ -19,13 +19,15 @@ export default function Men() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (values) {
-    if (dayjs().diff(dayjs(values.expires)) > 10 * 60 * 1000) {
-      sessionStorage.removeItem('intro')
-    } else {
-      return
+  useEffect(() => {
+    if (values) {
+      if (dayjs().diff(dayjs(values.expires)) > 10 * 60 * 1000) {
+        sessionStorage.removeItem('intro')
+      } else {
+        setShow(false)
+      }
     }
-  }
+  }, [values])
 
   if (!show) return
 
