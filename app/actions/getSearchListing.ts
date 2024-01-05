@@ -1,4 +1,4 @@
-import { Posting } from '@/models/posting'
+import { Posting } from '../../models/posting'
 import { connectMongo } from '../lib/database'
 import { GetListingType, PostingType } from '../interfaces/interface'
 

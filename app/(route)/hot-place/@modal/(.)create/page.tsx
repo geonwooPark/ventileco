@@ -1,15 +1,38 @@
 'use client'
 
-import Button from '@/app/components/common/Button'
+import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import ImageSelector from '@hot-place/CreateForm/ImageSelector'
+import CategorySelector from '@hot-place/CreateForm/CatogorySelector'
 
-export default function page() {
+interface FormData {
+  images: string[]
+  store: string
+  category: string
+  rate: number
+  address: string
+  description: string
+}
+
+export default function CreateModal() {
   const router = useRouter()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+  const onSubmit: SubmitHandler<FormData> = (data) => console.log(data)
 
   const title = '맛집 등록'
-  const body = ''
+  const body = (
+    <form>
+      <ImageSelector />
+      <CategorySelector />
+    </form>
+  )
 
   return (
     <div className="fixed left-0 top-0 z-[100] flex h-full w-full items-center bg-black/30">

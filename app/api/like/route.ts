@@ -1,9 +1,9 @@
-import { connectMongo } from '@/app/lib/database'
-import { Favorite } from '@/models/favorite'
+import { connectMongo } from '@/lib/database'
+import { Favorite } from '../../../models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
-import { LikeType } from '@/app/interfaces/interface'
+import { LikeType } from '@/interfaces/interface'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/lib/authOptions'
+import { authOptions } from '@/lib/authOptions'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')

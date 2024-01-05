@@ -1,8 +1,8 @@
-import { connectMongo } from '@/app/lib/database'
+import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
-import { PostingType } from '@/app/interfaces/interface'
-import { Posting } from '@/models/posting'
-import { authOptions } from '@/app/lib/authOptions'
+import { PostingType } from '@/interfaces/interface'
+import { Posting } from '../../../models/posting'
+import { authOptions } from '@/lib/authOptions'
 import { getServerSession } from 'next-auth'
 
 export async function GET(req: NextRequest) {

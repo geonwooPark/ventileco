@@ -1,4 +1,4 @@
-import getSearchListing from '@/app/actions/getSearchListing'
+import getSearchListing from '@/actions/getSearchListing'
 import React from 'react'
 import Pagination from '../common/Pagination/Pagination'
 import EmptyState from '../../common/EmptyState'

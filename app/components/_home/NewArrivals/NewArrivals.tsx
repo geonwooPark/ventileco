@@ -1,11 +1,11 @@
 import React from 'react'
 import NewArrivalsList from './NewArrivalsList'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import getQueryClient from '@/app/actions/getQueryClient'
-import { connectMongo } from '@/app/lib/database'
-import { Posting } from '@/models/posting'
-import { PostingType } from '@/app/interfaces/interface'
-import { homeKeys } from '@/app/constants/queryKey'
+import getQueryClient from '@/actions/getQueryClient'
+import { connectMongo } from '@/lib/database'
+import { Posting } from '../../../../models/posting'
+import { PostingType } from '@/interfaces/interface'
+import { homeKeys } from '@/constants/queryKey'
 
 const getNewArrivals = async () => {
   await connectMongo()

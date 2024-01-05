@@ -4,8 +4,8 @@ import React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
-import useIsLikedQuery from '@/app/hooks/query/useIsLikedQuery'
-import useHandleLikeButtonMutation from '@/app/hooks/mutation/useHandleLikeButtonMutation'
+import useIsLikedQuery from '@/hooks/query/useIsLikedQuery'
+import useHandleLikeButtonMutation from '@/hooks/mutation/useHandleLikeButtonMutation'
 
 interface LikeButtonProps {
   className?: string

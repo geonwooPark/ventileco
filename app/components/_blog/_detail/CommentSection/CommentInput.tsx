@@ -3,8 +3,8 @@
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
-import Button from '@/app/components/common/Button'
-import usePostCommentMutation from '@/app/hooks/mutation/usePostCommentMutation'
+import Button from '@common/Button'
+import usePostCommentMutation from '@/hooks/mutation/usePostCommentMutation'
 
 interface CommentInputProps {
   postingId: string

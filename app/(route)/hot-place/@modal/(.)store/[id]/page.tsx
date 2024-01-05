@@ -1,11 +1,11 @@
 'use client'
 
-import Button from '@/app/components/common/Button'
+import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
-export default function page() {
+export default function StoreModal() {
   const router = useRouter()
 
   const title = '서촌 맛집'

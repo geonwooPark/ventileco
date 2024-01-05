@@ -1,9 +1,9 @@
-import dayjs from '@/app/lib/dayjs'
+import dayjs from '@/lib/dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Spinner from '../../../common/Spinner'
-import useMyCommentedPostQuery from '@/app/hooks/query/useMyCommentedPostQuery'
+import useMyCommentedPostQuery from '@/hooks/query/useMyCommentedPostQuery'
 
 export default function MyCommentedPost() {
   const { data: session } = useSession()

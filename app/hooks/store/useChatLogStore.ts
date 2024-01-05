@@ -1,4 +1,4 @@
-import { GPTChat } from '@/app/interfaces/interface'
+import { GPTChat } from '@/interfaces/interface'
 import { create } from 'zustand'
 
 interface State {

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { OmittedPostingType } from '@/app/interfaces/interface'
+import { OmittedPostingType } from '@/interfaces/interface'
 import subBg from '/public/images/sub-bg.png'
 import EditPostingInfo from './EditPostingInfo'
 

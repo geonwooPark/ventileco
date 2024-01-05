@@ -1,4 +1,4 @@
-import { detailKeys, myPageKeys } from '@/app/constants/queryKey'
+import { detailKeys, myPageKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 

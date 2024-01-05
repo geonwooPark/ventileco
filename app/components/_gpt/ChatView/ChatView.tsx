@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useChatLog } from '@/app/hooks/store/useChatLogStore'
+import { useChatLog } from '@/hooks/store/useChatLogStore'
 import ChatMessage from './ChatMessage'
 
 export default function ChatView() {

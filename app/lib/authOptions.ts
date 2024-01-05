@@ -2,9 +2,9 @@ import { DefaultSession, NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcrypt'
-import { connectMongo } from '@/app/lib/database'
+import { connectMongo } from '@/lib/database'
 import NextAuth from 'next-auth/next'
-import { User } from '@/models/user'
+import { User } from '../../models/user'
 
 declare module 'next-auth' {
   interface User {

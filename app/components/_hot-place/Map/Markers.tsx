@@ -1,9 +1,9 @@
 'use client'
 
-import { useMap } from '@/app/hooks/store/useMap'
+import { useMap } from '@/hooks/store/useMap'
 import React, { useEffect, useState } from 'react'
-import { HotPlacelistings } from '@/app/(route)/hot-place/page'
 import { useRouter } from 'next/navigation'
+import { HotPlacelistings } from '@/(route)/hot-place/page'
 
 export default function Markers({
   listings,

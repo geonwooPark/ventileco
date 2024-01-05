@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
-import { detailKeys } from '@/app/constants/queryKey'
+import { detailKeys } from '@/constants/queryKey'
 
 export default function useIsLikedQuery(postingId: string) {
   const { data, isPending, error } = useQuery({

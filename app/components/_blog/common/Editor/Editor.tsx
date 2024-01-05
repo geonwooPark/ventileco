@@ -8,8 +8,8 @@ import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { toast } from 'react-toastify'
 import { ImagesType, PostingType } from '../../../../interfaces/interface'
-import { storage } from '@/app/lib/firebase'
-import Section from '@/app/components/common/Section'
+import { storage } from '@/lib/firebase'
+import Section from '@common/Section'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {

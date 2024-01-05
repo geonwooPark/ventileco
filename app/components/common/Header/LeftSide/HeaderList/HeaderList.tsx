@@ -1,4 +1,4 @@
-import { headerListItem } from '@/app/constants'
+import { headerListItem } from '@/constants'
 import React from 'react'
 import HeaderListItem from './HeaderListItem'
 

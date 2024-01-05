@@ -1,4 +1,4 @@
-import Section from '@/app/components/common/Section'
+import Section from '@common/Section'
 import React from 'react'
 import DeleteAndEdit from './DeleteAndEdit'
 

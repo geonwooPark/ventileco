@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import dayjs from '@/app/lib/dayjs'
+import dayjs from '@/lib/dayjs'
 import Lottie from 'react-lottie-player'
-import lottieJson from '@/public/animation/men-animation.json'
-import { getSessionStorageWithExpire } from '@/app/utils/getSessionStorageWithExpire'
-import { setSessionStorageWithExpire } from '@/app/utils/setSessionStorageWithExpire'
+import lottieJson from '../../../../public/animation/men-animation.json'
+import { getSessionStorageWithExpire } from '@/utils/getSessionStorageWithExpire'
+import { setSessionStorageWithExpire } from '@/utils/setSessionStorageWithExpire'
 
 export default function Men() {
   const [show, setShow] = useState(true)

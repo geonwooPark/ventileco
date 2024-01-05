@@ -1,7 +1,7 @@
 import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
-import HeaderBgColor from '@/app/components/common/Header/HeaderBgColor'
+import HeaderBgColor from '@common/Header/HeaderBgColor'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ventileco-blog.vercel.app/hot-place'),

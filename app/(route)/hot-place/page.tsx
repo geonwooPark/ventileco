@@ -1,7 +1,7 @@
-import HotPlaceAddButton from '@/app/components/_hot-place/HotPlaceAddButton'
-import Map from '@/app/components/_hot-place/Map/Map'
-import SideInfo from '@/app/components/_hot-place/SideInfo/SideInfo'
-import Main from '@/app/components/common/Main'
+import HotPlaceAddButton from '@hot-place/HotPlaceAddButton'
+import Map from '@hot-place/Map/Map'
+import SideInfo from '@hot-place/SideInfo/SideInfo'
+import Main from '@common/Main'
 import React from 'react'
 
 export interface HotPlacelistings {

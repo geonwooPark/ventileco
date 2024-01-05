@@ -1,6 +1,6 @@
 import React from 'react'
 import HighLight from './HighLight'
-import Container from '@/app/components/common/Container'
+import Container from '@common/Container'
 
 export default function StageTwo() {
   return (

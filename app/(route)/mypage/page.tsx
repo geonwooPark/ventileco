@@ -1,11 +1,11 @@
 import React from 'react'
-import Section from '@/app/components/common/Section'
+import Section from '@common/Section'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/lib/authOptions'
-import UserInfo from '@/app/components/_mypage/UserInfo'
-import HeroSection from '@/app/components/common/HeroSection'
-import ActionLogTab from '@/app/components/_mypage/ActionLogtab/ActionLogTab'
-import Main from '@/app/components/common/Main'
+import { authOptions } from '@/lib/authOptions'
+import UserInfo from '@mypage/UserInfo'
+import HeroSection from '@common/HeroSection'
+import ActionLogTab from '@mypage/ActionLogtab/ActionLogTab'
+import Main from '@common/Main'
 
 export async function generateMetadata() {
   return {

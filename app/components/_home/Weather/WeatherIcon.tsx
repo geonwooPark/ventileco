@@ -1,4 +1,4 @@
-import dayjs from '@/app/lib/dayjs'
+import dayjs from '@/lib/dayjs'
 import React from 'react'
 import {
   WiCloud,

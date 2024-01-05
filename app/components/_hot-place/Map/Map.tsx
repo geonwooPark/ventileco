@@ -1,9 +1,9 @@
 'use client'
 
-import { useMapActions } from '@/app/hooks/store/useMap'
+import { useMapActions } from '@/hooks/store/useMap'
 import React, { useEffect, useRef } from 'react'
 import Markers from './Markers'
-import { HotPlacelistings } from '@/app/(route)/hot-place/page'
+import { HotPlacelistings } from '@/(route)/hot-place/page'
 
 export default function Map({ listings }: { listings: HotPlacelistings[] }) {
   const { onAdd: addMap } = useMapActions()

@@ -1,4 +1,4 @@
-import { HotPlacelistings } from '@/app/(route)/hot-place/page'
+import { HotPlacelistings } from '@/(route)/hot-place/page'
 import Link from 'next/link'
 import React from 'react'
 

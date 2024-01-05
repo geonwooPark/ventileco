@@ -1,4 +1,4 @@
-import { PostingType } from '@/app/interfaces/interface'
+import { PostingType } from '@/interfaces/interface'
 import React from 'react'
 
 interface DropDownItemProps {

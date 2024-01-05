@@ -1,27 +1,24 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import EmptyState from '@/app/components/common/EmptyState'
-import getPosting from '@/app/actions/getPosting'
-import NotFound from '@/app/not-found'
+import EmptyState from '@common/EmptyState'
+import getPosting from '@/actions/getPosting'
+import NotFound from '@/not-found'
 import { Metadata } from 'next'
-import getAllListing from '@/app/actions/getAllListing'
-import CommentSection from '@/app/components/_blog/_detail/CommentSection/CommentSection'
-import AdminControlSection from '@/app/components/_blog/_detail/AdminControlSection/AdminControlSection'
-import DetailTopSection from '@/app/components/_blog/_detail/DetailTopSection/DetailTopSection'
-import Main from '@/app/components/common/Main'
-import Modals from '@/app/components/_blog/_detail/Modals/Modals'
+import getAllListing from '@/actions/getAllListing'
+import CommentSection from '@blog/_detail/CommentSection/CommentSection'
+import AdminControlSection from '@blog/_detail/AdminControlSection/AdminControlSection'
+import DetailTopSection from '@blog/_detail/DetailTopSection/DetailTopSection'
+import Main from '@common/Main'
+import Modals from '@blog/_detail/Modals/Modals'
 
 export const revalidate = 1800
 
-const ContentSection = dynamic(
-  () => import('@/app/components/_blog/common/Editor/Editor'),
-  {
-    ssr: false,
-    loading: () => (
-      <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
-    ),
-  },
-)
+const ContentSection = dynamic(() => import('@blog/common/Editor/Editor'), {
+  ssr: false,
+  loading: () => (
+    <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
+  ),
+})
 
 interface IParams {
   params: {

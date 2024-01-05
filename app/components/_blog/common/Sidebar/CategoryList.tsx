@@ -1,4 +1,4 @@
-import { categories } from '@/app/constants'
+import { categories } from '@/constants'
 import React from 'react'
 import CategoryItem from './CategoryItem'
 

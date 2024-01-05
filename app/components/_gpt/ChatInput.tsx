@@ -3,10 +3,7 @@
 import React, { useState } from 'react'
 import Input from '../common/Input'
 import { FiSend } from 'react-icons/fi'
-import {
-  useChatLog,
-  useChatLogActions,
-} from '@/app/hooks/store/useChatLogStore'
+import { useChatLog, useChatLogActions } from '@/hooks/store/useChatLogStore'
 import { toast } from 'react-toastify'
 import Loading from '../common/Animation/LoadingAnimation'
 import { useSession } from 'next-auth/react'

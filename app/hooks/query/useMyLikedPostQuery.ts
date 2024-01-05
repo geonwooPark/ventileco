@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { LikeType } from '../../interfaces/interface'
 import { Session } from 'next-auth'
-import { myPageKeys } from '@/app/constants/queryKey'
+import { myPageKeys } from '@/constants/queryKey'
 
 export default function useMyLikedPostQuery(session: Session | null) {
   const { data: myLikedPost, isPending } = useQuery({

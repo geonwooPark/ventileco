@@ -1,7 +1,7 @@
 import React from 'react'
 import ViewCounter from './ViewCounter'
 import LikeCounter from './LikeCounter'
-import Container from '@/app/components/common/Container'
+import Container from '@common/Container'
 
 interface InteractionMetricsProps {
   postingId: string
