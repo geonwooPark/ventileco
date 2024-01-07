@@ -37,11 +37,11 @@ export default function ImageSelector() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative mb-4">
       <div className="absolute left-0 top-0 z-10 bg-white pt-2.5">
         <label
           htmlFor="input-file"
-          className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded border border-blue-600 bg-white text-blue-600"
+          className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded border border-gray-700 bg-white text-gray-700"
         >
           <AiOutlinePlus size={20} />
         </label>
@@ -59,7 +59,7 @@ export default function ImageSelector() {
 
       <div className="flex gap-4 overflow-x-scroll pt-2.5">
         <div className="invisible">
-          <div className="h-[70px] w-[70px] rounded border border-blue-600" />
+          <div className="h-[70px] w-[70px] rounded border border-gray-700" />
         </div>
         {fileURLs.map((fileURL, i) => {
           return (
