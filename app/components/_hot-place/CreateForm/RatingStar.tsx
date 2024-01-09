@@ -1,58 +1,62 @@
 import React from 'react'
 import '../../../styles/rating.css'
+import { UseFormRegisterReturn } from 'react-hook-form'
+import ErrorMessage from './ErrorMessage'
 
-export default function RatingStar() {
+interface RatingStarProps {
+  ratingRegister: UseFormRegisterReturn<'rating'>
+  errorMessage?: string
+}
+
+export default function RatingStar({
+  ratingRegister,
+  errorMessage,
+}: RatingStarProps) {
   return (
-    <div id="container">
-      <input name="rateGroup" type="radio" id="rate5" />
-      <label htmlFor="rate5">
-        <StarRight />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate4.5" />
-      <label htmlFor="rate4.5">
-        <StarLeft />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate4" />
-      <label htmlFor="rate4">
-        <StarRight />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate3.5" />
-      <label htmlFor="rate3.5">
-        <StarLeft />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate3" />
-      <label htmlFor="rate3">
-        <StarRight />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate2.5" />
-      <label htmlFor="rate2.5">
-        <StarLeft />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate2" />
-      <label htmlFor="rate2">
-        <StarRight />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate1.5" />
-      <label htmlFor="rate1.5">
-        <StarLeft />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate1" />
-      <label htmlFor="rate1">
-        <StarRight />
-      </label>
-
-      <input name="rateGroup" type="radio" id="rate0.5" />
-      <label htmlFor="rate0.5">
-        <StarLeft />
-      </label>
+    <div>
+      <div id="container" className="mb-1">
+        <input {...ratingRegister} type="radio" id="rate5" value={5} />
+        <label htmlFor="rate5">
+          <StarRight />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate4.5" value={4.5} />
+        <label htmlFor="rate4.5">
+          <StarLeft />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate4" value={4} />
+        <label htmlFor="rate4">
+          <StarRight />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate3.5" value={3.5} />
+        <label htmlFor="rate3.5">
+          <StarLeft />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate3" value={3} />
+        <label htmlFor="rate3">
+          <StarRight />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate2.5" value={2.5} />
+        <label htmlFor="rate2.5">
+          <StarLeft />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate2" value={2} />
+        <label htmlFor="rate2">
+          <StarRight />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate1.5" value={1.5} />
+        <label htmlFor="rate1.5">
+          <StarLeft />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate1" value={1} />
+        <label htmlFor="rate1">
+          <StarRight />
+        </label>
+        <input {...ratingRegister} type="radio" id="rate0.5" value={0.5} />
+        <label htmlFor="rate0.5">
+          <StarLeft />
+        </label>
+      </div>
+      <ErrorMessage errorMessage={errorMessage} />
     </div>
   )
 }

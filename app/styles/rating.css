@@ -2,19 +2,19 @@
   @apply flex flex-row-reverse justify-end;
 }
 
-input {
+#container input {
   @apply hidden;
 }
 
-label {
+#container label {
   @apply fill-gray-200 cursor-pointer;
 }
 
-label:hover,
-label:hover ~ label {
+#container label:hover,
+#container label:hover ~ label {
   @apply fill-yellow-400;
 }
 
-input:checked ~ label {
+#container input:checked ~ label {
   @apply fill-yellow-400;
 }

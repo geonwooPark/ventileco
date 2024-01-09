@@ -7,7 +7,7 @@ import { HotPlacelistings } from '@/(route)/hot-place/page'
 
 export default function Map({ listings }: { listings: HotPlacelistings[] }) {
   const { onAdd: addMap } = useMapActions()
-  const container = useRef(null)
+  const container = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     window.kakao.maps.load(async () => {

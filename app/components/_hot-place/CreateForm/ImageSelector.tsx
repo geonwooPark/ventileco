@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { toast } from 'react-toastify'
+import { UseFormSetValue } from 'react-hook-form'
+import { FormData } from '@/(route)/hot-place/@modal/(.)create/page'
 
-export default function ImageSelector() {
-  const [fileURLs, setfileURLs] = useState<string[]>([])
+interface ImageSelectorProps {
+  setValue: UseFormSetValue<FormData>
+}
+
+export default function ImageSelector({ setValue }: ImageSelectorProps) {
+  const [previewImages, setPreviewImages] = useState<string[]>([])
+  const [images, setImages] = useState<File[]>([])
 
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
@@ -13,18 +20,17 @@ export default function ImageSelector() {
     }
 
     try {
-      if (fileURLs.length + files.length > 9) {
+      if (previewImages.length + files.length > 9) {
         throw new Error('이미지는 최대 9개까지 첨부 가능합니다.')
       }
-
-      // setImages((prev) => [...prev, ...files])
+      setImages((prev) => [...prev, ...files])
 
       for (const file of files) {
         const reader = new FileReader()
         reader.onload = () => {
           const { result } = reader
           if (typeof result === 'string') {
-            setfileURLs((prev) => [...prev, result])
+            setPreviewImages((prev) => [...prev, result])
           }
         }
         reader.readAsDataURL(file)
@@ -35,6 +41,23 @@ export default function ImageSelector() {
       }
     }
   }
+
+  const onImageDelete = (i: number) => {
+    setPreviewImages((prev) => {
+      const copy = [...prev]
+      copy.splice(i, 1)
+      return copy
+    })
+    setImages((prev) => {
+      const copy = [...prev]
+      copy.splice(i, 1)
+      return copy
+    })
+  }
+
+  useEffect(() => {
+    setValue('images', images)
+  }, [images])
 
   return (
     <div className="relative mb-4">
@@ -48,33 +71,30 @@ export default function ImageSelector() {
       </div>
       <input
         type="file"
-        name="input-file"
         id="input-file"
         accept=".jpg, .png, .jpeg"
         multiple
-        onChange={onFileChange}
         className="hidden"
         autoComplete="off"
+        onChange={onFileChange}
       />
 
       <div className="flex gap-4 overflow-x-scroll pt-2.5">
         <div className="invisible">
           <div className="h-[70px] w-[70px] rounded border border-gray-700" />
         </div>
-        {fileURLs.map((fileURL, i) => {
+        {previewImages.map((previewImage, i) => {
           return (
             <div key={i}>
               <div className="relative w-[70px]">
                 <img
-                  src={fileURL}
+                  src={previewImage}
                   alt="preview-image"
                   className="h-[70px] w-[70px] rounded border border-gray-400 object-cover"
                 />
                 <button
                   type="button"
-                  onClick={() => {
-                    setfileURLs((prev) => prev.filter((url) => url !== fileURL))
-                  }}
+                  onClick={() => onImageDelete(i)}
                   className="absolute -right-2 -top-2 rounded-3xl bg-white
                 text-gray-700"
                 >
