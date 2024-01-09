@@ -6,14 +6,12 @@ interface AddressInputProps {
   addressRegister: UseFormRegisterReturn<'address'>
   errorMessage?: string
   setShowAddressResearch: React.Dispatch<React.SetStateAction<boolean>>
-  address: string
 }
 
 export default function AddressInput({
   addressRegister,
   errorMessage,
   setShowAddressResearch,
-  address,
 }: AddressInputProps) {
   return (
     <div className="mb-2 w-full">
@@ -26,7 +24,7 @@ export default function AddressInput({
           setShowAddressResearch((prev) => !prev)
         }}
       />
-      {!address && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </div>
   )
 }

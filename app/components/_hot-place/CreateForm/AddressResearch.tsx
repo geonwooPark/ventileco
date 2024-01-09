@@ -2,16 +2,18 @@ import { FormData } from '@/(route)/hot-place/@modal/(.)create/page'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import DaumPostcode from 'react-daum-postcode'
-import { UseFormSetValue } from 'react-hook-form'
+import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 interface AddressResearchProps {
   setShowAddressResearch: React.Dispatch<React.SetStateAction<boolean>>
   setValue: UseFormSetValue<FormData>
+  clearErrors: UseFormClearErrors<FormData>
 }
 
 export default function AddressResearch({
   setShowAddressResearch,
   setValue,
+  clearErrors,
 }: AddressResearchProps) {
   const router = useRouter()
   return (
@@ -42,6 +44,7 @@ export default function AddressResearch({
                 setValue('coordinate', { latitude: y, longitude: x })
                 setValue('address', address)
                 setShowAddressResearch(false)
+                clearErrors('address')
                 router.back()
               })
           }}

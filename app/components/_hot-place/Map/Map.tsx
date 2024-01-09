@@ -2,10 +2,9 @@
 
 import { useMapActions } from '@/hooks/store/useMap'
 import React, { useEffect, useRef } from 'react'
-import Markers from './Markers'
-import { HotPlacelistings } from '@/(route)/hot-place/page'
+// import Markers from './Markers'
 
-export default function Map({ listings }: { listings: HotPlacelistings[] }) {
+export default function Map() {
   const { onAdd: addMap } = useMapActions()
   const container = useRef<HTMLDivElement>(null)
 
@@ -22,7 +21,7 @@ export default function Map({ listings }: { listings: HotPlacelistings[] }) {
 
   return (
     <div ref={container} className="h-full w-full">
-      <Markers listings={listings} />
+      {/* <Markers /> */}
     </div>
   )
 }

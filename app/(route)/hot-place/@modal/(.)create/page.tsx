@@ -36,10 +36,24 @@ export default function CreateModal() {
     handleSubmit,
     reset,
     setValue,
+    setError,
     getValues,
+    clearErrors,
     formState: { errors },
-  } = useForm<FormData>()
-  const { address } = getValues()
+  } = useForm<FormData>({
+    defaultValues: {
+      images: [],
+      store: '',
+      category: '',
+      rating: 0,
+      address: '',
+      coordinate: {
+        latitude: 0,
+        longitude: 0,
+      },
+      description: '',
+    },
+  })
   const { mutation } = useCreateHotPlace()
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -52,6 +66,12 @@ export default function CreateModal() {
     })
   }
 
+  const imagesRegister = register('images', {
+    validate: () => {
+      const { images } = getValues()
+      return images.length !== 0 || '이미지가 입력되지 않았습니다.'
+    },
+  })
   const categoryRegister = register('category', {
     required: '카테고리가 선택되지 않았습니다.',
   })
@@ -61,7 +81,9 @@ export default function CreateModal() {
   const addressRegister = register('address', {
     required: '주소가 입력되지 않았습니다.',
   })
-  const descriptionRegister = register('description')
+  const descriptionRegister = register('description', {
+    required: '후기가 입력되지 않았습니다.',
+  })
   const ratingRegister = register('rating', {
     required: '별점을 정해지지 않았습니다.',
   })
@@ -78,7 +100,13 @@ export default function CreateModal() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="px-4">
-            <ImageSelector setValue={setValue} />
+            <ImageSelector
+              setValue={setValue}
+              setError={setError}
+              clearErrors={clearErrors}
+              imagesRegister={imagesRegister}
+              errorMessage={errors.images?.message}
+            />
             <CategorySelector
               categoryRegister={categoryRegister}
               errorMessage={errors.category?.message}
@@ -92,16 +120,19 @@ export default function CreateModal() {
                 addressRegister={addressRegister}
                 errorMessage={errors.address?.message}
                 setShowAddressResearch={setShowAddressResearch}
-                address={address}
               />
             </div>
             {showAddressResearch && (
               <AddressResearch
-                setShowAddressResearch={setShowAddressResearch}
                 setValue={setValue}
+                clearErrors={clearErrors}
+                setShowAddressResearch={setShowAddressResearch}
               />
             )}
-            <DescriptionInput descriptionRegister={descriptionRegister} />
+            <DescriptionInput
+              descriptionRegister={descriptionRegister}
+              errorMessage={errors.description?.message}
+            />
             <RatingStar
               ratingRegister={ratingRegister}
               errorMessage={errors.rating?.message}
@@ -109,17 +140,15 @@ export default function CreateModal() {
           </div>
 
           <div className="p-4">
-            <div className="flex justify-center gap-2">
-              <Button
-                type="submit"
-                level="primary"
-                size="s"
-                fullWidth={true}
-                label="등록하기"
-                onClick={() => handleSubmit(onSubmit)}
-                disabled={mutation.isPending}
-              />
-            </div>
+            <Button
+              type="submit"
+              level="primary"
+              size="s"
+              fullWidth={true}
+              label="등록하기"
+              onClick={() => handleSubmit(onSubmit)}
+              disabled={mutation.isPending}
+            />
           </div>
         </form>
       </div>
