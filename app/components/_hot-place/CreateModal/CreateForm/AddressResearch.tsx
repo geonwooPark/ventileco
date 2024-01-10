@@ -1,4 +1,4 @@
-import { FormData } from '@/(route)/hot-place/@modal/(.)create/page'
+import { HotPlaceFormData } from '@/interfaces/interface'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import DaumPostcode from 'react-daum-postcode'
@@ -6,8 +6,8 @@ import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 interface AddressResearchProps {
   setShowAddressResearch: React.Dispatch<React.SetStateAction<boolean>>
-  setValue: UseFormSetValue<FormData>
-  clearErrors: UseFormClearErrors<FormData>
+  setValue: UseFormSetValue<HotPlaceFormData>
+  clearErrors: UseFormClearErrors<HotPlaceFormData>
 }
 
 export default function AddressResearch({

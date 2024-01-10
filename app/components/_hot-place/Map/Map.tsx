@@ -2,6 +2,7 @@
 
 import { useMapActions } from '@/hooks/store/useMap'
 import React, { useEffect, useRef } from 'react'
+import Markers from './Markers'
 // import Markers from './Markers'
 
 export default function Map() {
@@ -21,7 +22,7 @@ export default function Map() {
 
   return (
     <div ref={container} className="h-full w-full">
-      {/* <Markers /> */}
+      <Markers />
     </div>
   )
 }

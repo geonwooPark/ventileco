@@ -7,22 +7,22 @@ import {
   UseFormSetError,
   UseFormSetValue,
 } from 'react-hook-form'
-import { FormData } from '@/(route)/hot-place/@modal/(.)create/page'
 import ErrorMessage from './ErrorMessage'
+import { HotPlaceFormData } from '@/interfaces/interface'
 
 interface ImageSelectorProps {
-  setValue: UseFormSetValue<FormData>
-  setError: UseFormSetError<FormData>
+  setValue: UseFormSetValue<HotPlaceFormData>
+  setError: UseFormSetError<HotPlaceFormData>
+  clearErrors: UseFormClearErrors<HotPlaceFormData>
   imagesRegister: UseFormRegisterReturn<'images'>
-  clearErrors: UseFormClearErrors<FormData>
   errorMessage?: string
 }
 
 export default function ImageSelector({
   setValue,
   setError,
-  imagesRegister,
   clearErrors,
+  imagesRegister,
   errorMessage,
 }: ImageSelectorProps) {
   const [previewImages, setPreviewImages] = useState<string[]>([])

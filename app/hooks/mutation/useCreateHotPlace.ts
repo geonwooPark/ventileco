@@ -1,10 +1,10 @@
-import { FormData } from '@/(route)/hot-place/@modal/(.)create/page'
+import { HotPlaceFormData } from '@/interfaces/interface'
 import { storage } from '@/lib/firebase'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useRouter } from 'next/navigation'
 
-const createHotPlace = async (data: FormData) => {
+const createHotPlace = async (data: HotPlaceFormData) => {
   const { store, images } = data
 
   // 이미지들 스토리지에 업로드
@@ -38,7 +38,7 @@ export default function useCreateHotPlace() {
 
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: (data: FormData) => createHotPlace(data),
+    mutationFn: (data: HotPlaceFormData) => createHotPlace(data),
   })
 
   return { mutation }

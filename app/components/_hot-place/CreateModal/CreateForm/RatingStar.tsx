@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../styles/rating.css'
+import '../../../../styles/rating.css'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import ErrorMessage from './ErrorMessage'
 

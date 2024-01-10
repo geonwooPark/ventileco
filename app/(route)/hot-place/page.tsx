@@ -5,15 +5,15 @@ import Main from '@common/Main'
 import React from 'react'
 import { HotPlace } from '../../../models/hot-place'
 import { connectMongo } from '@/lib/database'
-import { HotPlacelistings } from '@/interfaces/interface'
 import getQueryClient from '@/actions/getQueryClient'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { hotPlaceKeys } from '@/constants/queryKey'
+import { HotPlaceListing } from '@/interfaces/interface'
 
 const getHotPlaceListings = async () => {
   await connectMongo()
   try {
-    const hotPlaceListings = await HotPlace.find<HotPlacelistings>()
+    const hotPlaceListings = await HotPlace.find<HotPlaceListing>()
 
     return hotPlaceListings
   } catch (error) {

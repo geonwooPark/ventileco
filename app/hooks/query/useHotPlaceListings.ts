@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { hotPlaceKeys } from '@/constants/queryKey'
-import { HotPlacelistings } from '@/interfaces/interface'
+import { HotPlaceListing } from '@/interfaces/interface'
 
 export default function useHotPlaceListings() {
   const {
@@ -11,7 +11,7 @@ export default function useHotPlaceListings() {
   } = useQuery({
     queryKey: hotPlaceKeys.hotPlaceListings(),
     queryFn: () =>
-      getData<HotPlacelistings[]>(
+      getData<HotPlaceListing[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/hot-place`,
       ),
     staleTime: 1000 * 60 * 3, // 3분

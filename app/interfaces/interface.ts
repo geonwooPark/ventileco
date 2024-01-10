@@ -82,7 +82,20 @@ export interface GPTChat {
   sender: string
 }
 
-export interface HotPlacelistings {
+export interface HotPlaceFormData {
+  images: File[]
+  store: string
+  category: string
+  rating: number
+  address: string
+  coordinate: {
+    latitude: number
+    longitude: number
+  }
+  description: string
+}
+
+export interface HotPlaceListing {
   _id: string
   category: string
   store: string
@@ -96,5 +109,5 @@ export interface HotPlacelistings {
   coordinate: {
     latitude: number
     longitude: number
-  }[]
+  }
 }

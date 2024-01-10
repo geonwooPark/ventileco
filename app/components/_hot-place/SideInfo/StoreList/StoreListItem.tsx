@@ -1,4 +1,4 @@
-import { HotPlacelistings } from '@/interfaces/interface'
+import { HotPlaceListing } from '@/interfaces/interface'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -6,7 +6,7 @@ import React from 'react'
 export default function StoreListItem({
   hotPlaceListing,
 }: {
-  hotPlaceListing: HotPlacelistings
+  hotPlaceListing: HotPlaceListing
 }) {
   const { _id, store, category, rating, images } = hotPlaceListing
   return (
