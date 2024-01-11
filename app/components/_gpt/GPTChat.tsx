@@ -3,7 +3,6 @@ import Container from '../common/Container'
 import ChatInput from './ChatInput'
 import ChatView from './ChatView/ChatView'
 
-
 export default function GPTChat() {
   return (
     <main className="h-full w-full">

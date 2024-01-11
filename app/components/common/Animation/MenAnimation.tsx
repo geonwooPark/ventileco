@@ -7,7 +7,6 @@ import lottieJson from '../../../../public/animation/men-animation.json'
 import { getSessionStorageWithExpire } from '@/utils/getSessionStorageWithExpire'
 import { setSessionStorageWithExpire } from '@/utils/setSessionStorageWithExpire'
 
-
 export default function Men() {
   const [show, setShow] = useState(true)
   const values = getSessionStorageWithExpire('intro')
