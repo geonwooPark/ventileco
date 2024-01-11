@@ -88,6 +88,7 @@ export interface HotPlaceFormData {
   category: string
   rating: number
   address: string
+  hashtags: string[] | null
   coordinate: {
     latitude: number
     longitude: number

@@ -14,6 +14,7 @@ import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/Des
 import useCreateHotPlace from '@/hooks/mutation/useCreateHotPlace'
 import { toast } from 'react-toastify'
 import { HotPlaceFormData } from '@/interfaces/interface'
+import HashtagInput from './CreateForm/HashtagInput'
 
 export default function CreateModalBody() {
   const router = useRouter()
@@ -34,6 +35,7 @@ export default function CreateModalBody() {
       category: '',
       rating: 0,
       address: '',
+      hashtags: [],
       coordinate: {
         latitude: 0,
         longitude: 0,
@@ -110,6 +112,12 @@ export default function CreateModalBody() {
         <DescriptionInput
           descriptionRegister={descriptionRegister}
           errorMessage={errors.description?.message}
+        />
+        <HashtagInput
+          setValue={setValue}
+          setError={setError}
+          clearErrors={clearErrors}
+          errorMessage={errors.hashtags?.message}
         />
         <RatingStar
           ratingRegister={ratingRegister}

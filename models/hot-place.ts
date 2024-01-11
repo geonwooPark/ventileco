@@ -27,6 +27,9 @@ const hotPlaceSchema = new Schema(
     coordinate: {
       type: Object,
     },
+    hashtags: {
+      type: Array,
+    },
   },
   { timestamps: true, versionKey: false },
 )
