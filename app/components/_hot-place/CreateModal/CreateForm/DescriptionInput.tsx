@@ -16,7 +16,7 @@ export default function DescriptionInput({
       <textarea
         {...descriptionRegister}
         placeholder="후기를 남겨보세요"
-        className="mb-1 h-[100px] w-full resize-none rounded border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black"
+        className="h-[100px] w-full resize-none rounded border border-gray-300 px-4 py-3 text-sm outline-none focus:border-black"
       />
       <ErrorMessage errorMessage={errorMessage} />
     </div>
