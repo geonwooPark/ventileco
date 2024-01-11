@@ -18,9 +18,7 @@ export default function AddressResearch({
   const router = useRouter()
   return (
     <div
-      onClick={() => {
-        setShowAddressResearch(false)
-      }}
+      onClick={() => setShowAddressResearch(false)}
       className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50"
     >
       <div>
