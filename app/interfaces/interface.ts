@@ -111,3 +111,4 @@ export interface HotPlaceListing {
     longitude: number
   }
 }
+
