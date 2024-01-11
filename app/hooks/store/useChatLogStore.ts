@@ -27,7 +27,7 @@ const useChatLogStore = create<State & Actions>()((set) => ({
     {
       id: 2,
       content:
-        'Vercel 무료 버전으로 배포해서 10초으로 이상으로 답변이 길어지면 에러나요ㅜㅜ ',
+        'Vercel 무료 버전으로 배포해서 10초 이상으로 답변이 길어지면 에러나요ㅜㅜ ',
       sender: 'gpt',
     },
   ],
