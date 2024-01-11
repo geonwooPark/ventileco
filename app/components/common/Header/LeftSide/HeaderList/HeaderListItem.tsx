@@ -4,7 +4,7 @@ import React from 'react'
 
 interface HeaderListItemProps {
   item: {
-    _id: number
+    id: number
     title: string
     link: string
   }
@@ -14,7 +14,7 @@ export default function HeaderListItem({ item }: HeaderListItemProps) {
   const pathName = usePathname()
 
   return (
-    <li key={item._id} className="relative">
+    <li key={item.id} className="relative">
       <Link
         href={item.link as any}
         className={`text-sm font-light text-white duration-300 hover:opacity-70`}

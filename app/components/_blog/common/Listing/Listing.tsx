@@ -1,6 +1,6 @@
 import React from 'react'
 import ListingItem from './ListingItem'
-import { PostingType } from '@/app/interfaces/interface'
+import { PostingType } from '@/interfaces/interface'
 
 interface ListingProps {
   listing: PostingType[]

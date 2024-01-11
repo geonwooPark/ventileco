@@ -1,10 +1,10 @@
 import React from 'react'
 import WeatherInfo from './WeatherInfo'
-import getQueryClient from '@/app/actions/getQueryClient'
-import getData from '@/app/actions/getData'
+import getQueryClient from '@/actions/getQueryClient'
+import getData from '@/actions/getData'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import { APIKEY, CITY } from '@/app/constants'
-import { homeKeys } from '@/app/constants/queryKey'
+import { APIKEY, CITY } from '@/constants'
+import { homeKeys } from '@/constants/queryKey'
 
 export default async function Weather() {
   const queryClient = getQueryClient()

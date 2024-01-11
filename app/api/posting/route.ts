@@ -1,8 +1,8 @@
-import { PostingType } from '@/app/interfaces/interface'
-import { connectMongo } from '@/app/utils/database'
-import { Comment } from '@/models/comment'
-import { Favorite } from '@/models/favorite'
-import { Posting } from '@/models/posting'
+import { PostingType } from '@/interfaces/interface'
+import { connectMongo } from '@/lib/database'
+import { Comment } from '../../../models/comment'
+import { Favorite } from '../../../models/favorite'
+import { Posting } from '../../../models/posting'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {

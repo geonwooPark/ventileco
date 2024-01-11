@@ -1,4 +1,4 @@
-import { OmittedPostingType } from '@/app/interfaces/interface'
+import { OmittedPostingType } from '@/interfaces/interface'
 import Image from 'next/image'
 import subBg from '/public/images/sub-bg.png'
 import React, { useState } from 'react'

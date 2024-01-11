@@ -1,11 +1,11 @@
 import React from 'react'
-import { CheckListItemType } from '@/app/interfaces/interface'
+import { CheckListItemType } from '@/interfaces/interface'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/lib/dayjs'
 import { toast } from 'react-toastify'
-import useDeleteCheckListItemMutation from '@/app/hooks/mutation/useDeleteCheckListItemMutation'
-import useUpdateCheckListItemMutation from '@/app/hooks/mutation/useUpdateCheckListItemMutation'
+import useDeleteCheckListItemMutation from '@/hooks/mutation/useDeleteCheckListItemMutation'
+import useUpdateCheckListItemMutation from '@/hooks/mutation/useUpdateCheckListItemMutation'
 
 interface CheckListItemProps {
   item: CheckListItemType

@@ -1,4 +1,4 @@
-import GPTChat from '@/app/components/_gpt/GPTChat'
+import GPTChat from '@gpt/GPTChat'
 import React from 'react'
 
 export async function generateMetadata() {

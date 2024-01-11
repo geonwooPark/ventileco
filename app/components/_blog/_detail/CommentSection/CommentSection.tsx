@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentInput from './CommentInput'
 import CommentList from './CommentList'
-import Section from '@/app/components/common/Section'
+import Section from '@common/Section'
 
 interface CommentSectionProps {
   postingId: string

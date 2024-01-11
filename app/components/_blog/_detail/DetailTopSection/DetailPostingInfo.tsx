@@ -1,8 +1,8 @@
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/lib/dayjs'
 import React from 'react'
 import LikeButton from './LikeButton'
-import { PostingType } from '@/app/interfaces/interface'
-import Container from '@/app/components/common/Container'
+import { PostingType } from '@/interfaces/interface'
+import Container from '@common/Container'
 
 interface PostingInfoProps {
   posting: PostingType

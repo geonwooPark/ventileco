@@ -1,9 +1,9 @@
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/lib/dayjs'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Spinner from '../../../common/Spinner'
-import useMyLikedPostQuery from '@/app/hooks/query/useMyLikedPostQuery'
+import useMyLikedPostQuery from '@/hooks/query/useMyLikedPostQuery'
 
 export default function MyLikedPost() {
   const { data: session } = useSession()

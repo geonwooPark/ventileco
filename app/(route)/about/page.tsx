@@ -1,4 +1,4 @@
-import StageContainer from '@/app/components/_about/StageContainer'
+import StageContainer from '@/components/_about/StageContainer'
 import React from 'react'
 
 export async function generateMetadata() {

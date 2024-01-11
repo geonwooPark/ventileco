@@ -1,4 +1,4 @@
-import { homeKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 

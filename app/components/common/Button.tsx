@@ -18,14 +18,13 @@ type ButtonProps = (
   | {
       type: 'submit'
       level: 'primary'
-      size: 'l'
     }
   | {
       type: 'button'
       level: keyof typeof btnLevel
-      size: keyof typeof btnSize
     }
 ) & {
+  size: keyof typeof btnSize
   label: string
   className?: string
   fullWidth?: boolean

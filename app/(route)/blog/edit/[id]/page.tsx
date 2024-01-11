@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import Button from '@/app/components/common/Button'
+import Button from '@/components/common/Button'
 import dynamic from 'next/dynamic'
 import { toast } from 'react-toastify'
 import {
@@ -11,19 +11,16 @@ import {
   ref,
   uploadBytes,
 } from 'firebase/storage'
-import EmptyState from '@/app/components/common/EmptyState'
-import { ImagesType, OmittedPostingType } from '@/app/interfaces/interface'
-import { storage } from '@/app/utils/firebase'
-import EditTopSection from '@/app/components/_blog/_edit/EditTopSection/EditTopSection'
-import Main from '@/app/components/common/Main'
+import EmptyState from '@common/EmptyState'
+import { ImagesType, OmittedPostingType } from '@/interfaces/interface'
+import { storage } from '@/lib/firebase'
+import EditTopSection from '@blog/_edit/EditTopSection/EditTopSection'
+import Main from '@common/Main'
 
-const EditorSection = dynamic(
-  () => import('@/app/components/_blog/common/Editor/Editor'),
-  {
-    ssr: false,
-    loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
-  },
-)
+const EditorSection = dynamic(() => import('@blog/common/Editor/Editor'), {
+  ssr: false,
+  loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
+})
 
 const thumbnailUpload = async (thumbnailFile: File | null) => {
   try {

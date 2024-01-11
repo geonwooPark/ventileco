@@ -1,4 +1,4 @@
-import getPopularListing from '@/app/actions/getPopularListing'
+import getPopularListing from '@/actions/getPopularListing'
 import React from 'react'
 import PopularListingItem from './PopularListingItem'
 

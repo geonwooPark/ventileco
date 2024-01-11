@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { CommentUserType } from '../../interfaces/interface'
-import { detailKeys } from '@/app/constants/queryKey'
+import { detailKeys } from '@/constants/queryKey'
 
 export default function useCommentListQuery(postingId: string) {
   const {

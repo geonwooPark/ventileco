@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { Session } from 'next-auth'
 import { myCommentType } from '../../interfaces/interface'
-import { myPageKeys } from '@/app/constants/queryKey'
+import { myPageKeys } from '@/constants/queryKey'
 
 export default function useMyCommentQuery(session: Session | null) {
   const { data: myComment, isPending } = useQuery({

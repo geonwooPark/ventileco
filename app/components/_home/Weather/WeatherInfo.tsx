@@ -1,11 +1,11 @@
 'use client'
 
-import weatherDescEngToKor from '@/app/utils/weatherDescEngToKor'
+import weatherDescEngToKor from '@/utils/weatherDescEngToKor'
 import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
-import useWeatherQuery from '@/app/hooks/query/useWeatherQuery'
-import { APIKEY, CITY } from '@/app/constants'
+import useWeatherQuery from '@/hooks/query/useWeatherQuery'
+import { APIKEY, CITY } from '@/constants'
 
 export default function WeatherInfo() {
   const { weatherData, isPending } = useWeatherQuery(CITY, APIKEY)

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { PostingType } from '@/app/interfaces/interface'
+import { PostingType } from '@/interfaces/interface'
 import subBg from '/public/images/sub-bg.png'
 import InteractionMetrics from './InteractionMetrics/InteractionMetrics'
 import DetailPostingInfo from './DetailPostingInfo'

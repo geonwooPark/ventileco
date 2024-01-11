@@ -1,8 +1,8 @@
-import { OmittedPostingType } from '@/app/interfaces/interface'
+import { OmittedPostingType } from '@/interfaces/interface'
 import React, { useState } from 'react'
 import AddThumbnailButton from '../../common/PostingInfo/AddThumbnailButton'
 import PostingForm from '../../common/PostingInfo/PostingForm'
-import Container from '@/app/components/common/Container'
+import Container from '@common/Container'
 
 interface WritePostingInfoProps {
   posting: OmittedPostingType

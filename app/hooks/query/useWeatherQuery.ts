@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
-import { homeKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/constants/queryKey'
 
 export default function useWeatherQuery(CITY: string, APIKEY: string) {
   const { data: weatherData, isPending } = useQuery({

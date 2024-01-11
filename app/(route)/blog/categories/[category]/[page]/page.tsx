@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
-import Section from '@/app/components/common/Section'
-import Article from '@/app/components/_blog/common/Article/Article'
-import getCategoryListingCount from '@/app/actions/getCategoryListingCount'
-import HeroSection from '@/app/components/common/HeroSection'
-import CategoryListing from '@/app/components/_blog/_categories/CategoryListing'
-import { LIMIT, categories } from '@/app/constants'
-import SideBar from '@/app/components/_blog/common/Sidebar/SideBar'
-import Main from '@/app/components/common/Main'
+import Section from '@/components/common/Section'
+import Article from '@/components/_blog/common/Article/Article'
+import getCategoryListingCount from '@/actions/getCategoryListingCount'
+import HeroSection from '@/components/common/HeroSection'
+import CategoryListing from '@/components/_blog/_categories/CategoryListing'
+import { LIMIT, categories } from '@/constants'
+import SideBar from '@/components/_blog/common/Sidebar/SideBar'
+import Main from '@/components/common/Main'
 
 export const revalidate = 1800
 

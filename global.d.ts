@@ -6,4 +6,7 @@ declare global {
   var mongoose: {
     conn: Mongoose | null
   }
+  interface Window {
+    kakao: any
+  }
 }

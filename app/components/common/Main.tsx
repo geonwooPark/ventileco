@@ -1,5 +1,12 @@
-import React, { ReactNode } from 'react'
+import React, { PropsWithChildren } from 'react'
 
-export default function Main({ children }: { children: ReactNode }) {
-  return <main className="bg-white">{children}</main>
+interface MainProps {
+  className?: string
+}
+
+export default function Main({
+  className,
+  children,
+}: PropsWithChildren<MainProps>) {
+  return <main className={`h-full bg-white ${className}`}>{children}</main>
 }

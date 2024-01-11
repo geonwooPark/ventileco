@@ -1,6 +1,6 @@
 'use client'
 
-import useNewArrivalsQuery from '@/app/hooks/query/useNewArrivalsListQuery'
+import useNewArrivalsQuery from '@/hooks/query/useNewArrivalsListQuery'
 import Link from 'next/link'
 import React from 'react'
 import SkeletonNewArrivalsList from './SkeletonNewArrivalsList'

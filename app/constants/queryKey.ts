@@ -36,3 +36,9 @@ export const myPageKeys = {
   myLikedPost: (user?: string) =>
     [...myPageKeys.myLikedPosts(), { user }] as const,
 }
+
+// Hot-Place 페이지
+export const hotPlaceKeys = {
+  base: ['hot-place'] as const,
+  hotPlaceListings: () => [...hotPlaceKeys.base, 'hot-place-listings'] as const,
+}

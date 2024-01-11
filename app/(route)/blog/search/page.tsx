@@ -1,10 +1,10 @@
-import Section from '@/app/components/common/Section'
-import HeroSection from '@/app/components/common/HeroSection'
+import Section from '@common/Section'
+import HeroSection from '@common/HeroSection'
 import { Suspense } from 'react'
-import SearchListing from '@/app/components/_blog/_search/SearchListing'
-import Article from '@/app/components/_blog/common/Article/Article'
-import SkeletonListing from '@/app/components/_blog/common/Listing/SkeletonListing'
-import Main from '@/app/components/common/Main'
+import SearchListing from '@blog/_search/SearchListing'
+import Article from '@blog/common/Article/Article'
+import SkeletonListing from '@blog/common/Listing/SkeletonListing'
+import Main from '@common/Main'
 
 export default async function Search({
   searchParams,
