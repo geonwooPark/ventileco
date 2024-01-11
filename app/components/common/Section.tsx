@@ -12,7 +12,7 @@ export default function Section({
   label,
 }: PropsWithChildren<SectionProps>) {
   return (
-    <section className={`pb-20 ${className}`}>
+    <section className={`bg-white pb-20 ${className}`}>
       <Container>
         <h3 className="mb-4 md:text-lg">{label}</h3>
         {children}

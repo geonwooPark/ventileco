@@ -10,17 +10,22 @@ export const categories = [
 // 헤더
 export const headerListItem = [
   {
-    _id: 1,
+    id: 1,
     title: '블로그',
     link: '/blog',
   },
   {
-    _id: 2,
+    id: 2,
+    title: '맛집',
+    link: '/hot-place',
+  },
+  {
+    id: 3,
     title: 'GPT',
     link: '/gpt',
   },
   {
-    _id: 3,
+    id: 4,
     title: '소개',
     link: '/about',
   },
@@ -95,5 +100,29 @@ export const skills = [
     id: 12,
     name: 'Zustand',
     color: 'EA4AAA',
+  },
+]
+
+// 맛집
+export const StoreCategory = [
+  {
+    id: 1,
+    category: '한식',
+  },
+  {
+    id: 2,
+    category: '중식',
+  },
+  {
+    id: 3,
+    category: '일식',
+  },
+  {
+    id: 4,
+    category: '분식',
+  },
+  {
+    id: 5,
+    category: '카페',
   },
 ]

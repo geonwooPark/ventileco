@@ -1,8 +1,8 @@
-import { CheckListType } from '@/app/interfaces/interface'
-import { connectMongo } from '@/app/utils/database'
-import { CheckList } from '@/models/checklist'
+import { CheckListType } from '@/interfaces/interface'
+import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
+import { CheckList } from '../../../models/checklist'
 
 export async function GET(req: NextRequest) {
   const date = req.nextUrl.searchParams.get('date')

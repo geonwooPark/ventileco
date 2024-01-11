@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import Modal from './Modal'
 import 'react-calendar/dist/Calendar.css'
 import Calendar from 'react-calendar'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/lib/dayjs'
 import {
   useCalendarModalActions,
   useCalendarModalIsOpen,
-} from '@/app/hooks/store/useCalendarModalStore'
+} from '@/hooks/store/useCalendarModalStore'
 
 interface CalendarModalProps {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>

@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 z-[100] w-full transition duration-200 ${
-        headerColor ? 'bg-black/90' : 'bg-transparent'
+        headerColor ? 'bg-black/70' : 'bg-transparent'
       }`}
       ref={scrollRef}
     >

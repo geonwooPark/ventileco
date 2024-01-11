@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { CheckListItemType } from '../../interfaces/interface'
-import { homeKeys } from '@/app/constants/queryKey'
+import { homeKeys } from '@/constants/queryKey'
 
 export default function useCheckListQuery(date: string) {
   const { data: checkList, isPending } = useQuery({

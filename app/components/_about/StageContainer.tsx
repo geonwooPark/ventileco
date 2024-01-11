@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import StageFive from '@/app/components/_about/StageContainer/Stage/StageFive'
-import StageFour from '@/app/components/_about/StageContainer/Stage/StageFour'
-import StageOne from '@/app/components/_about/StageContainer/Stage/StageOne'
-import StageThree from '@/app/components/_about/StageContainer/Stage/StageThree'
-import StageTwo from '@/app/components/_about/StageContainer/Stage/StageTwo'
+import StageFive from '@about/Stage/StageFive'
+import StageFour from '@about/Stage/StageFour'
+import StageOne from '@about/Stage/StageOne'
+import StageThree from '@about/Stage/StageThree'
+import StageTwo from '@about/Stage/StageTwo'
 import ScrollIcon from './ScrollIcon'
-import FireworkAnimation from '../../common/Animation/FireworkAnimation'
+import FireworkAnimation from '../common/Animation/FireworkAnimation'
 
 export default function StageContainer() {
   const containerRef = useRef<HTMLDivElement>(null)

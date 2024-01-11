@@ -4,7 +4,6 @@ import type { NextRequest } from 'next/server'
 
 const secret = process.env.NEXT_PUBLIC_JWT_SECRET
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request, secret })
   if (request.nextUrl.pathname.startsWith('/mypage')) {
@@ -12,14 +11,14 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/', request.url))
     }
   }
-  if (request.nextUrl.pathname.startsWith('/edit')) {
+  if (request.nextUrl.pathname.startsWith('/blog/edit')) {
     if (token?.role !== 'admin') {
-      return NextResponse.redirect(new URL('/', request.url))
+      return NextResponse.redirect(new URL('/blog', request.url))
     }
   }
-  if (request.nextUrl.pathname.startsWith('/write')) {
+  if (request.nextUrl.pathname.startsWith('/blog/write')) {
     if (token?.role !== 'admin') {
-      return NextResponse.redirect(new URL('/', request.url))
+      return NextResponse.redirect(new URL('/blog', request.url))
     }
   }
 }

@@ -4,9 +4,9 @@ import { Session } from 'next-auth'
 import {
   useSelectedCommentForEditActions,
   useSelectedCommentIdForEdit,
-} from '@/app/hooks/store/useSelectedCommentForEditStore'
-import Button from '@/app/components/common/Button'
-import useEditCommentMutation from '@/app/hooks/mutation/useEditCommentMutation'
+} from '@/hooks/store/useSelectedCommentForEditStore'
+import Button from '@common/Button'
+import useEditCommentMutation from '@/hooks/mutation/useEditCommentMutation'
 
 interface CommentInputProps {
   session: Session | null

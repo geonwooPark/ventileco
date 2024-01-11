@@ -3,8 +3,8 @@
 import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
 import { toast } from 'react-toastify'
-import Spinner from '@/app/components/common/Spinner'
-import useLikeCountQuery from '@/app/hooks/query/useLikeCountQuery'
+import Spinner from '@common/Spinner'
+import useLikeCountQuery from '@/hooks/query/useLikeCountQuery'
 
 interface LikeCounterProps {
   postingId: string

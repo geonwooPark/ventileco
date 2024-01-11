@@ -5,12 +5,12 @@ import Input from '../../common/Input'
 import { FcGoogle } from 'react-icons/fc'
 import Button from '../../common/Button'
 import { toast } from 'react-toastify'
-import { useSignUpModalActions } from '@/app/hooks/store/useSignUpModalStore'
+import { useSignUpModalActions } from '@/hooks/store/useSignUpModalStore'
 import { signIn } from 'next-auth/react'
 import {
   useLoginModalActions,
   useLoginModalIsOpen,
-} from '@/app/hooks/store/useLoginModalStore'
+} from '@/hooks/store/useLoginModalStore'
 import Modal from './Modal'
 
 export default function LoginModal() {

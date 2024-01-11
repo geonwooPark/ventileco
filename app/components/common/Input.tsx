@@ -16,28 +16,16 @@ interface InputProps {
 }
 
 export default function Input({
-  type,
-  name,
-  value,
-  maxLength,
-  disabled,
-  placeholder,
   className,
-  onChange,
   icon: Icon,
   iconAction,
   iconType,
+  ...props
 }: InputProps) {
   return (
     <div className="relative w-full">
       <input
-        type={type}
-        name={name}
-        value={value}
-        maxLength={maxLength}
-        disabled={disabled}
-        placeholder={placeholder}
-        onChange={onChange}
+        {...props}
         autoComplete="off"
         className={`rounded border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-black
         ${className}

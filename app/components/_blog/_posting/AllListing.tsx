@@ -1,9 +1,8 @@
-import getAllListing from '@/app/actions/getAllListing'
-import getAllListingCount from '@/app/actions/getAllListingCount'
+import getAllListing from '@/actions/getAllListing'
+import getAllListingCount from '@/actions/getAllListingCount'
 import React from 'react'
 import EmptyState from '../../common/EmptyState'
 import Pagination from '../common/Pagination/Pagination'
-import ListingItem from '../common/Listing/ListingItem'
 import Listing from '../common/Listing/Listing'
 
 interface AllListingProps {

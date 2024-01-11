@@ -5,9 +5,10 @@ import LoginModal from './components/common/Modal/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './components/common/Modal/SignUpModal'
-import AuthSession from './components/provider/AuthSession'
-import TanstackProvider from './components/provider/TanstackProvider'
+import AuthSession from './components/common/provider/AuthSession'
+import TanstackProvider from './components/common/provider/TanstackProvider'
 import Header from './components/common/Header/Header'
+import Script from 'next/script'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -45,6 +46,10 @@ export default async function RootLayout({
   return (
     <html lang="kr">
       <body className={noto.className}>
+        <Script
+          strategy="beforeInteractive"
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&autoload=false&libraries=services,clusterer,drawing`}
+        />
         <AuthSession>
           <TanstackProvider>
             <ToastContainer

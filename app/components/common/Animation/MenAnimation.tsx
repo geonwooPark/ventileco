@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import dayjs from '@/app/utils/dayjs'
+import dayjs from '@/lib/dayjs'
 import Lottie from 'react-lottie-player'
-import lottieJson from '@/public/animation/men-animation.json'
-import { getSessionStorageWithExpire } from '@/app/utils/getSessionStorageWithExpire'
-import { setSessionStorageWithExpire } from '@/app/utils/setSessionStorageWithExpire'
+import lottieJson from '../../../../public/animation/men-animation.json'
+import { getSessionStorageWithExpire } from '@/utils/getSessionStorageWithExpire'
+import { setSessionStorageWithExpire } from '@/utils/setSessionStorageWithExpire'
 
 
 export default function Men() {
@@ -20,13 +20,15 @@ export default function Men() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (values) {
-    if (dayjs().diff(dayjs(values.expires)) > 10 * 60 * 1000) {
-      sessionStorage.removeItem('intro')
-    } else {
-      return
+  useEffect(() => {
+    if (values) {
+      if (dayjs().diff(dayjs(values.expires)) > 10 * 60 * 1000) {
+        sessionStorage.removeItem('intro')
+      } else {
+        setShow(false)
+      }
     }
-  }
+  }, [values])
 
   if (!show) return
 

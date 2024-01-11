@@ -5,8 +5,10 @@ import { useSession } from 'next-auth/react'
 import Search from './Search/Search'
 import SearchIcon from './Search/SearchIcon'
 import Menu from './Menu/Menu'
+import { usePathname } from 'next/navigation'
 
 export default function RightSide() {
+  const pathName = usePathname()
   const { data: session } = useSession()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -20,12 +22,14 @@ export default function RightSide() {
   return (
     <div className="flex items-center gap-4">
       <Search isOpen={isOpen} setIsOpen={setIsOpen} />
-      {session?.user?.role === 'admin' && (
+      {pathName.startsWith('/blog') && session?.user?.role === 'admin' && (
         <Link href={'/blog/write'} className="z-50 text-white">
           <AiOutlineEdit size={24} />
         </Link>
       )}
-      <SearchIcon isOpen={isOpen} toggleOpen={toggleOpen} />
+      {pathName.startsWith('/blog') && (
+        <SearchIcon isOpen={isOpen} toggleOpen={toggleOpen} />
+      )}
       <Menu session={session} />
     </div>
   )

@@ -1,7 +1,7 @@
 import { cache } from 'react'
 import { PostingType } from '../interfaces/interface'
-import { connectMongo } from '../utils/database'
-import { Posting } from '@/models/posting'
+import { connectMongo } from '../lib/database'
+import { Posting } from '../../models/posting'
 
 export default cache(async function getCategoryListingCount(category: string) {
   try {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import DropDownItem from './DropDownItem'
-import { PostingType } from '@/app/interfaces/interface'
+import { PostingType } from '@/interfaces/interface'
 interface DropDownMenuProps {
   categories: string[]
   category: string

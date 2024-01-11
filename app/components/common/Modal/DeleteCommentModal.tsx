@@ -4,7 +4,7 @@ import { UseMutateFunction } from '@tanstack/react-query'
 import {
   useDeleteCommentModalActions,
   useDeleteCommentModalIsOpen,
-} from '@/app/hooks/store/useDeleteCommentModalStore'
+} from '@/hooks/store/useDeleteCommentModalStore'
 
 export default function DeleteCommentModal({
   onDelete,

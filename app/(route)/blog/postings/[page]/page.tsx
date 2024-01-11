@@ -1,11 +1,11 @@
-import Section from '@/app/components/common/Section'
-import Article from '@/app/components/_blog/common/Article/Article'
-import getAllListingCount from '@/app/actions/getAllListingCount'
-import HeroSection from '@/app/components/common/HeroSection'
-import AllListing from '@/app/components/_blog/_posting/AllListing'
-import { LIMIT } from '@/app/constants'
-import SideBar from '@/app/components/_blog/common/Sidebar/SideBar'
-import Main from '@/app/components/common/Main'
+import Section from '@/components/common/Section'
+import Article from '@/components/_blog/common/Article/Article'
+import getAllListingCount from '@/actions/getAllListingCount'
+import HeroSection from '@/components/common/HeroSection'
+import AllListing from '@/components/_blog/_posting/AllListing'
+import { LIMIT } from '@/constants'
+import SideBar from '@/components/_blog/common/Sidebar/SideBar'
+import Main from '@/components/common/Main'
 
 export const revalidate = 1800
 
