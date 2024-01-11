@@ -107,9 +107,9 @@ export interface HotPlaceListing {
     path: string
     url: string
   }[]
+  hashtags: string[] | null
   coordinate: {
     latitude: number
     longitude: number
   }
 }
-
