@@ -9,7 +9,7 @@ export default function StoreModalHeader() {
 
   return (
     <div className="flex justify-between p-4">
-      <div className="text-lg font-semibold">맛집 정보</div>
+      <div className="text-lg font-semibold">스토어 정보</div>
       <button onClick={() => router.back()}>
         <AiOutlineClose size={20} />
       </button>

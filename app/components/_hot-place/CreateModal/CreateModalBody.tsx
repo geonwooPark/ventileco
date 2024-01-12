@@ -50,7 +50,7 @@ export default function CreateModalBody() {
       onSuccess: () => {
         reset()
         router.back()
-        toast.success('맛집 등록 완료!')
+        toast.success('스토어 등록 완료!')
       },
     })
   }
