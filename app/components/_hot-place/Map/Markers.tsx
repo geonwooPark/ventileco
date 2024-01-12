@@ -61,12 +61,12 @@ export default function Markers() {
         })
         markers = [...markers, marker]
         window.kakao.maps.event.addListener(marker, 'click', function () {
+          router.push(`/hot-place/store/${listings[i]._id}`)
           zoomIn()
           setCenter(
             listings[i].coordinate.latitude,
             listings[i].coordinate.longitude,
           )
-          router.push(`/hot-place/store/${listings[i]._id}`)
           if (!selectedMarker || selectedMarker !== marker) {
             selectedMarker && selectedMarker.setImage(marker)
             // marker.setImage(clickImage)

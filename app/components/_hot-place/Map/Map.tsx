@@ -3,7 +3,6 @@
 import { useMapActions } from '@/hooks/store/useMap'
 import React, { useEffect, useRef } from 'react'
 import Markers from './Markers'
-// import Markers from './Markers'
 
 export default function Map() {
   const { onAdd: addMap } = useMapActions()

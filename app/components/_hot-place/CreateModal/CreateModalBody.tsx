@@ -43,10 +43,10 @@ export default function CreateModalBody() {
       description: '',
     },
   })
-  const { mutation } = useCreateHotPlace()
+  const { mutation: createHotPlaceMutation } = useCreateHotPlace()
 
   const onSubmit: SubmitHandler<HotPlaceFormData> = async (data) => {
-    mutation.mutate(data, {
+    createHotPlaceMutation.mutate(data, {
       onSuccess: () => {
         reset()
         router.back()
@@ -133,7 +133,7 @@ export default function CreateModalBody() {
           fullWidth={true}
           label="등록하기"
           onClick={() => handleSubmit(onSubmit)}
-          disabled={mutation.isPending}
+          disabled={createHotPlaceMutation.isPending}
         />
       </div>
     </form>

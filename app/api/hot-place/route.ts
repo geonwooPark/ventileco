@@ -31,3 +31,19 @@ export async function POST(req: NextRequest) {
     )
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const storeId = await req.json()
+
+  try {
+    await connectMongo()
+    await HotPlace.findByIdAndDelete({ _id: storeId })
+
+    return NextResponse.json({ message: '스토어 제거 성공!' }, { status: 200 })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    )
+  }
+}

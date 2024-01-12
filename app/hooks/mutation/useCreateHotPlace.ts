@@ -1,8 +1,8 @@
+import { hotPlaceKeys } from '@/constants/queryKey'
 import { HotPlaceFormData } from '@/interfaces/interface'
 import { storage } from '@/lib/firebase'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { useRouter } from 'next/navigation'
 
 const createHotPlace = async (data: HotPlaceFormData) => {
   const { store, images } = data
@@ -34,11 +34,14 @@ const createHotPlace = async (data: HotPlaceFormData) => {
 }
 
 export default function useCreateHotPlace() {
-  const router = useRouter()
-
   const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: (data: HotPlaceFormData) => createHotPlace(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: hotPlaceKeys.hotPlaceListings(),
+      })
+    },
   })
 
   return { mutation }
