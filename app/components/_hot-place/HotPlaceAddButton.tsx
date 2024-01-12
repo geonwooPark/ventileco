@@ -1,11 +1,18 @@
+'use client'
+
 import React from 'react'
-import Button from '../common/Button'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
+import { AiOutlineEdit } from 'react-icons/ai'
 
 export default function HotPlaceAddButton() {
-  return (
+  const { data: session } = useSession()
+
+  return session && session.user.role === 'admin' ? (
     <Link href={'/hot-place/create'} className="fixed bottom-8 left-8 z-[100]">
-      <Button type="button" level="primary" size="s" label="맛집 등록" />
+      <button className="rounded-full bg-blue-600 p-3 text-white">
+        <AiOutlineEdit size={24} />
+      </button>
     </Link>
-  )
+  ) : null
 }
