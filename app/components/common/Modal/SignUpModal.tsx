@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Modal from './Modal'
-import Input from '../../common/Input'
+import Input from '../Input/Input'
 import { toast } from 'react-toastify'
 import {
   useSignUpModalActions,

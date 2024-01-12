@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
-import Input from '../../common/Input'
+import Input from '../Input/Input'
 import { useSession } from 'next-auth/react'
 import dayjs from '@/lib/dayjs'
 import {
