@@ -6,11 +6,11 @@ interface StoreHashtagsProps {
 
 export default function StoreHashtags({ hashtags }: StoreHashtagsProps) {
   return (
-    <ul className={`flex shrink-0 gap-2`}>
+    <ul className={`flex gap-2 overflow-x-scroll`}>
       {hashtags?.map((tag, i: number) => (
         <li
           key={i}
-          className="flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-sm text-blue-400"
+          className="shrink-0 rounded-full border border-gray-200 px-3 py-1.5 text-sm text-blue-400"
         >
           #{tag}
         </li>
