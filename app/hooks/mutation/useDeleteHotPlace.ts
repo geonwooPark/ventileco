@@ -25,7 +25,7 @@ export default function useDeleteHotPlace() {
       deleteHotPlace({ session, storeId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: hotPlaceKeys.hotPlaceListings(),
+        queryKey: hotPlaceKeys.hotPlaceListing(),
       })
     },
   })

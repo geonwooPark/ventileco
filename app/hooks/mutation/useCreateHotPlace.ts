@@ -39,7 +39,7 @@ export default function useCreateHotPlace() {
     mutationFn: (data: HotPlaceFormData) => createHotPlace(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: hotPlaceKeys.hotPlaceListings(),
+        queryKey: hotPlaceKeys.hotPlaceListing(),
       })
     },
   })

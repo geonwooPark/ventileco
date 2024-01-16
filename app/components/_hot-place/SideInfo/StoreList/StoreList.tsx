@@ -3,10 +3,14 @@
 import React from 'react'
 import StoreListItem from './StoreListItem'
 import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
+import SkeletonStoreList from './SkeletonStoreList'
+import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
 
 export default function StoreList() {
-  const { hotPlaceListings, isPending } = useHotPlaceListings()
-  if (isPending) <div>로딩중...</div>
+  const searchKeyword = useSearchKeyword()
+
+  const { hotPlaceListings, isPending } = useHotPlaceListings(searchKeyword)
+  if (isPending) return <SkeletonStoreList />
 
   return (
     <ul>

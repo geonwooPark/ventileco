@@ -1,18 +1,18 @@
 'use client'
 
-import { useMap } from '@/hooks/store/useMap'
+import { useMap } from '@/hooks/store/useMapStore'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
+import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
 
 export default function Markers() {
   const map = useMap()
+  const searchKeyword = useSearchKeyword()
   const router = useRouter()
 
   const [markers, setMarkers] = useState<any[]>([])
-  const { hotPlaceListings: listings } = useHotPlaceListings()
-
-  if (!listings) return
+  const { hotPlaceListings: listings } = useHotPlaceListings(searchKeyword)
 
   const zoomIn = () => {
     const level = map.getLevel()
@@ -27,6 +27,8 @@ export default function Markers() {
   }
 
   useEffect(() => {
+    if (!listings) return
+
     if (markers) {
       markers.forEach((marker) => marker.setMap(null))
     }
@@ -76,7 +78,7 @@ export default function Markers() {
       }
       setMarkers(markers)
     })
-  }, [map])
+  }, [map, listings])
 
   return <div></div>
 }

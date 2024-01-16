@@ -24,8 +24,10 @@ const getHotPlaceListings = async () => {
 export default async function page() {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: hotPlaceKeys.hotPlaceListings(),
+    queryKey: hotPlaceKeys.hotPlaceListing(),
     queryFn: getHotPlaceListings,
+    staleTime: 1000 * 60 * 50, // 50분
+    gcTime: 1000 * 60 * 60, // 1시간
   })
   const dehydratedState = dehydrate(queryClient)
 

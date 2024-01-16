@@ -1,12 +1,21 @@
 import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { HotPlace } from '../../../models/hot-place'
+import { HotPlaceListing } from '@/interfaces/interface'
 
 export async function GET(req: NextRequest) {
+  const searchKeyword = req.nextUrl.searchParams.get('searchKeyword')
+  if (!searchKeyword) return NextResponse.json([], { status: 200 })
+
+  const regexPattern = new RegExp(searchKeyword, 'i')
+
   try {
     await connectMongo()
 
-    const hotPlaceListings = await HotPlace.find()
+    const hotPlaceListings = await HotPlace.find<HotPlaceListing>(
+      searchKeyword === 'all' ? {} : { store: { $regex: regexPattern } },
+    )
+
     return NextResponse.json(hotPlaceListings, { status: 200 })
   } catch (error) {
     return NextResponse.json(

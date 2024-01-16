@@ -1,6 +1,6 @@
 'use client'
 
-import { useMapActions } from '@/hooks/store/useMap'
+import { useMapActions } from '@/hooks/store/useMapStore'
 import React, { useEffect, useRef } from 'react'
 import Markers from './Markers'
 

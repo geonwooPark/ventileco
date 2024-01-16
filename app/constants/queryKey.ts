@@ -40,5 +40,6 @@ export const myPageKeys = {
 // Hot-Place 페이지
 export const hotPlaceKeys = {
   base: ['hot-place'] as const,
-  hotPlaceListings: () => [...hotPlaceKeys.base, 'hot-place-listings'] as const,
+  hotPlaceListing: (search?: string) =>
+    [...hotPlaceKeys.base, { search: search ? search : 'all' }] as const,
 }
