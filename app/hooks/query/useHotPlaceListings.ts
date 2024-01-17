@@ -14,8 +14,8 @@ export default function useHotPlaceListings(searchKeyword = 'all') {
       getData<HotPlaceListing[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/hot-place?searchKeyword=${searchKeyword}`,
       ),
-    staleTime: 1000 * 60 * 3, // 3분
-    gcTime: 1000 * 60 * 5, // 5분
+    staleTime: searchKeyword === 'all' ? 1000 * 60 * 50 : 1000 * 60 * 3,
+    gcTime: searchKeyword === 'all' ? 1000 * 60 * 60 : 1000 * 60 * 5,
   })
   return { hotPlaceListings, isPending, error }
 }

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { FiSend } from 'react-icons/fi'
 import { useChatLog, useChatLogActions } from '@/hooks/store/useChatLogStore'
 import { toast } from 'react-toastify'
-import Loading from '../common/Animation/LoadingAnimation'
+import LoadingAnimation from '../common/Animation/LoadingAnimation'
 import { useSession } from 'next-auth/react'
 import InputWithIcon from '../common/Input/InputWithIcon'
 
@@ -65,7 +65,7 @@ export default function ChatInput() {
         onChange={onChange}
         iconAction={onSubmit as any}
       />
-      {isLoading && <Loading />}
+      {isLoading && <LoadingAnimation />}
     </form>
   )
 }

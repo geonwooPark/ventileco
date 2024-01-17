@@ -47,6 +47,7 @@ export default function StoreSearch() {
           type="text"
           name="search"
           value={keyword}
+          placeholder="맛집을 검색해보세요!"
           icon={AiOutlineSearch}
           onChange={onChange}
           iconType="submit"
