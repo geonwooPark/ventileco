@@ -126,3 +126,5 @@ export const StoreCategory = [
     category: '카페',
   },
 ]
+
+export const INITIAL_CENTER = [37.574187, 126.976882]

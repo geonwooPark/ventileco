@@ -12,7 +12,7 @@ export default function Markers() {
   const router = useRouter()
 
   const [markers, setMarkers] = useState<any[]>([])
-  const { hotPlaceListings: listings } = useHotPlaceListings(searchKeyword)
+  const { hotPlaceListings } = useHotPlaceListings(searchKeyword)
 
   const zoomIn = () => {
     const level = map.getLevel()
@@ -27,12 +27,12 @@ export default function Markers() {
   }
 
   useEffect(() => {
-    if (!listings) return
+    if (!map) return
+    if (!hotPlaceListings || hotPlaceListings.length === 0) return
 
     if (markers) {
       markers.forEach((marker) => marker.setMap(null))
     }
-
     window.kakao.maps.load(async () => {
       // // 마커가 표시될 위치입니다
       // const markerPosition = new window.kakao.maps.LatLng(37.574187, 126.976882)
@@ -51,34 +51,22 @@ export default function Markers() {
       //   new window.kakao.maps.Size(48, 48),
       // )
       let markers: any[] = []
-      let selectedMarker: any = null
-      for (let i = 0; i < listings.length; i++) {
+      for (let i = 0; i < hotPlaceListings.length; i++) {
+        const { latitude, longitude } = hotPlaceListings[i].coordinate
         const marker = new window.kakao.maps.Marker({
           map: map,
-          position: new window.kakao.maps.LatLng(
-            listings[i].coordinate.latitude,
-            listings[i].coordinate.longitude,
-          ),
-          image: selectedMarker,
+          position: new window.kakao.maps.LatLng(latitude, longitude),
         })
         markers = [...markers, marker]
         window.kakao.maps.event.addListener(marker, 'click', function () {
-          router.push(`/hot-place/store/${listings[i]._id}`)
+          router.push(`/hot-place/store/${hotPlaceListings[i]._id}`)
           zoomIn()
-          setCenter(
-            listings[i].coordinate.latitude,
-            listings[i].coordinate.longitude,
-          )
-          if (!selectedMarker || selectedMarker !== marker) {
-            selectedMarker && selectedMarker.setImage(marker)
-            // marker.setImage(clickImage)
-          }
-          selectedMarker = marker
+          setCenter(latitude, longitude)
         })
       }
       setMarkers(markers)
     })
-  }, [map, listings])
+  }, [map, hotPlaceListings])
 
   return <div></div>
 }
