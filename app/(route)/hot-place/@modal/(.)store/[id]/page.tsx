@@ -11,7 +11,8 @@ interface IParams {
 }
 
 export default async function StoreModal({ params }: IParams) {
-  const listing = await getStore(params.id)
+  const { id } = params
+  const listing = await getStore(id)
 
   if (!listing) return NotFound()
 

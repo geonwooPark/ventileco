@@ -21,4 +21,14 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/blog', request.url))
     }
   }
+  if (request.nextUrl.pathname.startsWith('/hot-place/create')) {
+    if (token?.role !== 'admin') {
+      return NextResponse.redirect(new URL('/hot-place', request.url))
+    }
+  }
+  if (request.nextUrl.pathname.startsWith('/hot-place/delete')) {
+    if (token?.role !== 'admin') {
+      return NextResponse.redirect(new URL('/hot-place', request.url))
+    }
+  }
 }
