@@ -29,6 +29,7 @@ interface IParams {
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   const { id } = params
   const posting = await getPosting(id)
+
   if (!posting)
     return {
       title: '404 페이지',

@@ -10,16 +10,9 @@ interface StoreModalBodyProps {
 }
 
 export default function StoreModalBody({ listing }: StoreModalBodyProps) {
-  const {
-    store,
-    category,
-    description,
-    rating,
-    address,
-    hashtags,
-    images,
-    _id,
-  } = listing
+  const { store, category, description, rating, address, hashtags, images } =
+    listing
+
   return (
     <>
       <div className="overflow-hidden px-4">
@@ -37,7 +30,7 @@ export default function StoreModalBody({ listing }: StoreModalBodyProps) {
         />
         <StoreHashtags hashtags={hashtags} />
       </div>
-      <StoreModalButton storeId={_id} />
+      <StoreModalButton />
     </>
   )
 }
