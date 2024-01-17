@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import { AiOutlineEdit } from 'react-icons/ai'
 
-export default function HotPlaceAddButton() {
+export default function StoreAddButton() {
   const { data: session } = useSession()
 
   return session && session.user.role === 'admin' ? (
