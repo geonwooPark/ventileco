@@ -2,6 +2,8 @@ import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { HotPlace } from '../../../models/hot-place'
 import { HotPlaceListing } from '@/interfaces/interface'
+import { deleteObject, ref } from 'firebase/storage'
+import { storage } from '@/lib/firebase'
 
 export async function GET(req: NextRequest) {
   const searchKeyword = req.nextUrl.searchParams.get('searchKeyword')
@@ -46,7 +48,11 @@ export async function DELETE(req: NextRequest) {
 
   try {
     await connectMongo()
-    await HotPlace.findByIdAndDelete({ _id: storeId })
+    const hotPlaceListing = await HotPlace.findByIdAndDelete({ _id: storeId })
+
+    await hotPlaceListing.images.forEach((image: any) => {
+      deleteObject(ref(storage, image.path))
+    })
 
     return NextResponse.json({ message: '스토어 제거 성공!' }, { status: 200 })
   } catch (error) {

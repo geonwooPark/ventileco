@@ -7,8 +7,9 @@ interface deleteHotPlaceParams {
   storeId: string
 }
 
-const deleteHotPlace = async ({ session, storeId }: deleteHotPlaceParams) => {
+const deleteStore = async ({ session, storeId }: deleteHotPlaceParams) => {
   if (!(session && session.user.role === 'admin')) return
+
   const result = await fetch('/api/hot-place', {
     method: 'DELETE',
     body: JSON.stringify(storeId),
@@ -22,7 +23,7 @@ export default function useDeleteHotPlace() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: ({ session, storeId }: deleteHotPlaceParams) =>
-      deleteHotPlace({ session, storeId }),
+      deleteStore({ session, storeId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: hotPlaceKeys.hotPlaceListing(),
