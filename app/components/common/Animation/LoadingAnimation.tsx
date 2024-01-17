@@ -2,7 +2,7 @@ import React from 'react'
 import Lottie from 'react-lottie-player'
 import lottieJson from '../../../../public/animation/loading-animation.json'
 
-export default function Loading() {
+export default function LoadingAnimation() {
   return (
     <div className="absolute -top-20 left-[50%] h-20 w-20 translate-x-[-50%]">
       <Lottie
