@@ -5,6 +5,17 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
 import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
+import { StoreCategory, categories } from '@/constants'
+
+const IMAGE_SIZE = 40
+const getSpriteOrigin = (category: string) => {
+  if (category === '한식') return IMAGE_SIZE * 0
+  if (category === '일식') return IMAGE_SIZE * 1
+  if (category === '중식') return IMAGE_SIZE * 2
+  if (category === '양식') return IMAGE_SIZE * 3
+  if (category === '분식') return IMAGE_SIZE * 4
+  if (category === '카페') return IMAGE_SIZE * 5
+}
 
 export default function Markers() {
   const map = useMap()
@@ -34,32 +45,40 @@ export default function Markers() {
       markers.forEach((marker) => marker.setMap(null))
     }
     window.kakao.maps.load(async () => {
-      // // 마커가 표시될 위치입니다
-      // const markerPosition = new window.kakao.maps.LatLng(37.574187, 126.976882)
-      // // 마커를 생성합니다
-      // const marker = new window.kakao.maps.Marker({
-      //   position: markerPosition,
-      // })
-      // // 마커가 지도 위에 표시되도록 설정합니다
-      // marker.setMap(map)
-      // const normalImage = new window.kakao.maps.MarkerImage(
-      //   marker,
-      //   new window.kakao.maps.Size(48, 48),
-      // )
-      // const clickImage = new window.kakao.maps.MarkerImage(
-      //   selectedMarker,
-      //   new window.kakao.maps.Size(48, 48),
-      // )
       let markers: any[] = []
+      const imageSrc = 'svgs/store-category.svg'
+      const imageSize = new window.kakao.maps.Size(IMAGE_SIZE, IMAGE_SIZE)
+
       for (let i = 0; i < hotPlaceListings.length; i++) {
-        const { latitude, longitude } = hotPlaceListings[i].coordinate
+        const {
+          category,
+          _id,
+          coordinate: { latitude, longitude },
+        } = hotPlaceListings[i]
+
+        const imageOption = {
+          spriteSize: new window.kakao.maps.Size(
+            IMAGE_SIZE * StoreCategory.length,
+            IMAGE_SIZE,
+          ), // 스프라이트 이미지의 크기
+          spriteOrigin: new window.kakao.maps.Point(
+            getSpriteOrigin(category),
+            0,
+          ),
+        }
+        const markerImage = new window.kakao.maps.MarkerImage(
+          imageSrc,
+          imageSize,
+          imageOption,
+        )
         const marker = new window.kakao.maps.Marker({
           map: map,
           position: new window.kakao.maps.LatLng(latitude, longitude),
+          image: markerImage,
         })
         markers = [...markers, marker]
         window.kakao.maps.event.addListener(marker, 'click', function () {
-          router.push(`/hot-place/store/${hotPlaceListings[i]._id}`)
+          router.push(`/hot-place/store/${_id}`)
           zoomIn()
           setCenter(latitude, longitude)
         })

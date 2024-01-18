@@ -119,10 +119,14 @@ export const StoreCategory = [
   },
   {
     id: 4,
-    category: '분식',
+    category: '양식',
   },
   {
     id: 5,
+    category: '분식',
+  },
+  {
+    id: 6,
     category: '카페',
   },
 ]
