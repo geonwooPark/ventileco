@@ -5,16 +5,15 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
 import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
-import { StoreCategory, categories } from '@/constants'
+import { MARKER_SIZE, StoreCategory } from '@/constants'
 
-const IMAGE_SIZE = 40
 const getSpriteOrigin = (category: string) => {
-  if (category === '한식') return IMAGE_SIZE * 0
-  if (category === '일식') return IMAGE_SIZE * 1
-  if (category === '중식') return IMAGE_SIZE * 2
-  if (category === '양식') return IMAGE_SIZE * 3
-  if (category === '분식') return IMAGE_SIZE * 4
-  if (category === '카페') return IMAGE_SIZE * 5
+  if (category === '한식') return MARKER_SIZE * 0
+  if (category === '일식') return MARKER_SIZE * 1
+  if (category === '중식') return MARKER_SIZE * 2
+  if (category === '양식') return MARKER_SIZE * 3
+  if (category === '분식') return MARKER_SIZE * 4
+  if (category === '카페') return MARKER_SIZE * 5
 }
 
 export default function Markers() {
@@ -47,7 +46,7 @@ export default function Markers() {
     window.kakao.maps.load(async () => {
       let markers: any[] = []
       const imageSrc = 'svgs/store-category.svg'
-      const imageSize = new window.kakao.maps.Size(IMAGE_SIZE, IMAGE_SIZE)
+      const imageSize = new window.kakao.maps.Size(MARKER_SIZE, MARKER_SIZE)
 
       for (let i = 0; i < hotPlaceListings.length; i++) {
         const {
@@ -58,8 +57,8 @@ export default function Markers() {
 
         const imageOption = {
           spriteSize: new window.kakao.maps.Size(
-            IMAGE_SIZE * StoreCategory.length,
-            IMAGE_SIZE,
+            MARKER_SIZE * StoreCategory.length,
+            MARKER_SIZE,
           ), // 스프라이트 이미지의 크기
           spriteOrigin: new window.kakao.maps.Point(
             getSpriteOrigin(category),

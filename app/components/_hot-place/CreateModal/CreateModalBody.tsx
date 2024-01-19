@@ -11,7 +11,7 @@ import AddressResearch from '@/components/_hot-place/CreateModal/CreateForm/Addr
 import StoreInput from '@/components/_hot-place/CreateModal/CreateForm/StoreInput'
 import AddressInput from '@/components/_hot-place/CreateModal/CreateForm/AddressInput'
 import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/DescriptionInput'
-import useCreateHotPlace from '@/hooks/mutation/useCreateHotPlace'
+import useCreateHotPlaceMutation from '@/hooks/mutation/useCreateHotPlaceMutation'
 import { toast } from 'react-toastify'
 import { HotPlaceFormData } from '@/interfaces/interface'
 import HashtagInput from './CreateForm/HashtagInput'
@@ -43,7 +43,7 @@ export default function CreateModalBody() {
       description: '',
     },
   })
-  const { mutation: createHotPlaceMutation } = useCreateHotPlace()
+  const { mutation: createHotPlaceMutation } = useCreateHotPlaceMutation()
 
   const onSubmit: SubmitHandler<HotPlaceFormData> = async (data) => {
     createHotPlaceMutation.mutate(data, {

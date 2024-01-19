@@ -1,7 +1,7 @@
 'use client'
 
 import Button from '@/components/common/Button'
-import useDeleteHotPlace from '@/hooks/mutation/useDeleteHotPlace'
+import useDeleteHotPlaceMutation from '@/hooks/mutation/useDeleteHotPlaceMutation'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -14,7 +14,7 @@ interface DeleteModalBodyProps {
 export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
   const router = useRouter()
   const { data: session } = useSession()
-  const { mutation: deleteStoreMutation } = useDeleteHotPlace()
+  const { mutation: deleteStoreMutation } = useDeleteHotPlaceMutation()
 
   const deleteStore = () => {
     deleteStoreMutation.mutate(

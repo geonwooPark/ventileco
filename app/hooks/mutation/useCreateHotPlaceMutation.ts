@@ -33,7 +33,7 @@ const createHotPlace = async (data: HotPlaceFormData) => {
     })
 }
 
-export default function useCreateHotPlace() {
+export default function useCreateHotPlaceMutation() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: (data: HotPlaceFormData) => createHotPlace(data),

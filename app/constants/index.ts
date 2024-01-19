@@ -132,3 +132,4 @@ export const StoreCategory = [
 ]
 
 export const INITIAL_CENTER = [37.574187, 126.976882]
+export const MARKER_SIZE = 40

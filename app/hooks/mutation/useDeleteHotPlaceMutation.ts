@@ -19,7 +19,7 @@ const deleteStore = async ({ session, storeId }: deleteHotPlaceParams) => {
   }
 }
 
-export default function useDeleteHotPlace() {
+export default function useDeleteHotPlaceMutation() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: ({ session, storeId }: deleteHotPlaceParams) =>
