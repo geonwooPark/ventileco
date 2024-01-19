@@ -4,7 +4,9 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 interface InputWithLabelProps {
   label: string
   type: 'text' | 'name' | 'email' | 'password'
-  register?: UseFormRegisterReturn<'email' | 'name' | 'password'>
+  register?: UseFormRegisterReturn<
+    'email' | 'name' | 'password' | 'confirmedPassword'
+  >
   className?: string
   error?: string
 }
