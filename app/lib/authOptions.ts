@@ -1,5 +1,6 @@
 import { DefaultSession, NextAuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
+import GitHubProvider from 'next-auth/providers/github'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcrypt'
 import { connectMongo } from '@/lib/database'
@@ -67,15 +68,28 @@ export const authOptions: NextAuthOptions = {
           name: profile.name,
           email: profile.email,
           image: profile.picture,
-          role: profile.role ?? 'user',
+          role: 'user',
+        }
+      },
+    }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          name: profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          role: 'user',
         }
       },
     }),
   ],
 
-  pages: {
-    signIn: '/',
-  },
+  // pages: {
+  //   signIn: '/',
+  // },
 
   callbacks: {
     async jwt({ token, user }) {
@@ -86,6 +100,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
     async session({ session, token }) {
+      console.log(session)
       if (token) {
         session.user.id = token.id
         session.user.role = token.role

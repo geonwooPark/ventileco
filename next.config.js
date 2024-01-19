@@ -10,6 +10,7 @@ const nextConfig = {
       'firebasestorage.googleapis.com',
       'openweathermap.org',
       'img.shields.io',
+      'avatars.githubusercontent.com',
     ],
   },
   eslint: {
