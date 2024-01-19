@@ -1,12 +1,12 @@
 'use client'
 
 import React, { useState } from 'react'
-import Input from '../common/Input'
 import { FiSend } from 'react-icons/fi'
 import { useChatLog, useChatLogActions } from '@/hooks/store/useChatLogStore'
 import { toast } from 'react-toastify'
-import Loading from '../common/Animation/LoadingAnimation'
+import LoadingAnimation from '../common/Animation/LoadingAnimation'
 import { useSession } from 'next-auth/react'
+import InputWithIcon from '../common/Input/InputWithIcon'
 
 export default function ChatInput() {
   const { data: session } = useSession()
@@ -52,7 +52,7 @@ export default function ChatInput() {
 
   return (
     <form onSubmit={onSubmit} className="relative">
-      <Input
+      <InputWithIcon
         type="text"
         name="search"
         disabled={!session && true}
@@ -65,7 +65,7 @@ export default function ChatInput() {
         onChange={onChange}
         iconAction={onSubmit as any}
       />
-      {isLoading && <Loading />}
+      {isLoading && <LoadingAnimation />}
     </form>
   )
 }

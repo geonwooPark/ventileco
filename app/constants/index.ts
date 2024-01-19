@@ -119,10 +119,17 @@ export const StoreCategory = [
   },
   {
     id: 4,
-    category: '분식',
+    category: '양식',
   },
   {
     id: 5,
+    category: '분식',
+  },
+  {
+    id: 6,
     category: '카페',
   },
 ]
+
+export const INITIAL_CENTER = [37.574187, 126.976882]
+export const MARKER_SIZE = 40

@@ -1,9 +1,8 @@
 import getAllListing from './actions/getAllListing'
 import getAllListingCount from './actions/getAllListingCount'
+import getAllStore from './actions/getAllStore'
 import getCategoryListingCount from './actions/getCategoryListingCount'
-import { categories } from './constants'
-
-const LIMIT = 5
+import { LIMIT, categories } from './constants'
 
 export default async function sitemap() {
   const baseURL = 'https://ventileco-blog.vercel.app'
@@ -42,6 +41,12 @@ export default async function sitemap() {
     categoryPageURLs = [...categoryPageURLs, ...res]
   }
 
+  const hotPlaceListing = await getAllStore()
+  const hotPlaceURLs = hotPlaceListing.map((listingItem) => ({
+    url: `${baseURL}/hot-place/store/${listingItem._id}`,
+    lastModified: new Date(),
+  }))
+
   return [
     { url: baseURL, lastModified: new Date() },
     { url: baseURL + '/gpt', lastModified: new Date() },
@@ -50,5 +55,6 @@ export default async function sitemap() {
     ...postingsURLs,
     ...categoryURLs,
     ...categoryPageURLs,
+    ...hotPlaceURLs,
   ]
 }

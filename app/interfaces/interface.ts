@@ -1,3 +1,5 @@
+export type OAuthType = 'google' | 'github'
+
 export interface PostingType {
   _id: string
   category: string

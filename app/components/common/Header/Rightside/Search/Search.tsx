@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
-import Input from '../../../Input'
 import SearchHistory from './SearchHistory'
+import InputWithIcon from '@/components/common/Input/InputWithIcon'
 
 interface SearchProps {
   isOpen: boolean
@@ -92,7 +92,7 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
           >
             <div className="flex h-full items-center justify-center">
               <div className="relative w-[80%] md:w-[60%]">
-                <Input
+                <InputWithIcon
                   type="text"
                   name="search"
                   value={text}

@@ -11,12 +11,13 @@ interface IParams {
 }
 
 export default async function StoreModal({ params }: IParams) {
-  const listing = await getStore(params.id)
+  const { id } = params
+  const listing = await getStore(id)
 
   if (!listing) return NotFound()
 
   return (
-    <div className="fixed left-0 top-0 z-[100] flex h-full w-full items-center bg-black/30">
+    <div className="fixed inset-0 z-[100] flex h-full w-full items-center bg-black/30">
       <div className="mx-auto h-full w-full bg-white md:h-[auto] md:w-[500px]">
         <StoreModalHeader />
         <StoreModalBody listing={listing} />

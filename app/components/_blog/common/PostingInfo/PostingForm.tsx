@@ -1,7 +1,7 @@
 import React from 'react'
 import RefWrapper from '../../../common/RefWrapper'
 import DropDownMenu from '../Dropdown/DropDownMenu'
-import Input from '../../../common/Input'
+import Input from '../../../common/Input/Input'
 import { OmittedPostingType } from '@/interfaces/interface'
 import { categories } from '@/constants'
 
