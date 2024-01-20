@@ -1,5 +1,13 @@
 export type OAuthType = 'google' | 'github'
 
+export interface UserType {
+  _id: string
+  name: string
+  email: string
+  image: string
+  role: string
+}
+
 export interface PostingType {
   _id: string
   category: string
@@ -67,7 +75,7 @@ export interface CheckListItemType {
   status: boolean
 }
 
-export interface myCommentType {
+export interface MyCommentType {
   title: string
   postingId: string
   commentId: string
@@ -78,13 +86,13 @@ export interface myCommentType {
   text: string
 }
 
-export interface GPTChat {
+export interface GPTChatType {
   id: number
   content: string
   sender: string
 }
 
-export interface HotPlaceFormData {
+export interface HotPlaceFormDataType {
   images: File[]
   store: string
   category: string
@@ -98,7 +106,7 @@ export interface HotPlaceFormData {
   description: string
 }
 
-export interface HotPlaceListing {
+export interface HotPlaceListingType {
   _id: string
   category: string
   store: string
@@ -110,6 +118,7 @@ export interface HotPlaceListing {
     url: string
   }[]
   hashtags: string[] | null
+  creator: string
   coordinate: {
     latitude: number
     longitude: number

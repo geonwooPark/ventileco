@@ -1,4 +1,4 @@
-import { HotPlaceListing } from '@/interfaces/interface'
+import { HotPlaceListingType } from '@/interfaces/interface'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import AutomaticSearchList from './AutomaticSearchList'
@@ -13,7 +13,7 @@ export default function AutomaticSearch({
   onClick,
 }: AutomaticSearchProps) {
   const [automaticSearchList, setAutomaticSearchList] = useState<
-    HotPlaceListing[]
+    HotPlaceListingType[]
   >([])
 
   useEffect(() => {

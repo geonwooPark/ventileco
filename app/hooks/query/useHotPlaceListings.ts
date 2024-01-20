@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { hotPlaceKeys } from '@/constants/queryKey'
-import { HotPlaceListing } from '@/interfaces/interface'
+import { HotPlaceListingType } from '@/interfaces/interface'
 
 export default function useHotPlaceListings(searchKeyword = 'all') {
   const {
@@ -11,7 +11,7 @@ export default function useHotPlaceListings(searchKeyword = 'all') {
   } = useQuery({
     queryKey: hotPlaceKeys.hotPlaceListing(searchKeyword),
     queryFn: () =>
-      getData<HotPlaceListing[]>(
+      getData<HotPlaceListingType[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/hot-place?searchKeyword=${searchKeyword}`,
       ),
     staleTime: searchKeyword === 'all' ? 1000 * 60 * 50 : 1000 * 60 * 3,

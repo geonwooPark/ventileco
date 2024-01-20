@@ -18,7 +18,7 @@ import useLoginMutation from '@/hooks/mutation/useLoginMutation'
 import useOAuthLoginMutation from '@/hooks/mutation/useOAuthLoginMutation'
 import { OAuthType } from '@/interfaces/interface'
 
-interface FormData {
+interface LoginFormDataType {
   email: string
   password: string
 }
@@ -30,14 +30,14 @@ export default function LoginModal() {
   const { mutation: loginMutation } = useLoginMutation()
   const { mutation: OAuthMutation } = useOAuthLoginMutation()
 
-  const { register, handleSubmit, reset } = useForm<FormData>({
+  const { register, handleSubmit, reset } = useForm<LoginFormDataType>({
     defaultValues: {
       email: '',
       password: '',
     },
   })
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<LoginFormDataType> = async (data) => {
     loginMutation.mutate(data, {
       onSuccess: () => {
         reset()

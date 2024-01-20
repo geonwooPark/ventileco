@@ -1,4 +1,4 @@
-import { HotPlaceListing } from '@/interfaces/interface'
+import { HotPlaceListingType } from '@/interfaces/interface'
 import Image from 'next/image'
 import React from 'react'
 import StoreRating from '../../StoreModal/StoreDetail/StoreRating'
@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 
-export default function StoreListItem({
-  hotPlaceListing,
-}: {
-  hotPlaceListing: HotPlaceListing
-}) {
+interface StoreListItemProps {
+  hotPlaceListing: HotPlaceListingType
+}
+
+export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
   const { _id, store, category, rating, images } = hotPlaceListing
 
   const router = useRouter()

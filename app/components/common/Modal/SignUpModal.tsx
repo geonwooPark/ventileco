@@ -13,7 +13,7 @@ import {
 } from '@/hooks/store/useSignUpModalStore'
 import useSignUpMutation from '@/hooks/mutation/useSignUpMutation'
 
-interface FormData {
+interface SignUpFormDataType {
   email: string
   name: string
   password: string
@@ -25,7 +25,7 @@ export default function SignUpModal() {
   const { onOpen: openLoginModal } = useLoginModalActions()
   const { mutation: signUpMutation } = useSignUpMutation()
 
-  const { register, handleSubmit, reset } = useForm<FormData>({
+  const { register, handleSubmit, reset } = useForm<SignUpFormDataType>({
     defaultValues: {
       email: '',
       name: '',
@@ -33,7 +33,7 @@ export default function SignUpModal() {
     },
   })
 
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpFormDataType> = async (data) => {
     signUpMutation.mutate(data, {
       onSuccess: () => {
         reset()

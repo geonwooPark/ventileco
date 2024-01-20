@@ -1,14 +1,14 @@
-import { GPTChat } from '@/interfaces/interface'
+import { GPTChatType } from '@/interfaces/interface'
 import { create } from 'zustand'
 
 interface State {
-  chatLog: GPTChat[]
+  chatLog: GPTChatType[]
 }
 
 interface Actions {
   actions: {
     onClear: () => void
-    onAdd: (chat: GPTChat) => void
+    onAdd: (chat: GPTChatType) => void
   }
 }
 
@@ -33,7 +33,7 @@ const useChatLogStore = create<State & Actions>()((set) => ({
   ],
   actions: {
     onClear: () => set({ chatLog: [] }),
-    onAdd: (chat: GPTChat) =>
+    onAdd: (chat: GPTChatType) =>
       set((state) => ({
         chatLog: [...state.chatLog, chat],
       })),
