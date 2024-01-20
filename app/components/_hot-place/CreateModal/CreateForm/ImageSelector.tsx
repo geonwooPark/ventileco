@@ -77,7 +77,7 @@ export default function ImageSelector({
         <div className="absolute left-0 top-0 z-10 bg-white pt-2.5">
           <label
             htmlFor="input-file"
-            className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded border border-gray-700 bg-white text-gray-700"
+            className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded border border-blue-400 bg-white text-blue-400"
           >
             <AiOutlinePlus size={20} />
           </label>

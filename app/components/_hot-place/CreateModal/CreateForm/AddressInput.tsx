@@ -1,6 +1,7 @@
 import React from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import ErrorMessage from './ErrorMessage'
+import InputWithLabel from '@/components/common/Input/InputWithLabel'
 
 interface AddressInputProps {
   addressRegister: UseFormRegisterReturn<'address'>
@@ -15,11 +16,11 @@ export default function AddressInput({
 }: AddressInputProps) {
   return (
     <div className="mb-2 w-full">
-      <input
-        {...addressRegister}
-        placeholder="주소를 입력해주세요"
-        autoComplete="off"
-        className="mb-1 w-full rounded border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-black"
+      <InputWithLabel
+        register={addressRegister}
+        label="주소"
+        type="text"
+        className="mb-1"
         onClick={() => {
           setShowAddressResearch((prev) => !prev)
         }}

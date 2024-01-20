@@ -67,7 +67,7 @@ export default function HashtagInput({
 
   return (
     <div className="mb-2">
-      <div className="mb-1 h-[52px] rounded border border-gray-300 text-sm">
+      <div className="mb-1 h-[52px] rounded border text-sm">
         <div className="flex h-full items-center overflow-x-scroll px-4">
           <ul
             className={`flex shrink-0 gap-2 ${hashtags.length !== 0 && 'mr-4'}`}
@@ -75,7 +75,7 @@ export default function HashtagInput({
             {hashtags.map((tag, i) => (
               <li
                 key={i}
-                className="flex items-center gap-2 rounded-full border border-gray-200 px-3 py-1.5 text-sm text-blue-400"
+                className="flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm text-blue-400"
               >
                 {tag}
                 <AiOutlineClose
@@ -91,7 +91,7 @@ export default function HashtagInput({
             autoComplete="off"
             onChange={onChange}
             onKeyDown={onKeyDown}
-            placeholder="#해시태그를 설정하세요 (최대 5개)"
+            placeholder="태그를 설정해보세요😘 (최대 5개)"
             className="h-full w-[240px] shrink-0 outline-none placeholder:text-sm"
           />
         </div>

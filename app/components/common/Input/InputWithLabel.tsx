@@ -5,10 +5,10 @@ interface InputWithLabelProps {
   label: string
   type: 'text' | 'name' | 'email' | 'password'
   register?: UseFormRegisterReturn<
-    'email' | 'name' | 'password' | 'confirmedPassword'
+    'email' | 'name' | 'password' | 'confirmedPassword' | 'store' | 'address'
   >
   className?: string
-  error?: string
+  onClick?: () => void
 }
 
 export default function InputWithLabel({
@@ -16,7 +16,7 @@ export default function InputWithLabel({
   type,
   register,
   className,
-  error,
+  onClick,
 }: InputWithLabelProps) {
   return (
     <div className="relative w-full">
@@ -25,8 +25,9 @@ export default function InputWithLabel({
         type={type}
         placeholder=" "
         autoComplete="off"
+        onClick={onClick}
         className={`peer w-full rounded-md border bg-white px-4 pb-2 pt-5 text-sm outline-none transition
-      ${className} ${error}
+      ${className}
     `}
       />
       <label
