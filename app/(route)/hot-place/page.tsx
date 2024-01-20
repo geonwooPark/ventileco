@@ -1,5 +1,3 @@
-import Map from '@hot-place/Map/Map'
-import SideInfo from '@hot-place/SideInfo/SideInfo'
 import Main from '@common/Main'
 import React from 'react'
 import getQueryClient from '@/actions/getQueryClient'
@@ -7,6 +5,8 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { hotPlaceKeys } from '@/constants/queryKey'
 import getAllStore from '@/actions/getAllStore'
 import StoreAddButton from '@/components/_hot-place/StoreAddButton'
+import MapContainer from '@/components/_hot-place/MapContainer'
+import Map from '@/components/_hot-place/Map/Map'
 
 export default async function page() {
   const queryClient = getQueryClient()
@@ -22,7 +22,7 @@ export default async function page() {
     <Main>
       <HydrationBoundary state={dehydratedState}>
         <Map />
-        <SideInfo />
+        <MapContainer />
       </HydrationBoundary>
       <StoreAddButton />
     </Main>

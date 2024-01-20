@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     default: 'Ventileco 맛집 리스트',
     template: `%s | Ventileco 맛집 리스트`,
   },
-  description: '서촌에 위치한 자주 방문했던 맛집을 소개합니다.',
+  description: '자주 방문했던 맛집을 소개합니다.',
   openGraph: {
     title: {
       default: 'Ventileco 맛집 리스트',
       template: `%s | Ventileco 맛집 리스트`,
     },
-    description: '서촌에 위치한 자주 방문했던 맛집을 소개합니다.',
+    description: '자주 방문했던 맛집을 소개합니다.',
     images:
       'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
     url: 'https://ventileco-blog.vercel.app/hot-place',

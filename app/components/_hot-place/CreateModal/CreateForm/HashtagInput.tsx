@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { HotPlaceFormData } from '@/interfaces/interface'
+import { HotPlaceFormDataType } from '@/interfaces/interface'
 import {
   UseFormClearErrors,
   UseFormSetError,
@@ -9,9 +9,9 @@ import {
 import ErrorMessage from './ErrorMessage'
 
 interface HashtagInputProps {
-  setValue: UseFormSetValue<HotPlaceFormData>
-  setError: UseFormSetError<HotPlaceFormData>
-  clearErrors: UseFormClearErrors<HotPlaceFormData>
+  setValue: UseFormSetValue<HotPlaceFormDataType>
+  setError: UseFormSetError<HotPlaceFormDataType>
+  clearErrors: UseFormClearErrors<HotPlaceFormDataType>
   errorMessage?: string
 }
 

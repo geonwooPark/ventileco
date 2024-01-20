@@ -2,7 +2,6 @@
 
 import { useMapActions } from '@/hooks/store/useMapStore'
 import React, { useEffect, useRef } from 'react'
-import Markers from './Markers'
 import { INITIAL_CENTER } from '@/constants'
 
 export default function Map() {
@@ -23,9 +22,5 @@ export default function Map() {
     })
   }, [])
 
-  return (
-    <div ref={container} className="h-full w-full">
-      <Markers />
-    </div>
-  )
+  return <div ref={container} className="h-full w-full"></div>
 }

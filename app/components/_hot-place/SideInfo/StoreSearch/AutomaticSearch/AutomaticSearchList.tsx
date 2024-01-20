@@ -1,8 +1,8 @@
-import { HotPlaceListing } from '@/interfaces/interface'
+import { HotPlaceListingType } from '@/interfaces/interface'
 import React from 'react'
 
 interface AutomaticSearchListProps {
-  automaticSearchList: HotPlaceListing[]
+  automaticSearchList: HotPlaceListingType[]
   onClick: (store: string) => void
 }
 

@@ -6,6 +6,11 @@ import { useRouter } from 'next/navigation'
 import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
 import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
 import { MARKER_SIZE, StoreCategory } from '@/constants'
+import { HotPlaceListingType } from '@/interfaces/interface'
+
+interface MarkersProps {
+  hotPlaceListings?: HotPlaceListingType[]
+}
 
 const getSpriteOrigin = (category: string) => {
   if (category === '한식') return MARKER_SIZE * 0
@@ -16,13 +21,13 @@ const getSpriteOrigin = (category: string) => {
   if (category === '카페') return MARKER_SIZE * 5
 }
 
-export default function Markers() {
+export default function Markers({ hotPlaceListings }: MarkersProps) {
   const map = useMap()
-  const searchKeyword = useSearchKeyword()
+  // const searchKeyword = useSearchKeyword()
   const router = useRouter()
 
   const [markers, setMarkers] = useState<any[]>([])
-  const { hotPlaceListings } = useHotPlaceListings(searchKeyword)
+  // const { hotPlaceListings } = useHotPlaceListings(searchKeyword)
 
   const zoomIn = () => {
     const level = map.getLevel()

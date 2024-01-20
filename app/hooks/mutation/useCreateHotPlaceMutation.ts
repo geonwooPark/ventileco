@@ -1,10 +1,23 @@
 import { hotPlaceKeys } from '@/constants/queryKey'
-import { HotPlaceFormData } from '@/interfaces/interface'
+import { HotPlaceFormDataType } from '@/interfaces/interface'
 import { storage } from '@/lib/firebase'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { Session } from 'next-auth'
 
-const createHotPlace = async (data: HotPlaceFormData) => {
+interface CreateHotPlaceParams {
+  data: HotPlaceFormDataType
+  session: Session | null
+}
+
+const createHotPlace = async ({ data, session }: CreateHotPlaceParams) => {
+  if (
+    !session ||
+    (session.user.role !== 'admin' && session.user.role !== 'creator')
+  ) {
+    throw new Error('권한이 없습니다!')
+  }
+
   const { store, images } = data
 
   // 이미지들 스토리지에 업로드
@@ -36,7 +49,8 @@ const createHotPlace = async (data: HotPlaceFormData) => {
 export default function useCreateHotPlaceMutation() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: (data: HotPlaceFormData) => createHotPlace(data),
+    mutationFn: ({ data, session }: CreateHotPlaceParams) =>
+      createHotPlace({ data, session }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: hotPlaceKeys.hotPlaceListing(),

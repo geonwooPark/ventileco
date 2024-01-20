@@ -13,11 +13,13 @@ import AddressInput from '@/components/_hot-place/CreateModal/CreateForm/Address
 import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/DescriptionInput'
 import useCreateHotPlaceMutation from '@/hooks/mutation/useCreateHotPlaceMutation'
 import { toast } from 'react-toastify'
-import { HotPlaceFormData } from '@/interfaces/interface'
+import { HotPlaceFormDataType } from '@/interfaces/interface'
 import HashtagInput from './CreateForm/HashtagInput'
+import { useSession } from 'next-auth/react'
 
 export default function CreateModalBody() {
   const router = useRouter()
+  const { data: session } = useSession()
   const [showAddressResearch, setShowAddressResearch] = useState(false)
   const {
     register,
@@ -28,7 +30,7 @@ export default function CreateModalBody() {
     getValues,
     clearErrors,
     formState: { errors },
-  } = useForm<HotPlaceFormData>({
+  } = useForm<HotPlaceFormDataType>({
     defaultValues: {
       images: [],
       store: '',
@@ -45,14 +47,20 @@ export default function CreateModalBody() {
   })
   const { mutation: createHotPlaceMutation } = useCreateHotPlaceMutation()
 
-  const onSubmit: SubmitHandler<HotPlaceFormData> = async (data) => {
-    createHotPlaceMutation.mutate(data, {
-      onSuccess: () => {
-        reset()
-        router.back()
-        toast.success('스토어 등록 완료!')
+  const onSubmit: SubmitHandler<HotPlaceFormDataType> = async (data) => {
+    createHotPlaceMutation.mutate(
+      { data, session },
+      {
+        onSuccess: () => {
+          reset()
+          router.back()
+          toast.success('스토어 등록 완료!')
+        },
+        onError: (error) => {
+          toast.error(error.message)
+        },
       },
-    })
+    )
   }
 
   const imagesRegister = register('images', {

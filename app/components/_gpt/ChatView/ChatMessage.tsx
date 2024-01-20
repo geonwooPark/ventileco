@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { BiGhost } from 'react-icons/bi'
-import { GPTChat } from '@/interfaces/interface'
+import { GPTChatType } from '@/interfaces/interface'
 import RefWrapper from '../../common/RefWrapper'
 
 interface ChatMessageProps {
-  message: GPTChat
+  message: GPTChatType
 }
 
 export default function ChatMessage({ message }: ChatMessageProps) {

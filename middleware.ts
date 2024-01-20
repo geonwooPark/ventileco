@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
     }
   }
   if (request.nextUrl.pathname.startsWith('/hot-place/create')) {
-    if (token?.role !== 'admin') {
+    if (token?.role !== 'admin' && token?.role !== 'creator') {
       return NextResponse.redirect(new URL('/hot-place', request.url))
     }
   }

@@ -1,9 +1,11 @@
 import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { HotPlace } from '../../../models/hot-place'
-import { HotPlaceListing } from '@/interfaces/interface'
+import { HotPlaceListingType } from '@/interfaces/interface'
 import { deleteObject, ref } from 'firebase/storage'
 import { storage } from '@/lib/firebase'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/authOptions'
 
 export async function GET(req: NextRequest) {
   const searchKeyword = req.nextUrl.searchParams.get('searchKeyword')
@@ -14,7 +16,7 @@ export async function GET(req: NextRequest) {
   try {
     await connectMongo()
 
-    const hotPlaceListings = await HotPlace.find<HotPlaceListing>(
+    const hotPlaceListings = await HotPlace.find<HotPlaceListingType>(
       searchKeyword === 'all' ? {} : { store: { $regex: regexPattern } },
     )
 
@@ -29,10 +31,11 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const data = await req.json()
+  const session = await getServerSession(authOptions)
 
   try {
     await connectMongo()
-    await HotPlace.create(data)
+    await HotPlace.create({ ...data, creator: session?.user.id })
 
     return NextResponse.json({ message: '맛집 추가 성공!' }, { status: 201 })
   } catch (error) {
