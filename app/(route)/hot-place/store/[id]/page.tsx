@@ -15,43 +15,50 @@ interface IParams {
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   const { id } = params
   const listing = await getStore(id)
-
   if (!listing)
     return {
       title: '404 페이지',
       description: '존재하지 않는 페이지입니다.',
     }
 
+  const { store } = listing
+  if (!store)
+    return {
+      title: '404 페이지',
+      description: '존재하지 않는 페이지입니다.',
+    }
+
+  const { store: storeName, description, _id, images } = store
+
   return {
-    title: listing.store,
-    description: listing.description,
+    title: storeName,
+    description,
     openGraph: {
-      title: listing.store,
-      description: listing.description,
+      title: storeName,
+      description,
       images: {
-        url: listing.images[0].url,
+        url: images[0].url,
       },
-      url: `/store/${listing._id}`,
+      url: `/store/${_id}`,
       type: 'website',
     },
     alternates: {
-      canonical: `/store/${listing._id}`,
+      canonical: `/store/${_id}`,
     },
   }
 }
 
 export async function generateStaticParams() {
-  const listing = await getAllStore()
+  const listings = await getAllStore()
 
-  return listing.map((listingItem) => ({
-    id: listingItem._id.toString(),
+  return listings.map((listing) => ({
+    id: listing._id.toString(),
   }))
 }
 
 export default async function page({ params }: IParams) {
   const { id } = params
   const listing = await getStore(id)
-
   if (!listing) return NotFound()
 
   return (

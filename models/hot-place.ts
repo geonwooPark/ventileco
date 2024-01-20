@@ -30,6 +30,9 @@ const hotPlaceSchema = new Schema(
     hashtags: {
       type: Array,
     },
+    creator: {
+      type: String,
+    },
   },
   { timestamps: true, versionKey: false },
 )

@@ -1,28 +1,46 @@
-import { HotPlaceListing } from '@/interfaces/interface'
 import React from 'react'
 import StoreImageSlider from './StoreDetail/StoreImageSlider'
 import StoreModalButton from './StoreDetail/StoreModalButton'
 import StoreRating from './StoreDetail/StoreRating'
 import StoreHashtags from './StoreDetail/StoreHashtags'
+import { HotPlaceListingType, UserType } from '@/interfaces/interface'
 
 interface StoreModalBodyProps {
-  listing: HotPlaceListing
+  listing: {
+    store: HotPlaceListingType | null
+    user: UserType | null
+  }
 }
 
 export default function StoreModalBody({ listing }: StoreModalBodyProps) {
-  const { store, category, description, rating, address, hashtags, images } =
-    listing
+  const { store, user } = listing
+  if (!store || !user) return
+  const {
+    store: storeName,
+    category,
+    description,
+    rating,
+    address,
+    hashtags,
+    images,
+  } = store
+  const { name } = user
 
   return (
     <>
       <div className="overflow-hidden px-4">
         <StoreImageSlider images={images} />
         <div className="mb-1 flex items-center gap-2">
-          <h4 className="text-lg font-medium">{store}</h4>
+          <h4 className="text-lg font-medium">{storeName}</h4>
           <p className="text-sm text-gray-400">{category}</p>
           <StoreRating rating={rating} />
         </div>
-        <p className="mb-2 text-sm text-gray-700">{address}</p>
+        <div className="mb-2 flex items-center justify-between text-sm text-gray-700">
+          <p>{address}</p>
+          <div className="flex items-center gap-2">
+            <p>✏️{name}</p>
+          </div>
+        </div>
         <textarea
           value={description}
           readOnly
