@@ -13,6 +13,7 @@ interface HashtagInputProps {
   setError: UseFormSetError<HotPlaceFormDataType>
   clearErrors: UseFormClearErrors<HotPlaceFormDataType>
   errorMessage?: string
+  prevHashtags?: string[] | null
 }
 
 export default function HashtagInput({
@@ -20,8 +21,9 @@ export default function HashtagInput({
   setError,
   clearErrors,
   errorMessage,
+  prevHashtags,
 }: HashtagInputProps) {
-  const [hashtags, setHashtags] = useState<string[]>([])
+  const [hashtags, setHashtags] = useState<string[]>(prevHashtags ?? [])
   const [hashtagInput, setHashtagsInput] = useState('')
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +69,7 @@ export default function HashtagInput({
 
   return (
     <div className="mb-2">
-      <div className="mb-1 h-[52px] rounded border text-sm">
+      <div className="mb-1 h-[52px] rounded-md border text-sm">
         <div className="flex h-full items-center overflow-x-scroll px-4">
           <ul
             className={`flex shrink-0 gap-2 ${hashtags.length !== 0 && 'mr-4'}`}

@@ -59,9 +59,9 @@ export interface GetListingType {
   listingCount: number
 }
 
-export interface ImagesType {
-  imagePath: string
-  imageURL: string
+export interface ImageType {
+  path: string
+  url: string
 }
 
 export interface CheckListType {

@@ -4,22 +4,51 @@ import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import ImageSelector from '@hot-place/CreateModal/CreateForm/ImageSelector'
 import CategorySelector from '@/components/_hot-place/CreateModal/CreateForm/CategorySelector'
 import RatingStar from '@/components/_hot-place/CreateModal/CreateForm/RatingStar'
 import AddressResearch from '@/components/_hot-place/CreateModal/CreateForm/AddressResearch'
 import StoreInput from '@/components/_hot-place/CreateModal/CreateForm/StoreInput'
 import AddressInput from '@/components/_hot-place/CreateModal/CreateForm/AddressInput'
 import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/DescriptionInput'
-import useCreateHotPlaceMutation from '@/hooks/mutation/useCreateHotPlaceMutation'
 import { toast } from 'react-toastify'
-import { HotPlaceFormDataType } from '@/interfaces/interface'
-import HashtagInput from './CreateForm/HashtagInput'
+import {
+  HotPlaceFormDataType,
+  HotPlaceListingType,
+  ImageType,
+  UserType,
+} from '@/interfaces/interface'
 import { useSession } from 'next-auth/react'
+import HashtagInput from '../CreateModal/CreateForm/HashtagInput'
+import ImageEditor from './EditForm/ImageEditor'
+import useEditHotPlaceMutation from '@/hooks/mutation/useEditHotPlaceMutation'
 
-export default function CreateModalBody() {
+interface EditModalBodyProps {
+  listing: {
+    store: HotPlaceListingType | null
+    user: UserType | null
+  }
+}
+
+export default function EditModalBody({ listing }: EditModalBodyProps) {
   const router = useRouter()
   const { data: session } = useSession()
+  const { store } = listing
+  if (!store) return
+  const {
+    _id: storeId,
+    creator,
+    store: storeName,
+    category,
+    address,
+    description,
+    hashtags,
+    rating,
+    images,
+    coordinate,
+  } = store
+
+  const [prevImagesArray, setPrevImagesArray] = useState(images ?? [])
+  const [deletedImagesArray, setDeletedImagesArray] = useState<ImageType[]>([])
   const [showAddressResearch, setShowAddressResearch] = useState(false)
   const {
     register,
@@ -27,34 +56,37 @@ export default function CreateModalBody() {
     reset,
     setValue,
     setError,
-    getValues,
     clearErrors,
     formState: { errors },
   } = useForm<HotPlaceFormDataType>({
     defaultValues: {
       images: [],
-      store: '',
-      category: '',
-      rating: 0,
-      address: '',
-      hashtags: [],
-      coordinate: {
-        latitude: 0,
-        longitude: 0,
-      },
-      description: '',
+      store: storeName,
+      category,
+      rating,
+      address,
+      hashtags,
+      coordinate,
+      description,
     },
   })
-  const { mutation: createHotPlaceMutation } = useCreateHotPlaceMutation()
+  const { mutation: editHotPlaceMutation } = useEditHotPlaceMutation()
 
   const onSubmit: SubmitHandler<HotPlaceFormDataType> = async (data) => {
-    createHotPlaceMutation.mutate(
-      { data, session },
+    editHotPlaceMutation.mutate(
+      {
+        data,
+        session,
+        deletedImagesArray,
+        storeId,
+        creator,
+        prevImagesArray,
+      },
       {
         onSuccess: () => {
           reset()
           router.back()
-          toast.success('스토어 등록 완료!')
+          toast.success('스토어 수정 완료!')
         },
         onError: (error) => {
           toast.error(error.message)
@@ -63,12 +95,7 @@ export default function CreateModalBody() {
     )
   }
 
-  const imagesRegister = register('images', {
-    validate: () => {
-      const { images } = getValues()
-      return images.length !== 0 || '이미지가 입력되지 않았습니다.'
-    },
-  })
+  const imagesRegister = register('images')
   const categoryRegister = register('category', {
     required: '카테고리가 선택되지 않았습니다.',
   })
@@ -88,12 +115,15 @@ export default function CreateModalBody() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="px-4">
-        <ImageSelector
+        <ImageEditor
           setValue={setValue}
           setError={setError}
           clearErrors={clearErrors}
           imagesRegister={imagesRegister}
           errorMessage={errors.images?.message}
+          prevImagesArray={prevImagesArray}
+          setPrevImagesArray={setPrevImagesArray}
+          setDeletedImagesArray={setDeletedImagesArray}
         />
         <CategorySelector
           categoryRegister={categoryRegister}
@@ -126,9 +156,11 @@ export default function CreateModalBody() {
           setError={setError}
           clearErrors={clearErrors}
           errorMessage={errors.hashtags?.message}
+          prevHashtags={hashtags}
         />
         <RatingStar
           ratingRegister={ratingRegister}
+          rating={rating}
           errorMessage={errors.rating?.message}
         />
       </div>
@@ -139,9 +171,9 @@ export default function CreateModalBody() {
           level="primary"
           size="s"
           fullWidth={true}
-          label="등록하기"
+          label="수정하기"
           onClick={() => handleSubmit(onSubmit)}
-          disabled={createHotPlaceMutation.isPending}
+          disabled={editHotPlaceMutation.isPending}
         />
       </div>
     </form>

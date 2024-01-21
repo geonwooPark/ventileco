@@ -1,7 +1,7 @@
 import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { HotPlace } from '../../../models/hot-place'
-import { HotPlaceListingType } from '@/interfaces/interface'
+import { HotPlaceListingType, ImageType } from '@/interfaces/interface'
 import { deleteObject, ref } from 'firebase/storage'
 import { storage } from '@/lib/firebase'
 import { getServerSession } from 'next-auth'
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     await connectMongo()
     await HotPlace.create({ ...data, creator: session?.user.id })
 
-    return NextResponse.json({ message: '맛집 추가 성공!' }, { status: 201 })
+    return NextResponse.json({ message: '스토어 추가 성공!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -53,11 +53,30 @@ export async function DELETE(req: NextRequest) {
     await connectMongo()
     const hotPlaceListing = await HotPlace.findByIdAndDelete({ _id: storeId })
 
-    await hotPlaceListing.images.forEach((image: any) => {
+    await hotPlaceListing.images.forEach((image: ImageType) => {
       deleteObject(ref(storage, image.path))
     })
 
     return NextResponse.json({ message: '스토어 제거 성공!' }, { status: 200 })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    )
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  const { data, deletedImagesArray, storeId, creator } = await req.json()
+
+  try {
+    await connectMongo()
+    await HotPlace.updateOne({ _id: storeId }, { ...data, creator })
+    await deletedImagesArray.forEach((image: ImageType) => {
+      deleteObject(ref(storage, image.path))
+    })
+
+    return NextResponse.json({ message: '스토어 수정 성공!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

@@ -29,27 +29,27 @@ interface IParams {
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   const { id } = params
   const posting = await getPosting(id)
-
   if (!posting)
     return {
       title: '404 페이지',
       description: '존재하지 않는 페이지입니다.',
     }
+  const { title, description, _id, thumbnailURL } = posting
 
   return {
-    title: posting.title,
-    description: posting.description,
+    title,
+    description,
     openGraph: {
-      title: posting.title,
-      description: posting.description,
-      url: `/detail/${posting._id}`,
+      title,
+      description,
+      url: `/detail/${_id}`,
       images: {
-        url: posting.thumbnailURL,
+        url: thumbnailURL,
       },
       type: 'website',
     },
     alternates: {
-      canonical: `/detail/${posting._id}`,
+      canonical: `/detail/${_id}`,
     },
   }
 }
@@ -68,7 +68,6 @@ export async function generateStaticParams() {
 export default async function Detail({ params }: IParams) {
   const { id } = params
   const posting = await getPosting(id)
-
   if (!posting) return NotFound()
 
   return (

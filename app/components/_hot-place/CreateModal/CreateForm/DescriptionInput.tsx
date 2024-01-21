@@ -16,7 +16,7 @@ export default function DescriptionInput({
       <textarea
         {...descriptionRegister}
         placeholder=" "
-        className={`peer h-[100px] w-full rounded-md border bg-white px-4 pb-2 pt-5 text-sm outline-none transition`}
+        className={`peer h-[100px] w-full resize-none rounded-md border bg-white px-4 pb-2 pt-5 text-sm outline-none transition`}
       />
       <label
         className={`absolute left-4 top-4 z-10 origin-[0] -translate-y-3.5 scale-75 text-sm text-gray-400 duration-150
