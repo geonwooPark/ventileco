@@ -1,5 +1,5 @@
 import { hotPlaceKeys } from '@/constants/queryKey'
-import { HotPlaceFormDataType } from '@/interfaces/interface'
+import { HotPlaceFormDataType, ImageType } from '@/interfaces/interface'
 import { storage } from '@/lib/firebase'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
@@ -7,18 +7,29 @@ import { Session } from 'next-auth'
 
 interface CreateHotPlaceParams {
   data: HotPlaceFormDataType
+  storeId: string
   session: Session | null
+  deletedImagesArray: ImageType[]
+  creator: string
+  prevImagesArray: ImageType[]
 }
 
-const createHotPlace = async ({ data, session }: CreateHotPlaceParams) => {
+const editHotPlace = async ({
+  data,
+  storeId,
+  session,
+  deletedImagesArray,
+  creator,
+  prevImagesArray,
+}: CreateHotPlaceParams) => {
   if (!session) throw new Error('권한이 없습니다!')
-  if (session.user.role !== 'admin' && session.user.role !== 'creator') {
+  if (session.user.role !== 'admin' && session.user.id !== creator) {
     throw new Error('권한이 없습니다!')
   }
   const { store, images } = data
 
   // 이미지들 스토리지에 업로드
-  const imgs: { path: string; url: string }[] = []
+  const imgs: ImageType[] = [...prevImagesArray]
   for (const image of images) {
     const imgRef = ref(
       storage,
@@ -32,8 +43,13 @@ const createHotPlace = async ({ data, session }: CreateHotPlaceParams) => {
 
   // 데이터들 DB에 저장
   await fetch('/api/hot-place', {
-    method: 'POST',
-    body: JSON.stringify({ ...data, images: imgs }),
+    method: 'PUT',
+    body: JSON.stringify({
+      data: { ...data, images: imgs },
+      deletedImagesArray,
+      storeId,
+      creator,
+    }),
   })
     .then((res) => res.json())
     .then((result) => {
@@ -43,11 +59,25 @@ const createHotPlace = async ({ data, session }: CreateHotPlaceParams) => {
     })
 }
 
-export default function useCreateHotPlaceMutation() {
+export default function useEditHotPlaceMutation() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: ({ data, session }: CreateHotPlaceParams) =>
-      createHotPlace({ data, session }),
+    mutationFn: ({
+      data,
+      storeId,
+      session,
+      deletedImagesArray,
+      creator,
+      prevImagesArray,
+    }: CreateHotPlaceParams) =>
+      editHotPlace({
+        data,
+        storeId,
+        session,
+        deletedImagesArray,
+        creator,
+        prevImagesArray,
+      }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: hotPlaceKeys.hotPlaceListing(),

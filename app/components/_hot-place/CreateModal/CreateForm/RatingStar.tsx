@@ -5,53 +5,115 @@ import ErrorMessage from './ErrorMessage'
 
 interface RatingStarProps {
   ratingRegister: UseFormRegisterReturn<'rating'>
+  rating?: number
   errorMessage?: string
 }
 
 export default function RatingStar({
   ratingRegister,
+  rating,
   errorMessage,
 }: RatingStarProps) {
   return (
     <div>
       <div id="container" className="mb-1">
-        <input {...ratingRegister} type="radio" id="rate5" value={5} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate5"
+          value={5}
+          defaultChecked={rating === 5}
+        />
         <label htmlFor="rate5">
           <StarRight />
         </label>
-        <input {...ratingRegister} type="radio" id="rate4.5" value={4.5} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate4.5"
+          value={4.5}
+          defaultChecked={rating === 4.5}
+        />
         <label htmlFor="rate4.5">
           <StarLeft />
         </label>
-        <input {...ratingRegister} type="radio" id="rate4" value={4} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate4"
+          value={4}
+          defaultChecked={rating === 4}
+        />
         <label htmlFor="rate4">
           <StarRight />
         </label>
-        <input {...ratingRegister} type="radio" id="rate3.5" value={3.5} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate3.5"
+          value={3.5}
+          defaultChecked={rating === 3.5}
+        />
         <label htmlFor="rate3.5">
           <StarLeft />
         </label>
-        <input {...ratingRegister} type="radio" id="rate3" value={3} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate3"
+          value={3}
+          defaultChecked={rating === 3}
+        />
         <label htmlFor="rate3">
           <StarRight />
         </label>
-        <input {...ratingRegister} type="radio" id="rate2.5" value={2.5} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate2.5"
+          value={2.5}
+          defaultChecked={rating === 2.5}
+        />
         <label htmlFor="rate2.5">
           <StarLeft />
         </label>
-        <input {...ratingRegister} type="radio" id="rate2" value={2} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate2"
+          value={2}
+          defaultChecked={rating === 2}
+        />
         <label htmlFor="rate2">
           <StarRight />
         </label>
-        <input {...ratingRegister} type="radio" id="rate1.5" value={1.5} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate1.5"
+          value={1.5}
+          defaultChecked={rating === 1.5}
+        />
         <label htmlFor="rate1.5">
           <StarLeft />
         </label>
-        <input {...ratingRegister} type="radio" id="rate1" value={1} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate1"
+          value={1}
+          defaultChecked={rating === 1}
+        />
         <label htmlFor="rate1">
           <StarRight />
         </label>
-        <input {...ratingRegister} type="radio" id="rate0.5" value={0.5} />
+        <input
+          {...ratingRegister}
+          type="radio"
+          id="rate0.5"
+          value={0.5}
+          defaultChecked={rating === 0.5}
+        />
         <label htmlFor="rate0.5">
           <StarLeft />
         </label>

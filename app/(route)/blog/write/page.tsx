@@ -12,7 +12,7 @@ import {
   uploadBytes,
 } from 'firebase/storage'
 import EmptyState from '@common/EmptyState'
-import { ImagesType, OmittedPostingType } from '@/interfaces/interface'
+import { ImageType, OmittedPostingType } from '@/interfaces/interface'
 import { storage } from '@/lib/firebase'
 import WriteTopSection from '@blog/_write/WriteTopSection/WriteTopSection'
 import Main from '@common/Main'
@@ -40,14 +40,14 @@ const thumbnailUpload = async (thumbnailFile: File | null) => {
   }
 }
 
-const deleteImage = async (uploadImages: ImagesType[], content: string) => {
+const deleteImage = async (uploadImages: ImageType[], content: string) => {
   uploadImages.map(async (uploadImage) => {
     if (
       !content
         .replaceAll('amp;', '')
-        .includes(uploadImage.imageURL.replace('amp;', ''))
+        .includes(uploadImage.url.replace('amp;', ''))
     ) {
-      await deleteObject(ref(storage, uploadImage.imagePath))
+      await deleteObject(ref(storage, uploadImage.path))
     }
   })
 }
@@ -65,7 +65,7 @@ export default function Write() {
   const { category, title, description, content } = posting
   const [isLoading, setisLoading] = useState(false)
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
-  const [uploadImages, setUploadImages] = useState<ImagesType[]>([])
+  const [uploadImages, setUploadImages] = useState<ImageType[]>([])
 
   const categoryRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLDivElement>(null)

@@ -11,7 +11,7 @@ interface StoreListItemProps {
 }
 
 export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
-  const { _id, store, category, rating, images } = hotPlaceListing
+  const { _id, store, category, rating, images, creator } = hotPlaceListing
 
   const router = useRouter()
   const { data: session } = useSession()
@@ -37,14 +37,23 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
           <StoreRating rating={rating} />
         </div>
       </Link>
-      {session && session.user.role === 'admin' && (
-        <button
-          onClick={() => router.push(`/hot-place/delete/${_id}`)}
-          className="absolute bottom-4 right-2 hidden text-xs text-red-400 group-hover:block"
-        >
-          삭제
-        </button>
-      )}
+      {session &&
+        (session.user.role === 'admin' || creator === session.user.id) && (
+          <div className="absolute bottom-4 right-2 hidden gap-2 group-hover:flex">
+            <button
+              onClick={() => router.push(`/hot-place/edit/${_id}`)}
+              className="text-xs text-blue-400 "
+            >
+              수정
+            </button>
+            <button
+              onClick={() => router.push(`/hot-place/delete/${_id}`)}
+              className="text-xs text-red-400 group-hover:block"
+            >
+              삭제
+            </button>
+          </div>
+        )}
     </li>
   )
 }
