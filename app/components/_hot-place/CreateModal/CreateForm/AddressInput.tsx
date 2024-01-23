@@ -21,9 +21,7 @@ export default function AddressInput({
         label="주소"
         type="text"
         className="mb-1"
-        onClick={() => {
-          setShowAddressResearch((prev) => !prev)
-        }}
+        onClick={() => setShowAddressResearch((prev) => !prev)}
       />
       <ErrorMessage errorMessage={errorMessage} />
     </div>
