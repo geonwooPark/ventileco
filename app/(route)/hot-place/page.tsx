@@ -10,8 +10,6 @@ import StoreListings from '@/components/_hot-place/Map/StoreListings/StoreListin
 
 export const dynamic = 'force-dynamic'
 
-export const dynamic = 'force-dynamic'
-
 export default async function page() {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
