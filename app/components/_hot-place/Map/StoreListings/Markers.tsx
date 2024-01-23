@@ -3,8 +3,6 @@
 import { useMap } from '@/hooks/store/useMapStore'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
-import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
 import { MARKER_SIZE, StoreCategory } from '@/constants'
 import { HotPlaceListingType } from '@/interfaces/interface'
 
@@ -23,11 +21,9 @@ const getSpriteOrigin = (category: string) => {
 
 export default function Markers({ hotPlaceListings }: MarkersProps) {
   const map = useMap()
-  // const searchKeyword = useSearchKeyword()
   const router = useRouter()
 
   const [markers, setMarkers] = useState<any[]>([])
-  // const { hotPlaceListings } = useHotPlaceListings(searchKeyword)
 
   const zoomIn = () => {
     const level = map.getLevel()
