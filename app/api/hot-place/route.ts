@@ -18,7 +18,9 @@ export async function GET(req: NextRequest) {
 
     const hotPlaceListings = await HotPlace.find<HotPlaceListingType>(
       searchKeyword === 'all' ? {} : { store: { $regex: regexPattern } },
-    )
+    ).sort({
+      createdAt: -1,
+    })
 
     return NextResponse.json(hotPlaceListings, { status: 200 })
   } catch (error) {

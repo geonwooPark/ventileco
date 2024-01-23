@@ -12,9 +12,7 @@ interface CreateHotPlaceParams {
 
 const createHotPlace = async ({ data, session }: CreateHotPlaceParams) => {
   if (!session) throw new Error('권한이 없습니다!')
-  if (session.user.role !== 'admin' && session.user.role !== 'creator') {
-    throw new Error('권한이 없습니다!')
-  }
+
   const { store, images } = data
 
   // 이미지들 스토리지에 업로드

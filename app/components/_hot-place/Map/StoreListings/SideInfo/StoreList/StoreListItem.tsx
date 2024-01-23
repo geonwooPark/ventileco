@@ -49,7 +49,9 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
               수정
             </button>
             <button
-              onClick={() => router.push(`/hot-place/delete/${_id}`)}
+              onClick={() =>
+                router.push(`/hot-place/delete/${_id}?creator=${creator}`)
+              }
               className="text-xs text-red-400 group-hover:block"
             >
               삭제
