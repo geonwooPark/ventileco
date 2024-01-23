@@ -1,10 +1,10 @@
-import { HotPlaceListingType } from '@/interfaces/interface'
 import Image from 'next/image'
 import React from 'react'
-import StoreRating from '../../StoreModal/StoreDetail/StoreRating'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import Link from 'next/link'
+import { HotPlaceListingType } from '@/interfaces/interface'
+import StoreRating from '@/components/_hot-place/StoreModal/StoreDetail/StoreRating'
 
 interface StoreListItemProps {
   hotPlaceListing: HotPlaceListingType
@@ -17,10 +17,10 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
   const { data: session } = useSession()
 
   return (
-    <li className="group relative cursor-pointer p-2 duration-100 last:mb-0 hover:bg-white/80">
+    <li className="group relative cursor-pointer rounded-md p-2 duration-100 last:mb-0 hover:bg-gray-50">
       <Link href={`/hot-place/store/${_id}`} className="flex gap-4">
         <div>
-          <div className="relative h-[60px] w-[90px] bg-slate-700">
+          <div className="relative h-[60px] w-[90px] overflow-hidden rounded-sm bg-slate-700">
             <Image
               src={images[0]?.url}
               alt="store-thumbnail"
@@ -32,7 +32,9 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
           </div>
         </div>
         <div className="w-full">
-          <h4 className="mb-0.5 text-sm">{store}</h4>
+          <p className="mb-0.5 text-sm">
+            {store.length > 12 ? store.slice(0, 12) + '...' : store}
+          </p>
           <p className="text-xs text-gray-800">{category}</p>
           <StoreRating rating={rating} />
         </div>
