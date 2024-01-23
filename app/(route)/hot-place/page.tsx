@@ -8,6 +8,8 @@ import StoreAddButton from '@/components/_hot-place/StoreAddButton'
 import MapContainer from '@/components/_hot-place/MapContainer'
 import Map from '@/components/_hot-place/Map/Map'
 
+export const dynamic = 'force-dynamic'
+
 export default async function page() {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
