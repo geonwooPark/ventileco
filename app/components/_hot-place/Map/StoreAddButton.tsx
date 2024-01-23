@@ -8,8 +8,7 @@ import { PiShootingStar } from 'react-icons/pi'
 export default function StoreAddButton() {
   const { data: session } = useSession()
 
-  return session &&
-    (session.user.role === 'admin' || session.user.role === 'creator') ? (
+  return session ? (
     <Link
       href={'/hot-place/create'}
       className="fixed left-4 top-[96px] z-[100] md:top-[118px]"

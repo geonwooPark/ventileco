@@ -6,6 +6,7 @@ const secret = process.env.NEXT_PUBLIC_JWT_SECRET
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request, secret })
+
   if (request.nextUrl.pathname.startsWith('/mypage')) {
     if (token === null) {
       return NextResponse.redirect(new URL('/', request.url))
@@ -22,12 +23,17 @@ export async function middleware(request: NextRequest) {
     }
   }
   if (request.nextUrl.pathname.startsWith('/hot-place/create')) {
-    if (token?.role !== 'admin' && token?.role !== 'creator') {
+    if (token === null) {
+      return NextResponse.redirect(new URL('/hot-place', request.url))
+    }
+  }
+  if (request.nextUrl.pathname.startsWith('/hot-place/edit')) {
+    if (token === null) {
       return NextResponse.redirect(new URL('/hot-place', request.url))
     }
   }
   if (request.nextUrl.pathname.startsWith('/hot-place/delete')) {
-    if (token?.role !== 'admin') {
+    if (token === null) {
       return NextResponse.redirect(new URL('/hot-place', request.url))
     }
   }
