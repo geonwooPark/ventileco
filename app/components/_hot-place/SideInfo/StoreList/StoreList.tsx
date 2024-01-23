@@ -1,17 +1,22 @@
-'use client'
-
 import React, { useEffect } from 'react'
 import StoreListItem from './StoreListItem'
-import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
 import SkeletonStoreList from './SkeletonStoreList'
-import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
 import { useMap } from '@/hooks/store/useMapStore'
 import { INITIAL_CENTER } from '@/constants'
+import { HotPlaceListingType } from '@/interfaces/interface'
 
-export default function StoreList() {
+interface StoreListProps {
+  hotPlaceListings?: HotPlaceListingType[]
+  isPending: boolean
+  searchKeyword: string
+}
+
+export default function StoreList({
+  hotPlaceListings,
+  isPending,
+  searchKeyword,
+}: StoreListProps) {
   const map = useMap()
-  const searchKeyword = useSearchKeyword()
-  const { hotPlaceListings, isPending } = useHotPlaceListings(searchKeyword)
 
   useEffect(() => {
     if (!map) return

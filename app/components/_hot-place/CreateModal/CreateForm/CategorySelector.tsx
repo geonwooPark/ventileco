@@ -19,7 +19,7 @@ export default function CategorySelector({
           <label
             key={item.id}
             htmlFor={item.category}
-            className={`cursor-pointer rounded-full border px-4 py-2 text-gray-400 has-[:checked]:bg-gray-700 has-[:checked]:text-white`}
+            className={`cursor-pointer rounded-md border px-2.5 py-2 text-gray-400 has-[:checked]:bg-gray-700 has-[:checked]:text-white`}
           >
             {item.category}
             <input

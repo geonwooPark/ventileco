@@ -6,9 +6,7 @@ import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import CategorySelector from '@/components/_hot-place/CreateModal/CreateForm/CategorySelector'
 import RatingStar from '@/components/_hot-place/CreateModal/CreateForm/RatingStar'
-import AddressResearch from '@/components/_hot-place/CreateModal/CreateForm/AddressResearch'
 import StoreInput from '@/components/_hot-place/CreateModal/CreateForm/StoreInput'
-import AddressInput from '@/components/_hot-place/CreateModal/CreateForm/AddressInput'
 import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/DescriptionInput'
 import { toast } from 'react-toastify'
 import {
@@ -49,7 +47,6 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
 
   const [prevImagesArray, setPrevImagesArray] = useState(images ?? [])
   const [deletedImagesArray, setDeletedImagesArray] = useState<ImageType[]>([])
-  const [showAddressResearch, setShowAddressResearch] = useState(false)
   const {
     register,
     handleSubmit,
@@ -102,9 +99,6 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
   const storeRegister = register('store', {
     required: '스토어명이 입력되지 않았습니다.',
   })
-  const addressRegister = register('address', {
-    required: '주소가 입력되지 않았습니다.',
-  })
   const descriptionRegister = register('description', {
     required: '후기가 입력되지 않았습니다.',
   })
@@ -129,24 +123,11 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
           categoryRegister={categoryRegister}
           errorMessage={errors.category?.message}
         />
-        <div className="flex gap-2">
-          <StoreInput
-            storeRegister={storeRegister}
-            errorMessage={errors.store?.message}
-          />
-          <AddressInput
-            addressRegister={addressRegister}
-            errorMessage={errors.address?.message}
-            setShowAddressResearch={setShowAddressResearch}
-          />
-        </div>
-        {showAddressResearch && (
-          <AddressResearch
-            setValue={setValue}
-            clearErrors={clearErrors}
-            setShowAddressResearch={setShowAddressResearch}
-          />
-        )}
+        <StoreInput
+          storeRegister={storeRegister}
+          setValue={setValue}
+          errorMessage={errors.store?.message}
+        />
         <DescriptionInput
           descriptionRegister={descriptionRegister}
           errorMessage={errors.description?.message}

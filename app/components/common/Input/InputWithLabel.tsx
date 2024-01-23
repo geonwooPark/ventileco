@@ -8,6 +8,7 @@ interface InputWithLabelProps {
     'email' | 'name' | 'password' | 'confirmedPassword' | 'store' | 'address'
   >
   className?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   onClick?: () => void
 }
 
@@ -16,6 +17,7 @@ export default function InputWithLabel({
   type,
   register,
   className,
+  onChange,
   onClick,
 }: InputWithLabelProps) {
   return (
@@ -25,6 +27,7 @@ export default function InputWithLabel({
         type={type}
         placeholder=" "
         autoComplete="off"
+        onChange={onChange}
         onClick={onClick}
         className={`peer w-full rounded-md border bg-white px-4 pb-2 pt-5 text-sm outline-none transition
       ${className}
