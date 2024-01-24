@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
-import { UseFormRegisterReturn, UseFormSetValue } from 'react-hook-form'
+import {
+  UseFormClearErrors,
+  UseFormRegisterReturn,
+  UseFormSetValue,
+} from 'react-hook-form'
 import ErrorMessage from './ErrorMessage'
 import InputWithLabel from '@/components/common/Input/InputWithLabel'
 import { HotPlaceFormDataType } from '@/interfaces/interface'
@@ -8,12 +12,14 @@ import FindAddressByStoreName from './FindAddressByStoreName'
 interface StoreInputProps {
   storeRegister: UseFormRegisterReturn<'store'>
   setValue: UseFormSetValue<HotPlaceFormDataType>
+  clearErrors: UseFormClearErrors<HotPlaceFormDataType>
   errorMessage?: string
 }
 
 export default function StoreInput({
   storeRegister,
   setValue,
+  clearErrors,
   errorMessage,
 }: StoreInputProps) {
   const [keyword, setKeyword] = useState('')
@@ -32,7 +38,11 @@ export default function StoreInput({
         onChange={onChange}
         className="mb-1"
       />
-      <FindAddressByStoreName setValue={setValue} keyword={keyword} />
+      <FindAddressByStoreName
+        setValue={setValue}
+        keyword={keyword}
+        clearErrors={clearErrors}
+      />
       <ErrorMessage errorMessage={errorMessage} />
     </div>
   )
