@@ -14,7 +14,7 @@ export default function StoreListings() {
   const [showSideInfo, setShowSideInfo] = useState(true)
 
   return (
-    <div>
+    <>
       <Markers hotPlaceListings={hotPlaceListings} />
       <SideInfoButton
         showSideInfo={showSideInfo}
@@ -26,6 +26,6 @@ export default function StoreListings() {
         searchKeyword={searchKeyword}
         showSideInfo={showSideInfo}
       />
-    </div>
+    </>
   )
 }

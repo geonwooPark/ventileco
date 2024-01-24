@@ -11,7 +11,7 @@ export default function StoreAddButton() {
   return session ? (
     <Link
       href={'/hot-place/create'}
-      className="fixed left-4 top-[96px] z-[100] md:top-[118px]"
+      className="fixed left-4 top-[96px] z-[50] md:top-[118px]"
     >
       <button className="flex items-center gap-1 rounded-md bg-blue-600 p-3 text-white duration-200 hover:bg-blue-500">
         <PiShootingStar size={20} />

@@ -6,7 +6,6 @@ import { hotPlaceKeys } from '@/constants/queryKey'
 import getAllStore from '@/actions/getAllStore'
 import StoreAddButton from '@/components/_hot-place/Map/StoreAddButton'
 import Map from '@/components/_hot-place/Map/Map'
-import StoreListings from '@/components/_hot-place/Map/StoreListings/StoreListings'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,7 +23,6 @@ export default async function page() {
     <Main>
       <HydrationBoundary state={dehydratedState}>
         <Map />
-        <StoreListings />
       </HydrationBoundary>
       <StoreAddButton />
     </Main>
