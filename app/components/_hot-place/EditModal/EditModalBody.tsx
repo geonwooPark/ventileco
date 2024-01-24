@@ -126,6 +126,7 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
         <StoreInput
           storeRegister={storeRegister}
           setValue={setValue}
+          clearErrors={clearErrors}
           errorMessage={errors.store?.message}
         />
         <DescriptionInput

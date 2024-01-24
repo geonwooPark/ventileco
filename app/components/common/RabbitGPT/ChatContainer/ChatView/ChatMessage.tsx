@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import { BiGhost } from 'react-icons/bi'
 import { GPTChatType } from '@/interfaces/interface'
-import RefWrapper from '../../common/RefWrapper'
+import RefWrapper from '@/components/common/RefWrapper'
+import { Rabbit } from '../../../../../../public/svgs'
 
 interface ChatMessageProps {
   message: GPTChatType
@@ -22,13 +22,17 @@ export default function ChatMessage({ message }: ChatMessageProps) {
       }`}
     >
       {message.sender === 'gpt' && (
-        <span className="mr-2 rounded-full bg-white p-1">
-          <BiGhost size={20} className="text-black" />
-        </span>
+        <div className="mr-2 rounded-full bg-gray-200 p-1">
+          <Rabbit width="28" height="28" viewBox="0 0 200 200" />
+        </div>
       )}
       <p
-        className={`inline-block max-w-full break-all rounded-sm px-4 py-2 text-white 
-  ${message.sender === 'user' ? 'bg-green-600' : 'bg-slate-600'}`}
+        className={`inline-block max-w-full break-all rounded-md px-4 py-2 
+  ${
+    message.sender === 'user'
+      ? 'bg-gray-800 text-gray-200 '
+      : 'bg-gray-200 text-gray-800 '
+  }`}
       >
         {message.content}
       </p>

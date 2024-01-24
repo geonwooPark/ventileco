@@ -21,8 +21,8 @@ export const headerListItem = [
   },
   {
     id: 3,
-    title: 'GPT',
-    link: '/gpt',
+    title: '독서',
+    link: '/book',
   },
   {
     id: 4,

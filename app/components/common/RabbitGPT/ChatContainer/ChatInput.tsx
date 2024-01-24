@@ -1,12 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import { FiSend } from 'react-icons/fi'
 import { useChatLog, useChatLogActions } from '@/hooks/store/useChatLogStore'
 import { toast } from 'react-toastify'
-import LoadingAnimation from '../common/Animation/LoadingAnimation'
+import LoadingAnimation from '../../Animation/LoadingAnimation'
 import { useSession } from 'next-auth/react'
-import InputWithIcon from '../common/Input/InputWithIcon'
+import Input from '../../Input/Input'
 
 export default function ChatInput() {
   const { data: session } = useSession()
@@ -52,18 +51,17 @@ export default function ChatInput() {
 
   return (
     <form onSubmit={onSubmit} className="relative">
-      <InputWithIcon
+      <div className="h-[1px] w-full bg-gray-200"></div>
+      <Input
         type="text"
         name="search"
         disabled={!session && true}
         placeholder={
-          session ? '피터에게 질문해보세요!' : '로그인 후 사용해보세요!'
+          session ? '토깽이에게 질문해보세요!' : '로그인 후 사용해보세요!'
         }
-        className="w-full border-none !bg-slate-600 outline-none"
+        className="w-full rounded-none border-none !bg-white outline-none"
         value={text}
-        icon={FiSend}
         onChange={onChange}
-        iconAction={onSubmit as any}
       />
       {isLoading && <LoadingAnimation />}
     </form>

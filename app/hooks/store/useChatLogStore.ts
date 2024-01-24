@@ -16,7 +16,7 @@ const useChatLogStore = create<State & Actions>()((set) => ({
   chatLog: [
     {
       id: 0,
-      content: '반가워요🙂 내 이름은 피터에요. 혹시 질문 있나요?',
+      content: '반가워요🙂 내 이름은 토깽이에요. 혹시 질문 있나요?',
       sender: 'gpt',
     },
     {
