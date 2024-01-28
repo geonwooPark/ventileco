@@ -96,6 +96,7 @@ export default function CreateModalBody() {
         <StoreInput
           storeRegister={storeRegister}
           setValue={setValue}
+          clearErrors={clearErrors}
           errorMessage={errors.store?.message}
         />
         <DescriptionInput

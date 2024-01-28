@@ -3,6 +3,7 @@
 import { useMapActions } from '@/hooks/store/useMapStore'
 import React, { useEffect, useRef } from 'react'
 import { INITIAL_CENTER } from '@/constants'
+import StoreListings from './StoreListings/StoreListings'
 
 export default function Map() {
   const { onAdd: addMap } = useMapActions()
@@ -22,5 +23,9 @@ export default function Map() {
     })
   }, [])
 
-  return <div ref={container} className="h-full w-full"></div>
+  return (
+    <div ref={container} className="relative h-full w-full overflow-hidden">
+      <StoreListings />
+    </div>
+  )
 }

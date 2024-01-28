@@ -1,20 +1,23 @@
 import { HotPlaceFormDataType } from '@/interfaces/interface'
 import React, { useEffect, useState } from 'react'
-import { UseFormSetValue } from 'react-hook-form'
+import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 interface FindAddressByStoreNameProps {
   setValue: UseFormSetValue<HotPlaceFormDataType>
   keyword: string
+  clearErrors: UseFormClearErrors<HotPlaceFormDataType>
 }
 
 export default function FindAddressByStoreName({
   setValue,
   keyword,
+  clearErrors,
 }: FindAddressByStoreNameProps) {
   const [storeList, setStoreList] = useState<any>([])
   const [showStoreList, setShowStoreList] = useState(false)
 
   const onClick = (keyword: string, address: string, x: string, y: string) => {
+    clearErrors('store')
     setValue('store', keyword)
     setValue('address', address)
     setValue('coordinate', { latitude: Number(y), longitude: Number(x) })
@@ -42,7 +45,6 @@ export default function FindAddressByStoreName({
           )
           setStoreList(res)
           setShowStoreList(true)
-          console.log(keyword)
         })
     }
     const timer = setTimeout(() => getAddress(), 300)
@@ -60,9 +62,9 @@ export default function FindAddressByStoreName({
             <li
               key={i}
               className="border-b px-2 py-1 last:border-none"
-              onClick={() =>
+              onClick={() => {
                 onClick(store.place_name, store.address_name, store.x, store.y)
-              }
+              }}
             >
               <div className="mb-1 text-sm text-gray-700">
                 {store.place_name}

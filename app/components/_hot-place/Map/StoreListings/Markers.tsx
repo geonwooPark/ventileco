@@ -39,7 +39,7 @@ export default function Markers({ hotPlaceListings }: MarkersProps) {
 
   useEffect(() => {
     if (!map) return
-    if (!hotPlaceListings || hotPlaceListings.length === 0) return
+    if (!hotPlaceListings) return
 
     if (markers) {
       markers.forEach((marker) => marker.setMap(null))
