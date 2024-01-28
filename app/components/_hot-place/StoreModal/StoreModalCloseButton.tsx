@@ -4,7 +4,7 @@ import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
-export default function StoreModalButton() {
+export default function StoreModalCloseButton() {
   const router = useRouter()
 
   return (

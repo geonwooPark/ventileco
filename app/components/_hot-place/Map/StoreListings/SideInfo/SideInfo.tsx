@@ -18,8 +18,8 @@ export default function SideInfo({
 }: SideInfoProps) {
   return (
     <div
-      className={`absolute right-0 top-[82px] z-10 hidden h-[calc(100%-82px)] w-[320px] overflow-y-scroll bg-white p-4 duration-300 md:top-[102px] md:block md:h-[calc(100%-102px)] ${
-        showSideInfo ? 'translate-x-[100%]' : 'translate-x-0'
+      className={`absolute right-0 top-[82px] z-10 hidden h-[calc(100%-102px)] w-[320px] overflow-y-scroll bg-white p-4 duration-300 md:top-[102px] md:block ${
+        showSideInfo ? 'translate-x-0' : 'translate-x-[100%]'
       }`}
     >
       <StoreSearch searchKeyword={searchKeyword} />

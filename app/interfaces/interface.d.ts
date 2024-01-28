@@ -111,6 +111,8 @@ export interface HotPlaceListingType {
   category: string
   store: string
   address: string
+  si: string
+  gu: string
   description: string
   rating: number
   images: {

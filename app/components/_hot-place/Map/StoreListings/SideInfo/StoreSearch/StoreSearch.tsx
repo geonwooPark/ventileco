@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import AutomaticSearch from './AutomaticSearch/AutomaticSearch'
 import SearchHeader from './SearchHeader'
-import { useSearchKeywordActions } from '@/hooks/store/useSearchKeywordStore'
+import { useKeywordChange } from '@/hooks/store/useHotPlaceFilterStore'
 
 interface StoreSearchProps {
   searchKeyword: string
 }
 
 export default function StoreSearch({ searchKeyword }: StoreSearchProps) {
-  const { onChange: onSearchKeywordChange } = useSearchKeywordActions()
+  const onKeywordChange = useKeywordChange()
 
   const [keyword, setKeyword] = useState('')
 
@@ -23,22 +23,22 @@ export default function StoreSearch({ searchKeyword }: StoreSearchProps) {
     e.preventDefault()
     if (!keyword) return
 
-    onSearchKeywordChange(keyword)
+    onKeywordChange(keyword)
     setKeyword('')
   }
 
   const onReset = () => {
-    onSearchKeywordChange('all')
+    onKeywordChange('')
   }
 
   const onClick = (store: string) => {
-    onSearchKeywordChange(store)
+    onKeywordChange(store)
     setKeyword('')
   }
 
   return (
     <form onSubmit={onSubmit} className="relative mb-4">
-      {searchKeyword !== 'all' ? (
+      {searchKeyword ? (
         <SearchHeader onReset={onReset} />
       ) : (
         <InputWithIcon

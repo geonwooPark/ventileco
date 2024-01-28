@@ -2,14 +2,18 @@
 
 import React, { useState } from 'react'
 import useHotPlaceListings from '@/hooks/query/useHotPlaceListings'
-import { useSearchKeyword } from '@/hooks/store/useSearchKeywordStore'
 import Markers from './Markers'
 import SideInfoButton from './SideInfoButton'
 import SideInfo from './SideInfo/SideInfo'
+import { useHotPlaceFilter } from '@/hooks/store/useHotPlaceFilterStore'
 
 export default function StoreListings() {
-  const searchKeyword = useSearchKeyword()
-  const { hotPlaceListings, isPending } = useHotPlaceListings(searchKeyword)
+  const { keyword: searchKeyword, category, gu } = useHotPlaceFilter()
+  const { hotPlaceListings, isPending } = useHotPlaceListings(
+    searchKeyword,
+    category,
+    gu,
+  )
 
   const [showSideInfo, setShowSideInfo] = useState(true)
 

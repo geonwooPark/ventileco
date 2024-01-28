@@ -14,6 +14,14 @@ const hotPlaceSchema = new Schema(
       type: String,
       required: true,
     },
+    si: {
+      type: String,
+      required: true,
+    },
+    gu: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
     },

@@ -1,9 +1,9 @@
 import React from 'react'
 import StoreImageSlider from './StoreDetail/StoreImageSlider'
-import StoreModalButton from './StoreDetail/StoreModalButton'
 import StoreRating from './StoreDetail/StoreRating'
 import StoreHashtags from './StoreDetail/StoreHashtags'
 import { HotPlaceListingType, UserType } from '@/interfaces/interface'
+import StoreModalCloseButton from './StoreModalCloseButton'
 
 interface StoreModalBodyProps {
   listing: {
@@ -48,7 +48,7 @@ export default function StoreModalBody({ listing }: StoreModalBodyProps) {
         />
         <StoreHashtags hashtags={hashtags} />
       </div>
-      <StoreModalButton />
+      <StoreModalCloseButton />
     </>
   )
 }

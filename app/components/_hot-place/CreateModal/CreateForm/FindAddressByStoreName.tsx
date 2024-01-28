@@ -62,9 +62,9 @@ export default function FindAddressByStoreName({
             <li
               key={i}
               className="border-b px-2 py-1 last:border-none"
-              onClick={() =>
+              onClick={() => {
                 onClick(store.place_name, store.address_name, store.x, store.y)
-              }
+              }}
             >
               <div className="mb-1 text-sm text-gray-700">
                 {store.place_name}
