@@ -10,7 +10,7 @@ export default function Article({
 }: PropsWithChildren<ArticleProps>) {
   return (
     <article className="flex w-full flex-col md:w-[calc(100%-120px)]">
-      <h2 className="mb-4 md:text-lg">{title}</h2>
+      <h2 className="mb-4 font-medium md:text-lg">{title}</h2>
       {children}
     </article>
   )
