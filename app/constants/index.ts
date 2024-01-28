@@ -5,7 +5,7 @@ export const categories = [
   'TypeScript',
   '컴퓨터과학',
   '라이브러리',
-]
+] as const
 
 // 헤더
 export const headerListItem = [
@@ -29,7 +29,7 @@ export const headerListItem = [
     title: '소개',
     link: '/about',
   },
-]
+] as const
 
 // 페이지네이션
 export const PAGE = 1
@@ -101,7 +101,7 @@ export const skills = [
     name: 'Zustand',
     color: 'EA4AAA',
   },
-]
+] as const
 
 // 맛집
 export const StoreCategory = [
@@ -129,7 +129,110 @@ export const StoreCategory = [
     id: 6,
     category: '카페',
   },
-]
+] as const
+
+export const GuList = [
+  {
+    id: 1,
+    gu: '강남구',
+  },
+  {
+    id: 2,
+    gu: '강동구',
+  },
+  {
+    id: 3,
+    gu: '강북구',
+  },
+  {
+    id: 4,
+    gu: '강서구',
+  },
+  {
+    id: 5,
+    gu: '관악구',
+  },
+  {
+    id: 6,
+    gu: '광진구',
+  },
+  {
+    id: 7,
+    gu: '구로구',
+  },
+  {
+    id: 8,
+    gu: '금천구',
+  },
+  {
+    id: 9,
+    gu: '노원구',
+  },
+  {
+    id: 10,
+    gu: '도봉구',
+  },
+  {
+    id: 11,
+    gu: '동대문구',
+  },
+  {
+    id: 12,
+    gu: '동작구',
+  },
+  {
+    id: 13,
+    gu: '마포구',
+  },
+  {
+    id: 14,
+    gu: '서대문구',
+  },
+  {
+    id: 15,
+    gu: '서초구',
+  },
+  {
+    id: 16,
+    gu: '성동구',
+  },
+  {
+    id: 17,
+    gu: '성북구',
+  },
+  {
+    id: 18,
+    gu: '송파구',
+  },
+  {
+    id: 19,
+    gu: '양천구',
+  },
+  {
+    id: 20,
+    gu: '영등포구',
+  },
+  {
+    id: 21,
+    gu: '용산구',
+  },
+  {
+    id: 22,
+    gu: '은평구',
+  },
+  {
+    id: 23,
+    gu: '종로구',
+  },
+  {
+    id: 24,
+    gu: '중구',
+  },
+  {
+    id: 25,
+    gu: '중랑구',
+  },
+] as const
 
 export const INITIAL_CENTER = [37.574187, 126.976882]
 export const MARKER_SIZE = 40
