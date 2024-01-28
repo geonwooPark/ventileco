@@ -5,7 +5,7 @@ export const categories = [
   'TypeScript',
   '컴퓨터과학',
   '라이브러리',
-] as const
+]
 
 // 헤더
 export const headerListItem = [
@@ -29,7 +29,7 @@ export const headerListItem = [
     title: '소개',
     link: '/about',
   },
-] as const
+]
 
 // 페이지네이션
 export const PAGE = 1
@@ -101,7 +101,7 @@ export const skills = [
     name: 'Zustand',
     color: 'EA4AAA',
   },
-] as const
+]
 
 // 맛집
 export const StoreCategory = [
@@ -129,7 +129,7 @@ export const StoreCategory = [
     id: 6,
     category: '카페',
   },
-] as const
+]
 
 export const GuList = [
   {
@@ -232,7 +232,7 @@ export const GuList = [
     id: 25,
     gu: '중랑구',
   },
-] as const
+]
 
 export const INITIAL_CENTER = [37.574187, 126.976882]
 export const MARKER_SIZE = 40
