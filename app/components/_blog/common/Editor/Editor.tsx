@@ -9,7 +9,6 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { toast } from 'react-toastify'
 import { ImageType, PostingType } from '../../../../interfaces/interface'
 import { storage } from '@/lib/firebase'
-import Section from '@common/Section'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {
@@ -97,18 +96,16 @@ export default function Editor({
   }, [])
 
   return (
-    <Section>
-      <ReactQuill
-        ref={quillRef}
-        value={content}
-        onChange={onChange}
-        modules={theme === 'snow' ? modules : undefined}
-        theme={theme}
-        readOnly={readOnly}
-        className={`w-full ${
-          theme === 'snow' ? 'h-[600px]' : 'h-full'
-        } outline-none focus:outline-none`}
-      />
-    </Section>
+    <ReactQuill
+      ref={quillRef}
+      value={content}
+      onChange={onChange}
+      modules={theme === 'snow' ? modules : undefined}
+      theme={theme}
+      readOnly={readOnly}
+      className={`w-full ${
+        theme === 'snow' ? 'h-[600px]' : 'h-full'
+      } outline-none focus:outline-none`}
+    />
   )
 }
