@@ -1,20 +1,12 @@
 import React from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import ErrorMessage from '../common/ErrorMessage'
+import { bookCategory } from '@/constants'
 
 interface BookCategorySelectorProps {
   categoryRegister: UseFormRegisterReturn<'category'>
   errorMessage?: string
 }
-
-export const bookCategory = [
-  { id: 1, category: '경제/경영' },
-  { id: 2, category: '심리학' },
-  { id: 3, category: 'IT/컴퓨터' },
-  { id: 4, category: '예술/문화' },
-  { id: 5, category: '생물학' },
-  { id: 6, category: '화학' },
-]
 
 export default function BookCategorySelector({
   categoryRegister,
