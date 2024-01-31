@@ -191,7 +191,7 @@ export default function Edit() {
         setThumbnailFile={setThumbnailFile}
         refs={refs}
       />
-      <Section>
+      <Section className="pb-10">
         <Editor
           content={content}
           theme="snow"

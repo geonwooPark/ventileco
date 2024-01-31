@@ -154,7 +154,7 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
           size="s"
           fullWidth={true}
           label="수정하기"
-          onClick={() => handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
           disabled={editHotPlaceMutation.isPending}
         />
       </div>
