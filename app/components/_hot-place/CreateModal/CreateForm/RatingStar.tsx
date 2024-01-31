@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../../styles/rating.css'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import ErrorMessage from './ErrorMessage'
+import ErrorMessage from '../../../common/ErrorMessage'
 
 interface RatingStarProps {
   ratingRegister: UseFormRegisterReturn<'rating'>

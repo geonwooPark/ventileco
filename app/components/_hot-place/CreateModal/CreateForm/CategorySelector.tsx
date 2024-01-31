@@ -1,7 +1,7 @@
 import { StoreCategory } from '@/constants'
 import React from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import ErrorMessage from './ErrorMessage'
+import ErrorMessage from '../../../common/ErrorMessage'
 
 interface CategorySelectorProps {
   categoryRegister: UseFormRegisterReturn<'category'>
