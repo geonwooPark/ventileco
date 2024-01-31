@@ -25,9 +25,7 @@ export default function page({
           <BookList />
         </Suspense>
       </Section>
-      <div className="fixed left-4 top-[96px] z-[50] flex gap-2 md:top-[118px]">
-        <AddReviewButton />
-      </div>
+      <AddReviewButton />
     </Main>
   )
 }
