@@ -27,14 +27,16 @@ export default async function Search({
 
       <Section>
         <Article title="검색 결과">
-          <Suspense fallback={<SkeletonListing />}>
-            <SearchListing
-              path="search"
-              page={page}
-              limit={limit}
-              search={search}
-            />
-          </Suspense>
+          <div key={Math.random()}>
+            <Suspense fallback={<SkeletonListing />}>
+              <SearchListing
+                path="search"
+                page={page}
+                limit={limit}
+                search={search}
+              />
+            </Suspense>
+          </div>
         </Article>
       </Section>
     </Main>
