@@ -20,6 +20,10 @@
 }
 
 /* React Quill */
+/* 컨테이너 */
+.ql-container.ql-snow {
+  @apply !h-[calc(600px-94px)] sm:!h-[calc(600px-43px)];
+}
 /* 폰트 */
 .ql-editor > * {
   @apply !mb-1.5 !mt-0;
