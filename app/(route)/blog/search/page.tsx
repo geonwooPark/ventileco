@@ -25,18 +25,16 @@ export default async function Search({
         description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
       />
 
-      <Section>
+      <Section innerKey={Math.random()}>
         <Article title="검색 결과">
-          <div key={Math.random()}>
-            <Suspense fallback={<SkeletonListing />}>
-              <SearchListing
-                path="search"
-                page={page}
-                limit={limit}
-                search={search}
-              />
-            </Suspense>
-          </div>
+          <Suspense fallback={<SkeletonListing />}>
+            <SearchListing
+              path="search"
+              page={page}
+              limit={limit}
+              search={search}
+            />
+          </Suspense>
         </Article>
       </Section>
     </Main>
