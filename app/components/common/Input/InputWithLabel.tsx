@@ -5,7 +5,13 @@ interface InputWithLabelProps {
   label: string
   type: 'text' | 'name' | 'email' | 'password'
   register?: UseFormRegisterReturn<
-    'email' | 'name' | 'password' | 'confirmedPassword' | 'store' | 'address'
+    | 'email'
+    | 'name'
+    | 'password'
+    | 'confirmedPassword'
+    | 'store'
+    | 'address'
+    | 'title'
   >
   className?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void

@@ -10,10 +10,11 @@ import AdminControlSection from '@blog/_detail/AdminControlSection/AdminControlS
 import DetailTopSection from '@blog/_detail/DetailTopSection/DetailTopSection'
 import Main from '@common/Main'
 import Modals from '@blog/_detail/Modals/Modals'
+import Section from '@/components/common/Section'
 
 export const revalidate = 1800
 
-const ContentSection = dynamic(() => import('@blog/common/Editor/Editor'), {
+const Content = dynamic(() => import('@blog/common/Editor/Editor'), {
   ssr: false,
   loading: () => (
     <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
@@ -73,11 +74,9 @@ export default async function Detail({ params }: IParams) {
   return (
     <Main>
       <DetailTopSection posting={posting} />
-      <ContentSection
-        content={posting.content}
-        theme="bubble"
-        readOnly={true}
-      />
+      <Section>
+        <Content content={posting.content} theme="bubble" readOnly={true} />
+      </Section>
       <CommentSection postingId={id} />
       <AdminControlSection postingId={id} />
       <Modals postingId={id} />

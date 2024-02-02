@@ -11,6 +11,7 @@ const nextConfig = {
       'openweathermap.org',
       'img.shields.io',
       'avatars.githubusercontent.com',
+      'search1.kakaocdn.net',
     ],
   },
   eslint: {

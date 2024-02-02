@@ -1,6 +1,6 @@
 import React from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import ErrorMessage from './ErrorMessage'
+import ErrorMessage from '../../../common/ErrorMessage'
 
 interface DescriptionInputProps {
   descriptionRegister: UseFormRegisterReturn<'description'>

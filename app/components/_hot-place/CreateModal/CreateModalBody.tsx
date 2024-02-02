@@ -122,7 +122,7 @@ export default function CreateModalBody() {
           size="s"
           fullWidth={true}
           label="등록하기"
-          onClick={() => handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
           disabled={createHotPlaceMutation.isPending}
         />
       </div>

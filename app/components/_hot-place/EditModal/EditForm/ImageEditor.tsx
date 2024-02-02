@@ -8,7 +8,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 import { HotPlaceFormDataType, ImageType } from '@/interfaces/interface'
-import ErrorMessage from '../../CreateModal/CreateForm/ErrorMessage'
+import ErrorMessage from '../../../common/ErrorMessage'
 
 interface ImageSelectorProps {
   setValue: UseFormSetValue<HotPlaceFormDataType>

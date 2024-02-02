@@ -5,23 +5,23 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 import InputWithLabel from '@/components/common/Input/InputWithLabel'
-import { HotPlaceFormDataType } from '@/interfaces/interface'
-import FindAddressByStoreName from './FindAddressByStoreName'
-import ErrorMessage from '@/components/common/ErrorMessage'
+import ErrorMessage from '../common/ErrorMessage'
+import FindBookByBookName from './FindBookByBookName'
+import { BookReviewFormDataType } from '@/interfaces/interface'
 
-interface StoreInputProps {
-  storeRegister: UseFormRegisterReturn<'store'>
-  setValue: UseFormSetValue<HotPlaceFormDataType>
-  clearErrors: UseFormClearErrors<HotPlaceFormDataType>
+interface BookTitleInputProps {
+  titleRegister: UseFormRegisterReturn<'title'>
+  setValue: UseFormSetValue<BookReviewFormDataType>
+  clearErrors: UseFormClearErrors<BookReviewFormDataType>
   errorMessage?: string
 }
 
-export default function StoreInput({
-  storeRegister,
+export default function BookTitleInput({
+  titleRegister,
   setValue,
   clearErrors,
   errorMessage,
-}: StoreInputProps) {
+}: BookTitleInputProps) {
   const [keyword, setKeyword] = useState('')
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,13 +32,13 @@ export default function StoreInput({
   return (
     <div className="relative mb-2 w-full">
       <InputWithLabel
-        register={storeRegister}
-        label="스토어명"
+        register={titleRegister}
+        label="도서명"
         type="text"
         onChange={onChange}
         className="mb-1"
       />
-      <FindAddressByStoreName
+      <FindBookByBookName
         setValue={setValue}
         keyword={keyword}
         clearErrors={clearErrors}

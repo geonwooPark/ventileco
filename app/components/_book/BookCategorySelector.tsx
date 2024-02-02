@@ -1,25 +1,25 @@
-import { StoreCategory } from '@/constants'
 import React from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import ErrorMessage from '../../../common/ErrorMessage'
+import ErrorMessage from '../common/ErrorMessage'
+import { bookCategory } from '@/constants'
 
-interface CategorySelectorProps {
+interface BookCategorySelectorProps {
   categoryRegister: UseFormRegisterReturn<'category'>
   errorMessage?: string
 }
 
-export default function CategorySelector({
+export default function BookCategorySelector({
   categoryRegister,
   errorMessage,
-}: CategorySelectorProps) {
+}: BookCategorySelectorProps) {
   return (
     <div className="mb-2">
-      <div className="mb-1 flex gap-2 text-sm">
-        {StoreCategory.map((item) => (
+      <div className="mb-1 flex gap-2 text-sm text-gray-700">
+        {bookCategory.map((item) => (
           <label
             key={item.id}
             htmlFor={item.category}
-            className={`cursor-pointer rounded-md border px-2.5 py-2 text-gray-400 has-[:checked]:bg-gray-700 has-[:checked]:text-white`}
+            className={`cursor-pointer rounded-full border px-3 py-2 text-gray-400 transition duration-200 has-[:checked]:border-transparent has-[:checked]:bg-blue-600 has-[:checked]:text-white`}
           >
             {item.category}
             <input

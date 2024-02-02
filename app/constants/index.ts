@@ -236,3 +236,14 @@ export const GuList = [
 
 export const INITIAL_CENTER = [37.574187, 126.976882]
 export const MARKER_SIZE = 40
+
+// 독서
+export const bookCategory = [
+  { id: 1, category: '경제/경영' },
+  { id: 2, category: '인문' },
+  { id: 3, category: 'IT/컴퓨터' },
+  { id: 4, category: '예술/문화' },
+  { id: 5, category: '과학' },
+]
+
+export const BOOKLIMIT = 8

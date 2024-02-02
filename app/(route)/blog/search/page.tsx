@@ -25,7 +25,7 @@ export default async function Search({
         description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
       />
 
-      <Section>
+      <Section innerKey={Math.random()}>
         <Article title="검색 결과">
           <Suspense fallback={<SkeletonListing />}>
             <SearchListing

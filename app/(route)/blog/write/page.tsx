@@ -16,8 +16,9 @@ import { ImageType, OmittedPostingType } from '@/interfaces/interface'
 import { storage } from '@/lib/firebase'
 import WriteTopSection from '@blog/_write/WriteTopSection/WriteTopSection'
 import Main from '@common/Main'
+import Section from '@/components/common/Section'
 
-const EditorSection = dynamic(() => import('@blog/common/Editor/Editor'), {
+const Editor = dynamic(() => import('@blog/common/Editor/Editor'), {
   ssr: false,
   loading: () => <EmptyState label="에디터를 불러오고 있어요!" />,
 })
@@ -161,12 +162,14 @@ export default function Write() {
         setThumbnailFile={setThumbnailFile}
         refs={refs}
       />
-      <EditorSection
-        content={content}
-        theme="snow"
-        setPosting={setPosting}
-        setUploadImages={setUploadImages}
-      />
+      <Section className="pb-10">
+        <Editor
+          content={content}
+          theme="snow"
+          setPosting={setPosting}
+          setUploadImages={setUploadImages}
+        />
+      </Section>
       <Button
         type="button"
         level="primary"

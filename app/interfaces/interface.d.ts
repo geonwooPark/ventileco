@@ -126,3 +126,24 @@ export interface HotPlaceListingType {
     longitude: number
   }
 }
+
+export interface BookReviewFormDataType {
+  recommended: boolean
+  title: string
+  description: string
+  authors: string[]
+  thumbnail: string
+  content: string
+  category: string
+}
+
+export interface BookReviewType {
+  _id: string
+  recommended: boolean
+  title: string
+  description: string
+  authors: string[]
+  thumbnail: string
+  content: string
+  category: string
+}
