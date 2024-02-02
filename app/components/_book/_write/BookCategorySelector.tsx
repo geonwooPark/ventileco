@@ -1,6 +1,6 @@
 import React from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'
-import ErrorMessage from '../common/ErrorMessage'
+import ErrorMessage from '../../common/ErrorMessage'
 import { bookCategory } from '@/constants'
 
 interface BookCategorySelectorProps {

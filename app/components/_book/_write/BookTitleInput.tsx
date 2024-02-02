@@ -5,7 +5,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 import InputWithLabel from '@/components/common/Input/InputWithLabel'
-import ErrorMessage from '../common/ErrorMessage'
+import ErrorMessage from '../../common/ErrorMessage'
 import FindBookByBookName from './FindBookByBookName'
 import { BookReviewFormDataType } from '@/interfaces/interface'
 

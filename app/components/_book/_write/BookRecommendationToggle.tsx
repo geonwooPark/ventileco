@@ -1,5 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form'
-import Toggle from '../common/Toggle'
+import Toggle from '../../common/Toggle'
 
 interface BookRecommendationToggleProps {
   recommendedRegister: UseFormRegisterReturn<'recommended'>

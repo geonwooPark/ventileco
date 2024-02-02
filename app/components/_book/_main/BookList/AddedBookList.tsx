@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import BookListItem from './BookListItem'
 import { toast } from 'react-toastify'
 import { BOOKLIMIT } from '@/constants'
-import Spinner from '../common/Spinner'
+import Spinner from '../../../common/Spinner'
 
 interface AddedBookListProps {
   category: string

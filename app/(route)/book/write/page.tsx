@@ -1,4 +1,4 @@
-import BookReviewForm from '@/components/_book/BookReviewForm'
+import BookReviewForm from '@/components/_book/_write/BookReviewForm'
 import Main from '@/components/common/Main'
 import Section from '@/components/common/Section'
 import React from 'react'
