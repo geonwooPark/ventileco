@@ -1,9 +1,9 @@
-import { BookReviewFormType } from '@/components/_book/BookReviewForm'
+import { BookReviewFormDataType } from '@/interfaces/interface'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
 interface WriteBookReviewParams {
-  data: BookReviewFormType
+  data: BookReviewFormDataType
   session: Session | null
 }
 
@@ -24,7 +24,6 @@ const writeBookReview = async ({ data, session }: WriteBookReviewParams) => {
 }
 
 export default function useWriteBookReviewMutation() {
-  const queryClient = useQueryClient()
   const mutation = useMutation({
     mutationFn: ({ data, session }: WriteBookReviewParams) =>
       writeBookReview({ data, session }),

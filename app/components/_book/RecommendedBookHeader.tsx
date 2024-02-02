@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../common/Button'
 
-export default function MyPick() {
+export default function RecommendedBookHeader() {
   return (
     <div className="hidden md:block">
       <div className="absolute bottom-10 z-10 h-[240px] w-[calc((100%+50px)/2)] bg-gray-100  lg:w-[calc((100%-200px)/2)] xl:w-[calc((100%-400px)/2)]">

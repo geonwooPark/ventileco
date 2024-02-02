@@ -245,3 +245,5 @@ export const bookCategory = [
   { id: 4, category: '예술/문화' },
   { id: 5, category: '과학' },
 ]
+
+export const BOOKLIMIT = 8

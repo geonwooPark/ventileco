@@ -1,6 +1,4 @@
-import { authOptions } from '@/lib/authOptions'
 import { connectMongo } from '@/lib/database'
-import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
 import { Book } from '../../../models/book'
 
