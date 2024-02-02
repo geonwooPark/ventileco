@@ -9,7 +9,7 @@ interface BookListItemProps {
 export default function BookListItem({ book }: BookListItemProps) {
   return (
     <div className="flex h-[320px] cursor-pointer flex-col items-center justify-center rounded-md bg-gray-100 transition duration-200 hover:-translate-y-2 hover:shadow-xl">
-      <div className="relative mx-auto mb-3 h-[200px] w-[160px]">
+      <div className="relative mx-auto mb-3 h-[200px] w-[160px] overflow-hidden rounded-[3px] border-b-[2px] border-black/20 shadow-xl after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-r after:from-black/10 after:from-0% after:via-white/30 after:via-5% after:to-white/10 after:to-90%">
         <Image src={book.thumbnail} alt={book.title} fill objectFit="fill" />
       </div>
       <div className="text-center">
