@@ -46,7 +46,7 @@ export default function Markers({ hotPlaceListings }: MarkersProps) {
     }
     window.kakao.maps.load(async () => {
       let markers: any[] = []
-      const imageSrc = 'svgs/store-category.svg'
+      const imageSrc = `${process.env.NEXT_PUBLIC_FE_URL}/svgs/store-category.svg`
       const imageSize = new window.kakao.maps.Size(MARKER_SIZE, MARKER_SIZE)
 
       for (let i = 0; i < hotPlaceListings.length; i++) {
