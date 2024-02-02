@@ -12,6 +12,7 @@ import useWriteBookReviewMutation from '@/hooks/mutation/useWriteBookReviewMutat
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
+import { BookReviewFormDataType } from '@/interfaces/interface'
 
 const BookReviewInput = dynamic(() => import('./BookReviewInput'), {
   ssr: false,
@@ -22,16 +23,6 @@ const BookReviewInput = dynamic(() => import('./BookReviewInput'), {
     />
   ),
 })
-
-export interface BookReviewFormType {
-  recommended: boolean
-  title: string
-  description: string
-  authors: string[]
-  thumbnail: string
-  content: string
-  category: string
-}
 
 export default function BookReviewForm() {
   const router = useRouter()
@@ -44,7 +35,7 @@ export default function BookReviewForm() {
     clearErrors,
     reset,
     formState: { errors },
-  } = useForm<BookReviewFormType>({
+  } = useForm<BookReviewFormDataType>({
     defaultValues: {
       recommended: false,
       title: '',
@@ -58,7 +49,7 @@ export default function BookReviewForm() {
   const content = getValues('content')
   const { mutation: writeBookReviewMutation } = useWriteBookReviewMutation()
 
-  const onSubmit: SubmitHandler<BookReviewFormType> = async (data) => {
+  const onSubmit: SubmitHandler<BookReviewFormDataType> = async (data) => {
     writeBookReviewMutation.mutate(
       { data, session },
       {

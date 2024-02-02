@@ -1,11 +1,11 @@
+import { BookReviewFormDataType } from '@/interfaces/interface'
 import React, { useEffect, useState } from 'react'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
-import { BookReviewFormType } from './BookReviewForm'
 
 interface FindBookByBookNameProps {
-  setValue: UseFormSetValue<BookReviewFormType>
+  setValue: UseFormSetValue<BookReviewFormDataType>
   keyword: string
-  clearErrors: UseFormClearErrors<BookReviewFormType>
+  clearErrors: UseFormClearErrors<BookReviewFormDataType>
 }
 
 export default function FindBookByBookName({

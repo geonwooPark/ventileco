@@ -3,11 +3,11 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.bubble.css'
 import { UseFormSetValue } from 'react-hook-form'
-import { BookReviewFormType } from './BookReviewForm'
 import ErrorMessage from '../common/ErrorMessage'
+import { BookReviewFormDataType } from '@/interfaces/interface'
 
 interface BookReviewInputProps {
-  setValue: UseFormSetValue<BookReviewFormType>
+  setValue: UseFormSetValue<BookReviewFormDataType>
   content: string
   errorMessage?: string
 }

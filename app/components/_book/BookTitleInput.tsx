@@ -6,13 +6,13 @@ import {
 } from 'react-hook-form'
 import InputWithLabel from '@/components/common/Input/InputWithLabel'
 import ErrorMessage from '../common/ErrorMessage'
-import { BookReviewFormType } from './BookReviewForm'
 import FindBookByBookName from './FindBookByBookName'
+import { BookReviewFormDataType } from '@/interfaces/interface'
 
 interface BookTitleInputProps {
   titleRegister: UseFormRegisterReturn<'title'>
-  setValue: UseFormSetValue<BookReviewFormType>
-  clearErrors: UseFormClearErrors<BookReviewFormType>
+  setValue: UseFormSetValue<BookReviewFormDataType>
+  clearErrors: UseFormClearErrors<BookReviewFormDataType>
   errorMessage?: string
 }
 

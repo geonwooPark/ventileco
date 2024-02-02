@@ -4,9 +4,11 @@ import React from 'react'
 import Slider from 'react-slick'
 import '@/styles/recommended-book-slider.css'
 import Image from 'next/image'
+import Link from 'next/link'
+import { BookReviewType } from '@/interfaces/interface'
 
 interface RecommendedBookSliderProps {
-  recommendedBooks: any
+  recommendedBooks: BookReviewType[]
 }
 
 const settings = {
@@ -28,15 +30,15 @@ export default function RecommendedBookSlider({
   return (
     <div className="absolute bottom-0 flex h-[240px] w-full items-center pl-[calc((100%+50px)/2)] md:bottom-10 lg:pl-[calc((100%-200px)/2)] xl:pl-[calc((100%-400px)/2)]">
       <Slider {...settings}>
-        {recommendedBooks.map((book: any) => (
-          <div key={book._id} className="relative h-[200px]">
+        {recommendedBooks.map((book) => (
+          <Link href={`/`} key={book._id} className="relative h-[200px]">
             <Image
               src={book.thumbnail}
               alt={book.title}
               fill
               objectFit="fill"
             />
-          </div>
+          </Link>
         ))}
       </Slider>
     </div>
