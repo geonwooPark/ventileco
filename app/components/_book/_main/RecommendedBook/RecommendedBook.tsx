@@ -7,7 +7,7 @@ export default async function RecommendedBook() {
   const recommendedBooks = await getRecommendedBook()
 
   return (
-    <section className="relative mb-20 h-[320px] w-full overflow-hidden bg-gray-100 md:h-[420px]">
+    <section className="relative mb-20 flex h-[calc(320px-82px)] w-full items-center overflow-hidden bg-gray-100 md:h-[calc(420px-102px)] ">
       <RecommendedBookHeader />
       <RecommendedBookSlider recommendedBooks={recommendedBooks} />
     </section>
