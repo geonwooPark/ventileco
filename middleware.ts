@@ -37,4 +37,14 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/hot-place', request.url))
     }
   }
+  if (request.nextUrl.pathname.startsWith('/book/write')) {
+    if (token?.role !== 'admin') {
+      return NextResponse.redirect(new URL('/book', request.url))
+    }
+  }
+  if (request.nextUrl.pathname.startsWith('/book/edit')) {
+    if (token?.role !== 'admin') {
+      return NextResponse.redirect(new URL('/book', request.url))
+    }
+  }
 }

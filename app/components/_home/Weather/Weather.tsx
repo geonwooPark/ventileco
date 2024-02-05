@@ -1,6 +1,6 @@
 import React from 'react'
 import WeatherInfo from './WeatherInfo'
-import getQueryClient from '@/actions/getQueryClient'
+import getQueryClient from '@/utils/getQueryClient'
 import getData from '@/actions/getData'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { APIKEY, CITY } from '@/constants'

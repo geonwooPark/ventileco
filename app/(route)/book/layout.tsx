@@ -31,7 +31,9 @@ export default async function Layout({
   return (
     <div className="h-full">
       <HeaderBgColor />
-      {children}
+      <div className="h-auto min-h-[100%] bg-white pt-[82px] md:pt-[102px]">
+        {children}
+      </div>
     </div>
   )
 }

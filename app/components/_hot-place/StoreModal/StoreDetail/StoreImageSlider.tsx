@@ -2,7 +2,9 @@
 
 import React from 'react'
 import Slider from 'react-slick'
-import '@/styles/store-image-slider.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import styles from '@/styles/store-image-slider.module.css'
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
@@ -45,7 +47,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
 
   return (
     <div
-      className={`mx-auto mb-2 h-[200px] w-[300px] md:h-[300px] md:w-[400px]`}
+      className={`${styles.wrapper} mx-auto mb-2 h-[200px] w-[300px] md:h-[300px] md:w-[400px]`}
     >
       <Slider {...settings} className="h-full w-full">
         {images.map((img, i) => (

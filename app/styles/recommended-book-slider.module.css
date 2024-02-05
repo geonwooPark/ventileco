@@ -1,0 +1,5 @@
+.wrapper :global .slick-slide > div {
+  width: 160px;
+  height: 200px;
+  margin: 0 12px;
+}
