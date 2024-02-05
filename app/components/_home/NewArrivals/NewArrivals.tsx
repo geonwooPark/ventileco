@@ -1,7 +1,7 @@
 import React from 'react'
 import NewArrivalsList from './NewArrivalsList'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import getQueryClient from '@/actions/getQueryClient'
+import getQueryClient from '@/utils/getQueryClient'
 import { connectMongo } from '@/lib/database'
 import { Posting } from '../../../../models/posting'
 import { PostingType } from '@/interfaces/interface'

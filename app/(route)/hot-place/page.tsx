@@ -1,6 +1,6 @@
 import Main from '@common/Main'
 import React from 'react'
-import getQueryClient from '@/actions/getQueryClient'
+import getQueryClient from '@/utils/getQueryClient'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { hotPlaceKeys } from '@/constants/queryKey'
 import getAllStore from '@/actions/getAllStore'
