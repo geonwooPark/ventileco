@@ -1,0 +1,20 @@
+.wrapper :global #container {
+  @apply flex flex-row-reverse justify-end;
+}
+
+.wrapper :global #container input {
+  @apply hidden;
+}
+
+.wrapper :global #container label {
+  @apply fill-gray-200 cursor-pointer;
+}
+
+.wrapper :global #container label:hover,
+.wrapper :global #container label:hover ~ label {
+  @apply fill-yellow-400;
+}
+
+.wrapper :global #container input:checked ~ label {
+  @apply fill-yellow-400;
+}

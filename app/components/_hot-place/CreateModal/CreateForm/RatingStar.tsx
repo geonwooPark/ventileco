@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../../styles/rating.css'
+import styles from '../../../../styles/rating.module.css'
 import { UseFormRegisterReturn } from 'react-hook-form'
 import ErrorMessage from '../../../common/ErrorMessage'
 
@@ -15,7 +15,7 @@ export default function RatingStar({
   errorMessage,
 }: RatingStarProps) {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <div id="container" className="mb-1">
         <input
           {...ratingRegister}
