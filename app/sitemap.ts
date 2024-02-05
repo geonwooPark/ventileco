@@ -1,3 +1,4 @@
+import getAllBook from './actions/getAllBook'
 import getAllListing from './actions/getAllListing'
 import getAllListingCount from './actions/getAllListingCount'
 import getAllStore from './actions/getAllStore'
@@ -47,6 +48,12 @@ export default async function sitemap() {
     lastModified: new Date(),
   }))
 
+  const books = await getAllBook('전체')
+  const bookURls = books.map((book) => ({
+    url: `${baseURL}/book/${book._id}`,
+    lastModified: new Date(),
+  }))
+
   return [
     { url: baseURL, lastModified: new Date() },
     { url: baseURL + '/book', lastModified: new Date() },
@@ -56,5 +63,6 @@ export default async function sitemap() {
     ...categoryURLs,
     ...categoryPageURLs,
     ...hotPlaceURLs,
+    ...bookURls,
   ]
 }
