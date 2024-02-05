@@ -2,7 +2,9 @@
 
 import React from 'react'
 import Slider from 'react-slick'
-import '@/styles/recommended-book-slider.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import styles from '@/styles/recommended-book-slider.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BookReviewType } from '@/interfaces/interface'
@@ -28,7 +30,9 @@ export default function RecommendedBookSlider({
   recommendedBooks,
 }: RecommendedBookSliderProps) {
   return (
-    <div className="flex h-[240px] w-full items-center pl-[calc((100%+50px)/2)] lg:pl-[calc((100%-200px)/2)] xl:pl-[calc((100%-400px)/2)]">
+    <div
+      className={`${styles.wrapper} flex h-[240px] w-full items-center pl-[calc((100%+50px)/2)] lg:pl-[calc((100%-200px)/2)] xl:pl-[calc((100%-400px)/2)]`}
+    >
       <Slider {...settings}>
         {recommendedBooks.map((book) => (
           <Link

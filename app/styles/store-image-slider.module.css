@@ -1,0 +1,13 @@
+.wrapper :global .slick-slide > div {
+  margin: 0 12px;
+}
+
+.wrapper :global .slick-list {
+  position: relative;
+
+  display: block;
+  overflow: visible;
+
+  margin: 0;
+  padding: 0;
+}
