@@ -9,6 +9,16 @@
   }
 }
 
+@layer components {
+  .book-cover {
+    @apply h-[200px] w-[160px] overflow-hidden rounded-[3px] border-b-[2px] border-black/20 shadow-xl after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-r after:from-black/10 after:from-0% after:via-white/30 after:via-5% after:to-white/10 after:to-90%;
+  }
+
+  .recommended-badge {
+    @apply before:absolute before:-left-2 before:top-[33px] before:h-7 before:w-7 before:rotate-45 before:bg-blue-600 after:absolute after:left-[-13.8px] after:top-4 after:text-white after:w-[72px] after:rounded-sm after:bg-blue-500 after:p-1.5 after:text-center after:text-sm after:font-bold after:shadow-md after:content-['PICK'];
+  }
+}
+
 @layer utilities {
   .hide-scroll {
     -ms-overflow-style: none;
