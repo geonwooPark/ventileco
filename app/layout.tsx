@@ -10,6 +10,7 @@ import TanstackProvider from './components/common/provider/TanstackProvider'
 import Header from './components/common/Header/Header'
 import Script from 'next/script'
 import RabbitGPT from './components/common/RabbitGPT/RabbitGPT'
+import Firework from './components/common/Animation/FireworkAnimation'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -63,6 +64,7 @@ export default async function RootLayout({
             <Header />
             {children}
           </TanstackProvider>
+          <Firework />
           <RabbitGPT />
         </AuthSession>
       </body>
