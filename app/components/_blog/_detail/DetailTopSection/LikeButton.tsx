@@ -4,8 +4,8 @@ import React from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
-import useIsLikedQuery from '@/hooks/query/useIsLikedQuery'
-import useHandleLikeButtonMutation from '@/hooks/mutation/useHandleLikeButtonMutation'
+import useLikeQuery from '@/hooks/query/useLikeQuery'
+import useLikeMutation from '@/hooks/mutation/useLikeMutation'
 
 interface LikeButtonProps {
   className?: string
@@ -14,14 +14,15 @@ interface LikeButtonProps {
 
 export default function LikeButton({ className, postingId }: LikeButtonProps) {
   const { data: session } = useSession()
-  const { data, isPending, error } = useIsLikedQuery(postingId)
-  const { mutation: handleLikeButtonMutation } = useHandleLikeButtonMutation({
+  const { data, isPending, error } = useLikeQuery(postingId)
+  const { mutation: likeMutation } = useLikeMutation({
     postingId,
     session,
   })
   const handleLikeButton = () => {
-    handleLikeButtonMutation.mutate(
-      { postingId, session, isLiked: data?.isLiked },
+    if (!session) return
+    likeMutation.mutate(
+      { postingId },
       {
         onError: (error) => {
           toast.error(error.message)
@@ -41,7 +42,7 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
       onClick={handleLikeButton}
       disabled={isPending}
     >
-      {data?.isLiked ? (
+      {data?.isLike ? (
         <AiFillHeart size={30} className="text-rose-500" />
       ) : (
         <AiOutlineHeart size={30} />

@@ -2,17 +2,17 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { detailKeys } from '@/constants/queryKey'
 
-export default function useViewCountQuery(postingId: string) {
+export default function useViewQuery(postingId: string) {
   const {
-    data: viewCount,
+    data: views,
     isPending,
     error,
   } = useQuery({
-    queryKey: detailKeys.viewCount(postingId),
+    queryKey: detailKeys.view(postingId),
     queryFn: () =>
       getData<number>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/view-count?postingId=${postingId}`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/view?postingId=${postingId}`,
       ),
   })
-  return { viewCount, isPending, error }
+  return { views, isPending, error }
 }

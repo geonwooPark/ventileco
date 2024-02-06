@@ -11,15 +11,16 @@ export async function GET(req: NextRequest) {
 
   try {
     await connectMongo()
-    const isLike = await Favorite.findOne<LikeType>({
+    const like = await Favorite.findOne<LikeType>({
       postingId,
-      userId: session?.user.id,
     })
-    if (isLike !== null) {
-      return NextResponse.json({ isLiked: true }, { status: 201 })
-    } else {
-      return NextResponse.json({ isLiked: false }, { status: 201 })
-    }
+    if (!like) return NextResponse.json(null, { status: 404 })
+
+    const isLike = like.userId.includes(session?.user.id as string)
+    return NextResponse.json(
+      { likes: like.userId.length, isLike },
+      { status: 201 },
+    )
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -28,40 +29,30 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
-  const { postingId, userId } = await req.json()
+export async function PATCH(req: NextRequest) {
+  const { postingId } = await req.json()
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json(null, { status: 404 })
 
   try {
     await connectMongo()
+
+    const like = await Favorite.findOne<LikeType>({
+      postingId,
+    })
+    if (!like) return NextResponse.json(null, { status: 404 })
+
+    const isLike = like.userId.includes(session?.user.id as string)
     await Favorite.updateOne(
       {
         postingId,
       },
-      { $push: { userId }, $inc: { count: 1 } },
+      isLike
+        ? { $pull: { userId: session?.user.id } }
+        : { $push: { userId: session?.user.id } },
     )
 
-    return NextResponse.json({ status: 201 })
-  } catch (error) {
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    )
-  }
-}
-
-export async function DELETE(req: NextRequest) {
-  const { postingId, userId } = await req.json()
-
-  try {
-    await connectMongo()
-    await Favorite.updateOne(
-      {
-        postingId,
-      },
-      { $pull: { userId }, $inc: { count: -1 } },
-    )
-
-    return NextResponse.json({ status: 204 })
+    return NextResponse.json(null, { status: 201 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },
