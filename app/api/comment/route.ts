@@ -11,8 +11,6 @@ import { revalidatePath } from 'next/cache'
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
 
-  await new Promise((resolve) => setTimeout(resolve, 3000))
-
   try {
     await connectMongo()
     const comments = await Comment.findOne<CommentType>({ postingId })
