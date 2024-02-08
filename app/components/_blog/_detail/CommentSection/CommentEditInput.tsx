@@ -7,7 +7,6 @@ import {
 import Button from '@common/Button'
 import useEditCommentMutation from '@/hooks/mutation/useEditCommentMutation'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
 
 interface CommentInputProps {
   commentText: string
@@ -18,7 +17,6 @@ export default function CommentEditInput({
   commentText,
   postingId,
 }: CommentInputProps) {
-  const router = useRouter()
   const { data: session } = useSession()
   const { commentId, userId, type } = useSelectedCommentForEdit()
   const { onReset: resetSelectedCommentIdForEdit } =
@@ -48,7 +46,6 @@ export default function CommentEditInput({
       {
         onSuccess: () => {
           resetSelectedCommentIdForEdit()
-          router.refresh()
         },
         onError: (error) => {
           toast.error(error.message)

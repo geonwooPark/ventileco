@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useState } from 'react'
 import dayjs from '@/lib/dayjs'
 import { CommentUserType } from '@/interfaces/interface'

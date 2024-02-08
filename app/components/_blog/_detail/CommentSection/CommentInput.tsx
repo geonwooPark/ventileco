@@ -5,14 +5,12 @@ import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import Button from '@common/Button'
 import usePostCommentMutation from '@/hooks/mutation/usePostCommentMutation'
-import { useRouter } from 'next/navigation'
 
 interface CommentInputProps {
   postingId: string
 }
 
 export default function CommentInput({ postingId }: CommentInputProps) {
-  const router = useRouter()
   const { data: session } = useSession()
 
   const [text, setText] = useState('')
@@ -33,7 +31,6 @@ export default function CommentInput({ postingId }: CommentInputProps) {
       {
         onSuccess: () => {
           setText('')
-          router.refresh()
         },
         onError: (error) => {
           toast.error(error.message)

@@ -1,11 +1,8 @@
-'use client'
-
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import Button from '@common/Button'
 import usePostCommentMutation from '@/hooks/mutation/usePostCommentMutation'
-import { useRouter } from 'next/navigation'
 
 interface ReplyCommentInputProps {
   postingId: string
@@ -18,7 +15,6 @@ export default function ReplyCommentInput({
   commentId,
   setReplyMode,
 }: ReplyCommentInputProps) {
-  const router = useRouter()
   const { data: session } = useSession()
 
   const [text, setText] = useState('')
@@ -39,7 +35,6 @@ export default function ReplyCommentInput({
       {
         onSuccess: () => {
           setText('')
-          router.refresh()
           setReplyMode(false)
         },
         onError: (error) => {

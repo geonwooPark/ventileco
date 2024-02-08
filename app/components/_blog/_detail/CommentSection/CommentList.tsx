@@ -1,22 +1,21 @@
+'use client'
+
 import React from 'react'
 import CommentItem from './CommentItem'
-import { CommentUserType, ReplyCommentUserType } from '@/interfaces/interface'
 import ReplyCommentItem from './ReplyCommentItem'
+import useCommentListQuery from '@/hooks/query/useCommentListQuery'
 
 interface CommentListProps {
   postingId: string
-  comments: CommentUserType[]
-  replyComments: ReplyCommentUserType[]
 }
 
-export default function CommentList({
-  postingId,
-  comments,
-  replyComments,
-}: CommentListProps) {
+export default function CommentList({ postingId }: CommentListProps) {
+  const { allComment } = useCommentListQuery(postingId)
+  if (!allComment) return
+
   return (
     <ul>
-      {comments?.map((comment) => (
+      {allComment?.comments.map((comment) => (
         <>
           <CommentItem
             key={comment.commentId}
@@ -24,7 +23,7 @@ export default function CommentList({
             comment={comment}
           />
           <ul>
-            {replyComments
+            {allComment.replyComments
               .filter((r) => r.commentId === comment.commentId)
               .map((replyComment) => (
                 <ReplyCommentItem

@@ -12,11 +12,11 @@ export default cache(async function getAllComment(postingId: string) {
     const replyComments = await ReplyComment.findOne<ReplyCommentType>({
       postingId,
     })
-    if (!comments) return {}
+    if (!comments) return { comments: [], replyComments: [] }
     if (!replyComments) return { comments: comments.user, replyComments: [] }
 
     return { comments: comments.user, replyComments: replyComments.user }
   } catch (error) {
-    return {}
+    return { comments: [], replyComments: [] }
   }
 })

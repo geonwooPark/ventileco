@@ -1,5 +1,3 @@
-'use client'
-
 import Avatar from '@/components/common/Avatar'
 import dayjs from '@/lib/dayjs'
 import { ReplyCommentUserType } from '@/interfaces/interface'

@@ -17,8 +17,8 @@ interface ModalsProps {
 }
 
 export default function Modals({ postingId }: ModalsProps) {
-  const { data: session } = useSession()
   const router = useRouter()
+  const { data: session } = useSession()
 
   const { onClose: closeDeletePostingModal } = useDeletePostingModalActions()
   const { onClose: closeDeleteCommentModal } = useDeleteCommentModalActions()
@@ -39,7 +39,6 @@ export default function Modals({ postingId }: ModalsProps) {
       {
         onSuccess: () => {
           closeDeleteCommentModal()
-          router.refresh()
         },
         onError: (error) => {
           toast.error(error.message)

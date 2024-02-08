@@ -10,7 +10,7 @@ import Main from '@common/Main'
 import Modals from '@blog/_detail/Modals/Modals'
 import ContentSection from '@/components/_blog/_detail/ContentSection'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 1800
 
 interface IParams {
   params: {
