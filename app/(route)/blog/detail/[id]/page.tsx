@@ -1,6 +1,4 @@
 import React from 'react'
-import dynamic from 'next/dynamic'
-import EmptyState from '@common/EmptyState'
 import getPosting from '@/actions/getPosting'
 import NotFound from '@/not-found'
 import { Metadata } from 'next'
@@ -10,16 +8,9 @@ import AdminControlSection from '@blog/_detail/AdminControlSection/AdminControlS
 import DetailTopSection from '@blog/_detail/DetailTopSection/DetailTopSection'
 import Main from '@common/Main'
 import Modals from '@blog/_detail/Modals/Modals'
-import Section from '@/components/common/Section'
+import ContentSection from '@/components/_blog/_detail/ContentSection'
 
-export const revalidate = 1800
-
-const Content = dynamic(() => import('@blog/common/Editor/Editor'), {
-  ssr: false,
-  loading: () => (
-    <EmptyState label="에디터를 불러오고 있어요!" className="!h-[500px]" />
-  ),
-})
+export const dynamic = 'force-dynamic'
 
 interface IParams {
   params: {
@@ -74,9 +65,7 @@ export default async function Detail({ params }: IParams) {
   return (
     <Main>
       <DetailTopSection posting={posting} />
-      <Section>
-        <Content content={posting.content} theme="bubble" readOnly={true} />
-      </Section>
+      <ContentSection content={posting.content} />
       <CommentSection postingId={id} />
       <AdminControlSection postingId={id} />
       <Modals postingId={id} />

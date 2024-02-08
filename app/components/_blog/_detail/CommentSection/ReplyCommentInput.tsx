@@ -7,11 +7,17 @@ import Button from '@common/Button'
 import usePostCommentMutation from '@/hooks/mutation/usePostCommentMutation'
 import { useRouter } from 'next/navigation'
 
-interface CommentInputProps {
+interface ReplyCommentInputProps {
   postingId: string
+  commentId: string
+  setReplyMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function CommentInput({ postingId }: CommentInputProps) {
+export default function ReplyCommentInput({
+  postingId,
+  commentId,
+  setReplyMode,
+}: ReplyCommentInputProps) {
   const router = useRouter()
   const { data: session } = useSession()
 
@@ -22,18 +28,19 @@ export default function CommentInput({ postingId }: CommentInputProps) {
     setText(value)
   }
 
-  const { mutation: postCommentMutation } = usePostCommentMutation({
+  const { mutation: postReplyCommentMutation } = usePostCommentMutation({
     session,
     postingId,
   })
-  const postComment = () => {
+  const postReplyComment = () => {
     if (!session) return
-    postCommentMutation.mutate(
-      { postingId, text },
+    postReplyCommentMutation.mutate(
+      { postingId, commentId, text },
       {
         onSuccess: () => {
           setText('')
           router.refresh()
+          setReplyMode(false)
         },
         onError: (error) => {
           toast.error(error.message)
@@ -43,12 +50,12 @@ export default function CommentInput({ postingId }: CommentInputProps) {
   }
 
   return (
-    <div className="mb-4 flex gap-2">
+    <div className="flex gap-2 py-3">
       <textarea
         cols={30}
         rows={3}
         placeholder={
-          session ? '댓글을 남겨보세요' : '로그인 후에 댓글을 남겨보세요'
+          session ? '답글을 남겨보세요' : '로그인 후에 답글을 남겨보세요'
         }
         value={text}
         disabled={session ? false : true}
@@ -59,9 +66,9 @@ export default function CommentInput({ postingId }: CommentInputProps) {
         type="button"
         level="primary"
         size="s"
-        label="댓글 작성"
+        label="답글 작성"
         className="w-24"
-        onClick={postComment}
+        onClick={postReplyComment}
         disabled={session ? false : true}
       />
     </div>

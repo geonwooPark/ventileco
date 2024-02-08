@@ -6,11 +6,11 @@ import ModalContainer from '@common/Modal/ModalContainer'
 import useDeleteCommentMutation from '@/hooks/mutation/useDeleteCommentMutation'
 import { useDeleteCommentModalActions } from '@/hooks/store/useDeleteCommentModalStore'
 import { useDeletePostingModalActions } from '@/hooks/store/useDeletePostingModalStore'
-import { useSelectedCommentIdForDeletion } from '@/hooks/store/useSelectedCommentForDeletionStore'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { toast } from 'react-toastify'
+import { useSelectedCommentForDeletion } from '@/hooks/store/useSelectedCommentForDeletionStore'
 
 interface ModalsProps {
   postingId: string
@@ -22,21 +22,25 @@ export default function Modals({ postingId }: ModalsProps) {
 
   const { onClose: closeDeletePostingModal } = useDeletePostingModalActions()
   const { onClose: closeDeleteCommentModal } = useDeleteCommentModalActions()
-  const selectedCommentIdForDeletion = useSelectedCommentIdForDeletion()
-
+  const { commentId, userId, type } = useSelectedCommentForDeletion()
   const { mutation: deleteCommentMutation } = useDeleteCommentMutation({
     session,
     postingId,
   })
+
   const deleteComment = () => {
+    if (!session || session.user.id !== userId) return
     deleteCommentMutation.mutate(
       {
-        session,
         postingId,
-        selectedCommentIdForDeletion,
+        commentId,
+        type,
       },
       {
-        onSuccess: () => closeDeleteCommentModal(),
+        onSuccess: () => {
+          closeDeleteCommentModal()
+          router.refresh()
+        },
         onError: (error) => {
           toast.error(error.message)
         },
@@ -45,6 +49,7 @@ export default function Modals({ postingId }: ModalsProps) {
   }
 
   const deletePosting = async () => {
+    if (!session || session.user.role !== 'admin') return
     try {
       await fetch('/api/posting', {
         method: 'DELETE',

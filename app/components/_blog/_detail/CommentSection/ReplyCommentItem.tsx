@@ -1,27 +1,32 @@
 'use client'
 
-import React, { useState } from 'react'
+import Avatar from '@/components/common/Avatar'
 import dayjs from '@/lib/dayjs'
-import { CommentUserType } from '@/interfaces/interface'
-import { useDeleteCommentModalActions } from '@/hooks/store/useDeleteCommentModalStore'
-import { useSelectedCommentForDeletionActions } from '@/hooks/store/useSelectedCommentForDeletionStore'
+import { ReplyCommentUserType } from '@/interfaces/interface'
+import { useSession } from 'next-auth/react'
+import React from 'react'
+import CommentEditInput from './CommentEditInput'
 import {
   useSelectedCommentForEdit,
   useSelectedCommentForEditActions,
 } from '@/hooks/store/useSelectedCommentForEditStore'
-import Avatar from '@common/Avatar'
-import CommentEditInput from './CommentEditInput'
-import { useSession } from 'next-auth/react'
-import ReplyCommentInput from './ReplyCommentInput'
+import { useSelectedCommentForDeletionActions } from '@/hooks/store/useSelectedCommentForDeletionStore'
+import { useDeleteCommentModalActions } from '@/hooks/store/useDeleteCommentModalStore'
+import { IconReplyArrow } from '../../../../../public/svgs'
 
-interface CommentItemProps {
+interface ReplyCommentItemProps {
   postingId: string
-  comment: CommentUserType
+  replyComment: ReplyCommentUserType
 }
 
-export default function CommentItem({ comment, postingId }: CommentItemProps) {
+export default function ReplyCommentItem({
+  postingId,
+  replyComment,
+}: ReplyCommentItemProps) {
   const { data: session } = useSession()
-  const { commentId, userId, userImage, userName, createdAt, text } = comment
+  const { replyCommentId, userId, userImage, userName, createdAt, text } =
+    replyComment
+
   const { onOpen: openDeleteCommentModal } = useDeleteCommentModalActions()
   const { onChange: changeSelectedCommentForDeletion } =
     useSelectedCommentForDeletionActions()
@@ -31,31 +36,25 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
     onReset: resetSelectedCommentForEdit,
   } = useSelectedCommentForEditActions()
 
-  const [replyMode, setReplyMode] = useState(false)
-
   const handleEditMode = () => {
     if (!session || userId !== session.user.id) return
-    if (selectedCommentIdForEdit === commentId) {
+    if (selectedCommentIdForEdit === replyCommentId) {
       resetSelectedCommentForEdit()
     } else {
-      changeSelectedCommentForEdit(commentId, userId, 'origin')
+      changeSelectedCommentForEdit(replyCommentId, userId, 'reply')
     }
-  }
-
-  const handleReplyMode = () => {
-    if (!session) return
-    setReplyMode((prev) => !prev)
   }
 
   const handleModal = () => {
     openDeleteCommentModal()
-    changeSelectedCommentForDeletion(commentId, userId, 'origin')
+    changeSelectedCommentForDeletion(replyCommentId, userId, 'reply')
   }
 
   return (
-    <li className="list-none border-b border-b-gray-200 px-3 py-2 text-sm">
+    <li className="list-none border-b border-b-gray-200 bg-gray-50 px-3 py-2 text-sm">
       <div className="mb-2 flex justify-between">
         <div className="flex items-center">
+          <IconReplyArrow className="mr-2" />
           <Avatar src={userImage} />
           <p className="ml-2">{userName}</p>
         </div>
@@ -63,26 +62,18 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
           {session && session.user.id === userId && (
             <>
               <button onClick={handleEditMode}>
-                {selectedCommentIdForEdit === commentId ? '취소' : '수정'}
+                {selectedCommentIdForEdit === replyCommentId ? '취소' : '수정'}
               </button>
               <button onClick={handleModal}>삭제</button>
             </>
           )}
-          <button onClick={handleReplyMode}>답글</button>
           <p>{dayjs(createdAt).tz().format('YYYY-MM-DD HH:mm')}</p>
         </small>
       </div>
-      {selectedCommentIdForEdit === commentId ? (
+      {selectedCommentIdForEdit === replyCommentId ? (
         <CommentEditInput commentText={text} postingId={postingId} />
       ) : (
-        <p>{text}</p>
-      )}
-      {replyMode && (
-        <ReplyCommentInput
-          postingId={postingId}
-          commentId={commentId}
-          setReplyMode={setReplyMode}
-        />
+        <p className="px-6">{text}</p>
       )}
     </li>
   )

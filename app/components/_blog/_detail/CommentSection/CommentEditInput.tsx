@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import { Session } from 'next-auth'
 import {
   useSelectedCommentForEditActions,
-  useSelectedCommentIdForEdit,
+  useSelectedCommentForEdit,
 } from '@/hooks/store/useSelectedCommentForEditStore'
 import Button from '@common/Button'
 import useEditCommentMutation from '@/hooks/mutation/useEditCommentMutation'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 interface CommentInputProps {
-  session: Session | null
   commentText: string
   postingId: string
 }
 
 export default function CommentEditInput({
-  session,
   commentText,
   postingId,
 }: CommentInputProps) {
-  const selectedCommentIdForEdit = useSelectedCommentIdForEdit()
+  const router = useRouter()
+  const { data: session } = useSession()
+  const { commentId, userId, type } = useSelectedCommentForEdit()
   const { onReset: resetSelectedCommentIdForEdit } =
     useSelectedCommentForEditActions()
 
@@ -36,15 +37,19 @@ export default function CommentEditInput({
   })
 
   const editComment = () => {
+    if (!session || userId !== session.user.id) return
     editCommentMutation.mutate(
       {
-        session,
         postingId,
-        selectedCommentIdForEdit,
+        commentId,
         text,
+        type,
       },
       {
-        onSuccess: () => resetSelectedCommentIdForEdit(),
+        onSuccess: () => {
+          resetSelectedCommentIdForEdit()
+          router.refresh()
+        },
         onError: (error) => {
           toast.error(error.message)
         },

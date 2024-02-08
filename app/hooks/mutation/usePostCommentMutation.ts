@@ -3,19 +3,21 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
 interface PostCommentParams {
-  session: Session | null
   postingId: string
+  commentId?: string
   text: string
 }
 
-const postComment = async ({ session, postingId, text }: PostCommentParams) => {
-  if (!session) return
-
-  await fetch('/api/comment', {
+const postComment = async ({
+  postingId,
+  commentId,
+  text,
+}: PostCommentParams) => {
+  await fetch(commentId ? '/api/reply-comment' : '/api/comment', {
     method: 'POST',
     body: JSON.stringify({
-      postingId: postingId,
-      currentUser: session?.user,
+      postingId,
+      commentId,
       text,
     }),
   })
@@ -30,11 +32,14 @@ const postComment = async ({ session, postingId, text }: PostCommentParams) => {
 export default function usePostCommentMutation({
   session,
   postingId,
-}: Pick<PostCommentParams, 'session' | 'postingId'>) {
+}: {
+  session: Session | null
+  postingId: string
+}) {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: ({ session, postingId, text }: PostCommentParams) =>
-      postComment({ session, postingId, text }),
+    mutationFn: ({ postingId, commentId, text }: PostCommentParams) =>
+      postComment({ postingId, commentId, text }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: detailKeys.comment(postingId),

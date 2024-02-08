@@ -1,29 +1,12 @@
-import { CommentType } from '@/interfaces/interface'
 import { connectMongo } from '@/lib/database'
-import { Comment } from '../../../models/comment'
+import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
-import { getServerSession } from 'next-auth'
+import { ReplyComment } from '../../../models/replyComment'
 import { authOptions } from '@/lib/authOptions'
 
-export async function GET(req: NextRequest) {
-  const postingId = req.nextUrl.searchParams.get('postingId')
-
-  try {
-    await connectMongo()
-    const comment = await Comment.findOne<CommentType>({ postingId })
-
-    return NextResponse.json(comment?.user, { status: 200 })
-  } catch (error) {
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    )
-  }
-}
-
 export async function POST(req: NextRequest) {
-  const { postingId, text } = await req.json()
+  const { postingId, commentId, text } = await req.json()
   const session = await getServerSession(authOptions)
 
   if (!text) {
@@ -32,14 +15,15 @@ export async function POST(req: NextRequest) {
 
   try {
     await connectMongo()
-    const comment = await Comment.findOneAndUpdate(
+    const comment = await ReplyComment.findOneAndUpdate(
       {
         postingId,
       },
       {
         $push: {
           user: {
-            commentId: uuid(),
+            commentId,
+            replyCommentId: uuid(),
             userImage: session?.user.image,
             userId: session?.user.id,
             userName: session?.user.name,
@@ -64,11 +48,11 @@ export async function DELETE(req: NextRequest) {
 
   try {
     await connectMongo()
-    const comment = await Comment.findOneAndUpdate(
+    const comment = await ReplyComment.findOneAndUpdate(
       {
         postingId,
       },
-      { $pull: { user: { commentId } } },
+      { $pull: { user: { replyCommentId: commentId } } },
       { new: true },
     )
 
@@ -90,12 +74,12 @@ export async function PATCH(req: NextRequest) {
 
   try {
     await connectMongo()
-    const comment = await Comment.findOneAndUpdate(
+    const comment = await ReplyComment.findOneAndUpdate(
       {
         postingId,
       },
       { $set: { 'user.$[elem].text': text } },
-      { arrayFilters: [{ 'elem.commentId': commentId }], new: true },
+      { arrayFilters: [{ 'elem.replyCommentId': commentId }], new: true },
     )
     return NextResponse.json(comment.user, { status: 200 })
   } catch (error) {

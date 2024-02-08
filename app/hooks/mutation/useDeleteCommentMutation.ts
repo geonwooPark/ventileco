@@ -3,23 +3,21 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
 interface DeleteCommentParams {
-  session: Session | null
   postingId: string
-  selectedCommentIdForDeletion: string
+  commentId: string
+  type: 'origin' | 'reply'
 }
 
 const deleteComment = async ({
-  session,
   postingId,
-  selectedCommentIdForDeletion,
+  commentId,
+  type,
 }: DeleteCommentParams) => {
-  if (!session) return
-
-  await fetch('/api/comment', {
+  await fetch(type === 'origin' ? '/api/comment' : '/api/reply-comment', {
     method: 'DELETE',
     body: JSON.stringify({
       postingId,
-      commentId: selectedCommentIdForDeletion,
+      commentId,
     }),
   })
     .then((res) => res.json())
@@ -33,15 +31,14 @@ const deleteComment = async ({
 export default function useDeleteCommentMutation({
   session,
   postingId,
-}: Pick<DeleteCommentParams, 'session' | 'postingId'>) {
+}: {
+  session: Session | null
+  postingId: string
+}) {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: ({
-      session,
-      postingId,
-      selectedCommentIdForDeletion,
-    }: DeleteCommentParams) =>
-      deleteComment({ session, postingId, selectedCommentIdForDeletion }),
+    mutationFn: ({ postingId, commentId, type }: DeleteCommentParams) =>
+      deleteComment({ postingId, commentId, type }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: detailKeys.comment(postingId),
