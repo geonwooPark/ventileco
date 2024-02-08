@@ -44,7 +44,7 @@ export default function AddedBookList({ category }: AddedBookListProps) {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        await fetch(`/api/added-book?category=${category}&lastItem=${lastItem}`)
+        await fetch(`/api/book?category=${category}&lastItem=${lastItem}`)
           .then((res) => res.json())
           .then((result) => {
             if (result.length === 0) return

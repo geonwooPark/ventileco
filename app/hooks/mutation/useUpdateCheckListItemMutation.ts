@@ -18,7 +18,7 @@ const changeStatus = async ({
   today,
 }: UpdateStatus) => {
   if (session?.user.role !== 'admin' || date !== today) return
-  await fetch('/api/check-list', {
+  await fetch('/api/home/check-list', {
     method: 'PATCH',
     body: JSON.stringify({ listId, status, today }),
   })

@@ -1,6 +1,6 @@
 import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
-import { HotPlace } from '../../../models/hot-place'
+import { HotPlace } from '../../../../models/hot-place'
 
 export async function GET(req: NextRequest) {
   const keyword = req.nextUrl.searchParams.get('keyword')

@@ -1,10 +1,10 @@
 import { PostingType } from '@/interfaces/interface'
 import { connectMongo } from '@/lib/database'
-import { Comment } from '../../../models/comment'
-import { Favorite } from '../../../models/favorite'
-import { Posting } from '../../../models/posting'
+import { Comment } from '../../../../models/comment'
+import { Favorite } from '../../../../models/favorite'
+import { Posting } from '../../../../models/posting'
 import { NextRequest, NextResponse } from 'next/server'
-import { ReplyComment } from '../../../models/replyComment'
+import { ReplyComment } from '../../../../models/replyComment'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')

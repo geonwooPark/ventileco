@@ -8,7 +8,7 @@ export default function useNewArrivalsQuery() {
     queryKey: homeKeys.newArrivals(),
     queryFn: () =>
       getData<PostingType[]>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/new-arrivals`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/home/new-arrivals`,
       ),
     staleTime: 1000 * 60 * 60 * 10, // 10시간
     gcTime: 1000 * 60 * 60 * 10, // 10시간

@@ -1,6 +1,6 @@
 import { PostingType } from '@/interfaces/interface'
 import { connectMongo } from '@/lib/database'
-import { Posting } from '../../../models/posting'
+import { Posting } from '../../../../models/posting'
 import { NextResponse } from 'next/server'
 
 export async function GET() {

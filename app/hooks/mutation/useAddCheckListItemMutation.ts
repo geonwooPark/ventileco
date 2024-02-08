@@ -15,7 +15,7 @@ const addCheckListItem = async ({
 }: AddCheckListItemParams) => {
   if (session?.user.role !== 'admin') return
 
-  await fetch('/api/check-list', {
+  await fetch('/api/home/check-list', {
     method: 'POST',
     body: JSON.stringify({ value, today }),
   })

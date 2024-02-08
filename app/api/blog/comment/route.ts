@@ -1,11 +1,11 @@
 import { CommentType, ReplyCommentType } from '@/interfaces/interface'
 import { connectMongo } from '@/lib/database'
-import { Comment } from '../../../models/comment'
+import { Comment } from '../../../../models/comment'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/authOptions'
-import { ReplyComment } from '../../../models/replyComment'
+import { ReplyComment } from '../../../../models/replyComment'
 import { revalidatePath } from 'next/cache'
 
 export async function GET(req: NextRequest) {

@@ -1,5 +1,5 @@
 import { connectMongo } from '@/lib/database'
-import { Favorite } from '../../../models/favorite'
+import { Favorite } from '../../../../models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 import { LikeType } from '@/interfaces/interface'
 

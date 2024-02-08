@@ -16,7 +16,7 @@ const deleteCheckListItem = async ({
   today,
 }: DeleteCheckListItemParams) => {
   if (session?.user.role !== 'admin' || date !== today) return
-  await fetch('/api/check-list', {
+  await fetch('/api/home/check-list', {
     method: 'DELETE',
     body: JSON.stringify({ listId, today }),
   })

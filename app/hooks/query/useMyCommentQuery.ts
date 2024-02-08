@@ -9,7 +9,7 @@ export default function useMyCommentQuery(session: Session | null) {
     queryKey: myPageKeys.myComment(session?.user.id),
     queryFn: () =>
       getData<MyCommentType[]>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/my-comment?userId=${session?.user.id}`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/mypage/my-comment?userId=${session?.user.id}`,
       ),
     staleTime: 1000 * 60 * 5, // 5분
     gcTime: 1000 * 60 * 5, // 5분

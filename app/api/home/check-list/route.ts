@@ -2,7 +2,7 @@ import { CheckListType } from '@/interfaces/interface'
 import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
-import { CheckList } from '../../../models/checklist'
+import { CheckList } from '../../../../models/checklist'
 
 export async function GET(req: NextRequest) {
   const date = req.nextUrl.searchParams.get('date')

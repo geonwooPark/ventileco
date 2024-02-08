@@ -15,14 +15,17 @@ const editComment = async ({
   text,
   type,
 }: EditCommentParams) => {
-  await fetch(type === 'origin' ? '/api/comment' : '/api/reply-comment', {
-    method: 'PATCH',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-      text,
-    }),
-  })
+  await fetch(
+    type === 'origin' ? '/api/blog/comment' : '/api/blog/reply-comment',
+    {
+      method: 'PATCH',
+      body: JSON.stringify({
+        postingId,
+        commentId,
+        text,
+      }),
+    },
+  )
     .then((res) => res.json())
     .then((result) => {
       if (result.error) {

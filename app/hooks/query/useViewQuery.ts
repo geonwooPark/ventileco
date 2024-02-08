@@ -11,7 +11,7 @@ export default function useViewQuery(postingId: string) {
     queryKey: detailKeys.view(postingId),
     queryFn: () =>
       getData<number>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/view?postingId=${postingId}`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/blog/view?postingId=${postingId}`,
       ),
   })
   return { views, isPending, error }

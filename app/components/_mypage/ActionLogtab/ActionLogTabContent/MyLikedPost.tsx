@@ -34,7 +34,9 @@ export default function MyLikedPost() {
                 <p>{posting.title}</p>
               </Link>
             </td>
-            <td className="w-[100px] text-center text-sm">{posting.count}</td>
+            <td className="w-[100px] text-center text-sm">
+              {posting.userId.length}
+            </td>
             <td className="w-[100px] text-center text-sm">
               {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
             </td>

@@ -13,13 +13,16 @@ const deleteComment = async ({
   commentId,
   type,
 }: DeleteCommentParams) => {
-  await fetch(type === 'origin' ? '/api/comment' : '/api/reply-comment', {
-    method: 'DELETE',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-    }),
-  })
+  await fetch(
+    type === 'origin' ? '/api/blog/comment' : '/api/blog/reply-comment',
+    {
+      method: 'DELETE',
+      body: JSON.stringify({
+        postingId,
+        commentId,
+      }),
+    },
+  )
     .then((res) => res.json())
     .then((result) => {
       if (result.error) {

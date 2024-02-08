@@ -13,7 +13,7 @@ const postComment = async ({
   commentId,
   text,
 }: PostCommentParams) => {
-  await fetch(commentId ? '/api/reply-comment' : '/api/comment', {
+  await fetch(commentId ? '/api/blog/reply-comment' : '/api/blog/comment', {
     method: 'POST',
     body: JSON.stringify({
       postingId,

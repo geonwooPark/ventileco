@@ -1,5 +1,5 @@
 import { connectMongo } from '@/lib/database'
-import { User } from '../../../models/user'
+import { User } from '../../../../models/user'
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcrypt'
 

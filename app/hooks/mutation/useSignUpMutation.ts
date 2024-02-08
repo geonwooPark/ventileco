@@ -7,7 +7,7 @@ interface FormData {
 }
 
 const handleSignUp = async (data: FormData) => {
-  await fetch('/api/signup', {
+  await fetch('/api/auth/signup', {
     method: 'POST',
     body: JSON.stringify(data),
   })

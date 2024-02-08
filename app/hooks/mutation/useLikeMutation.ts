@@ -7,7 +7,7 @@ interface HandleLikeParams {
 }
 
 const handleLike = async ({ postingId }: HandleLikeParams) => {
-  const response = await fetch('/api/like', {
+  const response = await fetch('/api/blog/like', {
     method: 'PATCH',
     body: JSON.stringify({
       postingId: postingId,
