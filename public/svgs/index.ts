@@ -5,6 +5,8 @@ import RabbitEyeRight from './RabbitEyeRight.svg'
 import StoreCategory from './StoreCategory.svg'
 import StarSmall from './StarSmall.svg'
 import StarSmallLeft from './StarSmallLeft.svg'
+import IconReplyArrow from './IconReplyArrow.svg'
+
 
 export {
   Rabbit,
@@ -14,4 +16,5 @@ export {
   StoreCategory,
   StarSmall,
   StarSmallLeft,
+  IconReplyArrow,
 }

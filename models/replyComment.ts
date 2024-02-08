@@ -1,6 +1,6 @@
 import mongoose, { Schema, models } from 'mongoose'
 
-const favoriteSchema = new Schema(
+const replyCommentSchema = new Schema(
   {
     postingId: {
       type: String,
@@ -11,13 +11,12 @@ const favoriteSchema = new Schema(
       type: String,
       required: true,
     },
-    userId: {
+    user: {
       type: Array,
-      // unique: true,
     },
   },
   { timestamps: true, versionKey: false },
 )
 
-export const Favorite =
-  models.Favorite || mongoose.model('Favorite', favoriteSchema)
+export const ReplyComment =
+  models.ReplyComment || mongoose.model('ReplyComment', replyCommentSchema)

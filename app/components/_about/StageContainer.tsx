@@ -7,7 +7,6 @@ import StageOne from '@about/Stage/StageOne'
 import StageThree from '@about/Stage/StageThree'
 import StageTwo from '@about/Stage/StageTwo'
 import ScrollIcon from './ScrollIcon'
-import FireworkAnimation from '../common/Animation/FireworkAnimation'
 
 export default function StageContainer() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -62,7 +61,6 @@ export default function StageContainer() {
       ref={containerRef}
     >
       {showScrollIcon && <ScrollIcon />}
-      {!showScrollIcon && <FireworkAnimation />}
       <StageOne />
       <StageTwo />
       <StageThree />

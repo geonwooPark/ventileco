@@ -34,12 +34,31 @@ export interface CommentUserType {
   text: string
 }
 
+export interface ReplyCommentUserType {
+  commentId: string
+  replyCommentId: string
+  userImage: string
+  userId: string
+  userName: string
+  createdAt: Date
+  text: string
+}
+
 export interface CommentType {
-  _doc?: any
+  // _doc?: any
   _id: string
   postingId: string
   title: string
   user: CommentUserType[]
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface ReplyCommentType {
+  _id: string
+  postingId: string
+  title: string
+  user: ReplyCommentUserType[]
   createdAt: Date
   updatedAt: Date
 }

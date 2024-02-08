@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import getData from '../../actions/getData'
 import { detailKeys } from '@/constants/queryKey'
 
-export default function useIsLikedQuery(postingId: string) {
+export default function useLikeQuery(postingId: string) {
   const { data, isPending, error } = useQuery({
-    queryKey: detailKeys.isLiked(postingId),
+    queryKey: detailKeys.like(postingId),
     queryFn: () =>
-      getData<{ isLiked: boolean }>(
+      getData<{ likes: number; isLike: boolean }>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/like?postingId=${postingId}`,
       ),
     staleTime: 1000 * 60 * 3, // 3분

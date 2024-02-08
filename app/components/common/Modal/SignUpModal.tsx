@@ -12,6 +12,7 @@ import {
   useSignUpModalIsOpen,
 } from '@/hooks/store/useSignUpModalStore'
 import useSignUpMutation from '@/hooks/mutation/useSignUpMutation'
+import { useFireWorkActions } from '@/hooks/store/useFireWorkStore'
 
 interface SignUpFormDataType {
   email: string
@@ -24,6 +25,7 @@ export default function SignUpModal() {
   const { onClose: closeSignUpModal } = useSignUpModalActions()
   const { onOpen: openLoginModal } = useLoginModalActions()
   const { mutation: signUpMutation } = useSignUpMutation()
+  const { onOpen: openFireWork } = useFireWorkActions()
 
   const { register, handleSubmit, reset } = useForm<SignUpFormDataType>({
     defaultValues: {
@@ -39,6 +41,7 @@ export default function SignUpModal() {
         reset()
         closeSignUpModal()
         toast.success('회원가입에 성공했습니다!')
+        openFireWork()
       },
       onError: (error) => {
         toast.error(error.message)

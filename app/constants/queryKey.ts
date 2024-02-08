@@ -13,15 +13,10 @@ export const detailKeys = {
   comments: () => [...detailKeys.base, 'comments'] as const,
   comment: (postingId: string) =>
     [...detailKeys.comments(), { postingId }] as const,
-  isLikeds: () => [...detailKeys.base, 'isLiked'] as const,
-  isLiked: (postingId: string) =>
-    [...detailKeys.isLikeds(), { postingId }] as const,
-  likeCounts: () => [...detailKeys.base, 'like-count'] as const,
-  likeCount: (postingId: string) =>
-    [...detailKeys.likeCounts(), { postingId }] as const,
-  viewCounts: () => [...detailKeys.base, 'view-count'] as const,
-  viewCount: (postingId: string) =>
-    [...detailKeys.viewCounts(), { postingId }] as const,
+  likes: () => [...detailKeys.base, 'likes'] as const,
+  like: (postingId: string) => [...detailKeys.likes(), { postingId }] as const,
+  views: () => [...detailKeys.base, 'views'] as const,
+  view: (postingId: string) => [...detailKeys.views(), { postingId }] as const,
 }
 
 // Mypage 페이지

@@ -4,14 +4,14 @@ import React from 'react'
 import { AiFillEye } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 import Spinner from '@common/Spinner'
-import useViewCountQuery from '@/hooks/query/useViewCountQuery'
+import useViewQuery from '@/hooks/query/useViewQuery'
 
 interface ViewCounterProps {
   postingId: string
 }
 
 export default function ViewCounter({ postingId }: ViewCounterProps) {
-  const { viewCount, isPending, error } = useViewCountQuery(postingId)
+  const { views, isPending, error } = useViewQuery(postingId)
 
   if (error) {
     toast.error(error.message)
@@ -26,7 +26,7 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
         {isPending ? (
           <Spinner width="w-3" height="h-3" fillColor="fill-blue-600" />
         ) : (
-          viewCount
+          views
         )}
       </div>
     </div>

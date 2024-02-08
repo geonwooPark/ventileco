@@ -4,6 +4,7 @@ import { Comment } from '../../../models/comment'
 import { Favorite } from '../../../models/favorite'
 import { Posting } from '../../../models/posting'
 import { NextRequest, NextResponse } from 'next/server'
+import { ReplyComment } from '../../../models/replyComment'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
@@ -56,6 +57,10 @@ export async function POST(req: NextRequest) {
       postingId: newPosting._id,
       title,
     })
+    await ReplyComment.create({
+      postingId: newPosting._id,
+      title,
+    })
     await Favorite.create({
       postingId: newPosting._id,
       title,
@@ -76,6 +81,7 @@ export async function DELETE(req: NextRequest) {
     await Posting.findByIdAndDelete({ _id: id })
     await Favorite.deleteMany({ postingId: id })
     await Comment.deleteMany({ postingId: id })
+    await ReplyComment.deleteMany({ postingId: id })
 
     return NextResponse.json({ message: '글 삭제 성공!' }, { status: 200 })
   } catch (error) {

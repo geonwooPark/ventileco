@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../../../common/Button'
+import Link from 'next/link'
 
 export default function RecommendedBookHeader() {
   return (
@@ -13,13 +14,15 @@ export default function RecommendedBookHeader() {
             내 맘대로 뽑은 읽으면 언젠가 도움 되는 책들...
           </p>
         </div>
-        <Button
-          type="button"
-          level="outline"
-          label="더보기"
-          size="l"
-          fullWidth={true}
-        />
+        <Link href={'/book/recommended'}>
+          <Button
+            type="button"
+            level="outline"
+            label="더보기"
+            size="l"
+            fullWidth={true}
+          />
+        </Link>
       </div>
     </div>
   )

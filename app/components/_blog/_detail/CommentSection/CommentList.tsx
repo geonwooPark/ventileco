@@ -1,10 +1,8 @@
 'use client'
 
 import React from 'react'
-import { toast } from 'react-toastify'
 import CommentItem from './CommentItem'
-import SkeletonCommentList from './SkeletonCommentList'
-import { useSession } from 'next-auth/react'
+import ReplyCommentItem from './ReplyCommentItem'
 import useCommentListQuery from '@/hooks/query/useCommentListQuery'
 
 interface CommentListProps {
@@ -12,26 +10,31 @@ interface CommentListProps {
 }
 
 export default function CommentList({ postingId }: CommentListProps) {
-  const { data: session } = useSession()
-  const { comments, isPending, error } = useCommentListQuery(postingId)
-
-  if (error) {
-    toast.error(error.message)
-  }
-  if (isPending) return <SkeletonCommentList />
+  const { allComment } = useCommentListQuery(postingId)
+  if (!allComment) return
 
   return (
     <ul>
-      {comments?.map((comment) => {
-        return (
+      {allComment?.comments.map((comment) => (
+        <>
           <CommentItem
             key={comment.commentId}
-            session={session}
             postingId={postingId}
             comment={comment}
           />
-        )
-      })}
+          <ul>
+            {allComment.replyComments
+              .filter((r) => r.commentId === comment.commentId)
+              .map((replyComment) => (
+                <ReplyCommentItem
+                  key={replyComment.replyCommentId}
+                  postingId={postingId}
+                  replyComment={replyComment}
+                />
+              ))}
+          </ul>
+        </>
+      ))}
     </ul>
   )
 }

@@ -4,14 +4,14 @@ import React from 'react'
 import { AiFillHeart } from 'react-icons/ai'
 import { toast } from 'react-toastify'
 import Spinner from '@common/Spinner'
-import useLikeCountQuery from '@/hooks/query/useLikeCountQuery'
+import useLikeQuery from '@/hooks/query/useLikeQuery'
 
 interface LikeCounterProps {
   postingId: string
 }
 
 export default function LikeCounter({ postingId }: LikeCounterProps) {
-  const { likeCount, isPending, error } = useLikeCountQuery(postingId)
+  const { data, isPending, error } = useLikeQuery(postingId)
 
   if (error) {
     toast.error(error.message)
@@ -26,7 +26,7 @@ export default function LikeCounter({ postingId }: LikeCounterProps) {
         {isPending ? (
           <Spinner width="w-3" height="w-3" fillColor="fill-blue-600" />
         ) : (
-          likeCount
+          data?.likes
         )}
       </div>
     </div>
