@@ -1,14 +1,15 @@
 import { BookReviewFormDataType } from '@/interfaces/interface'
 import { useMutation } from '@tanstack/react-query'
 
-interface WriteBookReviewParams {
+interface EditBookReviewParams {
   data: BookReviewFormDataType
+  bookId: string
 }
 
-const writeBookReview = async ({ data }: WriteBookReviewParams) => {
+const editBookReview = async ({ data, bookId }: EditBookReviewParams) => {
   await fetch('/api/book', {
-    method: 'POST',
-    body: JSON.stringify(data),
+    method: 'PUT',
+    body: JSON.stringify({ data, bookId }),
   })
     .then((res) => res.json())
     .then((result) => {
@@ -18,9 +19,10 @@ const writeBookReview = async ({ data }: WriteBookReviewParams) => {
     })
 }
 
-export default function useWriteBookReviewMutation() {
+export default function useEditBookReviewMutation() {
   const mutation = useMutation({
-    mutationFn: ({ data }: WriteBookReviewParams) => writeBookReview({ data }),
+    mutationFn: ({ data, bookId }: EditBookReviewParams) =>
+      editBookReview({ data, bookId }),
     onSuccess: () => {},
   })
 

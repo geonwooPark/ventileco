@@ -1,20 +1,20 @@
 'use client'
 
-import React from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import BookTitleInput from './BookTitleInput'
-import BookRecommendationToggle from './BookRecommendationToggle'
-import Button from '../../common/Button'
+import Button from '@/components/common/Button'
+import EmptyState from '@/components/common/EmptyState'
+import { BookReviewFormDataType, BookReviewType } from '@/interfaces/interface'
 import dynamic from 'next/dynamic'
-import EmptyState from '../../common/EmptyState'
-import BookCategorySelector from './BookCategorySelector'
-import useWriteBookReviewMutation from '@/hooks/mutation/useWriteBookReviewMutation'
-import { useSession } from 'next-auth/react'
+import React from 'react'
+import BookTitleInput from '../_write/BookTitleInput'
+import BookCategorySelector from '../_write/BookCategorySelector'
+import BookRecommendationToggle from '../_write/BookRecommendationToggle'
 import { toast } from 'react-toastify'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { BookReviewFormDataType } from '@/interfaces/interface'
+import useEditBookReviewMutation from '@/hooks/mutation/useEditBookReviewMutation'
 
-const BookReviewInput = dynamic(() => import('./BookReviewInput'), {
+const BookReviewInput = dynamic(() => import('../_write/BookReviewInput'), {
   ssr: false,
   loading: () => (
     <EmptyState
@@ -24,41 +24,57 @@ const BookReviewInput = dynamic(() => import('./BookReviewInput'), {
   ),
 })
 
-export default function BookReviewForm() {
+interface BookReviewEditFormProps {
+  review: BookReviewType
+}
+
+export default function BookReviewEditForm({
+  review,
+}: BookReviewEditFormProps) {
   const router = useRouter()
   const { data: session } = useSession()
+  const {
+    _id,
+    recommended,
+    title,
+    description,
+    authors,
+    thumbnail,
+    content: prevContent,
+    category,
+  } = review
   const {
     register,
     handleSubmit,
     setValue,
     getValues,
-    clearErrors,
     reset,
+    clearErrors,
     formState: { errors },
   } = useForm<BookReviewFormDataType>({
     defaultValues: {
-      recommended: false,
-      title: '',
-      description: '',
-      authors: [],
-      thumbnail: '',
-      content: '',
-      category: '',
+      recommended,
+      title,
+      description,
+      authors,
+      thumbnail,
+      content: prevContent,
+      category,
     },
   })
   const content = getValues('content')
-  const { mutation: writeBookReviewMutation } = useWriteBookReviewMutation()
+  const { mutation: editBookReviewMutation } = useEditBookReviewMutation()
 
   const onSubmit: SubmitHandler<BookReviewFormDataType> = async (data) => {
     if (!session || session.user.role !== 'admin')
       throw new Error('권한이 없습니다!')
-    writeBookReviewMutation.mutate(
-      { data },
+    editBookReviewMutation.mutate(
+      { data, bookId: _id },
       {
         onSuccess: () => {
           reset()
-          router.push('/book')
-          toast.success('도서 등록 완료!')
+          router.push(`/book/detail/${_id.toString()}`)
+          toast.success('도서 수정 완료!')
         },
         onError: (error) => {
           toast.error(error.message)
@@ -80,7 +96,10 @@ export default function BookReviewForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <BookRecommendationToggle recommendedRegister={recommendedRegister} />
+      <BookRecommendationToggle
+        recommendedRegister={recommendedRegister}
+        recommended={recommended}
+      />
       <BookCategorySelector
         categoryRegister={categoryRegister}
         errorMessage={errors.category?.message}
@@ -101,9 +120,9 @@ export default function BookReviewForm() {
         level="primary"
         size="s"
         fullWidth={true}
-        label="등록하기"
+        label="수정하기"
         onClick={handleSubmit(onSubmit)}
-        disabled={writeBookReviewMutation.isPending}
+        disabled={editBookReviewMutation.isPending}
       />
     </form>
   )

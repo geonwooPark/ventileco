@@ -40,3 +40,19 @@ export async function POST(req: NextRequest) {
     )
   }
 }
+
+export async function PUT(req: NextRequest) {
+  const { data, bookId } = await req.json()
+
+  try {
+    await connectMongo()
+    await Book.updateOne({ _id: bookId }, data)
+
+    return NextResponse.json({ message: '스토어 수정 성공!' }, { status: 201 })
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    )
+  }
+}
