@@ -50,8 +50,8 @@ export default function BookReviewForm() {
   const { mutation: writeBookReviewMutation } = useWriteBookReviewMutation()
 
   const onSubmit: SubmitHandler<BookReviewFormDataType> = async (data) => {
-    if (!session || session.user.role !== 'admin')
-      throw new Error('권한이 없습니다!')
+    if (!session || session.user.role !== 'admin') return
+
     writeBookReviewMutation.mutate(
       { data },
       {

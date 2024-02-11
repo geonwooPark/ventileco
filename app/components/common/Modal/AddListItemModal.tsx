@@ -26,8 +26,10 @@ export default function AddListItemModal() {
     today,
   })
   const addCheckListItem = () => {
+    if (session?.user.role !== 'admin') return
+
     addCheckListItemMutation.mutate(
-      { session, value, today },
+      { value, today },
       {
         onSuccess: () => {
           setValue('')

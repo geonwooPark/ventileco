@@ -7,16 +7,11 @@ interface EditBookReviewParams {
 }
 
 const editBookReview = async ({ data, bookId }: EditBookReviewParams) => {
-  await fetch('/api/book', {
+  const result = await fetch('/api/book', {
     method: 'PUT',
     body: JSON.stringify({ data, bookId }),
   })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  if (!result.ok) throw new Error('리뷰 수정에 실패했습니다!')
 }
 
 export default function useEditBookReviewMutation() {

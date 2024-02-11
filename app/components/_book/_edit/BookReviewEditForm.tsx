@@ -66,15 +66,15 @@ export default function BookReviewEditForm({
   const { mutation: editBookReviewMutation } = useEditBookReviewMutation()
 
   const onSubmit: SubmitHandler<BookReviewFormDataType> = async (data) => {
-    if (!session || session.user.role !== 'admin')
-      throw new Error('권한이 없습니다!')
+    if (!session || session.user.role !== 'admin') return
+
     editBookReviewMutation.mutate(
       { data, bookId: _id },
       {
         onSuccess: () => {
           reset()
           router.push(`/book/detail/${_id.toString()}`)
-          toast.success('도서 수정 완료!')
+          toast.success('리뷰 수정 완료!')
         },
         onError: (error) => {
           toast.error(error.message)

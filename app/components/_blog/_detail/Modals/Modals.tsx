@@ -30,6 +30,7 @@ export default function Modals({ postingId }: ModalsProps) {
 
   const deleteComment = () => {
     if (!session || session.user.id !== userId) return
+
     deleteCommentMutation.mutate(
       {
         postingId,

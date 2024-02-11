@@ -7,16 +7,13 @@ interface FormData {
 }
 
 const handleSignUp = async (data: FormData) => {
-  await fetch('/api/auth/signup', {
+  const result = await fetch('/api/auth/signup', {
     method: 'POST',
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  if (!result.ok) {
+    throw new Error('회원가입에 실패했습니다!')
+  }
 }
 
 export default function useSignUpMutation() {

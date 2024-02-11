@@ -17,8 +17,8 @@ export default function DeleteModalBody({ bookId }: DeleteModalBodyProps) {
   const { mutation: deleteStoreMutation } = useDeleteReviewMutation()
 
   const deleteReview = () => {
-    if (!session || session.user.role !== 'admin')
-      throw new Error('권한이 없습니다!')
+    if (!session || session.user.role !== 'admin') return
+
     deleteStoreMutation.mutate(
       {
         bookId,

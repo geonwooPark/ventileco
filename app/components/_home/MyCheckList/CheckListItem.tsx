@@ -22,25 +22,26 @@ export default function CheckListItem({
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const { mutation: deleteCheckListItemMutation } =
-    useDeleteCheckListItemMutation({ session, date, today })
+    useDeleteCheckListItemMutation({ today })
   const deleteCheckListItem = () => {
+    if (session?.user.role !== 'admin' || date !== today) return
+
     deleteCheckListItemMutation.mutate({
       listId: item.listId,
-      session,
       today,
-      date,
     })
   }
 
   const { mutation: updateCheckListItemMutation } =
-    useUpdateCheckListItemMutation({ session, date, today })
+    useUpdateCheckListItemMutation({ today })
+
   const updateCheckListItem = () => {
+    if (session?.user.role !== 'admin' || date !== today) return
+
     updateCheckListItemMutation.mutate(
       {
         listId: item.listId,
         status: item.status,
-        session,
-        date,
         today,
       },
       {

@@ -7,13 +7,13 @@ interface HandleLikeParams {
 }
 
 const handleLike = async ({ postingId }: HandleLikeParams) => {
-  const response = await fetch('/api/blog/like', {
+  const result = await fetch('/api/blog/like', {
     method: 'PATCH',
     body: JSON.stringify({
       postingId: postingId,
     }),
   })
-  if (!response.ok) throw new Error('좋아요 기능에 에러가 발생했어요!')
+  if (!result.ok) throw new Error('좋아요 기능에 에러가 발생했어요!')
 }
 
 export default function useLikeMutation({

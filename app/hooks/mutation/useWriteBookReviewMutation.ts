@@ -6,16 +6,13 @@ interface WriteBookReviewParams {
 }
 
 const writeBookReview = async ({ data }: WriteBookReviewParams) => {
-  await fetch('/api/book', {
+  const result = await fetch('/api/book', {
     method: 'POST',
     body: JSON.stringify(data),
   })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  if (!result.ok) {
+    throw new Error('리뷰 작성에 실패했습니다!')
+  }
 }
 
 export default function useWriteBookReviewMutation() {

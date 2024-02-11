@@ -3,13 +3,11 @@ import { useMutation } from '@tanstack/react-query'
 import { signIn } from 'next-auth/react'
 
 const handleOAuthLogin = async (oauth: OAuthType) => {
-  try {
-    await signIn(oauth)
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message)
+  await signIn(oauth).then((callback) => {
+    if (callback?.error) {
+      throw new Error(callback.error)
     }
-  }
+  })
 }
 
 export default function useOAuthLoginMutation() {

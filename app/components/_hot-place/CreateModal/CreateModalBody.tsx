@@ -45,8 +45,10 @@ export default function CreateModalBody() {
   const { mutation: createHotPlaceMutation } = useCreateHotPlaceMutation()
 
   const onSubmit: SubmitHandler<HotPlaceFormDataType> = async (data) => {
+    if (!session) return
+
     createHotPlaceMutation.mutate(
-      { data, session },
+      { data },
       {
         onSuccess: () => {
           reset()
