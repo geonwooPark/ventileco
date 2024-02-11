@@ -25,14 +25,17 @@ export const metadata: Metadata = {
 
 export default async function Layout({
   children,
+  modal,
 }: {
   children: React.ReactNode
+  modal: React.ReactNode
 }) {
   return (
     <div className="h-full">
       <HeaderBgColor />
       <div className="h-auto min-h-[100%] bg-white pt-[82px] md:pt-[102px]">
         {children}
+        {modal}
       </div>
     </div>
   )

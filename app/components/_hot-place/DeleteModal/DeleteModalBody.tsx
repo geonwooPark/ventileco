@@ -18,23 +18,32 @@ export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
   const { mutation: deleteStoreMutation } = useDeleteHotPlaceMutation()
 
   const deleteStore = () => {
-    if (!creator) return
-    deleteStoreMutation.mutate(
-      {
-        session,
-        storeId,
-        creator,
-      },
-      {
-        onSuccess: () => {
-          router.back()
-          toast.success('스토어 제거 성공!')
+    try {
+      if (!session || !creator) throw new Error('권한이 없습니다!')
+      if (creator !== session?.user.id && session?.user.role !== 'admin') {
+        throw new Error('권한이 없습니다!')
+      }
+
+      deleteStoreMutation.mutate(
+        {
+          storeId,
+          creator,
         },
-        onError: (error) => {
-          toast.error(error.message)
+        {
+          onSuccess: () => {
+            router.back()
+            toast.success('스토어 제거 성공!')
+          },
+          onError: (error) => {
+            toast.error(error.message)
+          },
         },
-      },
-    )
+      )
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
+    }
   }
 
   return (

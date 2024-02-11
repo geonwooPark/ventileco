@@ -1,10 +1,13 @@
 import getAllBook from '@/actions/getAllBook'
 import getBookReview from '@/actions/getBookReview'
+import AdminButton from '@/components/_book/_detail/AdminButton'
 import ReviewContent from '@/components/_book/_detail/ReviewContent'
 import Main from '@/components/common/Main'
 import Section from '@/components/common/Section'
+import { authOptions } from '@/lib/authOptions'
 import NotFound from '@/not-found'
 import { Metadata } from 'next'
+import { getServerSession } from 'next-auth'
 import Image from 'next/image'
 import React from 'react'
 
@@ -54,14 +57,18 @@ export async function generateStaticParams() {
 
 export default async function page({ params }: IParams) {
   const { id } = params
+  const session = await getServerSession(authOptions)
   const review = await getBookReview(id)
   if (!review) return NotFound()
-  const { title, authors, thumbnail, content } = review
+  const { _id, title, authors, thumbnail, content } = review
 
   return (
     <Main>
       <Section>
-        <div className="mb-3 flex h-[320px] items-center justify-center rounded-md bg-gray-100">
+        <div className="relative mb-3 flex h-[320px] items-center justify-center rounded-md bg-gray-100">
+          {session && session.user.role === 'admin' && (
+            <AdminButton bookId={_id} />
+          )}
           <div className="book-cover relative">
             <Image src={thumbnail} alt={title} fill objectFit="fill" />
           </div>
