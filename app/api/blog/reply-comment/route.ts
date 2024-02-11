@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
 import { ReplyComment } from '../../../../models/replyComment'
 import { authOptions } from '@/lib/authOptions'
+import { revalidatePath } from 'next/cache'
 
 export async function POST(req: NextRequest) {
   const { postingId, commentId, text } = await req.json()
@@ -34,6 +35,8 @@ export async function POST(req: NextRequest) {
       },
       { new: true },
     )
+
+    revalidatePath(`/blog/detail/${postingId}`)
     return NextResponse.json(comment.user, { status: 201 })
   } catch (error) {
     return NextResponse.json(
@@ -56,6 +59,7 @@ export async function DELETE(req: NextRequest) {
       { new: true },
     )
 
+    revalidatePath(`/blog/detail/${postingId}`)
     return NextResponse.json(comment.user, { status: 200 })
   } catch (error) {
     return NextResponse.json(
@@ -81,6 +85,8 @@ export async function PATCH(req: NextRequest) {
       { $set: { 'user.$[elem].text': text } },
       { arrayFilters: [{ 'elem.replyCommentId': commentId }], new: true },
     )
+
+    revalidatePath(`/blog/detail/${postingId}`)
     return NextResponse.json(comment.user, { status: 200 })
   } catch (error) {
     return NextResponse.json(
