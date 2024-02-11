@@ -31,7 +31,7 @@ export default function RecommendedBookSlider({
 }: RecommendedBookSliderProps) {
   return (
     <div
-      className={`${styles.wrapper} flex h-[240px] w-full items-center pl-[calc((100%+50px)/2)] lg:pl-[calc((100%-200px)/2)] xl:pl-[calc((100%-400px)/2)]`}
+      className={`${styles.wrapper} flex h-[240px] w-full items-center md:pl-[calc((100%+50px)/2)] lg:pl-[calc((100%-200px)/2)] xl:pl-[calc((100%-400px)/2)]`}
     >
       <Slider {...settings}>
         {recommendedBooks.map((book) => (
