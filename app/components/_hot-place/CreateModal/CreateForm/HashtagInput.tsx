@@ -7,6 +7,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 import ErrorMessage from '../../../common/ErrorMessage'
+import useDragEvent from '@/hooks/useDragEvent'
 
 interface HashtagInputProps {
   setValue: UseFormSetValue<HotPlaceFormDataType>
@@ -23,6 +24,8 @@ export default function HashtagInput({
   errorMessage,
   prevHashtags,
 }: HashtagInputProps) {
+  const { dragContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
+
   const [hashtags, setHashtags] = useState<string[]>(prevHashtags ?? [])
   const [hashtagInput, setHashtagsInput] = useState('')
 
@@ -70,7 +73,14 @@ export default function HashtagInput({
   return (
     <div className="mb-2">
       <div className="mb-1 h-[52px] rounded-md border text-sm">
-        <div className="flex h-full items-center overflow-x-scroll px-4">
+        <div
+          ref={dragContainer}
+          onMouseDown={onDragStart}
+          onMouseUp={onDragEnd}
+          onMouseMove={onDragMove}
+          onMouseLeave={onDragEnd}
+          className="hide-scroll flex h-full cursor-grab items-center overflow-x-scroll scroll-smooth px-4"
+        >
           <ul
             className={`flex shrink-0 gap-2 ${hashtags.length !== 0 && 'mr-4'}`}
           >
@@ -81,7 +91,7 @@ export default function HashtagInput({
               >
                 {tag}
                 <AiOutlineClose
-                  className="h-4 w-4 cursor-pointer"
+                  className="h-4 w-4 cursor-pointer text-red-400"
                   onClick={() => onDelete(tag)}
                 />
               </li>
