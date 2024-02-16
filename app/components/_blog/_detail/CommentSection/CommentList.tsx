@@ -14,15 +14,11 @@ export default function CommentList({ postingId }: CommentListProps) {
   if (!allComment) return
 
   return (
-    <ul>
+    <div>
       {allComment?.comments.map((comment) => (
-        <>
-          <CommentItem
-            key={comment.commentId}
-            postingId={postingId}
-            comment={comment}
-          />
-          <ul>
+        <div key={comment.commentId}>
+          <CommentItem postingId={postingId} comment={comment} />
+          <div>
             {allComment.replyComments
               .filter((r) => r.commentId === comment.commentId)
               .map((replyComment) => (
@@ -32,9 +28,9 @@ export default function CommentList({ postingId }: CommentListProps) {
                   replyComment={replyComment}
                 />
               ))}
-          </ul>
-        </>
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   )
 }
