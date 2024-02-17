@@ -1,11 +1,11 @@
 'use client'
 
 import { BookReviewType } from '@/interfaces/interface'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BookListItem from './BookListItem'
 import { toast } from 'react-toastify'
-import { BOOKLIMIT } from '@/constants'
 import Spinner from '../../../common/Spinner'
+import useIntersectionObserver from '@/hooks/useIntersectionObserver'
 
 interface AddedBookListProps {
   category: string
@@ -13,30 +13,8 @@ interface AddedBookListProps {
 
 export default function AddedBookList({ category }: AddedBookListProps) {
   const [addedBooks, setAddedBooks] = useState<BookReviewType[]>([])
-  const [lastItem, setLastItem] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
-
-  const triggerRef = useCallback(
-    (node: any) => {
-      if (!node) return
-      if (isLoading) return
-
-      const observer = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setLastItem((prev) => prev + BOOKLIMIT)
-              observer.disconnect()
-            }
-          })
-        },
-        { threshold: 1 },
-      )
-
-      observer.observe(node)
-    },
-    [addedBooks],
-  )
+  const { lastItem, isLoading, setIsLoading, triggerRef } =
+    useIntersectionObserver(addedBooks)
 
   useEffect(() => {
     if (lastItem === 0) return

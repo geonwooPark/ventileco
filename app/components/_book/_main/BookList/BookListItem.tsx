@@ -1,13 +1,13 @@
 import { BookReviewType } from '@/interfaces/interface'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { memo } from 'react'
 
 interface BookListItemProps {
   book: BookReviewType
 }
 
-export default function BookListItem({ book }: BookListItemProps) {
+export default memo(function BookListItem({ book }: BookListItemProps) {
   return (
     <Link
       href={`/book/detail/${book._id}`}
@@ -34,4 +34,4 @@ export default function BookListItem({ book }: BookListItemProps) {
       </div>
     </Link>
   )
-}
+})
