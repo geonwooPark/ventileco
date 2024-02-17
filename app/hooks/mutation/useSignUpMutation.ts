@@ -11,8 +11,9 @@ const handleSignUp = async (data: FormData) => {
     method: 'POST',
     body: JSON.stringify(data),
   })
+  const { message } = await result.json()
   if (!result.ok) {
-    throw new Error('회원가입에 실패했습니다!')
+    throw new Error(message)
   }
 }
 
