@@ -87,7 +87,7 @@ export default function HashtagInput({
             {hashtags.map((tag, i) => (
               <li
                 key={i}
-                className="flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm text-blue-400"
+                className="flex select-none items-center gap-2 rounded-full border px-3 py-1.5 text-sm text-blue-400"
               >
                 {tag}
                 <AiOutlineClose
