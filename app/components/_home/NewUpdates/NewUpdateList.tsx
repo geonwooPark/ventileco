@@ -14,7 +14,7 @@ export default function NewUpdateList() {
       {newUpdateList?.map((item: any) => {
         return (
           <li key={item.sha} className="mb-1.5 truncate text-sm last:mb-0">
-            <Link href={item.html_url}>
+            <Link href={item.html_url} target="_blank">
               <span className="mr-1">🛠</span>
               <span>{item.commit.message}</span>
             </Link>
