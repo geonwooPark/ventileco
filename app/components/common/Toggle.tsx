@@ -5,10 +5,11 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 
 interface ToggleProps {
   register?: UseFormRegisterReturn<'recommended'>
+  recommended?: boolean
 }
 
-export default function Toggle({ register }: ToggleProps) {
-  const [enabled, setEnabled] = useState(false)
+export default function Toggle({ register, recommended }: ToggleProps) {
+  const [enabled, setEnabled] = useState(recommended ? recommended : false)
 
   const onClick = () => {
     setEnabled((prev) => !prev)

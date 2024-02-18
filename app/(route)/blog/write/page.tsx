@@ -113,7 +113,7 @@ export default function Write() {
         throw new Error('설명은 90자 이하로 입력해주세요.')
       }
 
-      await fetch('/api/posting', {
+      await fetch('/api/blog/posting', {
         method: 'POST',
         body: JSON.stringify({ ...posting, thumbnailURL }),
       })

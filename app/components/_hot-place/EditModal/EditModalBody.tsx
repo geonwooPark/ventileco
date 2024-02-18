@@ -70,10 +70,12 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
   const { mutation: editHotPlaceMutation } = useEditHotPlaceMutation()
 
   const onSubmit: SubmitHandler<HotPlaceFormDataType> = async (data) => {
+    if (!session) return
+    if (session.user.role !== 'admin' && session.user.id !== creator) return
+
     editHotPlaceMutation.mutate(
       {
         data,
-        session,
         deletedImagesArray,
         storeId,
         creator,

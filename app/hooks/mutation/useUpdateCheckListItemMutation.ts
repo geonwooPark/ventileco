@@ -1,40 +1,32 @@
 import { homeKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Session } from 'next-auth'
 
 interface UpdateStatus {
   listId: string
   status: boolean
-  session: Session | null
-  date: string
   today: string
 }
 
-const changeStatus = async ({
-  listId,
-  status,
-  session,
-  date,
-  today,
-}: UpdateStatus) => {
-  if (session?.user.role !== 'admin' || date !== today) return
-  await fetch('/api/check-list', {
+const changeStatus = async ({ listId, status, today }: UpdateStatus) => {
+  const result = await fetch('/api/home/check-list', {
     method: 'PATCH',
     body: JSON.stringify({ listId, status, today }),
   })
+  if (!result.ok) {
+    throw new Error('체크리스트 상태 변경에 실패했습니다!')
+  }
 }
 
 export default function useUpdateCheckListItemMutation({
-  session,
-  date,
   today,
-}: Pick<UpdateStatus, 'session' | 'date' | 'today'>) {
+}: {
+  today: string
+}) {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: ({ listId, status, session, date, today }: UpdateStatus) =>
-      changeStatus({ listId, status, session, date, today }),
+    mutationFn: ({ listId, status, today }: UpdateStatus) =>
+      changeStatus({ listId, status, today }),
     onSuccess: () => {
-      if (session?.user.role !== 'admin' || date !== today) return
       queryClient.invalidateQueries({
         queryKey: homeKeys.checkList(today),
       })

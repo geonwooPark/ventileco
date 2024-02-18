@@ -1,9 +1,9 @@
 import { connectMongo } from '@/lib/database'
 import { NextRequest, NextResponse } from 'next/server'
 import { PostingType } from '@/interfaces/interface'
-import { Posting } from '../../../models/posting'
 import { authOptions } from '@/lib/authOptions'
 import { getServerSession } from 'next-auth'
+import { Posting } from '../../../models/posting'
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions)

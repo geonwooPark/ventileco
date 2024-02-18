@@ -15,8 +15,8 @@ export default function useWeatherQuery(CITY: string, APIKEY: string) {
       weather: data.weather,
       rain: data.rain,
     }),
-    staleTime: 1000 * 6 * 60,
-    gcTime: 1000 * 6 * 60,
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60,
     throwOnError: true,
   })
   return { weatherData, isPending }

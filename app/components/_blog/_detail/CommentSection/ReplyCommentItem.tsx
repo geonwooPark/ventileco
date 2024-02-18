@@ -49,7 +49,7 @@ export default function ReplyCommentItem({
   }
 
   return (
-    <li className="list-none border-b border-b-gray-200 bg-gray-50 px-3 py-2 text-sm">
+    <div className="list-none border-b border-b-gray-200 bg-gray-50 px-3 py-2 text-sm">
       <div className="mb-2 flex justify-between">
         <div className="flex items-center">
           <IconReplyArrow className="mr-2" />
@@ -73,6 +73,6 @@ export default function ReplyCommentItem({
       ) : (
         <p className="px-6">{text}</p>
       )}
-    </li>
+    </div>
   )
 }

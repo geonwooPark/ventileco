@@ -21,7 +21,7 @@ export default function AutomaticSearch({
 
     const getAutomaticSearchList = async () => {
       try {
-        await fetch(`/api/automatic-search?keyword=${keyword}`)
+        await fetch(`/api/hot-place/automatic-search?keyword=${keyword}`)
           .then((res) => res.json())
           .then((result) => {
             setAutomaticSearchList(result)

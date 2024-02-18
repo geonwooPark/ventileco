@@ -15,20 +15,18 @@ const editComment = async ({
   text,
   type,
 }: EditCommentParams) => {
-  await fetch(type === 'origin' ? '/api/comment' : '/api/reply-comment', {
-    method: 'PATCH',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-      text,
-    }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  const result = await fetch(
+    type === 'origin' ? '/api/blog/comment' : '/api/blog/reply-comment',
+    {
+      method: 'PATCH',
+      body: JSON.stringify({
+        postingId,
+        commentId,
+        text,
+      }),
+    },
+  )
+  if (!result.ok) throw new Error('댓글 수정에 실패했습니다!')
 }
 
 export default function useEditCommentMutation({

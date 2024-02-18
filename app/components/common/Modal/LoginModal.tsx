@@ -43,6 +43,8 @@ export default function LoginModal() {
         reset()
         closeLoginModal()
         toast.success('로그인에 성공했습니다')
+
+        setTimeout(() => window.location.reload(), 1000)
       },
       onError: (error) => {
         toast.error(error.message)

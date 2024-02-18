@@ -13,19 +13,17 @@ const deleteComment = async ({
   commentId,
   type,
 }: DeleteCommentParams) => {
-  await fetch(type === 'origin' ? '/api/comment' : '/api/reply-comment', {
-    method: 'DELETE',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-    }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  const result = await fetch(
+    type === 'origin' ? '/api/blog/comment' : '/api/blog/reply-comment',
+    {
+      method: 'DELETE',
+      body: JSON.stringify({
+        postingId,
+        commentId,
+      }),
+    },
+  )
+  if (!result.ok) throw new Error('댓글 삭제에 실패했습니다!')
 }
 
 export default function useDeleteCommentMutation({

@@ -82,7 +82,9 @@ export default function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetch(`/api/posting?postingId=${postingId}`, { method: 'GET' })
+        await fetch(`/api/blog/posting?postingId=${postingId}`, {
+          method: 'GET',
+        })
           .then((res) => res.json())
           .then((result) => {
             setPosting(result)
@@ -134,7 +136,7 @@ export default function Edit() {
         throw new Error('설명은 90자 이하로 입력해주세요.')
       }
 
-      await fetch('/api/posting', {
+      await fetch('/api/blog/posting', {
         method: 'PUT',
         body: JSON.stringify({ ...posting, thumbnailURL, postingId }),
       })

@@ -7,7 +7,6 @@ import StarSmall from './StarSmall.svg'
 import StarSmallLeft from './StarSmallLeft.svg'
 import IconReplyArrow from './IconReplyArrow.svg'
 
-
 export {
   Rabbit,
   RabbitBody,

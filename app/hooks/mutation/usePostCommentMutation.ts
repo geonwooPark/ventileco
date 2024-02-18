@@ -13,20 +13,20 @@ const postComment = async ({
   commentId,
   text,
 }: PostCommentParams) => {
-  await fetch(commentId ? '/api/reply-comment' : '/api/comment', {
-    method: 'POST',
-    body: JSON.stringify({
-      postingId,
-      commentId,
-      text,
-    }),
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  const result = await fetch(
+    commentId ? '/api/blog/reply-comment' : '/api/blog/comment',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        postingId,
+        commentId,
+        text,
+      }),
+    },
+  )
+  if (!result.ok) {
+    throw new Error('댓글 작성에 실패했습니다!')
+  }
 }
 
 export default function usePostCommentMutation({

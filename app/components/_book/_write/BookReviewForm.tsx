@@ -50,8 +50,10 @@ export default function BookReviewForm() {
   const { mutation: writeBookReviewMutation } = useWriteBookReviewMutation()
 
   const onSubmit: SubmitHandler<BookReviewFormDataType> = async (data) => {
+    if (!session || session.user.role !== 'admin') return
+
     writeBookReviewMutation.mutate(
-      { data, session },
+      { data },
       {
         onSuccess: () => {
           reset()

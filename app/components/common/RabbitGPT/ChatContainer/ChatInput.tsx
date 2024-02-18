@@ -29,7 +29,7 @@ export default function ChatInput() {
     setIsLoading(true)
 
     try {
-      fetch('/api/openai', {
+      fetch('/api/home/openai', {
         method: 'POST',
         body: JSON.stringify({ text }),
       })

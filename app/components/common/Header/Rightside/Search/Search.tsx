@@ -28,15 +28,14 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     const storage = localStorage.getItem('keyword')
     if (storage) {
       const storageArr: string[] = JSON.parse(storage)
-      storageArr && storageArr.length < 5
-        ? localStorage.setItem('keyword', JSON.stringify([text, ...storageArr]))
-        : localStorage.setItem(
-            'keyword',
-            JSON.stringify([
-              text,
-              ...storageArr.slice(0, storageArr.length - 1),
-            ]),
-          )
+      let newStorageArr: string[] = []
+      if (storageArr.length < 5) {
+        newStorageArr = [text, ...storageArr]
+      } else {
+        newStorageArr = [text, ...storageArr.slice(0, storageArr.length - 1)]
+      }
+      const newRecentlyViewArr = Array.from(new Set(newStorageArr))
+      localStorage.setItem('keyword', JSON.stringify(newRecentlyViewArr))
     } else {
       localStorage.setItem('keyword', JSON.stringify([text]))
     }

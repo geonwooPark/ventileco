@@ -18,7 +18,7 @@ export default function useCommentListQuery(postingId: string) {
         comments: CommentUserType[]
         replyComments: ReplyCommentUserType[]
       }>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/comment?postingId=${postingId}`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/blog/comment?postingId=${postingId}`,
       ),
     staleTime: 1000 * 60 * 3, // 3분
     gcTime: 1000 * 60 * 5, // 5분

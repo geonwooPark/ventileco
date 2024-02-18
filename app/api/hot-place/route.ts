@@ -60,7 +60,11 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const storeId = await req.json()
+  const { storeId, creator } = await req.json()
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json(null, { status: 403 })
+  if (creator !== session?.user.id && session?.user.role !== 'admin')
+    return NextResponse.json(null, { status: 403 })
 
   try {
     await connectMongo()
@@ -81,6 +85,10 @@ export async function DELETE(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   const { data, deletedImagesArray, storeId, creator } = await req.json()
+  const session = await getServerSession(authOptions)
+  if (!session) return NextResponse.json(null, { status: 403 })
+  if (creator !== session?.user.id && session?.user.role !== 'admin')
+    return NextResponse.json(null, { status: 403 })
 
   const si = data.address.split(' ')[0]
   const gu = data.address.split(' ')[1]

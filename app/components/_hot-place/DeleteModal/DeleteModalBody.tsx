@@ -18,10 +18,11 @@ export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
   const { mutation: deleteStoreMutation } = useDeleteHotPlaceMutation()
 
   const deleteStore = () => {
-    if (!creator) return
+    if (!session || !creator) return
+    if (creator !== session?.user.id && session?.user.role !== 'admin') return
+
     deleteStoreMutation.mutate(
       {
-        session,
         storeId,
         creator,
       },

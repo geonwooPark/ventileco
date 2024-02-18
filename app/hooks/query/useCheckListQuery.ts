@@ -8,7 +8,7 @@ export default function useCheckListQuery(date: string) {
     queryKey: homeKeys.checkList(date),
     queryFn: () =>
       getData<CheckListItemType[]>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/check-list?date=${date}`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/home/check-list?date=${date}`,
       ),
     staleTime: 1000 * 60, // 1분
     gcTime: 1000 * 60 * 3, // 3분

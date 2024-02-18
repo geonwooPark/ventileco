@@ -36,6 +36,7 @@ export default function CommentEditInput({
 
   const editComment = () => {
     if (!session || userId !== session.user.id) return
+
     editCommentMutation.mutate(
       {
         postingId,

@@ -30,6 +30,7 @@ export default function Modals({ postingId }: ModalsProps) {
 
   const deleteComment = () => {
     if (!session || session.user.id !== userId) return
+
     deleteCommentMutation.mutate(
       {
         postingId,
@@ -50,7 +51,7 @@ export default function Modals({ postingId }: ModalsProps) {
   const deletePosting = async () => {
     if (!session || session.user.role !== 'admin') return
     try {
-      await fetch('/api/posting', {
+      await fetch('/api/blog/posting', {
         method: 'DELETE',
         body: JSON.stringify(postingId),
       })

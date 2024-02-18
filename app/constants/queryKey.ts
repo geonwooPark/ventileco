@@ -5,6 +5,7 @@ export const homeKeys = {
   checkList: (date: string) => [...homeKeys.checkLists(), { date }] as const,
   newArrivals: () => [...homeKeys.base, 'new-arrivals'] as const,
   weather: () => [...homeKeys.base, 'weather'] as const,
+  newUpdates: () => [...homeKeys.base, 'new-updates'] as const,
 }
 
 // Blog-Detail 페이지

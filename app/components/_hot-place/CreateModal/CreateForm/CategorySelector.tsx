@@ -14,12 +14,12 @@ export default function CategorySelector({
 }: CategorySelectorProps) {
   return (
     <div className="mb-2">
-      <div className="mb-1 flex gap-2 text-sm">
+      <div className="hide-scroll mb-1 flex gap-2 overflow-y-hidden overflow-x-scroll text-sm">
         {StoreCategory.map((item) => (
           <label
             key={item.id}
             htmlFor={item.category}
-            className={`cursor-pointer rounded-md border px-2.5 py-2 text-gray-400 has-[:checked]:bg-gray-700 has-[:checked]:text-white`}
+            className={`shrink-0 cursor-pointer rounded-md border px-2.5 py-2 text-gray-400 has-[:checked]:bg-gray-700 has-[:checked]:text-white`}
           >
             {item.category}
             <input

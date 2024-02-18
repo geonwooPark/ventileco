@@ -1,44 +1,33 @@
 import { homeKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { Session } from 'next-auth'
 
 interface DeleteCheckListItemParams {
   listId: string
-  session: Session | null
-  date: string
   today: string
 }
 
 const deleteCheckListItem = async ({
   listId,
-  session,
-  date,
+
   today,
 }: DeleteCheckListItemParams) => {
-  if (session?.user.role !== 'admin' || date !== today) return
-  await fetch('/api/check-list', {
+  const result = await fetch('/api/home/check-list', {
     method: 'DELETE',
     body: JSON.stringify({ listId, today }),
   })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.error) {
-        throw new Error(result.error)
-      }
-    })
+  if (!result.ok) throw new Error('체크리스트 삭제에 실패했습니다!')
 }
 
 export default function useDeleteCheckListItemMutation({
-  session,
-  date,
   today,
-}: Pick<DeleteCheckListItemParams, 'session' | 'date' | 'today'>) {
+}: {
+  today: string
+}) {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: ({ listId, session, date, today }: DeleteCheckListItemParams) =>
-      deleteCheckListItem({ listId, session, date, today }),
+    mutationFn: ({ listId, today }: DeleteCheckListItemParams) =>
+      deleteCheckListItem({ listId, today }),
     onSuccess: () => {
-      if (session?.user.role !== 'admin' || date !== today) return
       queryClient.invalidateQueries({
         queryKey: homeKeys.checkList(today),
       })
