@@ -1,12 +1,3 @@
-// 카테고리
-export const categories = [
-  'React.JS',
-  'Next.JS',
-  'TypeScript',
-  '컴퓨터과학',
-  '라이브러리',
-]
-
 // 헤더
 export const headerListItem = [
   {
@@ -31,15 +22,26 @@ export const headerListItem = [
   },
 ]
 
-// 페이지네이션
-export const PAGE = 1
-export const LIMIT = 5
+// 홈
+export const BRANCH = 'dev'
+export const PER_PAGE = 5
 
-// 날씨 정보
 export const CITY = 'Seoul'
 export const APIKEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY as string
 
-// 스킬
+// 블로그
+export const categories = [
+  'React.JS',
+  'Next.JS',
+  'TypeScript',
+  '컴퓨터과학',
+  '라이브러리',
+]
+
+export const PAGE = 1
+export const LIMIT = 5
+
+// 소개
 export const skills = [
   {
     id: 1,

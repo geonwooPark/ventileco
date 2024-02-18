@@ -13,9 +13,10 @@ export default function NewArrivalsList() {
     <ul>
       {newArrivalsList?.map((item) => {
         return (
-          <li key={item._id} className="mb-1.5 text-sm last:mb-0">
+          <li key={item._id} className="mb-1.5 truncate text-sm last:mb-0">
             <Link href={`/blog/detail/${item._id}`}>
-              <span className="mr-1">📄</span> {item.title}
+              <span className="mr-1">📄</span>
+              <span>{item.title}</span>
             </Link>
           </li>
         )

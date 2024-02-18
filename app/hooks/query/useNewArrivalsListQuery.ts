@@ -10,8 +10,8 @@ export default function useNewArrivalsQuery() {
       getData<PostingType[]>(
         `${process.env.NEXT_PUBLIC_FE_URL}/api/home/new-arrivals`,
       ),
-    staleTime: 1000 * 60 * 60 * 10, // 10시간
-    gcTime: 1000 * 60 * 60 * 10, // 10시간
+    staleTime: 1000 * 60 * 60,
+    gcTime: 1000 * 60 * 60,
     throwOnError: true,
   })
 
