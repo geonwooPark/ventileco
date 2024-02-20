@@ -7,7 +7,6 @@ import CommentSection from '@blog/_detail/CommentSection/CommentSection'
 import AdminControlSection from '@blog/_detail/AdminControlSection/AdminControlSection'
 import DetailTopSection from '@blog/_detail/DetailTopSection/DetailTopSection'
 import Main from '@common/Main'
-import Modals from '@blog/_detail/Modals/Modals'
 import ContentSection from '@/components/_blog/_detail/ContentSection'
 
 export const revalidate = 1800
@@ -68,7 +67,6 @@ export default async function Detail({ params }: IParams) {
       <ContentSection content={posting.content} />
       <CommentSection postingId={id} />
       <AdminControlSection postingId={id} />
-      <Modals postingId={id} />
     </Main>
   )
 }

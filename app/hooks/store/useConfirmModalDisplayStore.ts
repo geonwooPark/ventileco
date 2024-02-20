@@ -11,7 +11,7 @@ interface Actions {
   }
 }
 
-const useDeleteCommentModalStore = create<State & Actions>()((set) => ({
+const useConfirmModalDisplayStore = create<State & Actions>()((set) => ({
   isOpen: false,
   actions: {
     onOpen: () => set({ isOpen: true }),
@@ -19,7 +19,7 @@ const useDeleteCommentModalStore = create<State & Actions>()((set) => ({
   },
 }))
 
-export const useDeleteCommentModalIsOpen = () =>
-  useDeleteCommentModalStore((state) => state.isOpen)
-export const useDeleteCommentModalActions = () =>
-  useDeleteCommentModalStore((state) => state.actions)
+export const useConfirmModalDisplay = () =>
+  useConfirmModalDisplayStore((state) => state.isOpen)
+export const useConfirmModalDisplayActions = () =>
+  useConfirmModalDisplayStore((state) => state.actions)

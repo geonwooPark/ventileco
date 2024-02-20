@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import {
-  useSelectedCommentForEditActions,
-  useSelectedCommentForEdit,
-} from '@/hooks/store/useSelectedCommentForEditStore'
 import Button from '@common/Button'
 import useEditCommentMutation from '@/hooks/mutation/useEditCommentMutation'
 import { useSession } from 'next-auth/react'
@@ -11,16 +7,21 @@ import { useSession } from 'next-auth/react'
 interface CommentInputProps {
   commentText: string
   postingId: string
+  commentId: string
+  userId: string
+  type: 'origin' | 'reply'
+  setSelectedCommentIdForEdit: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function CommentEditInput({
   commentText,
   postingId,
+  commentId,
+  userId,
+  type,
+  setSelectedCommentIdForEdit,
 }: CommentInputProps) {
   const { data: session } = useSession()
-  const { commentId, userId, type } = useSelectedCommentForEdit()
-  const { onReset: resetSelectedCommentIdForEdit } =
-    useSelectedCommentForEditActions()
 
   const [text, setText] = useState(commentText)
 
@@ -46,7 +47,7 @@ export default function CommentEditInput({
       },
       {
         onSuccess: () => {
-          resetSelectedCommentIdForEdit()
+          setSelectedCommentIdForEdit('')
         },
         onError: (error) => {
           toast.error(error.message)
