@@ -1,5 +1,5 @@
 import React from 'react'
-import CommentInput from './CommentInput'
+import CommentInput from './CommentInput/CommentInput'
 import CommentList from './CommentList'
 import Section from '@common/Section'
 import getAllComment from '@/actions/getAllComment'

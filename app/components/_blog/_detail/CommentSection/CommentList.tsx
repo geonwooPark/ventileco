@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import CommentItem from './CommentItem'
-import ReplyCommentItem from './ReplyCommentItem'
+import CommentItem from './CommentItem/CommentItem'
+import ReplyCommentItem from './ReplyCommentItem/ReplyCommentItem'
 import useCommentListQuery from '@/hooks/query/useCommentListQuery'
 
 interface CommentListProps {

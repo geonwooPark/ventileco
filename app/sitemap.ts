@@ -48,7 +48,7 @@ export default async function sitemap() {
     lastModified: new Date(),
   }))
 
-  const books = await getAllBook('전체')
+  const books = await getAllBook()
   const bookURls = books.map((book) => ({
     url: `${baseURL}/book/${book._id}`,
     lastModified: new Date(),

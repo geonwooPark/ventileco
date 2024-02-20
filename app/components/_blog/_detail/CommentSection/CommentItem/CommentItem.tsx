@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import dayjs from '@/lib/dayjs'
 import { CommentUserType } from '@/interfaces/interface'
-import { useDeleteCommentModalActions } from '@/hooks/store/useDeleteCommentModalStore'
-import { useSelectedCommentForDeletionActions } from '@/hooks/store/useSelectedCommentForDeletionStore'
-import {
-  useSelectedCommentForEdit,
-  useSelectedCommentForEditActions,
-} from '@/hooks/store/useSelectedCommentForEditStore'
 import Avatar from '@common/Avatar'
-import CommentEditInput from './CommentEditInput'
+import CommentEditInput from '../CommentInput/CommentEditInput'
 import { useSession } from 'next-auth/react'
-import ReplyCommentInput from './ReplyCommentInput'
+import ReplyCommentInput from '../CommentInput/ReplyCommentInput'
+import CommentDeleteButton from './CommentDeleteButton'
+import CommentEditButton from './CommentEditButton'
 
 interface CommentItemProps {
   postingId: string
@@ -20,34 +16,13 @@ interface CommentItemProps {
 export default function CommentItem({ comment, postingId }: CommentItemProps) {
   const { data: session } = useSession()
   const { commentId, userId, userImage, userName, createdAt, text } = comment
-  const { onOpen: openDeleteCommentModal } = useDeleteCommentModalActions()
-  const { onChange: changeSelectedCommentForDeletion } =
-    useSelectedCommentForDeletionActions()
-  const { commentId: selectedCommentIdForEdit } = useSelectedCommentForEdit()
-  const {
-    onChange: changeSelectedCommentForEdit,
-    onReset: resetSelectedCommentForEdit,
-  } = useSelectedCommentForEditActions()
 
+  const [selectedCommentIdForEdit, setSelectedCommentIdForEdit] = useState('')
   const [replyMode, setReplyMode] = useState(false)
-
-  const handleEditMode = () => {
-    if (!session || userId !== session.user.id) return
-    if (selectedCommentIdForEdit === commentId) {
-      resetSelectedCommentForEdit()
-    } else {
-      changeSelectedCommentForEdit(commentId, userId, 'origin')
-    }
-  }
 
   const handleReplyMode = () => {
     if (!session) return
     setReplyMode((prev) => !prev)
-  }
-
-  const handleModal = () => {
-    openDeleteCommentModal()
-    changeSelectedCommentForDeletion(commentId, userId, 'origin')
   }
 
   return (
@@ -60,10 +35,17 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
         <small className="flex items-center gap-2 text-gray-400">
           {session && session.user.id === userId && (
             <>
-              <button onClick={handleEditMode}>
-                {selectedCommentIdForEdit === commentId ? '취소' : '수정'}
-              </button>
-              <button onClick={handleModal}>삭제</button>
+              <CommentEditButton
+                commentId={commentId}
+                userId={userId}
+                selectedCommentIdForEdit={selectedCommentIdForEdit}
+                setSelectedCommentIdForEdit={setSelectedCommentIdForEdit}
+              />
+              <CommentDeleteButton
+                postingId={postingId}
+                commentId={commentId}
+                userId={userId}
+              />
             </>
           )}
           <button onClick={handleReplyMode}>답글</button>
@@ -71,7 +53,14 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
         </small>
       </div>
       {selectedCommentIdForEdit === commentId ? (
-        <CommentEditInput commentText={text} postingId={postingId} />
+        <CommentEditInput
+          commentText={text}
+          postingId={postingId}
+          commentId={commentId}
+          userId={userId}
+          type="origin"
+          setSelectedCommentIdForEdit={setSelectedCommentIdForEdit}
+        />
       ) : (
         <p>{text}</p>
       )}

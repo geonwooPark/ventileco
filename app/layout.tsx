@@ -11,6 +11,7 @@ import Header from './components/common/Header/Header'
 import Script from 'next/script'
 import RabbitGPT from './components/common/RabbitGPT/RabbitGPT'
 import Firework from './components/common/Animation/FireworkAnimation'
+import ConfirmModal from './components/common/Modal/ConfirmModal'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
@@ -61,6 +62,7 @@ export default async function RootLayout({
             />
             <SignUpModal />
             <LoginModal />
+            <ConfirmModal />
             <Header />
             {children}
           </TanstackProvider>
