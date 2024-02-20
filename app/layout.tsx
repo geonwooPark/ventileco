@@ -67,7 +67,7 @@ export default async function RootLayout({
             {children}
           </TanstackProvider>
           <Firework />
-          {/* <RabbitGPT /> */}
+          <RabbitGPT />
         </AuthSession>
       </body>
     </html>
