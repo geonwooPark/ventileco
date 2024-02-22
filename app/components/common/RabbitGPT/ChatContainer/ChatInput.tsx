@@ -57,7 +57,7 @@ export default function ChatInput() {
         name="search"
         disabled={!session && true}
         placeholder={
-          session ? '토깽이에게 질문해보세요!' : '로그인 후 사용해보세요!'
+          session ? '저에 대해 질문해보세요!' : '로그인 후 사용해보세요!'
         }
         className="w-full rounded-none border-none !bg-white outline-none"
         value={text}
