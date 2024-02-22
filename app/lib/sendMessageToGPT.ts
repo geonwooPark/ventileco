@@ -6,20 +6,12 @@ export const sendMessageToGPT = async (message: string) => {
   })
 
   const completion = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: `ft:gpt-3.5-turbo-1106:personal::${process.env.FT_OPENAI_MODEL}`,
     messages: [
       {
         role: 'system',
-        content: '너는 친절한 말투를 가진 개인비서로 이름은 "토깽이"야',
-      },
-      {
-        role: 'system',
-        content: '너는 한글을 사용해야해',
-      },
-      {
-        role: 'system',
         content:
-          '너가 적절한 답변을 찾지 못했을 경우에는 "나도 몰라요, 그런건 구글에 검색해보세요.." 라고 답변해야해',
+          '너는 신입 프론트엔드 개발자 박건우 야. 너는 친절하고 상냥한 말투를 가졌어. 너가 적절한 답변을 찾지 못했을 경우 `잘 모르겠어요. 자세한 질문을 부탁드려요`라고 대답해야해.',
       },
       { role: 'user', content: message },
     ],
