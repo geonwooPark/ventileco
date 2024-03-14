@@ -10,8 +10,8 @@ import Script from 'next/script'
 import RabbitGPT from './components/common/RabbitGPT/RabbitGPT'
 import Firework from './components/common/Animation/FireworkAnimation'
 import ConfirmModal from './components/common/Modal/ConfirmModal'
-import AuthSession from './components/common/Provider/AuthSession'
-import TanstackProvider from './components/common/Provider/TanstackProvider'
+import AuthSession from './components/common/provider/AuthSession'
+import TanstackProvider from './components/common/provider/TanstackProvider'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
