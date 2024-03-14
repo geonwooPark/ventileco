@@ -5,13 +5,13 @@ import LoginModal from './components/common/Modal/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import SignUpModal from './components/common/Modal/SignUpModal'
-import AuthSession from './components/common/Provider/AuthSession'
-import TanstackProvider from './components/common/Provider/TanstackProvider'
 import Header from './components/common/Header/Header'
 import Script from 'next/script'
 import RabbitGPT from './components/common/RabbitGPT/RabbitGPT'
 import Firework from './components/common/Animation/FireworkAnimation'
 import ConfirmModal from './components/common/Modal/ConfirmModal'
+import AuthSession from './components/common/Provider/AuthSession'
+import TanstackProvider from './components/common/Provider/TanstackProvider'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
