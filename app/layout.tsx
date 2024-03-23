@@ -16,7 +16,7 @@ import TanstackProvider from './components/common/provider/TanstackProvider'
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ventileco-blog.vercel.app/'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_FE_URL as string),
   title: {
     default: 'Ventileco',
     template: `%s | Ventileco`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: '신입 웹 프론트엔드 개발자 박건우입니다.',
     images:
       'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
-    url: 'https://ventileco-blog.vercel.app/',
+    url: process.env.NEXT_PUBLIC_FE_URL,
     type: 'website',
   },
   icons: {

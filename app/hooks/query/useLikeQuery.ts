@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../../actions/getData'
+import getData from '../../utils/getData'
 import { detailKeys } from '@/constants/queryKey'
 
 export default function useLikeQuery(postingId: string) {

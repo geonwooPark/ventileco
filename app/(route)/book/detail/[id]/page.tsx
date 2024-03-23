@@ -1,5 +1,5 @@
-import getAllBook from '@/actions/getAllBook'
-import getBookReview from '@/actions/getBookReview'
+import getAllBook from '@/actions/_book/getAllBook'
+import getBookReview from '@/actions/_book/getBookReview'
 import AdminButton from '@/components/_book/_detail/AdminButton/AdminButton'
 import ReviewContent from '@/components/_book/_detail/ReviewContent'
 import Main from '@/components/common/Main'

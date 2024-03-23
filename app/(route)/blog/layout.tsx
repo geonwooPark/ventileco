@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ventileco-blog.vercel.app/blog'),
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/blog`),
   title: {
     default: 'Ventileco 개발 블로그',
     template: `%s | Ventileco 개발 블로그`,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그입니다.',
     images:
       'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
-    url: 'https://ventileco-blog.vercel.app/blog',
+    url: `${process.env.NEXT_PUBLIC_FE_URL}/blog`,
     type: 'website',
   },
 }

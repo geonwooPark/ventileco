@@ -1,8 +1,8 @@
 import { cache } from 'react'
-import { connectMongo } from '../lib/database'
-import { HotPlace } from '../../models/hot-place'
+import { connectMongo } from '../../lib/database'
+import { HotPlace } from '../../../models/hot-place'
 import { HotPlaceListingType, UserType } from '@/interfaces/interface'
-import { User } from '../../models/user'
+import { User } from '../../../models/user'
 
 export default cache(async function getStore(storeId: string) {
   try {

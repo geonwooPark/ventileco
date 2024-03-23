@@ -1,6 +1,6 @@
 import Section from '@/components/common/Section'
 import Article from '@/components/_blog/common/Article/Article'
-import getAllListingCount from '@/actions/getAllListingCount'
+import getAllListingCount from '@/actions/_blog/getAllListingCount'
 import HeroSection from '@/components/common/HeroSection'
 import AllListing from '@/components/_blog/_posting/AllListing'
 import { LIMIT } from '@/constants'

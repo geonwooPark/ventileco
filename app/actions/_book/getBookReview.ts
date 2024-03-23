@@ -1,6 +1,6 @@
-import { connectMongo } from '../lib/database'
+import { connectMongo } from '../../lib/database'
 import { cache } from 'react'
-import { Book } from '../../models/book'
+import { Book } from '../../../models/book'
 import { BookReviewType } from '@/interfaces/interface'
 
 export default cache(async function getBookReview(id: string) {

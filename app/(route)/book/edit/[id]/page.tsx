@@ -1,4 +1,4 @@
-import getBookReview from '@/actions/getBookReview'
+import getBookReview from '@/actions/_book/getBookReview'
 import BookReviewEditForm from '@/components/_book/_edit/BookReviewEditForm'
 import Main from '@/components/common/Main'
 import Section from '@/components/common/Section'

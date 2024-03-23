@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../../actions/getData'
+import getData from '../../utils/getData'
 import { Session } from 'next-auth'
 import { MyCommentType } from '../../interfaces/interface'
 import { myPageKeys } from '@/constants/queryKey'

@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import HeaderBgColor from '@common/Header/HeaderBgColor'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ventileco-blog.vercel.app/book'),
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/book`),
   title: {
     default: 'Ventileco 독서 리스트',
     template: `%s | Ventileco 독서 리스트`,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: '그동안 읽었던 책들의 후기를 남깁니다.',
     images:
       'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
-    url: 'https://ventileco-blog.vercel.app/hot-place',
+    url: `${process.env.NEXT_PUBLIC_FE_URL}/book`,
     type: 'website',
   },
 }

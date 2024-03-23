@@ -1,5 +1,5 @@
-import getCategoryListing from '@/actions/getCategoryListing'
-import getCategoryListingCount from '@/actions/getCategoryListingCount'
+import getCategoryListing from '@/actions/_blog/getCategoryListing'
+import getCategoryListingCount from '@/actions/_blog/getCategoryListingCount'
 import React from 'react'
 import Pagination from '../common/Pagination/Pagination'
 import EmptyState from '../../common/EmptyState'
