@@ -1,22 +1,22 @@
 // 헤더
 export const headerListItem = [
   {
-    id: 1,
+    id: 101,
     title: '블로그',
     link: '/blog',
   },
   {
-    id: 2,
+    id: 102,
     title: '맛집',
     link: '/hot-place',
   },
   {
-    id: 3,
+    id: 103,
     title: '독서',
     link: '/book',
   },
   {
-    id: 4,
+    id: 104,
     title: '소개',
     link: '/about',
   },
@@ -44,62 +44,62 @@ export const LIMIT = 5
 // 소개
 export const skills = [
   {
-    id: 1,
+    id: 201,
     name: 'HTML5',
     color: 'E34F26',
   },
   {
-    id: 2,
+    id: 202,
     name: 'CSS',
     color: '1572B6',
   },
   {
-    id: 3,
+    id: 203,
     name: 'JavaScript',
     color: 'F7DF1E',
   },
   {
-    id: 4,
+    id: 204,
     name: 'TypeScript',
     color: '3178C6',
   },
   {
-    id: 5,
+    id: 205,
     name: 'React',
     color: '61DAFB',
   },
   {
-    id: 6,
+    id: 206,
     name: 'Next.JS',
     color: '000000',
   },
   {
-    id: 7,
+    id: 207,
     name: 'Tailwind CSS',
     color: '06B6D4',
   },
   {
-    id: 8,
+    id: 208,
     name: 'MongoDB',
     color: '47A248',
   },
   {
-    id: 9,
+    id: 209,
     name: 'Firebase',
     color: 'FFCA28',
   },
   {
-    id: 10,
+    id: 210,
     name: 'Redux_Toolkit',
     color: '764ABC',
   },
   {
-    id: 11,
+    id: 211,
     name: 'React_Query',
     color: 'FF4154',
   },
   {
-    id: 12,
+    id: 212,
     name: 'Zustand',
     color: 'EA4AAA',
   },
@@ -108,130 +108,130 @@ export const skills = [
 // 맛집
 export const StoreCategory = [
   {
-    id: 1,
+    id: 301,
     category: '한식',
   },
   {
-    id: 2,
+    id: 302,
     category: '중식',
   },
   {
-    id: 3,
+    id: 303,
     category: '일식',
   },
   {
-    id: 4,
+    id: 304,
     category: '양식',
   },
   {
-    id: 5,
+    id: 305,
     category: '분식',
   },
   {
-    id: 6,
+    id: 306,
     category: '카페',
   },
 ]
 
 export const GuList = [
   {
-    id: 1,
+    id: 401,
     gu: '강남구',
   },
   {
-    id: 2,
+    id: 402,
     gu: '강동구',
   },
   {
-    id: 3,
+    id: 403,
     gu: '강북구',
   },
   {
-    id: 4,
+    id: 404,
     gu: '강서구',
   },
   {
-    id: 5,
+    id: 405,
     gu: '관악구',
   },
   {
-    id: 6,
+    id: 406,
     gu: '광진구',
   },
   {
-    id: 7,
+    id: 407,
     gu: '구로구',
   },
   {
-    id: 8,
+    id: 408,
     gu: '금천구',
   },
   {
-    id: 9,
+    id: 409,
     gu: '노원구',
   },
   {
-    id: 10,
+    id: 410,
     gu: '도봉구',
   },
   {
-    id: 11,
+    id: 411,
     gu: '동대문구',
   },
   {
-    id: 12,
+    id: 412,
     gu: '동작구',
   },
   {
-    id: 13,
+    id: 413,
     gu: '마포구',
   },
   {
-    id: 14,
+    id: 414,
     gu: '서대문구',
   },
   {
-    id: 15,
+    id: 415,
     gu: '서초구',
   },
   {
-    id: 16,
+    id: 416,
     gu: '성동구',
   },
   {
-    id: 17,
+    id: 417,
     gu: '성북구',
   },
   {
-    id: 18,
+    id: 418,
     gu: '송파구',
   },
   {
-    id: 19,
+    id: 419,
     gu: '양천구',
   },
   {
-    id: 20,
+    id: 420,
     gu: '영등포구',
   },
   {
-    id: 21,
+    id: 421,
     gu: '용산구',
   },
   {
-    id: 22,
+    id: 422,
     gu: '은평구',
   },
   {
-    id: 23,
+    id: 423,
     gu: '종로구',
   },
   {
-    id: 24,
+    id: 424,
     gu: '중구',
   },
   {
-    id: 25,
+    id: 425,
     gu: '중랑구',
   },
 ]
@@ -241,11 +241,11 @@ export const MARKER_SIZE = 40
 
 // 독서
 export const bookCategory = [
-  { id: 1, category: '경제/경영' },
-  { id: 2, category: '인문' },
-  { id: 3, category: 'IT/컴퓨터' },
-  { id: 4, category: '예술/문화' },
-  { id: 5, category: '과학' },
+  { id: 501, category: '경제/경영' },
+  { id: 502, category: '인문' },
+  { id: 503, category: 'IT/컴퓨터' },
+  { id: 504, category: '예술/문화' },
+  { id: 505, category: '과학' },
 ]
 
 export const BOOKLIMIT = 8
