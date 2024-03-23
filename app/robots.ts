@@ -16,6 +16,6 @@ export default function robots(): MetadataRoute.Robots {
         '/book/edit/*',
       ],
     },
-    sitemap: 'https://ventileco-blog.vercel.app/sitemap.xml',
+    sitemap: `${process.env.NEXT_PUBLIC_FE_URL}/sitemap.xml`,
   }
 }

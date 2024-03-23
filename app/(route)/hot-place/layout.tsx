@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import HeaderBgColor from '@common/Header/HeaderBgColor'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ventileco-blog.vercel.app/hot-place'),
+  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/hot-place`),
   title: {
     default: 'Ventileco 맛집 리스트',
     template: `%s | Ventileco 맛집 리스트`,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     description: '자주 방문하는 지역의 맛집을 소개합니다.',
     images:
       'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
-    url: 'https://ventileco-blog.vercel.app/hot-place',
+    url: `${process.env.NEXT_PUBLIC_FE_URL}/hot-place`,
     type: 'website',
   },
 }

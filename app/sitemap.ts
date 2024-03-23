@@ -6,7 +6,7 @@ import getCategoryListingCount from './actions/_blog/getCategoryListingCount'
 import { LIMIT, categories } from './constants'
 
 export default async function sitemap() {
-  const baseURL = 'https://ventileco-blog.vercel.app'
+  const baseURL = process.env.NEXT_PUBLIC_FE_URL as string
 
   // 동기 함수
   const categoryURLs = categories.map((category) => ({
