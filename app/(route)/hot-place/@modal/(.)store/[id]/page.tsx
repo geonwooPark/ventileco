@@ -1,4 +1,4 @@
-import getStore from '@/actions/getStore'
+import getStore from '@/actions/_hot-place/getStore'
 import StoreModalBody from '@/components/_hot-place/StoreModal/StoreModalBody'
 import StoreModalHeader from '@/components/_hot-place/StoreModal/StoreModalHeader'
 import NotFound from '@/not-found'

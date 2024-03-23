@@ -1,6 +1,6 @@
 import { CommentType, ReplyCommentType } from '@/interfaces/interface'
-import { Comment } from '../../models/comment'
-import { ReplyComment } from '../../models/replyComment'
+import { Comment } from '../../../models/comment'
+import { ReplyComment } from '../../../models/replyComment'
 import { connectMongo } from '@/lib/database'
 import { cache } from 'react'
 

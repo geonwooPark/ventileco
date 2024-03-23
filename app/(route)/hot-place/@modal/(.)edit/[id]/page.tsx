@@ -1,4 +1,4 @@
-import getStore from '@/actions/getStore'
+import getStore from '@/actions/_hot-place/getStore'
 import EditModalBody from '@/components/_hot-place/EditModal/EditModalBody'
 import EditModalHeader from '@/components/_hot-place/EditModal/EditModalHeader'
 import NotFound from '@/not-found'

@@ -1,7 +1,7 @@
 import React from 'react'
 import BookListItem from './BookListItem'
 import AddedBookList from './AddedBookList'
-import getCategoryBook from '@/actions/getCategoryBook'
+import getCategoryBook from '@/actions/_book/getCategoryBook'
 
 interface BookListProps {
   category: string

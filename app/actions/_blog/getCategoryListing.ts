@@ -1,6 +1,6 @@
-import { Posting } from '../../models/posting'
-import { connectMongo } from '../lib/database'
-import { PostingType } from '../interfaces/interface'
+import { Posting } from '../../../models/posting'
+import { connectMongo } from '../../lib/database'
+import { PostingType } from '../../interfaces/interface'
 import { cache } from 'react'
 
 interface GetListingParams {

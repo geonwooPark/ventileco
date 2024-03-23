@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import getData from '../../actions/getData'
+import getData from '../../utils/getData'
 import { hotPlaceKeys } from '@/constants/queryKey'
 import { HotPlaceListingType } from '@/interfaces/interface'
 

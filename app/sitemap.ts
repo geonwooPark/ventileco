@@ -1,8 +1,8 @@
-import getAllBook from './actions/getAllBook'
-import getAllListing from './actions/getAllListing'
-import getAllListingCount from './actions/getAllListingCount'
-import getAllStore from './actions/getAllStore'
-import getCategoryListingCount from './actions/getCategoryListingCount'
+import getAllBook from './actions/_book/getAllBook'
+import getAllListing from './actions/_blog/getAllListing'
+import getAllListingCount from './actions/_blog/getAllListingCount'
+import getAllStore from './actions/_hot-place/getAllStore'
+import getCategoryListingCount from './actions/_blog/getCategoryListingCount'
 import { LIMIT, categories } from './constants'
 
 export default async function sitemap() {

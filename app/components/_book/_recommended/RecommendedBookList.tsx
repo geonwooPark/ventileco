@@ -1,4 +1,4 @@
-import getRecommendedBook from '@/actions/getRecommendedBook'
+import getRecommendedBook from '@/actions/_book/getRecommendedBook'
 import React from 'react'
 import BookListItem from '../_main/BookList/BookListItem'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import RecommendedBookSlider from './RecommendedBookSlider'
 import RecommendedBookHeader from './RecommendedBookHeader'
-import getRecommendedBook from '@/actions/getRecommendedBook'
+import getRecommendedBook from '@/actions/_book/getRecommendedBook'
 
 export default async function RecommendedBook() {
   const recommendedBooks = await getRecommendedBook()

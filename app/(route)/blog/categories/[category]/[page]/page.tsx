@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Section from '@/components/common/Section'
 import Article from '@/components/_blog/common/Article/Article'
-import getCategoryListingCount from '@/actions/getCategoryListingCount'
+import getCategoryListingCount from '@/actions/_blog/getCategoryListingCount'
 import HeroSection from '@/components/common/HeroSection'
 import CategoryListing from '@/components/_blog/_categories/CategoryListing'
 import { LIMIT, categories } from '@/constants'

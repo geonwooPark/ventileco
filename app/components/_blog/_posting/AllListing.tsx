@@ -1,5 +1,5 @@
-import getAllListing from '@/actions/getAllListing'
-import getAllListingCount from '@/actions/getAllListingCount'
+import getAllListing from '@/actions/_blog/getAllListing'
+import getAllListingCount from '@/actions/_blog/getAllListingCount'
 import React from 'react'
 import EmptyState from '../../common/EmptyState'
 import Pagination from '../common/Pagination/Pagination'

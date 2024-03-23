@@ -1,5 +1,5 @@
 import { connectMongo } from '@/lib/database'
-import { HotPlace } from '../../models/hot-place'
+import { HotPlace } from '../../../models/hot-place'
 import { HotPlaceListingType } from '@/interfaces/interface'
 import { cache } from 'react'
 
