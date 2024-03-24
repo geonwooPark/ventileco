@@ -4,15 +4,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import LeftSide from './LeftSide/LeftSide'
 import Container from '../Container'
 import RightSide from './Rightside/RightSide'
+import { usePathname } from 'next/navigation'
+import { headerColorMap } from '@/constants'
 
 export default function Header() {
-  const [headerColor, setHeaderColor] = useState(false)
+  const path = usePathname().split('/')[1]
+  const headerColor = headerColorMap.get(path)
+  const [showHeaderColor, setShowHeaderColor] = useState(false)
   const scrollRef = useRef<HTMLHeadElement | null>(null)
 
   const onScroll = () => {
     const { scrollY } = window
-    if (scrollY > 82) setHeaderColor(true)
-    else setHeaderColor(false)
+    setShowHeaderColor(scrollY > 82 ? true : false)
   }
 
   useEffect(() => {
@@ -25,7 +28,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 z-[100] w-full transition duration-200 ${
-        headerColor ? 'bg-black/70' : 'bg-transparent'
+        showHeaderColor ? 'bg-black/70' : headerColor
       }`}
       ref={scrollRef}
     >

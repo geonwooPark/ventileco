@@ -22,6 +22,15 @@ export const headerListItem = [
   },
 ]
 
+export const headerColorMap = new Map([
+  ['', 'bg-transparent'],
+  ['blog', 'bg-transparent'],
+  ['hot-place', 'bg-black/70'],
+  ['book', 'bg-black/70'],
+  ['about', 'bg-transparent'],
+  ['mypage', 'bg-transparent'],
+])
+
 // 홈
 export const BRANCH = 'dev'
 export const PER_PAGE = 5

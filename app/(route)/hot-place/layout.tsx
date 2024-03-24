@@ -1,7 +1,6 @@
 import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
-import HeaderBgColor from '@common/Header/HeaderBgColor'
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/hot-place`),
@@ -32,7 +31,6 @@ export default async function Layout({
 }) {
   return (
     <div className="h-full">
-      <HeaderBgColor />
       {children}
       {modal}
     </div>
