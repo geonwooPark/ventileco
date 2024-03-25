@@ -33,14 +33,16 @@ export default function Stage({ title, image, description, link }: StageProps) {
             />
           </div>
           <p className="text-sm">{description}</p>
-          <Link
-            href={link as any}
-            target="_black"
-            className="flex items-center justify-center text-blue-600 duration-300 hover:opacity-70"
-          >
-            바로가기
-            <MdKeyboardArrowRight size={20} className="mt-1" />
-          </Link>
+          <div className="flex justify-center">
+            <Link
+              href={link as any}
+              target="_black"
+              className="flex items-center justify-center text-blue-600 duration-300 hover:opacity-70"
+            >
+              바로가기
+              <MdKeyboardArrowRight size={20} className="mt-1" />
+            </Link>
+          </div>
         </div>
       </Container>
     </section>
