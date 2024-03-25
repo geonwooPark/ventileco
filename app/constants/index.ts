@@ -1,3 +1,8 @@
+import Project1 from '../../public/images/project1.png'
+import Project2 from '../../public/images/project2.png'
+import Project3 from '../../public/images/project3.png'
+import Project4 from '../../public/images/project4.png'
+
 // 헤더
 export const headerListItem = [
   {
@@ -17,8 +22,8 @@ export const headerListItem = [
   },
   {
     id: 104,
-    title: '소개',
-    link: '/about',
+    title: '프로젝트',
+    link: '/project',
   },
 ]
 
@@ -49,70 +54,6 @@ export const categories = [
 
 export const PAGE = 1
 export const LIMIT = 5
-
-// 소개
-export const skills = [
-  {
-    id: 201,
-    name: 'HTML5',
-    color: 'E34F26',
-  },
-  {
-    id: 202,
-    name: 'CSS',
-    color: '1572B6',
-  },
-  {
-    id: 203,
-    name: 'JavaScript',
-    color: 'F7DF1E',
-  },
-  {
-    id: 204,
-    name: 'TypeScript',
-    color: '3178C6',
-  },
-  {
-    id: 205,
-    name: 'React',
-    color: '61DAFB',
-  },
-  {
-    id: 206,
-    name: 'Next.JS',
-    color: '000000',
-  },
-  {
-    id: 207,
-    name: 'Tailwind CSS',
-    color: '06B6D4',
-  },
-  {
-    id: 208,
-    name: 'MongoDB',
-    color: '47A248',
-  },
-  {
-    id: 209,
-    name: 'Firebase',
-    color: 'FFCA28',
-  },
-  {
-    id: 210,
-    name: 'Redux_Toolkit',
-    color: '764ABC',
-  },
-  {
-    id: 211,
-    name: 'React_Query',
-    color: 'FF4154',
-  },
-  {
-    id: 212,
-    name: 'Zustand',
-    color: 'EA4AAA',
-  },
-]
 
 // 맛집
 export const StoreCategory = [
@@ -258,3 +199,39 @@ export const bookCategory = [
 ]
 
 export const BOOKLIMIT = 8
+
+// 프로젝트
+export const projects = [
+  {
+    id: 601,
+    title: 'INTERVERSE',
+    image: Project1,
+    description:
+      '코로나 시기 이후 구인구직 사이트를 통해 확인되는 채용 공고를 살펴보면, 많은 기업들이 일부 면접을 비대면으로 대체하는 경향이 두드러지고 있습니다. 일반적으로 Zoom과 같은 화상 통화 서비스를 주로 활용하는데, 이러한 서비스는 회원가입 및 로그인과 같은 번거로운 절차를 포함하고 있습니다. 사용자들이 보다 간편하게 이용할 수 있는 서비스를 필요로 한다는 생각에, 메타버스를 활용하여 가상의 공간을 제공하고자 했습니다.',
+    link: 'https://www.interverse.kr',
+  },
+  {
+    id: 602,
+    title: 'My Website',
+    image: Project2,
+    description:
+      'IT 기술 블로그, 지도를 활용한 맛집, 그동안 읽었던 책의 후기, 자기소개 등의 다양한 프로젝트를 담고 있습니다. 무엇을 좋아하고 어떤 사람인지를 보여줄 수 있는 자신만의 웹사이트를 만들고자 프로젝트를 시작했습니다. 직접 웹사이트를 운영하며 프론트엔드 분야의 새로운 기술들을 적용해 봄으로써 다양한 경험을 쌓을 수 있었습니다. Next.JS의 서버 사이드 렌더링을 적극 활용하여 성능 향상에 집중하였으며 SEO를 개선하기 위해 노력 중입니다.',
+    link: 'https://www.ventileco.site',
+  },
+  {
+    id: 603,
+    title: 'Design System',
+    image: Project3,
+    description:
+      ' Figma를 사용하여 직접 UI를 디자인한 후, 디자인 시스템 개발하여 스토리북과 라이브러리에 배포하였습니다. 프로젝트마다 반복되는 컴포넌트 사용이 비효율적인 작업으로 생각되어 디자인 시스템을 만들어 npm에 라이브러리 형태로 배포하여 생산성을 향상하고자 하였습니다. 앞으로 지속적인 업데이트와 피드백을 통해 디자인 시스템을 더욱 발전시키고자 합니다.',
+    link: 'https://main--65d95b8c1722df69e575a89f.chromatic.com',
+  },
+  {
+    id: 604,
+    title: 'SFACLOG',
+    image: Project4,
+    description:
+      '스나이퍼 팩토리 인턴 과정 중 진행한 프로젝트로 디자이너와 협업하여 진행한 프로젝트입니다. 디자이너분들과의 지속적인 커뮤니케이션을 통해 피드백을 교환하며 결과물을 개선하는 경험을 할 수 있었습니다. 모노레포를 구성하여 공통 컨벤션 및 UI 컴포넌트 모듈을 생성하였고, 백엔드 개발자가 없이 진행된 프로젝트로 PoketBase라는 BaaS를 이용하여 백엔드를 구축하였습니다. 개발에 주어진 시간이 많이 부족했기에 비록 코드의 완성도는 떨어지지만, 스프린트하게 진행 된 프로젝트 과정 속에서 우선 순위를 정하고 명확한 목표를 세워 짧은 기간 안에 작업을 완료할 수 있었습니다. 팀원 분들과의 원활한 협업 덕에 프로젝트 성과 발표회에서 웹 부분 우수팀이라는 성적을 거둘 수 있었습니다.',
+    link: 'https://team-5-sfaclog-web.vercel.app',
+  },
+]

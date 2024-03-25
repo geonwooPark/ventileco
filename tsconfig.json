@@ -22,7 +22,7 @@
       "@/*": ["./app/*"],
       "@common/*": ["./app/components/common/*"],
       "@home/*": ["./app/components/_home/*"],
-      "@about/*": ["./app/components/_about/*"],
+      "@project/*": ["./app/components/_project/*"],
       "@blog/*": ["./app/components/_blog/*"],
       "@gpt/*": ["./app/components/_gpt/*"],
       "@mypage/*": ["./app/components/_mypage/*"],
