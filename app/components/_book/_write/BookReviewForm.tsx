@@ -14,7 +14,7 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { BookReviewFormDataType } from '@/interfaces/interface'
 
-const BookReviewInput = dynamic(() => import('./BookReviewInput'), {
+const BookReviewEditor = dynamic(() => import('./BookReviewEditor'), {
   ssr: false,
   loading: () => (
     <EmptyState
@@ -91,8 +91,9 @@ export default function BookReviewForm() {
         clearErrors={clearErrors}
         errorMessage={errors.title?.message}
       />
-      <BookReviewInput
+      <BookReviewEditor
         setValue={setValue}
+        theme="bubble"
         content={content}
         errorMessage={errors.content?.message}
       />

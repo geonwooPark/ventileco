@@ -6,20 +6,25 @@ import { UseFormSetValue } from 'react-hook-form'
 import ErrorMessage from '../../common/ErrorMessage'
 import { BookReviewFormDataType } from '@/interfaces/interface'
 
-interface BookReviewInputProps {
-  setValue: UseFormSetValue<BookReviewFormDataType>
+interface BookReviewEditorProps {
+  setValue?: UseFormSetValue<BookReviewFormDataType>
+  theme: 'snow' | 'bubble'
+  readOnly?: boolean
   content: string
   errorMessage?: string
 }
 
-export default function BookReviewInput({
+export default function BookReviewEditor({
   setValue,
+  theme,
+  readOnly,
   content,
   errorMessage,
-}: BookReviewInputProps) {
+}: BookReviewEditorProps) {
   const quillRef = useRef<any>()
 
   const onChange = (newContent: string) => {
+    if (!setValue) return
     setValue('content', newContent)
   }
 
@@ -38,13 +43,18 @@ export default function BookReviewInput({
 
   return (
     <div className="mb-4">
-      <div className="relative mb-1 h-[500px] rounded-md border">
+      <div
+        className={`${
+          readOnly ? 'h-full' : 'h-[500px]'
+        } relative mb-1  rounded-md border`}
+      >
         <ReactQuill
           ref={quillRef}
           value={content}
           onChange={onChange}
           modules={modules}
-          theme="bubble"
+          theme={theme}
+          readOnly={readOnly}
           className={`h-full w-full outline-none focus:outline-none`}
         />
       </div>
