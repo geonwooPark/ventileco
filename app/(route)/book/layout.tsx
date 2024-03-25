@@ -1,7 +1,6 @@
 import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
-import HeaderBgColor from '@common/Header/HeaderBgColor'
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/book`),
@@ -29,11 +28,8 @@ export default async function Layout({
   children: React.ReactNode
 }) {
   return (
-    <div className="h-full">
-      <HeaderBgColor />
-      <div className="h-auto min-h-[100%] bg-white pt-[82px] md:pt-[102px]">
-        {children}
-      </div>
+    <div className="h-auto min-h-[100%] bg-white pt-[82px] md:pt-[102px]">
+      {children}
     </div>
   )
 }

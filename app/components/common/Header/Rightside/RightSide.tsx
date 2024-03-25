@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Link from 'next/link'
-import { AiOutlineEdit } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import Search from './Search/Search'
 import SearchIcon from './Search/SearchIcon'
@@ -22,11 +20,6 @@ export default function RightSide() {
   return (
     <div className="flex items-center gap-4">
       <Search isOpen={isOpen} setIsOpen={setIsOpen} />
-      {pathName.startsWith('/blog') && session?.user?.role === 'admin' && (
-        <Link href={'/blog/write'} className="z-50 text-white">
-          <AiOutlineEdit size={24} />
-        </Link>
-      )}
       {pathName.startsWith('/blog') && (
         <SearchIcon isOpen={isOpen} toggleOpen={toggleOpen} />
       )}

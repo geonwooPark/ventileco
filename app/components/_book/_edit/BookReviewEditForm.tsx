@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import useEditBookReviewMutation from '@/hooks/mutation/useEditBookReviewMutation'
 
-const BookReviewInput = dynamic(() => import('../_write/BookReviewInput'), {
+const BookReviewEditor = dynamic(() => import('../_write/BookReviewEditor'), {
   ssr: false,
   loading: () => (
     <EmptyState
@@ -110,8 +110,9 @@ export default function BookReviewEditForm({
         clearErrors={clearErrors}
         errorMessage={errors.title?.message}
       />
-      <BookReviewInput
+      <BookReviewEditor
         setValue={setValue}
+        theme="bubble"
         content={content}
         errorMessage={errors.content?.message}
       />
