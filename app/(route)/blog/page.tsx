@@ -5,6 +5,7 @@ import HeroSection from '@/components/common/HeroSection'
 import Main from '@/components/common/Main'
 import Section from '@/components/common/Section'
 import { LIMIT, PAGE } from '@/constants'
+import AddNewPosting from '@blog/_posting/AddNewPosting'
 
 export const revalidate = 1800
 
@@ -25,6 +26,7 @@ export default async function Home() {
           </Article>
         </div>
       </Section>
+      <AddNewPosting />
     </Main>
   )
 }
