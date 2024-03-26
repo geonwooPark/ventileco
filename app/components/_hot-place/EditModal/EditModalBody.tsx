@@ -4,10 +4,6 @@ import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import CategorySelector from '@/components/_hot-place/CreateModal/CreateForm/CategorySelector'
-import RatingStar from '@/components/_hot-place/CreateModal/CreateForm/RatingStar'
-import StoreInput from '@/components/_hot-place/CreateModal/CreateForm/StoreInput'
-import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/DescriptionInput'
 import { toast } from 'react-toastify'
 import {
   HotPlaceFormDataType,
@@ -16,9 +12,13 @@ import {
   UserType,
 } from '@/interfaces/interface'
 import { useSession } from 'next-auth/react'
-import HashtagInput from '../CreateModal/CreateForm/HashtagInput'
 import ImageEditor from './EditForm/ImageEditor'
 import useEditHotPlaceMutation from '@/hooks/mutation/useEditHotPlaceMutation'
+import CategorySelector from '../WriteModal/WriteForm/CategorySelector'
+import StoreInput from '../WriteModal/WriteForm/StoreInput'
+import DescriptionInput from '../WriteModal/WriteForm/DescriptionInput'
+import HashtagInput from '../WriteModal/WriteForm/HashtagInput'
+import RatingStar from '../WriteModal/WriteForm/RatingStar'
 
 interface EditModalBodyProps {
   listing: {
