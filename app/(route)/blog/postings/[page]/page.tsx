@@ -5,6 +5,7 @@ import HeroSection from '@/components/common/HeroSection'
 import AllListing from '@/components/_blog/_posting/AllListing'
 import { LIMIT } from '@/constants'
 import Main from '@/components/common/Main'
+import SideBar from '@/components/_blog/common/Sidebar/SideBar'
 
 export const revalidate = 1800
 
@@ -34,6 +35,7 @@ export default async function Postings({ params }: IParams) {
       />
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
+          <SideBar />
           <Article title="전체 게시글">
             <AllListing path="postings" page={Number(page)} limit={LIMIT} />
           </Article>

@@ -1,6 +1,7 @@
 import AllListing from '@/components/_blog/_posting/AllListing'
 import PopularListing from '@/components/_blog/_posting/PopularListing/PopularListing'
 import Article from '@/components/_blog/common/Article/Article'
+import SideBar from '@/components/_blog/common/Sidebar/SideBar'
 import HeroSection from '@/components/common/HeroSection'
 import Main from '@/components/common/Main'
 import Section from '@/components/common/Section'
@@ -20,6 +21,7 @@ export default async function Home() {
       </Section>
       <Section>
         <div className="flex flex-col md:flex-row-reverse">
+          <SideBar />
           <Article title="전체 게시글">
             <AllListing path="postings" page={PAGE} limit={LIMIT} />
           </Article>
