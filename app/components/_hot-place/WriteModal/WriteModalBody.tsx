@@ -4,18 +4,18 @@ import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import ImageSelector from '@hot-place/CreateModal/CreateForm/ImageSelector'
-import CategorySelector from '@/components/_hot-place/CreateModal/CreateForm/CategorySelector'
-import RatingStar from '@/components/_hot-place/CreateModal/CreateForm/RatingStar'
-import StoreInput from '@/components/_hot-place/CreateModal/CreateForm/StoreInput'
-import DescriptionInput from '@/components/_hot-place/CreateModal/CreateForm/DescriptionInput'
-import useCreateHotPlaceMutation from '@/hooks/mutation/useCreateHotPlaceMutation'
 import { toast } from 'react-toastify'
 import { HotPlaceFormDataType } from '@/interfaces/interface'
-import HashtagInput from './CreateForm/HashtagInput'
 import { useSession } from 'next-auth/react'
+import HashtagInput from './WriteForm/HashtagInput'
+import ImageSelector from './WriteForm/ImageSelector'
+import CategorySelector from './WriteForm/CategorySelector'
+import StoreInput from './WriteForm/StoreInput'
+import DescriptionInput from './WriteForm/DescriptionInput'
+import RatingStar from './WriteForm/RatingStar'
+import useWriteHotPlaceMutation from '@/hooks/mutation/useWriteHotPlaceMutation'
 
-export default function CreateModalBody() {
+export default function WriteModalBody() {
   const router = useRouter()
   const { data: session } = useSession()
   const {
@@ -42,12 +42,12 @@ export default function CreateModalBody() {
       description: '',
     },
   })
-  const { mutation: createHotPlaceMutation } = useCreateHotPlaceMutation()
+  const { mutation: writeHotPlaceMutation } = useWriteHotPlaceMutation()
 
   const onSubmit: SubmitHandler<HotPlaceFormDataType> = async (data) => {
     if (!session) return
 
-    createHotPlaceMutation.mutate(
+    writeHotPlaceMutation.mutate(
       { data },
       {
         onSuccess: () => {
@@ -125,7 +125,7 @@ export default function CreateModalBody() {
           fullWidth={true}
           label="등록하기"
           onClick={handleSubmit(onSubmit)}
-          disabled={createHotPlaceMutation.isPending}
+          disabled={writeHotPlaceMutation.isPending}
         />
       </div>
     </form>

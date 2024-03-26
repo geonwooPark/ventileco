@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
-export default function CreateModalHeader() {
+export default function WriteModalHeader() {
   const router = useRouter()
 
   return (
