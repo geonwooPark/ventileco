@@ -4,11 +4,11 @@ import { storage } from '@/lib/firebase'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 
-interface CreateHotPlaceParams {
+interface WriteHotPlaceParams {
   data: HotPlaceFormDataType
 }
 
-const createHotPlace = async ({ data }: CreateHotPlaceParams) => {
+const writeHotPlace = async ({ data }: WriteHotPlaceParams) => {
   const { store, images } = data
 
   // 이미지들 스토리지에 업로드
@@ -32,10 +32,10 @@ const createHotPlace = async ({ data }: CreateHotPlaceParams) => {
   if (!result.ok) throw new Error('맛집 등록에 실패했습니다!')
 }
 
-export default function useCreateHotPlaceMutation() {
+export default function useWriteHotPlaceMutation() {
   const queryClient = useQueryClient()
   const mutation = useMutation({
-    mutationFn: ({ data }: CreateHotPlaceParams) => createHotPlace({ data }),
+    mutationFn: ({ data }: WriteHotPlaceParams) => writeHotPlace({ data }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: hotPlaceKeys.hotPlaceListing(),

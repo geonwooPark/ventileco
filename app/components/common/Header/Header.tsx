@@ -34,7 +34,7 @@ export default function Header() {
     >
       <Container className="flex items-center justify-between py-4">
         <LeftSide />
-        <RightSide />
+        <RightSide path={path} />
       </Container>
     </header>
   )

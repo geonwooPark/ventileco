@@ -9,11 +9,15 @@ interface SearchProps {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Search({ isOpen, setIsOpen }: SearchProps) {
+export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
   const router = useRouter()
   const [fade, setFade] = useState(false)
   const [text, setText] = useState('')
-  const [keywords, setKeywords] = useState<string[]>([])
+  const [keywords, setKeywords] = useState<string[]>(
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('keyword') as string)
+      : [],
+  )
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
@@ -26,23 +30,25 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     if (text.trim() === '') return
 
     const storage = localStorage.getItem('keyword')
-    if (storage) {
-      const storageArr: string[] = JSON.parse(storage)
-      let newStorageArr: string[] = []
-      if (storageArr.length < 5) {
-        newStorageArr = [text, ...storageArr]
-      } else {
-        newStorageArr = [text, ...storageArr.slice(0, storageArr.length - 1)]
-      }
-      const newRecentlyViewArr = Array.from(new Set(newStorageArr))
-      localStorage.setItem('keyword', JSON.stringify(newRecentlyViewArr))
-    } else {
-      localStorage.setItem('keyword', JSON.stringify([text]))
-    }
+    if (!storage) return localStorage.setItem('keyword', JSON.stringify([text]))
 
-    router.push(`/blog/search?search=${text}`)
+    const storageArr: string[] = JSON.parse(storage)
+    const newStorageArr =
+      storageArr.length < 5
+        ? [text, ...storageArr]
+        : [text, ...storageArr.slice(0, storageArr.length - 1)]
+    const newRecentlyViewArr = Array.from(new Set(newStorageArr))
+    localStorage.setItem('keyword', JSON.stringify(newRecentlyViewArr))
+
     setText('')
     setIsOpen(false)
+    setKeywords((prev) => {
+      return prev.length < 5
+        ? [text, ...prev]
+        : [text, ...prev.slice(0, prev.length - 1)]
+    })
+
+    router.push(`/blog/search?search=${text}`)
   }
 
   const onKeywordDelete = (keyword: string) => {
@@ -67,14 +73,6 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     }
   }, [isOpen])
 
-  useEffect(() => {
-    const storage = localStorage.getItem('keyword')
-    if (storage) {
-      const storageArr: string[] = JSON.parse(storage)
-      setKeywords(storageArr)
-    }
-  }, [isOpen])
-
   return (
     <div
       className={`transition duration-200 ${
@@ -83,21 +81,22 @@ export default function Search({ isOpen, setIsOpen }: SearchProps) {
     >
       {fade && (
         <div
-          className={`absolute left-0 top-0 h-[320px] w-full overflow-hidden bg-black md:h-[420px]`}
+          onClick={(e) => e.stopPropagation()}
+          className={`absolute left-0 top-0 h-[320px] w-full overflow-hidden bg-black/70 md:h-[420px]`}
         >
           <form
             className="mx-auto h-full max-w-[1120px] px-4 sm:px-2 md:px-10 xl:px-20"
             onSubmit={onSubmit}
           >
             <div className="flex h-full items-center justify-center">
-              <div className="relative w-[80%] md:w-[60%]">
+              <div className="w-[80%] md:w-[60%]">
                 <InputWithIcon
                   type="text"
                   name="search"
                   value={text}
                   placeholder="검색어를 입력하세요"
                   onChange={onChange}
-                  className="w-full rounded-sm px-4 py-3 outline-none"
+                  className="w-full rounded-sm px-4 py-3 text-black outline-none"
                   icon={AiOutlineSearch}
                   iconAction={() => onSubmit}
                   iconType="submit"
