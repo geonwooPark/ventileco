@@ -1,4 +1,3 @@
-import AddReviewButton from '@/components/_book/_main/AddReviewButton'
 import BookCategoryFilter from '@/components/_book/_main/BookCategoryFilter'
 import BookList from '@/components/_book/_main/BookList/BookList'
 import SkeletonBookList from '@/components/_book/_main/BookList/SkeletonBookList'
@@ -24,9 +23,6 @@ export default function page({
           <BookList category={category} />
         </Suspense>
       </Section>
-      <div className="fixed left-4 top-[96px] z-[50] flex gap-2 md:top-[118px]">
-        <AddReviewButton />
-      </div>
     </Main>
   )
 }

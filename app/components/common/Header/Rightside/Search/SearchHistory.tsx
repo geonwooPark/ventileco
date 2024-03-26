@@ -23,20 +23,24 @@ export default function SearchHistory({
     setIsOpen(false)
   }
 
+  const onDelete = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    keyword: string,
+  ) => {
+    e.stopPropagation()
+    onKeywordDelete(keyword)
+  }
+
   return (
     <div className="absolute mt-4 flex flex-wrap gap-3 text-sm text-white">
       {keywords.map((keyword, i) => (
         <div
           key={i}
-          className="flex items-center rounded-full border border-gray-600 px-4 py-2"
+          onClick={() => onClick(keyword)}
+          className="flex cursor-pointer items-center rounded-full border border-white px-4 py-2 "
         >
-          <div
-            className="mr-2 cursor-pointer hover:opacity-70"
-            onClick={() => onClick(keyword)}
-          >
-            {keyword}
-          </div>
-          <button onClick={() => onKeywordDelete(keyword)}>
+          <div className="mr-2 hover:opacity-70">{keyword}</div>
+          <button onClick={(e) => onDelete(e, keyword)}>
             <AiOutlineClose className="text-red-500" />
           </button>
         </div>

@@ -1,28 +1,56 @@
-import React, { useState } from 'react'
+import React, { useMemo } from 'react'
 import { useSession } from 'next-auth/react'
-import Search from './Search/Search'
 import SearchIcon from './Search/SearchIcon'
 import Menu from './Menu/Menu'
-import { usePathname } from 'next/navigation'
+import WriteIcon from './Write/WriteIcon'
+import { Session } from 'next-auth'
 
-export default function RightSide() {
-  const pathName = usePathname()
+interface RightSideProps {
+  path: string
+}
+
+const headerIconMap = new Map([
+  ['home', []],
+  [
+    'blog',
+    [
+      { component: <SearchIcon />, scope: 'all' },
+      { component: <WriteIcon path={'blog'} />, scope: 'admin' },
+    ],
+  ],
+  [
+    'hot-place',
+    [{ component: <WriteIcon path={'hot-place'} />, scope: 'user' }],
+  ],
+  ['book', [{ component: <WriteIcon path={'book'} />, scope: 'admin' }]],
+  ['project', []],
+])
+
+export default function RightSide({ path }: RightSideProps) {
   const { data: session } = useSession()
-  const [isOpen, setIsOpen] = useState(false)
 
-  const toggleOpen = () => {
-    setIsOpen((prev) => !prev)
-    if (!isOpen) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-    }
+  const renderIcon = (key: string, session: Session | null) => {
+    const icons = headerIconMap.get(key)
+    if (!icons) return null
+
+    const componentArr = icons.map((icon, i) => {
+      if (icon.scope === 'admin' && icon.scope !== session?.user.role) return
+      if (icon.scope === 'user' && !session) return
+
+      return <div key={i}>{icon.component}</div>
+    })
+
+    return componentArr.filter(Boolean)
   }
+
+  const renderedIcons = useMemo(
+    () => renderIcon(path, session),
+    [path, session],
+  )
 
   return (
     <div className="flex items-center gap-4">
-      <Search isOpen={isOpen} setIsOpen={setIsOpen} />
-      {pathName.startsWith('/blog') && (
-        <SearchIcon isOpen={isOpen} toggleOpen={toggleOpen} />
-      )}
+      {renderedIcons}
       <Menu session={session} />
     </div>
   )
