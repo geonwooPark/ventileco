@@ -33,7 +33,7 @@ export default function SearchHistory({
 
   return (
     <div className="absolute mt-4 flex flex-wrap gap-3 text-sm text-white">
-      {keywords.map((keyword, i) => (
+      {keywords?.map((keyword, i) => (
         <div
           key={i}
           onClick={() => onClick(keyword)}
