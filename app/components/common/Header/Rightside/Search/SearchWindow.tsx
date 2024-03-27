@@ -14,7 +14,8 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
   const [fade, setFade] = useState(false)
   const [text, setText] = useState('')
   const [keywords, setKeywords] = useState<string[]>(
-    typeof window !== 'undefined'
+    typeof window !== 'undefined' &&
+      JSON.parse(localStorage.getItem('keyword') as string)
       ? JSON.parse(localStorage.getItem('keyword') as string)
       : [],
   )
@@ -30,9 +31,8 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
     if (text.trim() === '') return
 
     const storage = localStorage.getItem('keyword')
-    if (!storage) return localStorage.setItem('keyword', JSON.stringify([text]))
 
-    const storageArr: string[] = JSON.parse(storage)
+    const storageArr: string[] = storage ? JSON.parse(storage as string) : []
     const newStorageArr =
       storageArr.length < 5
         ? [text, ...storageArr]
