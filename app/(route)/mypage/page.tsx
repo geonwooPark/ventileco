@@ -14,8 +14,7 @@ export async function generateMetadata() {
     openGraph: {
       title: '마이페이지',
       description: '내 정보 및 활동 내역을 확인할 수 있는 페이지입니다.',
-      images:
-        'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+      images: '/images/og-image.png',
       url: `/mypage`,
       type: 'website',
     },

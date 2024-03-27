@@ -8,8 +8,7 @@ export async function generateMetadata() {
     openGraph: {
       title: '프로젝트',
       description: '그동안 진행해온 프로젝트를 소개하는 페이지입니다.',
-      images:
-        'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+      images: '/images/og-image.png',
       url: `/project`,
       type: 'website',
     },

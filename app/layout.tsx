@@ -22,14 +22,20 @@ export const metadata: Metadata = {
     template: `%s | Ventileco`,
   },
   description: '신입 웹 프론트엔드 개발자 박건우입니다.',
+  keywords: [
+    '프론트엔드',
+    '포트폴리오',
+    '개발자',
+    '프론트엔드 개발자 포트폴리오',
+    '웹 개발자',
+  ],
   openGraph: {
     title: {
       default: 'Ventileco',
       template: `%s | Ventileco`,
     },
     description: '신입 웹 프론트엔드 개발자 박건우입니다.',
-    images:
-      'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+    images: '/images/og-image.png',
     url: process.env.NEXT_PUBLIC_FE_URL,
     type: 'website',
   },

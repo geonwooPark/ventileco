@@ -12,8 +12,7 @@ export async function generateMetadata() {
     openGraph: {
       title: '나의 추천 도서',
       description: `굉장히 재밌게 읽었거나 살면서 도움이 되는 책들을 추천합니다!`,
-      images:
-        'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+      images: '/images/og-image.png',
       url: `/recommended`,
       type: 'website',
     },

@@ -15,8 +15,7 @@ export const metadata: Metadata = {
       template: `%s | Ventileco 독서 리스트`,
     },
     description: '그동안 읽었던 책들의 후기를 남깁니다.',
-    images:
-      'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+    images: '/images/og-image.png',
     url: `${process.env.NEXT_PUBLIC_FE_URL}/book`,
     type: 'website',
   },

@@ -27,8 +27,7 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
     openGraph: {
       title: category as string,
       description: `${category} 카테고리 페이지입니다.`,
-      images:
-        'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+      images: '/images/og-image.png',
       url: `/categories/${category}/${page}`,
       type: 'website',
     },

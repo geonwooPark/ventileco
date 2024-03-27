@@ -15,8 +15,7 @@ export const metadata: Metadata = {
       template: `%s | Ventileco 맛집 리스트`,
     },
     description: '자주 방문하는 지역의 맛집을 소개합니다.',
-    images:
-      'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+    images: '/images/og-image.png',
     url: `${process.env.NEXT_PUBLIC_FE_URL}/hot-place`,
     type: 'website',
   },

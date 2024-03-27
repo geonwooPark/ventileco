@@ -18,8 +18,7 @@ export const metadata: Metadata = {
     },
     description:
       '프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그입니다.',
-    images:
-      'https://dynamic-og-image-generator.vercel.app/api/generate?title=Ventilco&author=Study+Log&websiteUrl=&avatar=&theme=default',
+    images: '/images/og-image.png',
     url: `${process.env.NEXT_PUBLIC_FE_URL}/blog`,
     type: 'website',
   },
