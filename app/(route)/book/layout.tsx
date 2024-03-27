@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/book`),
   title: {
     default: 'Ventileco 독서 리스트',
     template: `%s | Ventileco 독서 리스트`,

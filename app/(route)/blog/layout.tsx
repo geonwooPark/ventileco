@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`${process.env.NEXT_PUBLIC_FE_URL}/blog`),
   title: {
     default: 'Ventileco 개발 블로그',
     template: `%s | Ventileco 개발 블로그`,
