@@ -1,13 +1,12 @@
 import React from 'react'
 import HighLight from './HighLight'
 import Container from '@common/Container'
-import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
 interface StageProps {
   title: string
-  image: StaticImageData
+  image: string
   description: string
   link: string
 }
@@ -22,16 +21,9 @@ export default function Stage({ title, image, description, link }: StageProps) {
               {title}
             </HighLight>
           </div>
-          <div className="relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-lg border border-gray-700">
-            <Image
-              src={image}
-              alt="project"
-              quality={100}
-              fill
-              placeholder="blur"
-              className="object-cover"
-            />
-          </div>
+          <div
+            className={`relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-lg border border-gray-700 bg-cover bg-center bg-no-repeat ${image}`}
+          />
           <p className="text-sm">{description}</p>
           <div className="flex justify-center">
             <Link
