@@ -45,7 +45,6 @@ export interface ReplyCommentUserType {
 }
 
 export interface CommentType {
-  // _doc?: any
   _id: string
   postingId: string
   title: string
