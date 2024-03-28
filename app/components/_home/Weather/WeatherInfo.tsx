@@ -1,11 +1,10 @@
 'use client'
 
-import weatherDescEngToKor from '@/utils/weatherDescEngToKor'
 import React from 'react'
 import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
 import useWeatherQuery from '@/hooks/query/useWeatherQuery'
-import { APIKEY, CITY } from '@/constants'
+import { APIKEY, CITY, weatherMap } from '@/constants'
 
 export default function WeatherInfo() {
   const { weatherData, isPending } = useWeatherQuery(CITY, APIKEY)
@@ -33,7 +32,7 @@ export default function WeatherInfo() {
       </div>
 
       <p className="text-center font-light">
-        {weatherDescEngToKor(Number(weatherData?.weather[0].id))}
+        {weatherMap.get(Number(weatherData?.weather[0].id))}
       </p>
     </div>
   )
