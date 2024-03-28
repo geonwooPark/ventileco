@@ -12,40 +12,11 @@ import Firework from './components/common/Animation/FireworkAnimation'
 import ConfirmModal from './components/common/Modal/ConfirmModal'
 import AuthSession from './components/common/provider/AuthSession'
 import TanstackProvider from './components/common/provider/TanstackProvider'
+import { RootMetadata } from './constants/staticMetadata'
 
 const noto = Noto_Sans_KR({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_FE_URL as string),
-  title: {
-    default: 'Ventileco',
-    template: `%s | Ventileco`,
-  },
-  description: '신입 웹 프론트엔드 개발자 박건우입니다.',
-  keywords: [
-    '프론트엔드',
-    '포트폴리오',
-    '개발자',
-    '프론트엔드 개발자 포트폴리오',
-    '웹 개발자',
-  ],
-  openGraph: {
-    title: {
-      default: 'Ventileco',
-      template: `%s | Ventileco`,
-    },
-    description: '신입 웹 프론트엔드 개발자 박건우입니다.',
-    images: '/images/og-image.png',
-    url: process.env.NEXT_PUBLIC_FE_URL,
-    type: 'website',
-  },
-  icons: {
-    icon: '/favicon.ico',
-  },
-  verification: {
-    google: 'Ib9DLGTTkxzdg0mlwOLhB2GjzIwB8Od2tFbWWWwPWzk',
-  },
-}
+export const metadata: Metadata = RootMetadata
 
 export default async function RootLayout({
   children,
