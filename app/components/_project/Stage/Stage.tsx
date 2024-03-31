@@ -22,7 +22,7 @@ export default function Stage({ title, image, description, link }: StageProps) {
             </HighLight>
           </div>
           <div
-            className={`relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-lg border border-gray-700 bg-cover bg-center bg-no-repeat ${image}`}
+            className={`relative mx-auto aspect-[16/9] w-full overflow-hidden rounded-lg border border-gray-700 bg-cover bg-center bg-no-repeat lg:w-[70%] 2xl:w-full ${image}`}
           />
           <p className="text-sm">{description}</p>
           <div className="flex justify-center">
