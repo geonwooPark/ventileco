@@ -14,8 +14,8 @@ const headerIconMap = new Map([
   [
     'blog',
     [
-      { component: <SearchIcon />, scope: 'all' },
       { component: <WriteIcon path={'blog'} />, scope: 'admin' },
+      { component: <SearchIcon />, scope: 'all' },
     ],
   ],
   [
