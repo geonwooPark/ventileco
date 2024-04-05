@@ -4,11 +4,9 @@ import React, { useState } from 'react'
 import { useChatLog, useChatLogActions } from '@/hooks/store/useChatLogStore'
 import { toast } from 'react-toastify'
 import LoadingAnimation from '../../Animation/LoadingAnimation'
-import { useSession } from 'next-auth/react'
 import Input from '../../Input/Input'
 
 export default function ChatInput() {
-  const { data: session } = useSession()
   const [text, setText] = useState('')
   const { onAdd: setChatLog } = useChatLogActions()
   const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +18,7 @@ export default function ChatInput() {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!text || !session) return
+    if (!text) return
 
     const newId = chatLog[chatLog.length - 1].id + 1
 
@@ -55,10 +53,7 @@ export default function ChatInput() {
       <Input
         type="text"
         name="search"
-        disabled={!session && true}
-        placeholder={
-          session ? '저에 대해 질문해보세요!' : '로그인 후 사용해보세요!'
-        }
+        placeholder={'저에 대해 질문해보세요!'}
         className="w-full rounded-none border-none !bg-white outline-none"
         value={text}
         onChange={onChange}
