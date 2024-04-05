@@ -24,6 +24,12 @@ const useChatLogStore = create<State & Actions>()((set) => ({
       content: '예)블로그 프로젝트에 대해 알려줘',
       sender: 'gpt',
     },
+    {
+      id: 2,
+      content:
+        '현재 답변이 불완전하여 파인 튜닝을 계속 진행하고 있답니다.. 얘가 하는 말 맏지마세요..',
+      sender: 'gpt',
+    },
   ],
   actions: {
     onClear: () => set({ chatLog: [] }),
