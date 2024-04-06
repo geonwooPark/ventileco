@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   return (
-    <main className="h-auto w-full md:h-full">
+    <main className="h-auto w-full bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat md:h-full">
       <section className="h-full pb-5 pt-[82px] text-white md:py-[102px]">
         <Container className="flex h-full items-center justify-center">
           <div className="h-full w-full max-w-[580px] rounded-md md:max-h-[504px]">

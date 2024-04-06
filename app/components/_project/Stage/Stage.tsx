@@ -15,7 +15,7 @@ export default function Stage({ title, image, description, link }: StageProps) {
   return (
     <section className="flex h-full w-full items-center justify-center">
       <Container>
-        <div className="space-y-5 text-white">
+        <div className="space-y-5">
           <div className="text-center text-lg">
             <HighLight beforeBgColor="before:bg-blue-400 font-bold">
               {title}

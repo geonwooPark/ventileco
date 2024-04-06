@@ -27,7 +27,7 @@ export const headerColorMap = new Map([
   ['blog', 'bg-transparent'],
   ['hot-place', 'bg-black/70'],
   ['book', 'bg-black/70'],
-  ['about', 'bg-transparent'],
+  ['project', 'bg-black/70'],
   ['mypage', 'bg-transparent'],
 ])
 
