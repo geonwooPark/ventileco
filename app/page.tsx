@@ -3,7 +3,6 @@ import NewArrivals from './components/_home/NewArrivals/NewArrivals'
 import Weather from './components/_home/Weather/Weather'
 import MyCheckList from './components/_home/MyCheckList/MyCheckList'
 import Container from './components/common/Container'
-import MenAnimation from './components/common/Animation/MenAnimation'
 import NewUpdates from './components/_home/NewUpdates/NewUpdates'
 import GridItem from './components/_home/GridItem'
 import GridContainer from './components/_home/GridContainer'
@@ -31,7 +30,6 @@ export default async function Home() {
           </GridContainer>
         </Container>
       </section>
-      <MenAnimation />
     </main>
   )
 }
