@@ -33,7 +33,7 @@ export default function CategoryFilter({
       {StoreCategory.map((item) => (
         <li
           key={item.id}
-          className={`cursor-pointer py-1 ${
+          className={`cursor-pointer py-1 text-sm ${
             filteredCategory.includes(item.category)
               ? 'text-blue-600'
               : 'text-gray-400'

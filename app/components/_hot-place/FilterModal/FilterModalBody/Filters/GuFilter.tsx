@@ -21,14 +21,14 @@ export default function GuFilter({ filteredGu, setFilteredGu }: GuFilterProps) {
 
   return (
     <ul
-      className={`h-[300px] flex-1 overflow-scroll rounded-md border bg-gray-100 text-center ${
+      className={`h-[300px] flex-1 overflow-x-hidden overflow-y-scroll rounded-md border bg-gray-100 text-center ${
         filteredGu ? 'border-blue-600' : 'border-transparent'
       }`}
     >
       {GuList.map((item) => (
         <li
           key={item.id}
-          className={`cursor-pointer py-1 ${
+          className={`cursor-pointer py-1 text-sm ${
             filteredGu.includes(item.gu) ? 'text-blue-600' : 'text-gray-400'
           }`}
           onClick={() => onClick(item.gu)}
