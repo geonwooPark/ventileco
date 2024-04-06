@@ -18,7 +18,7 @@ export default async function StoreModal({ params }: IParams) {
 
   return (
     <div className="fixed inset-0 z-[100] flex h-full w-full items-center bg-black/30">
-      <div className="mx-auto h-full w-full bg-white md:h-[auto] md:w-[500px]">
+      <div className="mx-auto h-full w-full rounded-md bg-white md:h-[auto] md:w-[500px]">
         <StoreModalHeader />
         <StoreModalBody listing={listing} />
       </div>
