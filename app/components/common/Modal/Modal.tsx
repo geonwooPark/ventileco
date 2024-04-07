@@ -42,49 +42,54 @@ export default function Modal({
 
   return (
     <div
-      className="fixed z-[200] flex h-full w-full items-center justify-center bg-black/30"
+      className="fixed inset-0 z-[200] flex h-full w-full items-center justify-center bg-black/30"
       onClick={handleClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`mx-auto h-full w-full rounded-sm bg-white transition duration-300 md:h-[auto] md:w-[300px]
-      ${showModal ? 'translate-y-0' : 'translate-y-full'}
-      ${showModal ? 'opacity-100' : 'opacity-0'}
-      `}
+        className={`transition duration-300 ${
+          showModal ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+        }`}
       >
-        {/* 헤더 */}
-        <div className="flex justify-between p-4">
-          <div className="text-lg font-semibold">{title}</div>
-          <button onClick={handleClose}>
-            <AiOutlineClose size={20} />
-          </button>
-        </div>
-        {/* 바디 */}
-        <div className="p-4">{body}</div>
-        {/* 푸터 */}
-        <div className="p-4">
-          <div className="flex justify-center gap-2">
-            {secondaryAction && secondaryActionLabel && (
+        <div
+          className={`modal-shadowed mx-auto h-full w-full rounded-md md:h-[auto] md:w-[300px]
+
+      `}
+        >
+          {/* 헤더 */}
+          <div className="flex justify-between p-4 text-beige-normal">
+            <div className="font-point text-lg font-semibold">{title}</div>
+            <button onClick={handleClose}>
+              <AiOutlineClose size={20} />
+            </button>
+          </div>
+          {/* 바디 */}
+          <div className="p-4">{body}</div>
+          {/* 푸터 */}
+          <div className="p-4">
+            <div className="flex justify-center gap-2">
+              {secondaryAction && secondaryActionLabel && (
+                <Button
+                  type="button"
+                  level="outline"
+                  size="m"
+                  fullWidth={true}
+                  label={secondaryActionLabel}
+                  onClick={handleClose}
+                />
+              )}
               <Button
                 type="button"
-                level="outline"
-                size="s"
+                level="primary"
+                size="m"
                 fullWidth={true}
-                label={secondaryActionLabel}
-                onClick={handleClose}
+                label={actionLabel}
+                disabled={isLoading}
+                onClick={onSubmit}
               />
-            )}
-            <Button
-              type="button"
-              level="secondary"
-              size="s"
-              fullWidth={true}
-              label={actionLabel}
-              disabled={isLoading}
-              onClick={onSubmit}
-            />
+            </div>
+            {footer}
           </div>
-          {footer}
         </div>
       </div>
     </div>

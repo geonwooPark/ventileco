@@ -17,7 +17,7 @@ export default function Input({ className, ...props }: InputProps) {
       <input
         {...props}
         autoComplete="off"
-        className={`rounded border border-gray-300 bg-white px-4 py-3 text-sm outline-none
+        className={`w-full rounded bg-beige-light px-4 py-3 text-sm outline-none placeholder:text-beige-dark
         ${className}
         `}
       />
