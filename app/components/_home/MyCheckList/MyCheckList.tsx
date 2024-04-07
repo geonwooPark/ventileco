@@ -35,7 +35,7 @@ export default async function MyCheckList() {
 
   return (
     <div>
-      <h4 className="mr-2 text-lg font-medium">체크 리스트</h4>
+      <h4 className="mb-2 font-point text-lg">CheckList</h4>
       <HydrationBoundary state={dehydratedState}>
         <CheckListWrapper />
       </HydrationBoundary>

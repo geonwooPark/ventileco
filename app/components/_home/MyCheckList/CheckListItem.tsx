@@ -54,11 +54,11 @@ export default function CheckListItem({
 
   return (
     <li className="mb-3 text-sm">
-      <div className="flex items-center rounded-sm bg-slate-600 p-2">
+      <div className="flex items-center rounded border border-brown-dark bg-beige-normal p-2">
         <input
           type="checkbox"
           checked={item.status}
-          className={`mr-1.5 h-5 w-5 accent-pink-500 ${
+          className={`mr-1.5 h-5 w-5 cursor-pointer accent-brown-normal ${
             session?.user.role !== 'admin' && 'pointer-events-none'
           }`}
           onChange={updateCheckListItem}

@@ -55,12 +55,12 @@ export default function AddListItemModal() {
 
   return (
     <Modal
-      title="리스트 추가"
+      title="Add List"
       body={bodyContent}
       isOpen={addListItemModalIsOpen}
       onClose={closeAddListItemModal}
       onSubmit={addCheckListItem}
-      actionLabel="등록"
+      actionLabel="등록하기"
     />
   )
 }

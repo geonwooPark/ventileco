@@ -16,7 +16,7 @@ export default async function NewUpdates() {
 
   return (
     <div className="h-full">
-      <h4 className="mb-2 text-lg font-medium">최신 업데이트</h4>
+      <h4 className="mb-2 font-point text-lg">New Update</h4>
       <HydrationBoundary state={dehydratedState}>
         <NewUpdateList />
       </HydrationBoundary>

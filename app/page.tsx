@@ -11,9 +11,9 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   return (
-    <main className="h-auto w-full bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat md:h-full">
-      <section className="h-full pb-4 pt-[82px] text-white md:pt-[102px]">
-        <Container className="flex h-full items-center justify-center">
+    <main className="h-auto w-full md:h-full">
+      <section className="h-full pt-[64px] text-white">
+        <Container className="flex h-full items-center justify-center py-4">
           <GridContainer>
             <GridItem className="row-span-2 h-[300px]">
               <Weather />

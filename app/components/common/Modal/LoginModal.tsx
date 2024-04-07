@@ -143,13 +143,13 @@ export default function LoginModal() {
 
   return (
     <Modal
-      title="로그인"
+      title="Login"
       body={bodyContent}
       footer={footerContent}
       isOpen={loginModalIsOpen}
       onClose={closeLoginModal}
       onSubmit={handleSubmit(onSubmit, onError)}
-      actionLabel="계속"
+      actionLabel="계속하기"
       isLoading={OAuthMutation.isPending || loginMutation.isPending}
     />
   )

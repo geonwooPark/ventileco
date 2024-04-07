@@ -18,8 +18,8 @@ export default async function Weather() {
   const dehydratedState = dehydrate(queryClient)
 
   return (
-    <div className="h-full">
-      <h4 className="mb-2 text-lg font-medium">날씨</h4>
+    <div className="h-full font-point">
+      <h4 className="mb-2 text-lg">Weather</h4>
       <HydrationBoundary state={dehydratedState}>
         <WeatherInfo />
       </HydrationBoundary>

@@ -11,8 +11,8 @@ export default function FilterButton() {
   return (
     <Link
       href={'/hot-place/filter'}
-      className={`flex items-center gap-1 rounded-md bg-gray-700 p-3  shadow-sm duration-200 ${
-        category || gu ? 'text-red-500' : 'text-white'
+      className={`flex items-center gap-1 rounded-md p-3 shadow-sm duration-200 ${
+        category || gu ? 'bg-gray-700 text-red-500' : 'bg-blue-600 text-white'
       }`}
     >
       <span className="text-sm">

@@ -17,21 +17,22 @@ export default function WeatherInfo() {
       </div>
 
       <div className="mb-3 flex-1 text-center">
-        <p className="text-sm">서울특별시</p>
+        <p className="text-sm">Seoul</p>
         <p className="relative mb-1 text-5xl font-bold after:absolute after:top-0 after:text-3xl after:content-['°']">
           {parseInt(weatherData?.main.temp)}
         </p>
-        <div className="text-sm text-gray-400">
+        <div className="font-normal text-sm text-gray-700">
           <span className="relative mr-2 after:absolute after:top-0 after:text-sm after:content-['°']">
-            최고 {parseInt(weatherData?.main.temp_max)}
+            Max {parseInt(weatherData?.main.temp_max)}
           </span>
+          <span> / </span>
           <span className="relative after:absolute after:top-0 after:text-sm after:content-['°']">
-            최저 {parseInt(weatherData?.main.temp_min)}
+            Min {parseInt(weatherData?.main.temp_min)}
           </span>
         </div>
       </div>
 
-      <p className="text-center font-light">
+      <p className="text-center">
         {weatherMap.get(Number(weatherData?.weather[0].id))}
       </p>
     </div>

@@ -18,7 +18,7 @@ interface WeatherIconProps {
 
 export default function WeatherIcon({ main }: WeatherIconProps) {
   const props = {
-    size: '120',
+    size: '100',
     className: 'mx-auto',
   }
   const currentHour = dayjs(new Date()).tz().hour()

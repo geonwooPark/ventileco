@@ -14,7 +14,7 @@ export default function CheckList({ selectedDate }: CheckListProps) {
   if (isPending) return <SkeletonCheckList />
 
   return (
-    <ul className="hide-scroll h-[220px] overflow-y-scroll">
+    <ul className="hide-scroll max-h-[210px] overflow-y-scroll">
       {checkList?.map((item) => {
         return (
           <CheckListItem

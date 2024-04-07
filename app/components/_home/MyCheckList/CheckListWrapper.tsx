@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import CheckList from './CheckList'
 import CheckListController from './CheckListController'
 import CalendarModal from '../../common/Modal/CalendarModal'
-import ModalContainer from '../../common/Modal/ModalContainer'
 import AddListItemModal from '../../common/Modal/AddListItemModal'
 
 export default function CheckListWrapper() {
@@ -12,10 +11,8 @@ export default function CheckListWrapper() {
 
   return (
     <div>
-      <ModalContainer>
-        <CalendarModal setSelectedDate={setSelectedDate} />
-        <AddListItemModal />
-      </ModalContainer>
+      <AddListItemModal />
+      <CalendarModal setSelectedDate={setSelectedDate} />
       <CheckListController selectedDate={selectedDate} />
       <CheckList selectedDate={selectedDate} />
     </div>

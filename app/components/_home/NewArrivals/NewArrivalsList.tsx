@@ -15,7 +15,7 @@ export default function NewArrivalsList() {
         return (
           <li key={item._id} className="mb-1.5 truncate text-sm last:mb-0">
             <Link href={`/blog/detail/${item._id}`}>
-              <span className="mr-1">📄</span>
+              <span className="mr-1">📜</span>
               <span>{item.title}</span>
             </Link>
           </li>

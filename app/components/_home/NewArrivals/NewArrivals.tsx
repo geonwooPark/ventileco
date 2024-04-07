@@ -32,7 +32,7 @@ export default async function NewArrivals() {
 
   return (
     <div className="h-full">
-      <h4 className="mb-2 text-lg font-medium">최신 게시글</h4>
+      <h4 className="mb-2 font-point text-lg">New Arrivals</h4>
       <HydrationBoundary state={dehydratedState}>
         <NewArrivalsList />
       </HydrationBoundary>
