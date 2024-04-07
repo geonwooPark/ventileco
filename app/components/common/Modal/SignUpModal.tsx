@@ -127,7 +127,7 @@ export default function SignUpModal() {
       isOpen={signUpModalIsOpen}
       onClose={closeSignUpModal}
       onSubmit={handleSubmit(onSubmit, onError)}
-      actionLabel="계속"
+      actionLabel="가입하기"
       isLoading={signUpMutation.isPending}
     />
   )

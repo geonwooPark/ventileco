@@ -47,7 +47,7 @@ export default function RabbitGPT() {
       {scale && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`absolute right-[-380px] top-[-240px] flex h-full origin-bottom-left items-center justify-center duration-200 ${
+          className={`absolute right-[-350px] top-[-240px] flex h-full origin-bottom-left items-center justify-center duration-200 ${
             isOpen ? 'scale-100' : 'scale-0'
           }`}
         >
