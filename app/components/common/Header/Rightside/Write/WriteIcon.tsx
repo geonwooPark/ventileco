@@ -9,8 +9,8 @@ interface WriteIconProps {
 export default function WriteIcon({ path }: WriteIconProps) {
   return (
     <Link
-      href={`/${path}/write` as any}
-      className="relative z-[100] cursor-pointer text-white"
+      href={`${path}/write` as any}
+      className="relative z-[100] cursor-pointer"
     >
       <AiOutlinePlus size={24} />
     </Link>

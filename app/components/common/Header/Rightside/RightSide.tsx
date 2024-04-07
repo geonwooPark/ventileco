@@ -10,20 +10,20 @@ interface RightSideProps {
 }
 
 const headerIconMap = new Map([
-  ['home', []],
+  ['/home', []],
   [
-    'blog',
+    '/blog',
     [
-      { component: <WriteIcon path={'blog'} />, scope: 'admin' },
+      { component: <WriteIcon path={'/blog'} />, scope: 'admin' },
       { component: <SearchIcon />, scope: 'all' },
     ],
   ],
   [
-    'hot-place',
-    [{ component: <WriteIcon path={'hot-place'} />, scope: 'user' }],
+    '/hot-place',
+    [{ component: <WriteIcon path={'/hot-place'} />, scope: 'user' }],
   ],
-  ['book', [{ component: <WriteIcon path={'book'} />, scope: 'admin' }]],
-  ['project', []],
+  ['/book', [{ component: <WriteIcon path={'/book'} />, scope: 'admin' }]],
+  ['/project', []],
 ])
 
 export default function RightSide({ path }: RightSideProps) {
@@ -49,7 +49,7 @@ export default function RightSide({ path }: RightSideProps) {
   )
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 text-black">
       {renderedIcons}
       <Menu session={session} />
     </div>

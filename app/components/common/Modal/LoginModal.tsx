@@ -107,11 +107,11 @@ export default function LoginModal() {
 
   const footerContent = (
     <div className="mt-3">
-      <hr className="mb-3" />
+      <hr className="mb-3 border-beige-normal" />
       <Button
         type="button"
         level="outline"
-        size="s"
+        size="m"
         fullWidth={true}
         label="구글로 로그인"
         icon={FcGoogle}
@@ -122,18 +122,18 @@ export default function LoginModal() {
       <Button
         type="button"
         level="outline"
-        size="s"
+        size="m"
         fullWidth={true}
         label="깃허브로 로그인"
         icon={BiLogoGithub}
         disabled={OAuthMutation.isPending || loginMutation.isPending}
         onClick={() => onClick('github')}
       />
-      <p className="mt-4 text-center text-xs font-light text-gray-500">
+      <p className="mt-4 text-center text-xs text-beige-light">
         계정이 없으신가요?{' '}
         <span
           onClick={handleModal}
-          className="cursor-pointer font-normal text-gray-800"
+          className="cursor-pointer text-beige-normal"
         >
           회원가입
         </span>

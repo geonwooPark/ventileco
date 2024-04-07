@@ -47,15 +47,11 @@ export default function Modal({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`transition duration-300 ${
+        className={`mx-auto h-full w-full transition duration-300 md:h-[auto] md:w-[300px] ${
           showModal ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
         }`}
       >
-        <div
-          className={`modal-shadowed mx-auto h-full w-full rounded-md md:h-[auto] md:w-[300px]
-
-      `}
-        >
+        <div className={`modal-shadowed h-full w-full`}>
           {/* 헤더 */}
           <div className="flex justify-between p-4 text-beige-normal">
             <div className="font-point text-lg font-semibold">{title}</div>

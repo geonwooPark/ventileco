@@ -15,7 +15,7 @@ export default function SearchIcon() {
   return (
     <div onClick={toggleOpen}>
       <SearchWindow isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className="relative z-[100] cursor-pointer text-white">
+      <div className="relative z-[100] cursor-pointer">
         {isOpen ? <AiOutlineClose size={24} /> : <AiOutlineSearch size={24} />}
       </div>
     </div>
