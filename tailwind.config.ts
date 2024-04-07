@@ -7,15 +7,30 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    container: {
-      screens: {
-        sm: '640px',
-        md: '768px',
-        lg: '1024px',
-        xl: '1280px',
-      },
-    },
     extend: {
+      fontFamily: {
+        point: ['var(--font-rye)', 'var(--font-classic)'],
+        normal: ['var(--font-simplehae)'],
+      },
+      container: {
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+        },
+      },
+      colors: {
+        beige: {
+          dark: '#A68446',
+          normal: '#D9B779',
+          light: '#D9BF8F',
+        },
+        brown: {
+          dark: '#403425',
+          normal: '#734A19',
+        },
+      },
       keyframes: {
         slideFadeIn: {
           '0%': { transform: 'translateY(-100%)' },

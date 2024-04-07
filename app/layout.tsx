@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_KR } from 'next/font/google'
+import { Outfit, Rye } from 'next/font/google'
 import '../app/styles/globals.css'
 import LoginModal from './components/common/Modal/LoginModal'
 import { ToastContainer } from 'react-toastify'
@@ -14,7 +14,35 @@ import AuthSession from './components/common/provider/AuthSession'
 import TanstackProvider from './components/common/provider/TanstackProvider'
 import { RootMetadata } from './constants/staticMetadata'
 
-const noto = Noto_Sans_KR({ subsets: ['latin'] })
+import localFont from 'next/font/local'
+
+const classic = localFont({
+  src: [
+    {
+      path: '../public/fonts/classicB.ttf',
+    },
+  ],
+  variable: '--font-classic',
+})
+
+const simplehae = localFont({
+  src: [
+    {
+      path: '../public/fonts/simplehae.woff2',
+    },
+  ],
+  variable: '--font-simplehae',
+})
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+})
+const rye = Rye({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-rye',
+})
 
 export const metadata: Metadata = RootMetadata
 
@@ -25,7 +53,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="kr">
-      <body className={noto.className}>
+      <body
+        className={`${simplehae.variable} ${rye.variable} ${outfit.variable} ${classic.variable} bg-brown-dark font-normal`}
+      >
         <Script
           strategy="beforeInteractive"
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KEY}&autoload=false&libraries=services,clusterer,drawing`}
