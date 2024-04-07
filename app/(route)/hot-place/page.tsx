@@ -20,11 +20,11 @@ export default async function page() {
   const dehydratedState = dehydrate(queryClient)
 
   return (
-    <Main>
+    <Main className="relative">
       <HydrationBoundary state={dehydratedState}>
         <Map />
       </HydrationBoundary>
-      <div className="fixed left-4 top-[96px] z-[50] flex gap-2 md:top-[118px]">
+      <div className="absolute left-4 top-4 z-[50]">
         <FilterButton />
       </div>
     </Main>

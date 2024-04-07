@@ -49,14 +49,14 @@ export default function Menu({ session }: MenuProps) {
         }`}
       >
         {fade && (
-          <div className="absolute right-0 top-12 w-[40vw] overflow-hidden rounded-sm bg-white text-sm shadow-md md:-right-10 md:w-[140px]">
+          <div className="absolute right-0 top-[50px] w-[40vw] overflow-hidden rounded-md text-sm shadow-md md:-right-10 md:w-[140px]">
             <div className="flex cursor-pointer flex-col">
               {session ? (
                 <>
                   <MenuItem
                     onClick={signOut}
                     label="로그아웃"
-                    className="text-red-500"
+                    className="text-red-600"
                   />
                   <MenuItem
                     onClick={() => {
@@ -64,7 +64,7 @@ export default function Menu({ session }: MenuProps) {
                       router.push('/mypage')
                     }}
                     label="마이페이지"
-                    className="border-t"
+                    className="text-black"
                   />
                 </>
               ) : (

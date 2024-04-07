@@ -13,7 +13,7 @@ export default async function Layout({
   modal: React.ReactNode
 }) {
   return (
-    <div className="h-full">
+    <div className="h-full pt-[64px]">
       {children}
       {modal}
     </div>

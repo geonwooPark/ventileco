@@ -14,7 +14,7 @@ export default function SideInfoButton({
     <button
       type="button"
       onClick={() => setShowSideInfo((prev) => !prev)}
-      className={`absolute right-[320px] top-[96px] z-[10] hidden h-11 w-11 items-center justify-center rounded-l-md text-gray-700 duration-300 md:top-[118px] md:flex ${
+      className={`absolute right-[320px] top-4 z-[10] hidden h-11 w-11 items-center justify-center rounded-l-md text-gray-700 duration-300 md:flex ${
         showSideInfo
           ? 'translate-x-0 bg-gray-100 shadow-inner'
           : 'translate-x-[320px] bg-blue-600'

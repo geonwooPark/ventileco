@@ -7,7 +7,7 @@ export default function MenuItem({ onClick, label, className }: MenuItemProps) {
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer px-4 py-3 font-semibold transition hover:bg-gray-100 ${className}`}
+      className={`cursor-pointer bg-beige-light px-4 py-3 transition hover:bg-beige-normal ${className}`}
     >
       {label}
     </div>

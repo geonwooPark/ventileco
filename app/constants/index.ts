@@ -2,34 +2,25 @@
 export const headerListItem = [
   {
     id: 101,
-    title: '블로그',
+    title: 'Blog',
     link: '/blog',
   },
   {
     id: 102,
-    title: '맛집',
+    title: 'Hot-Place',
     link: '/hot-place',
   },
   {
     id: 103,
-    title: '독서',
+    title: 'Book',
     link: '/book',
   },
   {
     id: 104,
-    title: '프로젝트',
+    title: 'Project',
     link: '/project',
   },
 ]
-
-export const headerColorMap = new Map([
-  ['', 'bg-transparent'],
-  ['blog', 'bg-transparent'],
-  ['hot-place', 'bg-black/70'],
-  ['book', 'bg-black/70'],
-  ['project', 'bg-black/70'],
-  ['mypage', 'bg-transparent'],
-])
 
 // 홈
 export const BRANCH = 'main'

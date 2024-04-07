@@ -10,9 +10,7 @@ export default function Logo({ className }: LogoProps) {
   const router = useRouter()
 
   return (
-    <div
-      className={`relative z-50 h-[50px] w-[50px] cursor-pointer md:h-[70px] md:w-[70px] ${className}`}
-    >
+    <div className={`relative z-50 size-[40px] cursor-pointer  ${className}`}>
       <Image
         src={logo}
         alt="로고이미지"
