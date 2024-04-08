@@ -18,7 +18,7 @@ export default function DetailTopSection({ posting }: TopSectionProps) {
         fill
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
-        className="object-cover brightness-50"
+        className="object-cover brightness-[0.6]"
       />
       <DetailPostingInfo posting={posting} />
       <InteractionMetrics postingId={posting._id.toString()} />

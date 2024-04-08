@@ -23,11 +23,7 @@ export default function LikeCounter({ postingId }: LikeCounterProps) {
         <AiFillHeart />
       </div>
       <div className="ml-1">
-        {isPending ? (
-          <Spinner width="w-3" height="w-3" fillColor="fill-blue-600" />
-        ) : (
-          data?.likes
-        )}
+        {isPending ? <Spinner width="w-3" height="w-3" /> : data?.likes}
       </div>
     </div>
   )

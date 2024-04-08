@@ -12,7 +12,7 @@ export default function MyCommentedPost() {
   if (isPending) {
     return (
       <div className="flex h-full w-full items-center justify-center">
-        <Spinner width="w-6" height="w-6" fillColor="fill-blue-600" />
+        <Spinner width="w-6" height="w-6" />
       </div>
     )
   }

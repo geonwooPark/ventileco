@@ -62,7 +62,7 @@ export default async function Detail({ params }: IParams) {
   if (!posting) return NotFound()
 
   return (
-    <Main className="text-beige-light">
+    <Main>
       <DetailTopSection posting={posting} />
       <ContentSection content={posting.content} />
       <CommentSection postingId={id} />

@@ -46,7 +46,7 @@ export default function AddedBookList({ category }: AddedBookListProps) {
       ))}
       {isLoading && (
         <div className="fixed bottom-8 left-0 flex w-full justify-center">
-          <Spinner width="w-6" height="h-6" fillColor="fill-gray-400" />
+          <Spinner width="w-6" height="h-6" />
         </div>
       )}
       <div ref={triggerRef} className="place-self-end"></div>

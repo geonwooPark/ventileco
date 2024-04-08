@@ -27,11 +27,11 @@ export default function ReplyCommentItem({
     <div className="list-none border-b border-beige-dark px-3 py-2 text-sm">
       <div className="mb-2 flex justify-between">
         <div className="flex items-center">
-          <IconReplyArrow className="mr-2" />
+          <IconReplyArrow className="mr-2 text-brown-dark" />
           <Avatar src={userImage} />
           <p className="ml-2">{userName}</p>
         </div>
-        <small className="flex items-center gap-2 text-beige-normal">
+        <small className="flex items-center gap-2 text-brown-dark">
           {session && session.user.id === userId && (
             <>
               <ReplyCommentEditButton

@@ -32,7 +32,7 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
           <Avatar src={userImage} />
           <p className="ml-2">{userName}</p>
         </div>
-        <small className="flex items-center gap-2 text-beige-normal">
+        <small className="flex items-center gap-2 text-brown-dark">
           {session && session.user.id === userId && (
             <>
               <CommentEditButton

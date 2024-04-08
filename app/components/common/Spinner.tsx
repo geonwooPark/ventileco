@@ -3,15 +3,14 @@ import React from 'react'
 interface LoadingProps {
   width: string
   height: string
-  fillColor: string
 }
 
-export default function Spinner({ width, height, fillColor }: LoadingProps) {
+export default function Spinner({ width, height }: LoadingProps) {
   return (
     <div role="status">
       <svg
         aria-hidden="true"
-        className={`inline ${width} ${height} ${fillColor} animate-spin text-brown-dark`}
+        className={`inline ${width} ${height} animate-spin fill-active`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

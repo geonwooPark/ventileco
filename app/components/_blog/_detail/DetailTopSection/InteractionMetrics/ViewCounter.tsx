@@ -23,11 +23,7 @@ export default function ViewCounter({ postingId }: ViewCounterProps) {
         <AiFillEye />
       </div>
       <div className="ml-1">
-        {isPending ? (
-          <Spinner width="w-3" height="h-3" fillColor="fill-blue-600" />
-        ) : (
-          views
-        )}
+        {isPending ? <Spinner width="w-3" height="h-3" /> : views}
       </div>
     </div>
   )
