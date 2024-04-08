@@ -8,8 +8,8 @@ export default function WriteModalHeader() {
   const router = useRouter()
 
   return (
-    <div className="flex justify-between p-4">
-      <div className="text-lg font-semibold">스토어 등록</div>
+    <div className="flex justify-between p-4 text-beige-normal">
+      <div className="font-point text-lg">Regist</div>
       <button onClick={() => router.back()}>
         <AiOutlineClose size={20} />
       </button>

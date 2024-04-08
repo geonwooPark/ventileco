@@ -11,7 +11,7 @@ const btnLevel = {
   primary: `bg-brown-normal shadow-md text-beige-light font-point rounded transition duration-200 ease-in-out hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed`,
   secondary: `bg-gray-700 text-white rounded transition duration-200 ease-in-out hover:opacity-80 disabled:opacity-40 disabled:cursor-not-allowed`,
   ghost: `border border-blue-600 text-blue-600 rounded transition duration-200 ease-in-out`,
-  outline: `border border-beige-light text-beige-light rounded transition duration-200 ease-in-out disabled:opacity-40 disabled:cursor-not-allowed`,
+  outline: `border border-beige-light font-point text-beige-light rounded transition duration-200 ease-in-out disabled:opacity-40 disabled:cursor-not-allowed`,
 }
 
 type ButtonProps = (

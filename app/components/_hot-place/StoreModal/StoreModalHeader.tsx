@@ -14,8 +14,8 @@ export default function StoreModalHeader() {
   }
 
   return (
-    <div className="flex justify-between p-4">
-      <div className="text-lg font-semibold">스토어 정보</div>
+    <div className="flex justify-between p-4 text-beige-normal">
+      <div className="font-point text-lg">Store</div>
       <div className="flex items-center gap-3">
         <button onClick={onShare}>
           <AiOutlineShareAlt size={20} />

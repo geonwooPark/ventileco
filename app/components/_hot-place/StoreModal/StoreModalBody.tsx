@@ -31,20 +31,20 @@ export default function StoreModalBody({ listing }: StoreModalBodyProps) {
       <div className="overflow-hidden px-4">
         <StoreImageSlider images={images} />
         <div className="mb-1 flex items-center gap-2">
-          <h4 className="text-lg font-medium">{storeName}</h4>
-          <p className="text-sm text-gray-400">{category}</p>
+          <h4 className="text-lg text-beige-light">{storeName}</h4>
+          <p className="text-sm text-beige-dark">{category}</p>
           <StoreRating rating={rating} />
         </div>
         <div className="mb-2 flex items-center justify-between text-sm text-gray-700">
-          <p>{address}</p>
+          <p className="text-beige-dark">{address}</p>
           <div className="flex items-center gap-2">
-            <p>✏️{name}</p>
+            <p className="text-beige-dark">✏️{name}</p>
           </div>
         </div>
         <textarea
           value={description}
           readOnly
-          className="mb-1 h-[100px] w-full cursor-default resize-none rounded border border-gray-300 px-4 py-3 text-sm outline-none"
+          className="hide-scroll mb-1 h-[100px] w-full cursor-default resize-none rounded-md bg-beige-light px-4 py-3 text-sm outline-none"
         />
         <StoreHashtags hashtags={hashtags} />
       </div>

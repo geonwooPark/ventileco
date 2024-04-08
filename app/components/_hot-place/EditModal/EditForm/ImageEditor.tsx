@@ -86,10 +86,10 @@ export default function ImageEditor({
   return (
     <div className="mb-2">
       <div className="relative mb-1">
-        <div className="absolute left-0 top-0 z-10 bg-white pt-2.5">
+        <div className="absolute left-0 top-0 z-10 pt-2.5">
           <label
             htmlFor="input-file"
-            className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded border border-blue-400 bg-white text-blue-400"
+            className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded bg-beige-light text-brown-dark"
           >
             <AiOutlinePlus size={20} />
           </label>
@@ -109,48 +109,44 @@ export default function ImageEditor({
           }`}
         >
           <div className="invisible">
-            <div className="h-[70px] w-[70px] rounded border border-gray-700" />
+            <div className="h-[70px] w-[70px] rounded-md" />
           </div>
-          {prevImagesArray.map((prevImage, i) => {
-            return (
-              <div key={i}>
-                <div className="relative w-[70px]">
-                  <img
-                    src={prevImage.url}
-                    alt="preview-image"
-                    className="h-[70px] w-[70px] rounded border border-gray-400 object-cover"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => onPrevImageDelete(i)}
-                    className="absolute -right-2 -top-2 rounded-3xl bg-white text-gray-700"
-                  >
-                    <IoMdCloseCircleOutline size={20} />
-                  </button>
-                </div>
+          {prevImagesArray.map((prevImage, i) => (
+            <div key={i}>
+              <div className="relative w-[70px]">
+                <img
+                  src={prevImage.url}
+                  alt="preview-image"
+                  className="h-[70px] w-[70px] rounded-md border border-beige-normal object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => onPrevImageDelete(i)}
+                  className="absolute -right-2 -top-2 rounded-3xl bg-beige-light text-brown-dark"
+                >
+                  <IoMdCloseCircleOutline size={20} />
+                </button>
               </div>
-            )
-          })}
-          {previewImages.map((previewImage, i) => {
-            return (
-              <div key={i}>
-                <div className="relative w-[70px]">
-                  <img
-                    src={previewImage}
-                    alt="preview-image"
-                    className="h-[70px] w-[70px] rounded border border-gray-400 object-cover"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => onImageDelete(i)}
-                    className="absolute -right-2 -top-2 rounded-3xl bg-white text-gray-700"
-                  >
-                    <IoMdCloseCircleOutline size={20} />
-                  </button>
-                </div>
+            </div>
+          ))}
+          {previewImages.map((previewImage, i) => (
+            <div key={i}>
+              <div className="relative w-[70px]">
+                <img
+                  src={previewImage}
+                  alt="preview-image"
+                  className="h-[70px] w-[70px] rounded-md border border-beige-normal object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={() => onImageDelete(i)}
+                  className="absolute -right-2 -top-2 rounded-3xl bg-beige-light text-brown-dark"
+                >
+                  <IoMdCloseCircleOutline size={20} />
+                </button>
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
       </div>
       <ErrorMessage errorMessage={errorMessage} />

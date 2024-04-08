@@ -21,15 +21,15 @@ export default function GuFilter({ filteredGu, setFilteredGu }: GuFilterProps) {
 
   return (
     <ul
-      className={`h-[300px] flex-1 overflow-x-hidden overflow-y-scroll rounded-md border bg-gray-100 text-center ${
-        filteredGu ? 'border-blue-600' : 'border-transparent'
+      className={`hide-scroll h-[300px] flex-1 overflow-x-hidden overflow-y-scroll rounded-md border bg-beige-light text-center ${
+        filteredGu ? 'border-active' : 'border-transparent'
       }`}
     >
       {GuList.map((item) => (
         <li
           key={item.id}
           className={`cursor-pointer py-1 text-sm ${
-            filteredGu.includes(item.gu) ? 'text-blue-600' : 'text-gray-400'
+            filteredGu.includes(item.gu) ? 'text-active' : 'text-brown-dark'
           }`}
           onClick={() => onClick(item.gu)}
         >

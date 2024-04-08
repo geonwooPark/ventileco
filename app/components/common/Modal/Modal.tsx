@@ -54,7 +54,7 @@ export default function Modal({
         <div className={`modal-shadowed h-full w-full`}>
           {/* 헤더 */}
           <div className="flex justify-between p-4 text-beige-normal">
-            <div className="font-point text-lg font-semibold">{title}</div>
+            <div className="font-point text-lg">{title}</div>
             <button onClick={handleClose}>
               <AiOutlineClose size={20} />
             </button>
@@ -68,7 +68,7 @@ export default function Modal({
                 <Button
                   type="button"
                   level="outline"
-                  size="m"
+                  size="s"
                   fullWidth={true}
                   label={secondaryActionLabel}
                   onClick={handleClose}
@@ -77,7 +77,7 @@ export default function Modal({
               <Button
                 type="button"
                 level="primary"
-                size="m"
+                size="s"
                 fullWidth={true}
                 label={actionLabel}
                 disabled={isLoading}

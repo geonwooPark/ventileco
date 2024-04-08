@@ -22,7 +22,7 @@ export default function StoreHashtags({ hashtags }: StoreHashtagsProps) {
           onMouseUp={onDragEnd}
           onMouseMove={onDragMove}
           onMouseLeave={onDragEnd}
-          className="shrink-0 select-none	rounded-full border border-gray-200 px-3 py-1.5 text-sm text-blue-400"
+          className="shrink-0 select-none rounded-full border border-beige-dark px-3 py-1.5 text-sm text-beige-light "
         >
           #{tag}
         </div>

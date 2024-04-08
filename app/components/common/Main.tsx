@@ -8,5 +8,5 @@ export default function Main({
   className,
   children,
 }: PropsWithChildren<MainProps>) {
-  return <main className={`h-full bg-white ${className}`}>{children}</main>
+  return <main className={`h-full ${className}`}>{children}</main>
 }

@@ -18,7 +18,7 @@ export default function SideInfo({
 }: SideInfoProps) {
   return (
     <div
-      className={`absolute right-0 z-10 hidden h-full w-[320px] overflow-y-scroll bg-white p-4 duration-300 md:block ${
+      className={`hide-scroll absolute right-0 z-10 hidden h-full w-[320px] overflow-y-scroll bg-brown-dark py-4 pl-4 duration-300 md:block ${
         showSideInfo ? 'translate-x-0' : 'translate-x-[100%]'
       }`}
     >

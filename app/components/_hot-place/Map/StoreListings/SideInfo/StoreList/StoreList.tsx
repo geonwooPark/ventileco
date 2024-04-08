@@ -54,7 +54,7 @@ export default function StoreList({
     )
 
   return (
-    <ul>
+    <ul className="card-shadowed rounded-md bg-beige-light text-brown-dark">
       {hotPlaceListings?.map((hotPlaceListing) => (
         <StoreListItem
           key={hotPlaceListing._id}

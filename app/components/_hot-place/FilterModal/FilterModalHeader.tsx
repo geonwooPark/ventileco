@@ -8,8 +8,8 @@ export default function FilterModalHeader() {
   const router = useRouter()
 
   return (
-    <div className="flex justify-between p-4">
-      <div className="text-lg font-semibold">필터</div>
+    <div className="flex justify-between p-4 text-beige-normal">
+      <div className="font-point text-lg">Filter</div>
       <button onClick={() => router.back()}>
         <AiOutlineClose size={20} />
       </button>

@@ -26,8 +26,8 @@ export default function CategoryFilter({
 
   return (
     <ul
-      className={`flex-1 rounded-md border bg-gray-100 text-center ${
-        filteredCategory ? 'border-blue-600' : 'border-transparent'
+      className={`flex-1 rounded-md border bg-beige-light text-center ${
+        filteredCategory ? 'border-active' : 'border-transparent'
       }`}
     >
       {StoreCategory.map((item) => (
@@ -35,8 +35,8 @@ export default function CategoryFilter({
           key={item.id}
           className={`cursor-pointer py-1 text-sm ${
             filteredCategory.includes(item.category)
-              ? 'text-blue-600'
-              : 'text-gray-400'
+              ? 'text-active'
+              : 'text-brown-dark'
           }`}
           onClick={() => onClick(item.category)}
         >

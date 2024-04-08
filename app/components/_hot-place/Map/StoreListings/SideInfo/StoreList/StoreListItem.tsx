@@ -17,10 +17,10 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
   const { data: session } = useSession()
 
   return (
-    <li className="group relative cursor-pointer rounded-md p-2 duration-100 last:mb-0 hover:bg-gray-50">
+    <li className="group relative cursor-pointer rounded-md p-2 duration-100 last:mb-0 hover:bg-beige-normal">
       <Link href={`/hot-place/store/${_id}`} className="flex gap-4">
         <div>
-          <div className="relative h-[60px] w-[90px] overflow-hidden rounded-sm bg-slate-700">
+          <div className="relative h-[60px] w-[90px] overflow-hidden rounded-md bg-slate-700">
             <Image
               src={images[0]?.url}
               alt="store-thumbnail"
@@ -35,7 +35,7 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
           <p className="mb-0.5 text-sm">
             {store.length > 12 ? store.slice(0, 12) + '...' : store}
           </p>
-          <p className="text-xs text-gray-800">{category}</p>
+          <p className="text-xs text-beige-dark">{category}</p>
           <StoreRating rating={rating} />
         </div>
       </Link>
@@ -44,7 +44,7 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
           <div className="absolute bottom-4 right-2 hidden gap-2 group-hover:flex">
             <button
               onClick={() => router.push(`/hot-place/edit/${_id}`)}
-              className="text-xs text-blue-400 "
+              className="text-xs text-active"
             >
               수정
             </button>
@@ -52,7 +52,7 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
               onClick={() =>
                 router.push(`/hot-place/delete/${_id}?creator=${creator}`)
               }
-              className="text-xs text-red-400 group-hover:block"
+              className="text-xs text-red-600 group-hover:block"
             >
               삭제
             </button>

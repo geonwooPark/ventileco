@@ -5,7 +5,6 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { hotPlaceKeys } from '@/constants/queryKey'
 import getAllStore from '@/actions/_hot-place/getAllStore'
 import Map from '@/components/_hot-place/Map/Map'
-import FilterButton from '@/components/_hot-place/Map/FilterButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,13 +19,10 @@ export default async function page() {
   const dehydratedState = dehydrate(queryClient)
 
   return (
-    <Main className="relative">
+    <Main className="p-4">
       <HydrationBoundary state={dehydratedState}>
         <Map />
       </HydrationBoundary>
-      <div className="absolute left-4 top-4 z-[50]">
-        <FilterButton />
-      </div>
     </Main>
   )
 }

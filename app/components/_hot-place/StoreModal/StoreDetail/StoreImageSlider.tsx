@@ -34,27 +34,22 @@ export default function ImageSlider({ images }: ImageSliderProps) {
     nextArrow: (
       <NextArrow
         icon={MdOutlineKeyboardArrowRight}
-        customStyle="absolute top-[50%] -translate-y-[50%] right-0 cursor-pointer hover:opacity-50"
+        customStyle="absolute top-[50%] -translate-y-[50%] -right-2 cursor-pointer hover:opacity-50"
       />
     ),
     prevArrow: (
       <PrevArrow
         icon={MdOutlineKeyboardArrowLeft}
-        customStyle="absolute top-[50%] -translate-y-[50%] left-0 cursor-pointer hover:opacity-50 z-10"
+        customStyle="absolute top-[50%] -translate-y-[50%] -left-2 cursor-pointer hover:opacity-50 z-10"
       />
     ),
   }
 
   return (
-    <div
-      className={`${styles.wrapper} mx-auto mb-2 h-[200px] w-[300px] md:h-[300px] md:w-[400px]`}
-    >
+    <div className={`${styles.wrapper} mx-auto mb-2`}>
       <Slider {...settings} className="h-full w-full">
         {images.map((img, i) => (
-          <div
-            key={i}
-            className="relative h-[200px] w-[300px] md:h-[300px] md:w-[400px]"
-          >
+          <div key={i} className="relative h-full w-full">
             <Image src={img.url} alt="store-images" fill objectFit="cover" />
           </div>
         ))}

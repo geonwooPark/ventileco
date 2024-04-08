@@ -72,7 +72,7 @@ export default function HashtagInput({
 
   return (
     <div className="mb-2">
-      <div className="mb-1 h-[52px] rounded-md border text-sm">
+      <div className="mb-1 h-[52px] rounded-md bg-beige-light text-sm">
         <div
           ref={dragContainer}
           onMouseDown={onDragStart}
@@ -87,11 +87,11 @@ export default function HashtagInput({
             {hashtags.map((tag, i) => (
               <li
                 key={i}
-                className="flex select-none items-center gap-2 rounded-full border px-3 py-1.5 text-sm text-blue-400"
+                className="flex select-none items-center gap-2 rounded-full border border-beige-dark px-3 py-1.5 text-sm text-brown-dark"
               >
                 {tag}
                 <AiOutlineClose
-                  className="h-4 w-4 cursor-pointer text-red-400"
+                  className="h-4 w-4 cursor-pointer text-red-600"
                   onClick={() => onDelete(tag)}
                 />
               </li>
@@ -104,7 +104,7 @@ export default function HashtagInput({
             onChange={onChange}
             onKeyDown={onKeyDown}
             placeholder="태그를 설정해보세요😘 (최대 5개)"
-            className="h-full w-[240px] shrink-0 outline-none placeholder:text-sm"
+            className="h-full w-[240px] shrink-0 bg-beige-light outline-none placeholder:text-sm placeholder:text-beige-dark"
           />
         </div>
       </div>

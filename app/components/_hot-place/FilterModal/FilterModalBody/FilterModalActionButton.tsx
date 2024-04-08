@@ -36,7 +36,7 @@ export default function FilterModalActionButton({
       <div className="flex justify-center gap-2">
         <Button
           type="button"
-          level="ghost"
+          level="outline"
           size="s"
           fullWidth={true}
           label="초기화하기"

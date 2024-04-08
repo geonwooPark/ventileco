@@ -15,5 +15,5 @@
 }
 
 .wrapper :global .react-calendar .react-calendar__tile--active {
-  @apply bg-[#f1c643] rounded-full;
+  @apply bg-active rounded-full;
 }

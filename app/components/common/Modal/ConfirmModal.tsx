@@ -35,40 +35,41 @@ export default function ConfirmModal() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`mx-auto h-full w-full rounded-sm bg-white transition duration-300 md:h-[auto] md:w-[300px]
-      ${showModal ? 'translate-y-0' : 'translate-y-full'}
-      ${showModal ? 'opacity-100' : 'opacity-0'}
+        className={`mx-auto h-full w-full transition duration-300 md:h-[auto] md:w-[300px]
+      ${showModal ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}
       `}
       >
-        {/* 헤더 */}
-        <div className="flex justify-between p-4">
-          <div className="text-lg font-semibold">{title}</div>
-          <button onClick={handleClose}>
-            <AiOutlineClose size={20} />
-          </button>
-        </div>
-        {/* 바디 */}
-        <div className="p-4">{description}</div>
-        {/* 푸터 */}
-        <div className="p-4">
-          <div className="flex justify-center gap-2">
-            <Button
-              type="button"
-              level="outline"
-              size="s"
-              fullWidth={true}
-              label="취소"
-              onClick={handleClose}
-            />
-            <Button
-              type="button"
-              level="secondary"
-              size="s"
-              fullWidth={true}
-              label={actionLabel}
-              disabled={isLoading}
-              onClick={action}
-            />
+        <div className={`modal-shadowed h-full w-full`}>
+          {/* 헤더 */}
+          <div className="flex justify-between p-4 text-beige-normal">
+            <div className="font-point text-lg">{title}</div>
+            <button onClick={handleClose}>
+              <AiOutlineClose size={20} />
+            </button>
+          </div>
+          {/* 바디 */}
+          <div className="p-4">{description}</div>
+          {/* 푸터 */}
+          <div className="p-4">
+            <div className="flex justify-center gap-2">
+              <Button
+                type="button"
+                level="outline"
+                size="s"
+                fullWidth={true}
+                label="취소"
+                onClick={handleClose}
+              />
+              <Button
+                type="button"
+                level="secondary"
+                size="s"
+                fullWidth={true}
+                label={actionLabel}
+                disabled={isLoading}
+                onClick={action}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -4,32 +4,41 @@ import SearchIcon from './Search/SearchIcon'
 import Menu from './Menu/Menu'
 import WriteIcon from './Write/WriteIcon'
 import { Session } from 'next-auth'
+import FilterIcon from './Filter/FilterIcon'
 
 interface RightSideProps {
   path: string
 }
 
-const headerIconMap = new Map([
-  ['/home', []],
-  [
-    '/blog',
-    [
-      { component: <WriteIcon path={'/blog'} />, scope: 'admin' },
-      { component: <SearchIcon />, scope: 'all' },
-    ],
-  ],
-  [
-    '/hot-place',
-    [{ component: <WriteIcon path={'/hot-place'} />, scope: 'user' }],
-  ],
-  ['/book', [{ component: <WriteIcon path={'/book'} />, scope: 'admin' }]],
-  ['/project', []],
-])
-
 export default function RightSide({ path }: RightSideProps) {
   const { data: session } = useSession()
 
-  const renderIcon = (key: string, session: Session | null) => {
+  const headerIconMap = useMemo(
+    () =>
+      new Map([
+        ['home', []],
+        [
+          'blog',
+          [
+            { component: <WriteIcon path={path} />, scope: 'admin' },
+            { component: <SearchIcon />, scope: 'all' },
+          ],
+        ],
+        [
+          'hot-place',
+          [
+            { component: <WriteIcon path={path} />, scope: 'user' },
+            { component: <FilterIcon path={path} />, scope: 'user' },
+          ],
+        ],
+        ['book', [{ component: <WriteIcon path={path} />, scope: 'admin' }]],
+        ['project', []],
+      ]),
+    [],
+  )
+
+  const renderIcon = (path: string, session: Session | null) => {
+    const key = path.split('/')[1]
     const icons = headerIconMap.get(key)
     if (!icons) return null
 

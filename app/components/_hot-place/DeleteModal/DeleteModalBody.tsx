@@ -40,7 +40,9 @@ export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
 
   return (
     <div>
-      <p className="p-4 text-sm">정말 스토어를 삭제하시겠습니까?</p>
+      <p className="p-4 text-sm text-beige-light">
+        정말 스토어를 삭제하시겠습니까?
+      </p>
 
       <div className="p-4">
         <div className="flex justify-center gap-2">
@@ -54,11 +56,10 @@ export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
           />
           <Button
             type="button"
-            level="outline"
+            level="primary"
             size="s"
             fullWidth={true}
             label="삭제"
-            className="border-red-400 text-red-400"
             onClick={deleteStore}
           />
         </div>

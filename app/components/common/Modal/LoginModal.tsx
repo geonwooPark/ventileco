@@ -111,7 +111,7 @@ export default function LoginModal() {
       <Button
         type="button"
         level="outline"
-        size="m"
+        size="s"
         fullWidth={true}
         label="구글로 로그인"
         icon={FcGoogle}
@@ -122,7 +122,7 @@ export default function LoginModal() {
       <Button
         type="button"
         level="outline"
-        size="m"
+        size="s"
         fullWidth={true}
         label="깃허브로 로그인"
         icon={BiLogoGithub}

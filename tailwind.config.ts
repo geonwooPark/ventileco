@@ -21,6 +21,7 @@ const config: Config = {
         },
       },
       colors: {
+        active: '#295BF2',
         beige: {
           dark: '#A68446',
           normal: '#D9B779',
