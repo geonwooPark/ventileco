@@ -63,7 +63,7 @@ export default function CommentEditInput({
         rows={3}
         value={text}
         disabled={session ? false : true}
-        className="w-full resize-none rounded border px-3 py-2 text-sm outline-none disabled:cursor-not-allowed"
+        className="w-full resize-none rounded-md bg-beige-light px-3 py-2 text-sm text-brown-dark outline-none placeholder:text-beige-dark disabled:cursor-not-allowed"
         onChange={onChange}
       />
       <Button

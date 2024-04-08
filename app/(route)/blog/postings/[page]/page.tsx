@@ -1,11 +1,11 @@
 import Section from '@/components/common/Section'
-import Article from '@/components/_blog/common/Article/Article'
 import getAllListingCount from '@/actions/_blog/getAllListingCount'
-import HeroSection from '@/components/common/HeroSection'
 import AllListing from '@/components/_blog/_posting/AllListing'
 import { LIMIT } from '@/constants'
 import Main from '@/components/common/Main'
-import SideBar from '@/components/_blog/common/Sidebar/SideBar'
+import ProjectTitle from '@/components/common/ProjectTitle'
+import CategoryList from '@/components/_blog/common/Category/CategoryList'
+import Article from '@/components/common/Article'
 
 export const revalidate = 1800
 
@@ -29,17 +29,12 @@ export default async function Postings({ params }: IParams) {
 
   return (
     <Main>
-      <HeroSection
-        title="Study Log"
-        description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
-      />
-      <Section>
-        <div className="flex flex-col md:flex-row-reverse">
-          <SideBar />
-          <Article title="전체 게시글">
-            <AllListing path="postings" page={Number(page)} limit={LIMIT} />
-          </Article>
-        </div>
+      <Section className="pt-10">
+        <ProjectTitle title="Postings" />
+        <Article>
+          <CategoryList />
+          <AllListing path="postings" page={Number(page)} limit={LIMIT} />
+        </Article>
       </Section>
     </Main>
   )

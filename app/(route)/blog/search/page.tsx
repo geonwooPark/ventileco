@@ -1,10 +1,10 @@
 import Section from '@common/Section'
-import HeroSection from '@common/HeroSection'
 import { Suspense } from 'react'
 import SearchListing from '@blog/_search/SearchListing'
-import Article from '@blog/common/Article/Article'
 import SkeletonListing from '@blog/common/Listing/SkeletonListing'
 import Main from '@common/Main'
+import ProjectTitle from '@/components/common/ProjectTitle'
+import Article from '@/components/common/Article'
 
 export default async function Search({
   searchParams,
@@ -20,13 +20,9 @@ export default async function Search({
 
   return (
     <Main>
-      <HeroSection
-        title="Study Log"
-        description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
-      />
-
-      <Section innerKey={Math.random()}>
-        <Article title="검색 결과">
+      <Section innerKey={Math.random()} className="pt-10">
+        <ProjectTitle title="Search Results" />
+        <Article>
           <Suspense fallback={<SkeletonListing />}>
             <SearchListing
               path="search"

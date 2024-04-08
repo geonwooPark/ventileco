@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@common/Container'
 import Link from 'next/link'
-import ProjectTitle from './ProjectTitle'
+import ProjectTitle from '../../common/ProjectTitle'
 
 interface StageProps {
   title: string

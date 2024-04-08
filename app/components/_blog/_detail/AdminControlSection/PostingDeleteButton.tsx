@@ -57,7 +57,7 @@ export default function PostingDeleteButton({
       type="button"
       level="ghost"
       size="l"
-      label="삭제"
+      label="삭제하기"
       fullWidth={true}
       className="border-red-600 text-red-600"
       onClick={onDelete}

@@ -169,16 +169,16 @@ export default function Write() {
           setPosting={setPosting}
           setUploadImages={setUploadImages}
         />
+        <Button
+          type="button"
+          level="primary"
+          size="l"
+          label="등록하기"
+          fullWidth={true}
+          disabled={isLoading}
+          onClick={createPosting}
+        />
       </Section>
-      <Button
-        type="button"
-        level="primary"
-        size="l"
-        label="등록하기"
-        fullWidth={true}
-        disabled={isLoading}
-        onClick={createPosting}
-      />
     </Main>
   )
 }

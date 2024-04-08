@@ -1,31 +1,32 @@
+import getPopularListing from '@/actions/_blog/getPopularListing'
 import AllListing from '@/components/_blog/_posting/AllListing'
 import PopularListing from '@/components/_blog/_posting/PopularListing/PopularListing'
-import Article from '@/components/_blog/common/Article/Article'
-import SideBar from '@/components/_blog/common/Sidebar/SideBar'
-import HeroSection from '@/components/common/HeroSection'
+import CategoryList from '@/components/_blog/common/Category/CategoryList'
+import Article from '@/components/common/Article'
 import Main from '@/components/common/Main'
+import ProjectTitle from '@/components/common/ProjectTitle'
 import Section from '@/components/common/Section'
 import { LIMIT, PAGE } from '@/constants'
 
 export const revalidate = 1800
 
 export default async function Home() {
+  const postings = await getPopularListing()
+
   return (
     <Main>
-      <HeroSection
-        title="Study Log"
-        description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
-      />
-      <Section label="인기 게시글">
-        <PopularListing />
+      <Section className="pt-10">
+        <ProjectTitle title="Popular" />
+        <Article>
+          <PopularListing postings={postings} />
+        </Article>
       </Section>
       <Section>
-        <div className="flex flex-col md:flex-row-reverse">
-          <SideBar />
-          <Article title="전체 게시글">
-            <AllListing path="postings" page={PAGE} limit={LIMIT} />
-          </Article>
-        </div>
+        <ProjectTitle title="Postings" />
+        <Article>
+          <CategoryList />
+          <AllListing path="postings" page={PAGE} limit={LIMIT} />
+        </Article>
       </Section>
     </Main>
   )

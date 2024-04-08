@@ -103,7 +103,7 @@ export default function Editor({
       modules={theme === 'snow' ? modules : undefined}
       theme={theme}
       readOnly={readOnly}
-      className={`w-full ${
+      className={`mb-10 w-full text-beige-light ${
         theme === 'snow' ? 'h-[600px]' : 'h-full'
       } outline-none focus:outline-none`}
     />

@@ -35,7 +35,7 @@ export default function PageNumber({
       <button
         type="button"
         className={`h-8 w-8 rounded-full ${
-          page === idx + 1 && 'bg-gray-700 text-white'
+          page === idx + 1 ? 'bg-brown-normal ' : 'bg-transparent'
         }`}
         aria-label={`${idx + 1}페이지`}
       >

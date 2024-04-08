@@ -31,7 +31,7 @@ export default function NextPageButton({
       <button
         type="button"
         disabled={page === lastPageNum ? true : false}
-        className={`flex h-8 w-8 items-center justify-center disabled:text-gray-300`}
+        className={`flex h-8 w-8 items-center justify-center disabled:text-brown-dark`}
         aria-label="앞으로 가기"
       >
         <AiOutlineRight />

@@ -200,16 +200,16 @@ export default function Edit() {
           setPosting={setPosting}
           setUploadImages={setUploadImages}
         />
+        <Button
+          type="button"
+          level="primary"
+          size="l"
+          label="수정하기"
+          fullWidth={true}
+          disabled={isLoading}
+          onClick={editPosting}
+        />
       </Section>
-      <Button
-        type="button"
-        level="primary"
-        size="l"
-        label="수정하기"
-        fullWidth={true}
-        disabled={isLoading}
-        onClick={editPosting}
-      />
     </Main>
   )
 }

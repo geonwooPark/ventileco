@@ -8,7 +8,7 @@ interface EmptyStateProps {
 export default function EmptyState({ label, className }: EmptyStateProps) {
   return (
     <div
-      className={`flex h-full w-full items-center justify-center text-gray-400 ${className}`}
+      className={`flex h-full w-full items-center justify-center text-beige-light ${className}`}
     >
       <p>{label}</p>
     </div>

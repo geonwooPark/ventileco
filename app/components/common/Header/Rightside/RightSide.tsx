@@ -28,7 +28,7 @@ export default function RightSide({ path }: RightSideProps) {
           'hot-place',
           [
             { component: <WriteIcon path={path} />, scope: 'user' },
-            { component: <FilterIcon path={path} />, scope: 'user' },
+            { component: <FilterIcon path={path} />, scope: 'all' },
           ],
         ],
         ['book', [{ component: <WriteIcon path={path} />, scope: 'admin' }]],

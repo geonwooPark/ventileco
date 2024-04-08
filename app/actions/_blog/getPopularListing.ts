@@ -8,7 +8,7 @@ export default cache(async function getPopularListing() {
     await connectMongo()
     const posting = await Posting.find<PostingType>()
       .sort({ views: -1 })
-      .limit(3)
+      .limit(5)
 
     return posting
   } catch (error) {

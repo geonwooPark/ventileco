@@ -24,8 +24,9 @@ export default function PostingEditButton({
       type="button"
       level="ghost"
       size="l"
-      label="수정"
+      label="수정하기"
       fullWidth={true}
+      className="border-active text-active"
       onClick={onEdit}
     />
   )

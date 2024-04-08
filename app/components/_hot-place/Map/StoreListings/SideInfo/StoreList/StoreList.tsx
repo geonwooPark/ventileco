@@ -48,7 +48,7 @@ export default function StoreList({
   if (isPending) return <SkeletonStoreList />
   if (!hotPlaceListings || hotPlaceListings?.length === 0)
     return (
-      <div className="mt-10 text-center text-gray-400">
+      <div className="mt-10 text-center text-beige-light">
         검색결과가 없어요!😥
       </div>
     )

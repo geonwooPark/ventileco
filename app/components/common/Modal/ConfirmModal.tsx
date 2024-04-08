@@ -48,7 +48,7 @@ export default function ConfirmModal() {
             </button>
           </div>
           {/* 바디 */}
-          <div className="p-4">{description}</div>
+          <div className="p-4 text-beige-light">{description}</div>
           {/* 푸터 */}
           <div className="p-4">
             <div className="flex justify-center gap-2">
@@ -62,7 +62,7 @@ export default function ConfirmModal() {
               />
               <Button
                 type="button"
-                level="secondary"
+                level="primary"
                 size="s"
                 fullWidth={true}
                 label={actionLabel}

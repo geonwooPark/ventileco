@@ -31,7 +31,7 @@ export default function PrevPageButton({ ...props }: PrevPageButtonProps) {
       <button
         type="button"
         disabled={page === 1 ? true : false}
-        className={`flex h-8 w-8 items-center justify-center disabled:text-gray-300`}
+        className={`flex h-8 w-8 items-center justify-center disabled:text-brown-dark`}
         aria-label="뒤로 가기"
       >
         <AiOutlineLeft />

@@ -8,16 +8,14 @@ interface CategoryListProps {
 
 export default function CategoryList({ paramsCategory }: CategoryListProps) {
   return (
-    <ul className="flex flex-wrap gap-2 md:flex-col">
-      {categories.map((category, i) => {
-        return (
-          <CategoryItem
-            key={i}
-            category={category}
-            paramsCategory={paramsCategory}
-          />
-        )
-      })}
+    <ul className="mb-6 flex flex-wrap justify-center gap-2">
+      {categories.map((category, i) => (
+        <CategoryItem
+          key={i}
+          category={category}
+          paramsCategory={paramsCategory}
+        />
+      ))}
     </ul>
   )
 }

@@ -75,14 +75,14 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
 
   return (
     <div
-      className={`transition duration-200 ${
+      className={`font-normal transition duration-200 ${
         isOpen ? 'opacity-100' : 'opacity-0'
       }`}
     >
       {fade && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`absolute left-0 top-0 h-[320px] w-full overflow-hidden bg-black/70 md:h-[420px]`}
+          className={`absolute left-0 top-[64px] h-[320px] w-full overflow-hidden bg-black/70 md:h-[420px]`}
         >
           <form
             className="mx-auto h-full max-w-[1120px] px-4 sm:px-2 md:px-10 xl:px-20"

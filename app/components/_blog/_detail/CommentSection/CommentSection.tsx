@@ -22,7 +22,7 @@ export default async function CommentSection({
   const dehydratedState = dehydrate(queryClient)
 
   return (
-    <Section label="댓글" className="!pb-10">
+    <Section className="!pb-10">
       <HydrationBoundary state={dehydratedState}>
         <CommentInput postingId={postingId} />
         <CommentList postingId={postingId} />

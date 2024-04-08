@@ -1,4 +1,3 @@
-import Footer from '@common/Footer/Footer'
 import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import 'react-toastify/dist/ReactToastify.css'
@@ -11,10 +10,5 @@ export default async function Layout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <div className="h-full">
-      <div className="h-auto min-h-[100%] bg-white pb-[56px]">{children}</div>
-      <Footer className="relative h-[56px] w-full -translate-y-full bg-black" />
-    </div>
-  )
+  return <div className="h-auto min-h-[100%] pt-[64px]">{children}</div>
 }

@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import Section from '@common/Section'
-import HeroSection from '@common/HeroSection'
 import CategoryListing from '@blog/_categories/CategoryListing'
 import { LIMIT, PAGE, categories } from '@/constants'
-import SideBar from '@blog/common/Sidebar/SideBar'
 import Main from '@common/Main'
-import Article from '@blog/common/Article/Article'
+import ProjectTitle from '@/components/common/ProjectTitle'
+import CategoryList from '@/components/_blog/common/Category/CategoryList'
+import Article from '@/components/common/Article'
 
 export const revalidate = 1800
 
@@ -45,23 +45,17 @@ export default async function Categories({ params }: IParams) {
 
   return (
     <Main>
-      <HeroSection
-        title="Study Log"
-        description="프로젝트 경험을 통해 얻은 정보나 지식을 공유하기 위한 개인 블로그"
-      />
-
-      <Section>
-        <div className="flex flex-col md:flex-row-reverse">
-          <SideBar paramsCategory={category} />
-          <Article title="검색 결과">
-            <CategoryListing
-              path="categories"
-              page={PAGE}
-              limit={LIMIT}
-              category={category}
-            />
-          </Article>
-        </div>
+      <Section className="pt-10">
+        <ProjectTitle title="Postings" />
+        <Article>
+          <CategoryList paramsCategory={category} />
+          <CategoryListing
+            path="categories"
+            page={PAGE}
+            limit={LIMIT}
+            category={category}
+          />
+        </Article>
       </Section>
     </Main>
   )

@@ -21,6 +21,14 @@
     @apply hidden;
   }
 
+  .block-drag {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-select: none;
+  }
+
   .card-shadowed {
     @apply relative bg-beige-light rounded-md before:absolute before:bottom-[-6px] before:right-[-6px] before:z-[-1] before:h-full before:w-full before:rounded-md before:border before:border-beige-light before:bg-brown-dark;
   }
@@ -46,6 +54,10 @@
 /* 컨테이너 */
 .ql-container.ql-snow {
   @apply !h-[calc(600px-94px)] sm:!h-[calc(600px-43px)];
+}
+/* 툴바 */
+.ql-toolbar {
+  @apply bg-beige-normal;
 }
 /* 폰트 */
 .ql-editor > * {

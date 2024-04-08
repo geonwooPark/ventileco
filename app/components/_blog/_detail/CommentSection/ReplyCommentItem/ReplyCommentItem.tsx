@@ -24,14 +24,14 @@ export default function ReplyCommentItem({
   const [selectedCommentIdForEdit, setSelectedCommentIdForEdit] = useState('')
 
   return (
-    <div className="list-none border-b border-b-gray-200 bg-gray-50 px-3 py-2 text-sm">
+    <div className="list-none border-b border-beige-dark px-3 py-2 text-sm">
       <div className="mb-2 flex justify-between">
         <div className="flex items-center">
           <IconReplyArrow className="mr-2" />
           <Avatar src={userImage} />
           <p className="ml-2">{userName}</p>
         </div>
-        <small className="flex items-center gap-2 text-gray-400">
+        <small className="flex items-center gap-2 text-beige-normal">
           {session && session.user.id === userId && (
             <>
               <ReplyCommentEditButton

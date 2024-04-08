@@ -1,16 +1,29 @@
-import getPopularListing from '@/actions/_blog/getPopularListing'
+'use client'
+
 import React from 'react'
 import PopularListingItem from './PopularListingItem'
+import { PostingType } from '@/interfaces/interface'
+import useDragEvent from '@/hooks/useDragEvent'
 
-export default async function PopularListing() {
-  const postings = await getPopularListing()
+interface PopularListingProps {
+  postings: PostingType[]
+}
+
+export default function PopularListing({ postings }: PopularListingProps) {
+  const { dragContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
+
   return (
-    <div className="hide-scroll overflow-y-hidden overflow-x-scroll md:overflow-x-visible">
-      <ul className="flex gap-6">
-        {postings.map((posting) => {
-          return <PopularListingItem key={posting._id} posting={posting} />
-        })}
-      </ul>
+    <div
+      ref={dragContainer}
+      onMouseDown={onDragStart}
+      onMouseUp={onDragEnd}
+      onMouseMove={onDragMove}
+      onMouseLeave={onDragEnd}
+      className="hide-scroll flex cursor-grab gap-6 overflow-x-scroll scroll-smooth py-2"
+    >
+      {postings.map((posting) => (
+        <PopularListingItem key={posting._id} posting={posting} />
+      ))}
     </div>
   )
 }

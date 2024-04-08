@@ -28,7 +28,7 @@ export default function Pagenation({
   const sequence = Math.floor((page - 1) / THE_NUMBER)
 
   return (
-    <div className="flex items-center gap-2 text-sm">
+    <div className="flex items-center justify-center gap-2 font-point text-beige-light">
       <PrevPageButton {...props} />
       {boundNumbering[sequence]}
       <NextPageButton {...props} lastPageNum={lastPageNum} />

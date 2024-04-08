@@ -32,16 +32,16 @@ export default function SearchHistory({
   }
 
   return (
-    <div className="absolute mt-4 flex flex-wrap gap-3 text-sm text-white">
+    <div className="absolute mt-4 flex flex-wrap gap-3 text-sm text-beige-normal">
       {keywords?.map((keyword, i) => (
         <div
           key={i}
           onClick={() => onClick(keyword)}
-          className="flex cursor-pointer items-center rounded-full border border-white px-4 py-2 "
+          className="flex cursor-pointer items-center rounded-full border border-beige-normal px-4 py-2 "
         >
           <div className="mr-2 hover:opacity-70">{keyword}</div>
           <button onClick={(e) => onDelete(e, keyword)}>
-            <AiOutlineClose className="text-red-500" />
+            <AiOutlineClose className="text-red-600" />
           </button>
         </div>
       ))}

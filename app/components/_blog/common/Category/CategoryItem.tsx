@@ -14,11 +14,11 @@ export default function CategoryItem({
     <li>
       <Link href={{ pathname: `/blog/categories/${category}` }}>
         <button
-          className={`w-full rounded-md bg-gray-100 px-3 py-2 text-sm text-gray-700 transition hover:opacity-50
+          className={`w-full rounded-md bg-beige-light px-2.5 py-2 text-sm transition hover:opacity-50
           ${
             paramsCategory && decodeURI(paramsCategory) === category
-              ? 'bg-gray-700 text-white'
-              : 'bg-gray-100'
+              ? 'text-active'
+              : 'text-brown-dark'
           }
         `}
         >
