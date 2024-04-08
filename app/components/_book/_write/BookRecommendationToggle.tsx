@@ -11,8 +11,8 @@ export default function BookRecommendationToggle({
   recommended,
 }: BookRecommendationToggleProps) {
   return (
-    <div className="mb-4 flex items-center gap-2">
-      <span className="text-sm text-gray-700">추천하기</span>
+    <div className="mb-4 flex items-center justify-center gap-2">
+      <span className="text-sm text-beige-light">추천하기</span>
       <Toggle register={recommendedRegister} recommended={recommended} />
     </div>
   )

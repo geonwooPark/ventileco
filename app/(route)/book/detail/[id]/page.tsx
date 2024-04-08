@@ -62,14 +62,14 @@ export default async function page({ params }: IParams) {
   return (
     <Main>
       <Section>
-        <div className="relative mb-3 flex h-[320px] items-center justify-center rounded-md bg-gray-100">
+        <div className="relative mb-3 flex h-[320px] items-center justify-center rounded-b-md bg-gray-200">
           <AdminButton bookId={_id.toString()} />
           <div className="book-cover relative">
             <Image src={thumbnail} alt={title} fill objectFit="fill" />
           </div>
         </div>
-        <h2 className="mb-1 text-xl font-medium">{title}</h2>
-        <p className="mb-2 text-sm text-gray-400">{authors.join(', ')}</p>
+        <h2 className="mb-1 text-xl text-beige-light">{title}</h2>
+        <p className="mb-2 text-sm text-beige-dark">{authors.join(', ')}</p>
         <ReviewContent content={content} />
       </Section>
     </Main>

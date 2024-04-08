@@ -18,7 +18,7 @@ export default function Toggle({ register, recommended }: ToggleProps) {
   return (
     <label
       className={`relative flex h-6 w-11 cursor-pointer rounded-full transition ${
-        enabled ? 'bg-blue-600' : 'bg-gray-200'
+        enabled ? 'bg-active' : 'bg-gray-200'
       }`}
     >
       <input

@@ -1,5 +1,6 @@
 import RecommendedBookList from '@/components/_book/_recommended/RecommendedBookList'
 import Main from '@/components/common/Main'
+import ProjectTitle from '@/components/common/ProjectTitle'
 import Section from '@/components/common/Section'
 import React from 'react'
 
@@ -25,7 +26,8 @@ export async function generateMetadata() {
 export default function page() {
   return (
     <Main>
-      <Section label="나의 추천 도서" className="mt-4">
+      <Section className="pt-10">
+        <ProjectTitle title="Recommended Book" />
         <RecommendedBookList />
       </Section>
     </Main>

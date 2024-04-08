@@ -20,7 +20,7 @@ export default async function page() {
         <UserInfo session={session} />
       </Section>
 
-      <Section label="나의 활동">
+      <Section>
         <ActionLogTab />
       </Section>
     </Main>

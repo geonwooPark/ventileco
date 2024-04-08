@@ -10,7 +10,7 @@ export default function BookCategoryFilter({
   category,
 }: BookCategoryFilterProps) {
   return (
-    <div className="hide-scroll mb-6 flex gap-2 overflow-y-hidden overflow-x-scroll text-sm text-gray-700">
+    <div className="hide-scroll mb-6 flex justify-center gap-2 overflow-y-hidden overflow-x-scroll text-sm text-gray-700">
       {[{ id: 0, category: '전체' }, ...bookCategory].map((categoryItem) => (
         <Link
           key={categoryItem.id}
@@ -18,9 +18,10 @@ export default function BookCategoryFilter({
           className="shrink-0"
         >
           <div
-            className={`block rounded-full border px-3 py-2 transition duration-200 ${
-              categoryItem.category === category &&
-              'border-transparent bg-blue-600 text-white'
+            className={`block rounded-md bg-beige-light px-2.5 py-2 transition duration-200 ${
+              categoryItem.category === category
+                ? 'text-active'
+                : 'text-brown-dark'
             }`}
           >
             {categoryItem.category}

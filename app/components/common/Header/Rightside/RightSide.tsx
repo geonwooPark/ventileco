@@ -20,18 +20,18 @@ export default function RightSide({ path }: RightSideProps) {
         [
           'blog',
           [
-            { component: <WriteIcon path={path} />, scope: 'admin' },
+            { component: <WriteIcon path="/home" />, scope: 'admin' },
             { component: <SearchIcon />, scope: 'all' },
           ],
         ],
         [
           'hot-place',
           [
-            { component: <WriteIcon path={path} />, scope: 'user' },
-            { component: <FilterIcon path={path} />, scope: 'all' },
+            { component: <WriteIcon path="/hot-place" />, scope: 'user' },
+            { component: <FilterIcon path="/hot-place" />, scope: 'all' },
           ],
         ],
-        ['book', [{ component: <WriteIcon path={path} />, scope: 'admin' }]],
+        ['book', [{ component: <WriteIcon path="/book" />, scope: 'admin' }]],
         ['project', []],
       ]),
     [],

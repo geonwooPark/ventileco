@@ -2,7 +2,9 @@ import BookCategoryFilter from '@/components/_book/_main/BookCategoryFilter'
 import BookList from '@/components/_book/_main/BookList/BookList'
 import SkeletonBookList from '@/components/_book/_main/BookList/SkeletonBookList'
 import RecommendedBook from '@/components/_book/_main/RecommendedBook/RecommendedBook'
+import Container from '@/components/common/Container'
 import Main from '@/components/common/Main'
+import ProjectTitle from '@/components/common/ProjectTitle'
 import Section from '@/components/common/Section'
 import React, { Suspense } from 'react'
 
@@ -15,9 +17,13 @@ export default function page({
     typeof searchParams.category === 'string' ? searchParams.category : '전체'
 
   return (
-    <Main className="bg-white">
+    <Main>
+      <Container className="pt-10">
+        <ProjectTitle title="Recommended Book" />
+      </Container>
       <RecommendedBook />
-      <Section label="그동안 읽은 도서 리스트" innerKey={Math.random()}>
+      <Section innerKey={Math.random()}>
+        <ProjectTitle title="All Book" />
         <BookCategoryFilter category={category} />
         <Suspense fallback={<SkeletonBookList />}>
           <BookList category={category} />

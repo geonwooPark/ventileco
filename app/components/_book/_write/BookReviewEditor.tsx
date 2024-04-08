@@ -55,7 +55,7 @@ export default function BookReviewEditor({
           modules={modules}
           theme={theme}
           readOnly={readOnly}
-          className={`h-full w-full outline-none focus:outline-none`}
+          className={`h-full w-full text-beige-light outline-none focus:outline-none`}
         />
       </div>
       <ErrorMessage errorMessage={errorMessage} />

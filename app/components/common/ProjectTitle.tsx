@@ -6,7 +6,7 @@ interface ProjectTitleProps {
 
 export default function ProjectTitle({ title }: ProjectTitleProps) {
   return (
-    <div className="mb-2 flex h-[80px] items-center justify-center overflow-hidden text-beige-normal">
+    <div className="mb-4 flex h-[80px] items-center justify-center overflow-hidden text-beige-normal">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 660 150"
