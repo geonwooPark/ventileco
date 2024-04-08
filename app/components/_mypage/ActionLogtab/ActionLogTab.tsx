@@ -29,24 +29,20 @@ export default function ActionLogTab() {
   return (
     <div>
       <div className="mb-4 flex gap-4">
-        {menuArr.map((menu, i) => {
-          return (
-            <button
-              key={menu._id}
-              onClick={() => setCurrentTab(i)}
-              className={
-                currentTab === i
-                  ? 'border-b-2 border-black'
-                  : 'border-b-2 border-transparent text-gray-400'
-              }
-            >
-              {menu.name}
-            </button>
-          )
-        })}
+        {menuArr.map((menu, i) => (
+          <button
+            key={menu._id}
+            onClick={() => setCurrentTab(i)}
+            className={`border-b-2 text-beige-light ${
+              currentTab === i ? 'border-beige-light' : 'border-transparent'
+            } `}
+          >
+            {menu.name}
+          </button>
+        ))}
       </div>
       <div className="relative pt-10">
-        <div className="h-[500px] overflow-y-scroll bg-gray-50">
+        <div className="hide-scroll h-[500px] overflow-y-scroll rounded-b-md bg-beige-light">
           {menuArr[currentTab].content}
         </div>
       </div>

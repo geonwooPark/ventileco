@@ -19,34 +19,32 @@ export default function MyCommentedPost() {
 
   return (
     <table className="w-full">
-      <thead className="absolute top-0 w-full border-b border-gray-400">
-        <tr className="flex w-full bg-white text-center">
+      <thead className="absolute top-0 w-full overflow-hidden rounded-t-md bg-brown-normal text-beige-light">
+        <tr className="flex w-full text-center">
           <th className="flex-1 py-2">제목</th>
           <th className="w-[100px] py-2">댓글 수</th>
           <th className="w-[100px] py-2">작성일</th>
         </tr>
       </thead>
       <tbody>
-        {myCommentedPost?.map((posting) => {
-          return (
-            <tr key={posting._id} className="flex items-center border-b">
-              <td className="flex-1 px-4 py-3">
-                <Link
-                  href={`/blog/detail/${posting.postingId}`}
-                  target="_blank"
-                >
-                  <p>{posting.title}</p>
-                </Link>
-              </td>
-              <td className="w-[100px] text-center text-sm">
-                {posting.user.length}
-              </td>
-              <td className="w-[100px] text-center text-sm">
-                {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
-              </td>
-            </tr>
-          )
-        })}
+        {myCommentedPost?.map((posting) => (
+          <tr
+            key={posting._id}
+            className="flex items-center border-b border-brown-dark"
+          >
+            <td className="flex-1 px-4 py-3">
+              <Link href={`/blog/detail/${posting.postingId}`} target="_blank">
+                <p>{posting.title}</p>
+              </Link>
+            </td>
+            <td className="w-[100px] text-center text-sm">
+              {posting.user.length}
+            </td>
+            <td className="w-[100px] text-center text-sm">
+              {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

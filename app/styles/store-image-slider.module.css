@@ -11,7 +11,7 @@
 }
 
 .wrapper :global .slick-slide > div {
-  @apply relative bg-beige-light rounded-md before:absolute before:bottom-[-6px] before:right-[-6px] before:z-[-1] before:h-full before:w-full before:rounded-md before:border before:border-beige-light before:bg-brown-dark w-full h-full;
+  @apply w-full h-full;
 }
 
 .wrapper :global .slick-slide div > img {

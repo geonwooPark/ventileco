@@ -19,8 +19,8 @@ export default function MyComment() {
 
   return (
     <table className="w-full">
-      <thead className="absolute top-0 w-full border-b border-gray-400">
-        <tr className="flex w-full bg-white text-center">
+      <thead className="absolute top-0 w-full overflow-hidden rounded-t-md bg-brown-normal text-beige-light">
+        <tr className="flex w-full text-center">
           <th className="flex-1 py-2">댓글</th>
           <th className="w-[100px] py-2">댓글 작성일</th>
         </tr>
@@ -31,27 +31,25 @@ export default function MyComment() {
             (a, b) =>
               new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
           )
-          .map((comment) => {
-            return (
-              <tr
-                key={comment.commentId}
-                className="flex items-center border-b"
-              >
-                <td className="flex-1 px-4 py-3">
-                  <Link
-                    href={`/blog/detail/${comment.postingId}`}
-                    target="_blank"
-                  >
-                    <p className="mb-2">{comment.text}</p>
-                    <p className="ml-2 text-gray-400">{comment.title}</p>
-                  </Link>
-                </td>
-                <td className="w-[100px] text-center text-sm">
-                  {dayjs(comment.createdAt).tz().format('YYYY-MM-DD')}
-                </td>
-              </tr>
-            )
-          })}
+          .map((comment) => (
+            <tr
+              key={comment.commentId}
+              className="flex items-center border-b border-brown-dark"
+            >
+              <td className="flex-1 px-4 py-3 text-brown-dark">
+                <Link
+                  href={`/blog/detail/${comment.postingId}`}
+                  target="_blank"
+                >
+                  <p className="mb-2">{comment.text}</p>
+                  <p className="ml-2 text-beige-dark">{comment.title}</p>
+                </Link>
+              </td>
+              <td className="w-[100px] text-center text-sm text-beige-dark">
+                {dayjs(comment.createdAt).tz().format('YYYY-MM-DD')}
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   )

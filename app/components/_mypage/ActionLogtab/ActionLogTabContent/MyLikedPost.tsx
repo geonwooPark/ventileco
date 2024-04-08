@@ -19,8 +19,8 @@ export default function MyLikedPost() {
 
   return (
     <table className="w-full">
-      <thead className="absolute top-0 w-full border-b border-gray-400">
-        <tr className="flex w-full bg-white text-center">
+      <thead className="absolute top-0 w-full overflow-hidden rounded-t-md bg-brown-normal text-beige-light">
+        <tr className="flex w-full text-center">
           <th className="flex-1 py-2">제목</th>
           <th className="w-[100px] py-2">좋아요 수</th>
           <th className="w-[100px] py-2">작성일</th>
@@ -28,7 +28,10 @@ export default function MyLikedPost() {
       </thead>
       <tbody>
         {myLikedPost?.map((posting) => (
-          <tr key={posting._id} className="flex items-center border-b">
+          <tr
+            key={posting._id}
+            className="flex items-center border-b border-brown-dark"
+          >
             <td className="flex-1 px-4 py-3">
               <Link href={`/blog/detail/${posting.postingId}`} target="_blank">
                 <p>{posting.title}</p>
