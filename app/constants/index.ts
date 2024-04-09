@@ -2,22 +2,22 @@
 export const headerListItem = [
   {
     id: 101,
-    title: 'Blog',
+    title: '블로그',
     link: '/blog',
   },
   {
     id: 102,
-    title: 'Hot-Place',
+    title: '맛집',
     link: '/hot-place',
   },
   {
     id: 103,
-    title: 'Book',
+    title: '독서',
     link: '/book',
   },
   {
     id: 104,
-    title: 'Project',
+    title: '프로젝트',
     link: '/project',
   },
 ]
