@@ -11,7 +11,7 @@ export default function WeatherInfo() {
   if (isPending) return <SkeletonWeatherInfo />
 
   return (
-    <div className="w-full -translate-y-3">
+    <div className="w-full -translate-y-3 font-normal">
       <div>
         <WeatherIcon main={weatherData?.weather[0].main} />
       </div>
