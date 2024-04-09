@@ -46,7 +46,7 @@
   }
 
   .recommended-badge {
-    @apply before:absolute before:-left-2 before:top-[33px] before:h-7 before:w-7 before:rotate-45 before:bg-blue-600 after:absolute after:left-[-13.8px] after:top-4 after:text-white after:w-[72px] after:rounded-sm after:bg-blue-500 after:p-1.5 after:text-center after:text-sm after:font-bold after:shadow-md after:content-['PICK'];
+    @apply before:absolute before:-left-2 before:top-[33px] before:h-7 before:w-7 before:rotate-45 before:bg-brown-normal after:absolute after:left-[-13.8px] after:top-4 after:text-white after:w-[72px] after:rounded-sm after:bg-brown-normal after:p-1.5 after:text-center after:text-sm after:font-bold after:shadow-md after:content-['PICK'];
   }
 }
 

@@ -17,7 +17,7 @@ export default function RecommendedBookItem({
   return (
     <div
       onClick={() => router.push(`/book/detail/${recommendedBook._id}`)}
-      className="card-shadowed group h-full w-[280px] shrink-0 rounded-md px-4 py-3"
+      className="card-shadowed group h-full w-[280px] shrink-0 rounded-md px-4 py-6"
     >
       <div className="book-cover relative mx-auto mb-3 w-full">
         <Image
