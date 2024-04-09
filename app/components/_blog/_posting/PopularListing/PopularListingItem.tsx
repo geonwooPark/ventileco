@@ -1,3 +1,5 @@
+'use client'
+
 import { PostingType } from '@/interfaces/interface'
 import dayjs from '@/lib/dayjs'
 import Image from 'next/image'

@@ -1,3 +1,0 @@
-.wrapper :global .slick-slide > div {
-  @apply w-[160px] h-[200px] mx-3;
-}

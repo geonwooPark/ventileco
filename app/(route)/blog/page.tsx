@@ -1,4 +1,3 @@
-import getPopularListing from '@/actions/_blog/getPopularListing'
 import AllListing from '@/components/_blog/_posting/AllListing'
 import PopularListing from '@/components/_blog/_posting/PopularListing/PopularListing'
 import CategoryList from '@/components/_blog/common/Category/CategoryList'
@@ -11,14 +10,12 @@ import { LIMIT, PAGE } from '@/constants'
 export const revalidate = 1800
 
 export default async function Home() {
-  const postings = await getPopularListing()
-
   return (
     <Main>
       <Section className="pt-10">
         <ProjectTitle title="Popular" />
         <Article>
-          <PopularListing postings={postings} />
+          <PopularListing />
         </Article>
       </Section>
       <Section>
