@@ -39,7 +39,7 @@ export default function Menu({ session }: MenuProps) {
   }, [isOpen])
 
   return (
-    <div className="relative">
+    <div className="relative font-normal">
       <div onClick={handleToggle} className="cursor-pointer">
         <Avatar src={session?.user?.image} />
       </div>
