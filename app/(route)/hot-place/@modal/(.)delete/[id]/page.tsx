@@ -12,7 +12,7 @@ export default function DeleteModal({ params }: IParams) {
   const { id } = params
 
   return (
-    <div className="fixed inset-0 z-[100] flex h-full w-full items-center bg-black/30">
+    <div className="fixed inset-0 z-[100] flex h-full w-full items-center bg-black/50">
       <div className="modal-shadowed mx-auto h-full w-full rounded-md md:h-[auto] md:w-[360px]">
         <DeleteModalHeader />
         <DeleteModalBody storeId={id} />

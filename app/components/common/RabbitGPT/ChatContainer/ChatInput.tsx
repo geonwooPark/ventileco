@@ -49,12 +49,12 @@ export default function ChatInput() {
 
   return (
     <form onSubmit={onSubmit} className="relative">
-      <div className="h-[1px] w-full bg-brown-dark"></div>
+      <div className="h-[1px] w-full bg-gray-700"></div>
       <Input
         type="text"
         name="search"
         placeholder={'저에 대해 질문해보세요!'}
-        className="w-full rounded-none border-none outline-none"
+        className="w-full rounded-none border-none bg-white text-black outline-none placeholder:text-gray-400"
         value={text}
         onChange={onChange}
       />

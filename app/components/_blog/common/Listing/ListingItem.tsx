@@ -18,7 +18,7 @@ export default function ListingItem({ posting }: ListingProps) {
   return (
     <div
       onClick={() => router.push(`/blog/detail/${_id}`)}
-      className="group mb-6 flex cursor-pointer flex-col md:mb-12 md:flex-row"
+      className="group mb-6 flex cursor-pointer flex-col rounded-md border border-beige-light bg-brown-dark px-4 py-3 md:flex-row"
     >
       <div className="relative h-[280px] w-full overflow-hidden rounded-md md:h-[180px] md:w-[270px]">
         {thumbnailURL ? (
@@ -31,7 +31,7 @@ export default function ListingItem({ posting }: ListingProps) {
             className="object-cover duration-200 ease-in group-hover:scale-110"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gray-300 text-sm text-gray-100">
+          <div className="flex h-full w-full items-center justify-center bg-beige-normal text-sm text-brown-dark">
             No Thumbnail
           </div>
         )}

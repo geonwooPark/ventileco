@@ -13,8 +13,6 @@ export default function PopularListing({ postings }: PopularListingProps) {
   const { dragContainer, onDragStart, onDragEnd, onDragMove, isDragging } =
     useDragEvent()
 
-  console.log(isDragging)
-
   return (
     <div
       ref={dragContainer}

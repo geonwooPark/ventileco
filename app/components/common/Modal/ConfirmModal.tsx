@@ -30,7 +30,7 @@ export default function ConfirmModal() {
 
   return (
     <div
-      className="fixed z-[200] flex h-full w-full items-center justify-center bg-black/30"
+      className="fixed z-[200] flex h-full w-full items-center justify-center bg-black/50"
       onClick={handleClose}
     >
       <div
