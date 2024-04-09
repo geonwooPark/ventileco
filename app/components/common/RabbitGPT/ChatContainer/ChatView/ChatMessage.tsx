@@ -30,8 +30,8 @@ export default function ChatMessage({ message }: ChatMessageProps) {
         className={`inline-block max-w-full break-all rounded-md px-4 py-2 
   ${
     message.sender === 'user'
-      ? 'bg-gray-200 text-gray-700'
-      : 'bg-gray-700 text-gray-200'
+      ? 'bg-brown-normal text-beige-light'
+      : 'bg-brown-dark text-beige-light'
   }`}
       >
         {message.content}
