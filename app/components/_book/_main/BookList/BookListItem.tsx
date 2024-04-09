@@ -17,7 +17,14 @@ export default memo(function BookListItem({ book }: BookListItemProps) {
     >
       <div className="card-shadowed relative flex h-full w-full flex-col items-center justify-center rounded-md">
         <div className="book-cover relative mx-auto mb-3">
-          <Image src={book.thumbnail} alt={book.title} fill objectFit="fill" />
+          <Image
+            src={book.thumbnail}
+            alt={book.title}
+            fill
+            objectFit="fill"
+            placeholder="blur"
+            blurDataURL={process.env.NEXT_PUBLIC_BLUR_URL as string}
+          />
         </div>
         <div className="text-center">
           <p className="mb-1 text-sm text-brown-dark">

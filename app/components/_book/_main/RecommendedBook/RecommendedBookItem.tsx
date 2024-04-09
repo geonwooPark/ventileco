@@ -25,6 +25,8 @@ export default function RecommendedBookItem({
           alt={recommendedBook.title}
           fill
           objectFit="fill"
+          placeholder="blur"
+          blurDataURL={process.env.NEXT_PUBLIC_BLUR_URL as string}
           className="block-drag"
         />
       </div>

@@ -26,7 +26,7 @@ export default function StoreListItem({ hotPlaceListing }: StoreListItemProps) {
               alt="store-thumbnail"
               fill
               placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+              blurDataURL={process.env.NEXT_PUBLIC_BLUR_URL as string}
               objectFit="cover"
             />
           </div>

@@ -27,7 +27,7 @@ export default function PopularListingItem({
             alt="썸네일이미지"
             fill
             placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg=="
+            blurDataURL={process.env.NEXT_PUBLIC_BLUR_URL as string}
             className="block-drag object-cover duration-200 ease-in group-hover:scale-110"
           />
         ) : (

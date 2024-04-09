@@ -65,7 +65,14 @@ export default async function page({ params }: IParams) {
         <div className="relative mb-3 flex h-[320px] items-center justify-center rounded-b-md bg-gray-200">
           <AdminButton bookId={_id.toString()} />
           <div className="book-cover relative">
-            <Image src={thumbnail} alt={title} fill objectFit="fill" />
+            <Image
+              src={thumbnail}
+              alt={title}
+              fill
+              objectFit="fill"
+              placeholder="blur"
+              blurDataURL={process.env.NEXT_PUBLIC_BLUR_URL as string}
+            />
           </div>
         </div>
         <h2 className="mb-1 text-xl text-beige-light">{title}</h2>
