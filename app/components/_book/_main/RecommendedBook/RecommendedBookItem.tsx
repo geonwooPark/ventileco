@@ -17,7 +17,7 @@ export default function RecommendedBookItem({
   return (
     <div
       onClick={() => router.push(`/book/detail/${recommendedBook._id}`)}
-      className="card-shadowed group h-full w-[300px] shrink-0 rounded-md px-4 py-3"
+      className="card-shadowed group h-full w-[280px] shrink-0 rounded-md px-4 py-3"
     >
       <div className="book-cover relative mx-auto mb-3 w-full">
         <Image
@@ -35,6 +35,13 @@ export default function RecommendedBookItem({
             ? recommendedBook.title
             : recommendedBook.title.slice(0, 24) + '...'}
         </h3>
+        <p className="text-xs text-beige-dark">
+          {recommendedBook.authors.length === 1
+            ? recommendedBook.authors[0]
+            : `${recommendedBook.authors[0]} 외 ${
+                recommendedBook.authors.length - 1
+              } 명`}
+        </p>
       </div>
     </div>
   )

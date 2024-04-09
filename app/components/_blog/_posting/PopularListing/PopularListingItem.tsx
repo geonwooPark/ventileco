@@ -39,7 +39,9 @@ export default function PopularListingItem({
       <div className="flex select-none flex-col justify-between">
         <p className="text-sm text-beige-dark">{posting.category}</p>
         <h3 className="mb-3 truncate text-lg text-brown-dark">
-          {posting.title}
+          {posting.title.length <= 24
+            ? posting.title
+            : posting.title.slice(0, 24) + '...'}
         </h3>
         <p className="text-xs text-beige-dark">
           {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}
