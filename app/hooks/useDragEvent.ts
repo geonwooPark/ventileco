@@ -17,7 +17,7 @@ export default function useDragEvent() {
   )
 
   const onDragStart = (e: React.MouseEvent<HTMLDivElement>) => {
-    preventUnexpectedEffects(e)
+    // preventUnexpectedEffects(e)
     setIsDragging(true)
     const x = e.clientX
     setStartPoint(x)
