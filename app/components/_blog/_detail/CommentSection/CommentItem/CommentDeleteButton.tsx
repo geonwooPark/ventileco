@@ -48,7 +48,7 @@ export default function CommentDeleteButton({
 
   const handleModal = () => {
     changeModalContent({
-      title: '삭제',
+      title: 'Delete',
       description: '댓글을 삭제하시겠습니까?',
       action: () => deleteComment(),
       actionLabel: '삭제',

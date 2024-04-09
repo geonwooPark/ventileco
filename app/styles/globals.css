@@ -97,5 +97,5 @@ ul {
 }
 /* 코드 */
 .ql-syntax {
-  @apply !bg-gray-100 !text-blue-400 !rounded-xl !p-4;
+  @apply !bg-beige-light !text-brown-dark !rounded-xl !p-4;
 }

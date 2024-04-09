@@ -44,7 +44,7 @@ export default function PostingDeleteButton({
 
   const onDelete = () => {
     changeModalContent({
-      title: '삭제',
+      title: 'Delete',
       description: '글을 삭제하시겠습니까?',
       action: () => deletePosting(),
       actionLabel: '삭제',
