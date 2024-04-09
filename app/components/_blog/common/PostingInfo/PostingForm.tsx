@@ -4,6 +4,7 @@ import DropDownMenu from '../Dropdown/DropDownMenu'
 import Input from '../../../common/Input/Input'
 import { OmittedPostingType } from '@/interfaces/interface'
 import { categories } from '@/constants'
+import AddThumbnailButton from './AddThumbnailButton'
 
 interface PostingInfoProps {
   posting: OmittedPostingType
@@ -15,6 +16,7 @@ interface PostingInfoProps {
   }
   setPosting: React.Dispatch<React.SetStateAction<OmittedPostingType>>
   onTextChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onThumbnailChange: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>
 }
 
 export default function PostingForm({
@@ -23,13 +25,14 @@ export default function PostingForm({
   errorSign,
   setPosting,
   onTextChange,
+  onThumbnailChange,
 }: PostingInfoProps) {
   const { category, title, description } = posting
   const { categoryRef, titleRef, descriptionRef } = refs
   const { titleError, descriptionError } = errorSign
 
   return (
-    <div>
+    <div className="w-full">
       <RefWrapper
         innerRef={categoryRef}
         className="mb-4 mt-10 flex justify-end md:mt-0"
@@ -51,7 +54,7 @@ export default function PostingForm({
           value={title}
           placeholder="제목을 입력하세요"
           onChange={onTextChange}
-          className={`mb-3 w-full border-none !bg-transparent !p-0 text-right !text-2xl font-bold outline-none placeholder:text-gray-300 focus:outline-none md:!text-4xl`}
+          className={`mb-3 w-full border-none !bg-transparent !p-0 text-right !text-2xl font-bold outline-none placeholder:text-beige-dark focus:outline-none md:!text-4xl`}
         />
       </RefWrapper>
       <RefWrapper
@@ -64,9 +67,10 @@ export default function PostingForm({
           value={description}
           placeholder="설명을 추가해보세요"
           onChange={onTextChange}
-          className={`mb-6 w-full border-none !bg-transparent !p-0 text-right !text-sm outline-none placeholder:text-gray-300 focus:outline-none md:!text-base`}
+          className={`mb-6 w-full border-none !bg-transparent !p-0 text-right !text-sm outline-none placeholder:text-beige-dark focus:outline-none md:!text-base`}
         />
       </RefWrapper>
+      <AddThumbnailButton onThumbnailChange={onThumbnailChange} />
     </div>
   )
 }

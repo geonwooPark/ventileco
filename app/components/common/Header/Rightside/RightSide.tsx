@@ -20,7 +20,7 @@ export default function RightSide({ path }: RightSideProps) {
         [
           'blog',
           [
-            { component: <WriteIcon path="/home" />, scope: 'admin' },
+            { component: <WriteIcon path="/blog" />, scope: 'admin' },
             { component: <SearchIcon />, scope: 'all' },
           ],
         ],

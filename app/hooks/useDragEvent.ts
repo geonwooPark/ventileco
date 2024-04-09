@@ -16,7 +16,8 @@ export default function useDragEvent() {
     }
   }
 
-  const onDragEnd = () => {
+  const onDragEnd = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
     setIsDragging(false)
   }
 
@@ -38,5 +39,6 @@ export default function useDragEvent() {
     onDragStart,
     onDragEnd,
     onDragMove: onThrottleDragMove,
+    isDragging,
   }
 }

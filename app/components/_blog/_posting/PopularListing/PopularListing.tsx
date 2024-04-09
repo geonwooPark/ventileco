@@ -10,7 +10,10 @@ interface PopularListingProps {
 }
 
 export default function PopularListing({ postings }: PopularListingProps) {
-  const { dragContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
+  const { dragContainer, onDragStart, onDragEnd, onDragMove, isDragging } =
+    useDragEvent()
+
+  console.log(isDragging)
 
   return (
     <div
@@ -19,7 +22,7 @@ export default function PopularListing({ postings }: PopularListingProps) {
       onMouseUp={onDragEnd}
       onMouseMove={onDragMove}
       onMouseLeave={onDragEnd}
-      className="hide-scroll flex cursor-grab gap-6 overflow-x-scroll scroll-smooth py-2"
+      className={`hide-scroll flex cursor-grab gap-6 overflow-x-scroll scroll-smooth py-2`}
     >
       {postings.map((posting) => (
         <PopularListingItem key={posting._id} posting={posting} />

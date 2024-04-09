@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import AddThumbnailButton from '../../common/PostingInfo/AddThumbnailButton'
 import { OmittedPostingType } from '@/interfaces/interface'
 import PostingForm from '../../common/PostingInfo/PostingForm'
 import Container from '@/components/common/Container'
@@ -62,17 +61,15 @@ export default function EditPostingInfo({ ...props }: EditPostingInfoProps) {
   }
 
   return (
-    <Container className="flex h-full flex-col items-end justify-center">
-      <div className="absolute w-full">
-        <PostingForm
-          posting={posting}
-          refs={refs}
-          errorSign={errorSign}
-          setPosting={setPosting}
-          onTextChange={onTextChange}
-        />
-        <AddThumbnailButton onThumbnailChange={onThumbnailChange} />
-      </div>
+    <Container className="absolute inset-0 flex h-full w-full flex-col items-end justify-center">
+      <PostingForm
+        posting={posting}
+        refs={refs}
+        errorSign={errorSign}
+        setPosting={setPosting}
+        onTextChange={onTextChange}
+        onThumbnailChange={onThumbnailChange}
+      />
     </Container>
   )
 }

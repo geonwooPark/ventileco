@@ -24,7 +24,7 @@ export default async function CommentSection({
   return (
     <Section className="!pb-10">
       <HydrationBoundary state={dehydratedState}>
-        <div className="rounded-md bg-beige-light p-4 text-brown-dark">
+        <div className="rounded-md bg-beige-normal p-4 text-brown-dark">
           <CommentInput postingId={postingId} />
           <CommentList postingId={postingId} />
         </div>
