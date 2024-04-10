@@ -7,7 +7,7 @@ export default async function RecommendedBookList() {
   const recommendedBooks = await getRecommendedBook()
 
   return (
-    <Slider gap={24}>
+    <Slider gap={24} slideLength={recommendedBooks.length}>
       {recommendedBooks.map((recommendedBook) => (
         <RecommendedBookItem
           key={recommendedBook._id}

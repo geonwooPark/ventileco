@@ -1,7 +1,7 @@
 import { throttle } from '@/utils/throttle'
 import { useCallback, useRef, useState } from 'react'
 
-export default function useDragEvent(gap?: number) {
+export default function useSlideEvent(gap?: number) {
   const slideContainer = useRef<HTMLDivElement>(null)
 
   const [isDragging, setIsDragging] = useState(false)
@@ -90,10 +90,10 @@ export default function useDragEvent(gap?: number) {
     if (!gap) return
 
     const childNode = slideContainer.current.childNodes[0]
-    if (childNode instanceof HTMLElement) {
-      const width = childNode.offsetWidth
-      slideContainer.current.scrollLeft += width + gap
-    }
+    if (!(childNode instanceof HTMLElement)) return
+    const width = childNode.offsetWidth
+
+    slideContainer.current.scrollLeft += width + gap
   }
 
   const onThrottleDragMove = throttle(onDragMove, 50)

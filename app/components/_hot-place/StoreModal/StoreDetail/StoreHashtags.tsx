@@ -1,6 +1,6 @@
 'use client'
 
-import useDragEvent from '@/hooks/useDragEvent'
+import useDragEvent from '@/hooks/useSlideEvent'
 import React from 'react'
 
 interface StoreHashtagsProps {

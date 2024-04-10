@@ -7,7 +7,7 @@ import {
   UseFormSetValue,
 } from 'react-hook-form'
 import ErrorMessage from '../../../common/ErrorMessage'
-import useDragEvent from '@/hooks/useDragEvent'
+import useDragEvent from '@/hooks/useSlideEvent'
 
 interface HashtagInputProps {
   setValue: UseFormSetValue<HotPlaceFormDataType>

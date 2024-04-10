@@ -13,7 +13,7 @@ interface ImageSliderProps {
 
 export default function ImageSlider({ images }: ImageSliderProps) {
   return (
-    <Slider gap={16}>
+    <Slider gap={16} slideLength={images.length}>
       {images.map((img) => (
         <div
           key={img.path}
