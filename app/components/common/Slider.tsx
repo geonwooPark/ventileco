@@ -18,7 +18,7 @@ export default function Slider({ children }: PropsWithChildren) {
     <div className="relative">
       <button
         onClick={onPrevButtonClick}
-        className="absolute left-[-12px] top-[50%] z-[100] translate-y-[-50%] rounded-full border-2 border-dashed border-beige-light bg-brown-normal text-beige-light"
+        className="absolute left-[-12px] top-[50%] z-[10] translate-y-[-50%] rounded-full border-2 border-dashed border-beige-light bg-brown-normal text-beige-light"
       >
         <IconArrowLeft />
       </button>
@@ -34,7 +34,7 @@ export default function Slider({ children }: PropsWithChildren) {
       </div>
       <button
         onClick={onNextButtonClick}
-        className="absolute right-[-12px] top-[50%] z-[100] translate-y-[-50%] rounded-full border-2 border-dashed border-beige-light bg-brown-normal text-beige-light"
+        className="absolute right-[-12px] top-[50%] z-[10] translate-y-[-50%] rounded-full border-2 border-dashed border-beige-light bg-brown-normal text-beige-light"
       >
         <IconArrowRight />
       </button>
