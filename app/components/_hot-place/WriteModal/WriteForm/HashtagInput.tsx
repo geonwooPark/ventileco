@@ -24,7 +24,7 @@ export default function HashtagInput({
   errorMessage,
   prevHashtags,
 }: HashtagInputProps) {
-  const { dragContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
+  const { slideContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
 
   const [hashtags, setHashtags] = useState<string[]>(prevHashtags ?? [])
   const [hashtagInput, setHashtagsInput] = useState('')
@@ -74,7 +74,7 @@ export default function HashtagInput({
     <div className="mb-2">
       <div className="mb-1 h-[52px] rounded-md bg-beige-light text-sm">
         <div
-          ref={dragContainer}
+          ref={slideContainer}
           onMouseDown={onDragStart}
           onMouseUp={onDragEnd}
           onMouseMove={onDragMove}

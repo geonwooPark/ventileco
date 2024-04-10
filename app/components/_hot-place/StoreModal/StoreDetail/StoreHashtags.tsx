@@ -8,11 +8,11 @@ interface StoreHashtagsProps {
 }
 
 export default function StoreHashtags({ hashtags }: StoreHashtagsProps) {
-  const { dragContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
+  const { slideContainer, onDragStart, onDragEnd, onDragMove } = useDragEvent()
 
   return (
     <div
-      ref={dragContainer}
+      ref={slideContainer}
       className={`hide-scroll flex cursor-grab gap-2 overflow-y-hidden overflow-x-scroll scroll-smooth`}
     >
       {hashtags?.map((tag, i: number) => (
