@@ -10,5 +10,5 @@ export default async function Layout({
 }: {
   children: React.ReactNode
 }) {
-  return <div className="h-auto min-h-[100%] pt-[64px]">{children}</div>
+  return <div className="h-auto min-h-[100%] pt-[56px]">{children}</div>
 }

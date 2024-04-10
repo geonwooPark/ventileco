@@ -13,7 +13,7 @@ export default function HeaderListSmallDevice({
 }: HeaderListSmallDeviceProps) {
   return (
     <div
-      className={`absolute left-0 top-[64px] z-[99] h-[calc(100vh-64px)] w-[50%] transition sm:hidden
+      className={`absolute left-0 top-[56px] z-[99] h-[calc(100vh-56px)] w-[50%] transition sm:hidden
         ${
           showMenu ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
         }

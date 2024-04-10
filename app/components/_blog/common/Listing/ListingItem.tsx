@@ -16,7 +16,7 @@ export default function ListingItem({ posting }: ListingProps) {
   const { _id, thumbnailURL, category, title, description, createdAt } = posting
 
   return (
-    <div
+    <li
       onClick={() => router.push(`/blog/detail/${_id}`)}
       className="group mb-6 flex cursor-pointer flex-col rounded-md border border-beige-light bg-brown-dark px-4 py-3 md:flex-row"
     >
@@ -50,6 +50,6 @@ export default function ListingItem({ posting }: ListingProps) {
           {getTimeDiff(dayjs(createdAt).tz())}
         </p>
       </div>
-    </div>
+    </li>
   )
 }
