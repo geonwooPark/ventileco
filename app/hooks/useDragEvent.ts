@@ -2,7 +2,7 @@ import { throttle } from '@/utils/throttle'
 import { useCallback, useRef, useState } from 'react'
 
 export default function useDragEvent() {
-  const dragContainer = useRef<HTMLDivElement>(null)
+  const slideContainer = useRef<HTMLDivElement>(null)
 
   const [isDragging, setIsDragging] = useState(false)
   const [startPoint, setStartPoint] = useState(0)
@@ -21,8 +21,8 @@ export default function useDragEvent() {
     setIsDragging(true)
     const x = e.clientX
     setStartPoint(x)
-    if (dragContainer.current && 'scrollLeft' in dragContainer.current) {
-      setTotalX(x + dragContainer.current.scrollLeft)
+    if (slideContainer.current && 'scrollLeft' in slideContainer.current) {
+      setTotalX(x + slideContainer.current.scrollLeft)
     }
   }
 
@@ -32,19 +32,19 @@ export default function useDragEvent() {
 
     const scrollLeft = totalX - e.clientX
 
-    if (dragContainer.current && 'scrollLeft' in dragContainer.current) {
-      dragContainer.current.scrollLeft = scrollLeft
+    if (slideContainer.current && 'scrollLeft' in slideContainer.current) {
+      slideContainer.current.scrollLeft = scrollLeft
     }
   }
 
   const onDragEnd = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return
-    if (!dragContainer.current) return
+    if (!slideContainer.current) return
 
     setIsDragging(false)
 
     const endX = e.clientX
-    const childNodes = [...(dragContainer.current?.childNodes || [])]
+    const childNodes = [...(slideContainer.current?.childNodes || [])]
     const dragDiff = Math.abs(startPoint - endX)
 
     if (dragDiff > 10) {
@@ -58,12 +58,26 @@ export default function useDragEvent() {
     }
   }
 
+  const onPrevButtonClick = () => {
+    if (!slideContainer.current) return
+
+    slideContainer.current.scrollLeft -= 400
+  }
+
+  const onNextButtonClick = () => {
+    if (!slideContainer.current) return
+
+    slideContainer.current.scrollLeft += 400
+  }
+
   const onThrottleDragMove = throttle(onDragMove, 50)
 
   return {
-    dragContainer,
+    slideContainer,
     onDragStart,
     onDragEnd,
     onDragMove: onThrottleDragMove,
+    onPrevButtonClick,
+    onNextButtonClick,
   }
 }
