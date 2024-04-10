@@ -22,7 +22,7 @@ export default function Slider({
   } = useDragEvent(gap)
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <button
         onClick={onPrevButtonClick}
         className="absolute left-[-12px] top-[50%] z-[10] translate-y-[-50%] rounded-full border-2 border-dashed border-beige-light bg-brown-normal text-beige-light"
