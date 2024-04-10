@@ -41,7 +41,7 @@ export default function Slider({
         onMouseMove={onDragMove}
         onMouseLeave={onDragEnd}
         style={{ gap: `${gap}px` }}
-        className={`flex cursor-grab overflow-x-scroll scroll-smooth py-2`}
+        className={`hide-scroll flex cursor-grab overflow-x-scroll scroll-smooth py-2`}
       >
         {children}
       </div>
