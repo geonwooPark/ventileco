@@ -4,7 +4,14 @@ import React, { PropsWithChildren } from 'react'
 import useDragEvent from '@/hooks/useDragEvent'
 import { IconArrowLeft, IconArrowRight } from '../../../public/svgs'
 
-export default function Slider({ children }: PropsWithChildren) {
+interface SliderProps {
+  gap: number
+}
+
+export default function Slider({
+  children,
+  gap,
+}: PropsWithChildren<SliderProps>) {
   const {
     slideContainer,
     onDragStart,
@@ -12,7 +19,7 @@ export default function Slider({ children }: PropsWithChildren) {
     onDragMove,
     onPrevButtonClick,
     onNextButtonClick,
-  } = useDragEvent()
+  } = useDragEvent(gap)
 
   return (
     <div className="relative">
@@ -28,7 +35,8 @@ export default function Slider({ children }: PropsWithChildren) {
         onMouseUp={onDragEnd}
         onMouseMove={onDragMove}
         onMouseLeave={onDragEnd}
-        className={`hide-scroll flex cursor-grab gap-6 overflow-x-scroll scroll-smooth py-2`}
+        style={{ gap: `${gap}px` }}
+        className={`hide-scroll flex cursor-grab overflow-x-scroll scroll-smooth py-2`}
       >
         {children}
       </div>

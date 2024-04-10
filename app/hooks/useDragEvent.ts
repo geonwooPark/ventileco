@@ -1,7 +1,7 @@
 import { throttle } from '@/utils/throttle'
 import { useCallback, useRef, useState } from 'react'
 
-export default function useDragEvent() {
+export default function useDragEvent(gap?: number) {
   const slideContainer = useRef<HTMLDivElement>(null)
 
   const [isDragging, setIsDragging] = useState(false)
@@ -60,14 +60,40 @@ export default function useDragEvent() {
 
   const onPrevButtonClick = () => {
     if (!slideContainer.current) return
+    if (!gap) return
 
-    slideContainer.current.scrollLeft -= 400
+    const childNode = slideContainer.current.childNodes[0]
+    if (!(childNode instanceof HTMLElement)) return
+    const width = childNode.offsetWidth
+
+    const isScrollAtRight =
+      slideContainer.current.scrollWidth - slideContainer.current.scrollLeft ===
+      slideContainer.current.clientWidth
+
+    const visibleChildCount = Math.floor(
+      slideContainer.current.offsetWidth / (width + gap),
+    )
+
+    if (isScrollAtRight) {
+      slideContainer.current.scrollLeft -=
+        width -
+        (slideContainer.current.offsetWidth -
+          (width + gap) * visibleChildCount) +
+        10
+    } else {
+      slideContainer.current.scrollLeft -= width + gap
+    }
   }
 
   const onNextButtonClick = () => {
     if (!slideContainer.current) return
+    if (!gap) return
 
-    slideContainer.current.scrollLeft += 400
+    const childNode = slideContainer.current.childNodes[0]
+    if (childNode instanceof HTMLElement) {
+      const width = childNode.offsetWidth
+      slideContainer.current.scrollLeft += width + gap
+    }
   }
 
   const onThrottleDragMove = throttle(onDragMove, 50)

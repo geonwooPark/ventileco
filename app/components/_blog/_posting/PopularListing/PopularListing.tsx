@@ -7,7 +7,7 @@ export default async function PopularListing() {
   const postings = await getPopularListing()
 
   return (
-    <Slider>
+    <Slider gap={24}>
       {postings.map((posting) => (
         <PopularListingItem key={posting._id} posting={posting} />
       ))}
