@@ -32,7 +32,7 @@ export default function SearchHistory({
   }
 
   return (
-    <div className="absolute mt-4 flex flex-wrap gap-3 text-sm text-beige-normal">
+    <div className="mt-4 flex flex-wrap gap-3 text-sm text-beige-normal">
       {keywords?.map((keyword, i) => (
         <div
           key={i}

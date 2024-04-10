@@ -3,6 +3,8 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import SearchHistory from './SearchHistory'
 import InputWithIcon from '@/components/common/Input/InputWithIcon'
+import ProjectTitle from '@/components/common/ProjectTitle'
+import Container from '@/components/common/Container'
 
 interface SearchProps {
   isOpen: boolean
@@ -82,13 +84,14 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
       {fade && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`absolute left-0 top-[64px] h-[320px] w-full overflow-hidden bg-brown-dark shadow-lg md:h-[420px]`}
+          className={`absolute left-0 top-[56px] h-[320px] w-full overflow-hidden border-b-4 border-dashed border-beige-light bg-brown-dark shadow-2xl`}
         >
-          <form
-            className="mx-auto h-full max-w-[1120px] px-4 sm:px-2 md:px-10 xl:px-20"
-            onSubmit={onSubmit}
-          >
-            <div className="flex h-full items-center justify-center">
+          <Container className="w-full pt-10">
+            <ProjectTitle title="Wanted" />
+            <form
+              className="flex h-full w-full justify-center"
+              onSubmit={onSubmit}
+            >
               <div className="w-[80%] md:w-[60%]">
                 <InputWithIcon
                   type="text"
@@ -96,7 +99,7 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
                   value={text}
                   placeholder="검색어를 입력하세요"
                   onChange={onChange}
-                  className="w-full rounded-sm px-4 py-3 text-black outline-none"
+                  className="w-full rounded-sm px-4 py-3 text-black outline-none "
                   icon={AiOutlineSearch}
                   iconAction={() => onSubmit}
                   iconType="submit"
@@ -108,8 +111,9 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
                   setIsOpen={setIsOpen}
                 />
               </div>
-            </div>
-          </form>
+            </form>
+          </Container>
+          {/* <hr className="mt-10 " /> */}
         </div>
       )}
     </div>
