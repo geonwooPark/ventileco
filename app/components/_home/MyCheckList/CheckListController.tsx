@@ -14,20 +14,20 @@ export default function CheckListController({
 }: CheckListControllerProps) {
   const { data: session } = useSession()
 
-  const { onOpen: openCalendarModal } = useCalendarModalActions()
-  const { onOpen: openAddListItemModal } = useAddListItemModalActions()
+  const { handleModal: handleCalendarModal } = useCalendarModalActions()
+  const { handleModal: handleAddListItemModal } = useAddListItemModalActions()
 
   const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const openModal = () => {
     if (session?.user.role !== 'admin' && date === today) return
-    openAddListItemModal()
+    handleAddListItemModal()
   }
 
   return (
     <div className="mb-4 flex items-center justify-between">
-      <button onClick={openCalendarModal}>
+      <button onClick={handleCalendarModal}>
         <span>🗓</span>
         <span className="ml-2 text-sm">{date}</span>
       </button>

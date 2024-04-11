@@ -6,16 +6,14 @@ interface State {
 
 interface Actions {
   actions: {
-    onOpen: () => void
-    onClose: () => void
+    handleModal: () => void
   }
 }
 
 const useConfirmModalDisplayStore = create<State & Actions>()((set) => ({
   isOpen: false,
   actions: {
-    onOpen: () => set({ isOpen: true }),
-    onClose: () => set({ isOpen: false }),
+    handleModal: () => set((state) => ({ isOpen: !state.isOpen })),
   },
 }))
 

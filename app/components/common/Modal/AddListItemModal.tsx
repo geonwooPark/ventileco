@@ -5,15 +5,15 @@ import { useSession } from 'next-auth/react'
 import dayjs from '@/lib/dayjs'
 import {
   useAddListItemModalActions,
-  useAddListItemModalIsOpen,
+  useIsAddListItemModalOpen,
 } from '@/hooks/store/useAddListItemModalStore'
 import { toast } from 'react-toastify'
 import useAddCheckListItemMutation from '@/hooks/mutation/useAddCheckListItemMutation'
 
 export default function AddListItemModal() {
   const { data: session } = useSession()
-  const addListItemModalIsOpen = useAddListItemModalIsOpen()
-  const { onClose: closeAddListItemModal } = useAddListItemModalActions()
+  const isAddListItemModalOpen = useIsAddListItemModalOpen()
+  const { handleModal: handleAddListItemModal } = useAddListItemModalActions()
 
   const [value, setValue] = useState('')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
@@ -33,7 +33,7 @@ export default function AddListItemModal() {
       {
         onSuccess: () => {
           setValue('')
-          closeAddListItemModal()
+          handleAddListItemModal()
         },
         onError: (error) => {
           toast.error(error.message)
@@ -57,8 +57,8 @@ export default function AddListItemModal() {
     <Modal
       title="Add List"
       body={bodyContent}
-      isOpen={addListItemModalIsOpen}
-      onClose={closeAddListItemModal}
+      isOpen={isAddListItemModalOpen}
+      onClose={handleAddListItemModal}
       onSubmit={addCheckListItem}
       actionLabel="등록하기"
     />

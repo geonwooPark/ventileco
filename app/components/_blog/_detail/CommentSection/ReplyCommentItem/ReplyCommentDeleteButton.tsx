@@ -17,7 +17,7 @@ export default function ReplyCommentDeleteButton({
   userId,
 }: ReplyCommentDeleteButtonProps) {
   const { data: session } = useSession()
-  const { onOpen: openDeleteCommentModal, onClose: closeDeleteCommentModal } =
+  const { handleModal: handleDeleteCommentModal } =
     useConfirmModalDisplayActions()
   const { onChange: changeModalContent } = useConfirmModalContentActions()
   const { mutation: deleteCommentMutation } = useDeleteCommentMutation({
@@ -36,7 +36,7 @@ export default function ReplyCommentDeleteButton({
       },
       {
         onSuccess: () => {
-          closeDeleteCommentModal()
+          handleDeleteCommentModal()
         },
         onError: (error) => {
           toast.error(error.message)
@@ -52,7 +52,7 @@ export default function ReplyCommentDeleteButton({
       action: () => deleteComment(),
       actionLabel: '삭제',
     })
-    openDeleteCommentModal()
+    handleDeleteCommentModal()
   }
 
   return <button onClick={handleModal}>삭제</button>

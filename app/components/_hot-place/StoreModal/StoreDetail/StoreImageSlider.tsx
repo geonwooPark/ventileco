@@ -20,7 +20,13 @@ export default function ImageSlider({ images }: ImageSliderProps) {
           className="mx-auto aspect-[4/3] h-[300px] w-[400px]"
         >
           <div className="relative h-full w-full">
-            <Image src={img.url} alt="store-images" fill objectFit="cover" />
+            <Image
+              src={img.url}
+              alt="store-images"
+              fill
+              objectFit="cover"
+              className="block-drag"
+            />
           </div>
         </div>
       ))}

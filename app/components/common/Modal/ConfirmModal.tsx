@@ -11,7 +11,7 @@ import { useConfirmModalContent } from '@/hooks/store/useConfirmModalContentStor
 
 export default function ConfirmModal() {
   const isOpen = useConfirmModalDisplay()
-  const { onClose } = useConfirmModalDisplayActions()
+  const { handleModal } = useConfirmModalDisplayActions()
   const modalContent = useConfirmModalContent()
   const { title, description, action, actionLabel, isLoading } = modalContent
 
@@ -23,7 +23,7 @@ export default function ConfirmModal() {
 
   const handleClose = () => {
     setShowModal(false)
-    setTimeout(() => onClose(), 300)
+    setTimeout(() => handleModal(), 300)
   }
 
   if (!isOpen) return null

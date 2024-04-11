@@ -16,8 +16,7 @@ export default function PostingDeleteButton({
   const router = useRouter()
   const { data: session } = useSession()
 
-  const { onOpen: openDeletePostingModal, onClose: closeDeletePostingModal } =
-    useConfirmModalDisplayActions()
+  const { handleModal: handlePostingModal } = useConfirmModalDisplayActions()
   const { onChange: changeModalContent } = useConfirmModalContentActions()
 
   const deletePosting = async () => {
@@ -30,7 +29,7 @@ export default function PostingDeleteButton({
       })
         .then((res) => res.json())
         .then((result) => {
-          closeDeletePostingModal()
+          handlePostingModal()
           router.push('/blog')
           router.refresh()
           toast.success(result.message)
@@ -49,7 +48,7 @@ export default function PostingDeleteButton({
       action: () => deletePosting(),
       actionLabel: '삭제',
     })
-    openDeletePostingModal()
+    handlePostingModal()
   }
 
   return (

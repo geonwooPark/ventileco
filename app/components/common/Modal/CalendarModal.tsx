@@ -6,7 +6,7 @@ import Calendar from 'react-calendar'
 import dayjs from '@/lib/dayjs'
 import {
   useCalendarModalActions,
-  useCalendarModalIsOpen,
+  useIsCalendarModalOpen,
 } from '@/hooks/store/useCalendarModalStore'
 
 interface CalendarModalProps {
@@ -16,8 +16,8 @@ interface CalendarModalProps {
 export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
   const [value, setValue] = useState(new Date())
 
-  const calendarModalIsOpen = useCalendarModalIsOpen()
-  const { onClose: closeCalendarModal } = useCalendarModalActions()
+  const isCalendarModalOpen = useIsCalendarModalOpen()
+  const { handleModal: handleCalendarModal } = useCalendarModalActions()
 
   const changeDate = (e: any) => {
     setValue(e)
@@ -25,7 +25,7 @@ export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
 
   const onSubmit = () => {
     setSelectedDate(value)
-    closeCalendarModal()
+    handleCalendarModal()
   }
 
   const bodyContent = (
@@ -42,8 +42,8 @@ export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
     <Modal
       title="Date"
       body={bodyContent}
-      isOpen={calendarModalIsOpen}
-      onClose={closeCalendarModal}
+      isOpen={isCalendarModalOpen}
+      onClose={handleCalendarModal}
       onSubmit={onSubmit}
       actionLabel="조회하기"
     />

@@ -9,7 +9,7 @@ import InputWithLabel from '../Input/InputWithLabel'
 import { emailRegex, nameRegex, passwordRegex } from '@/constants/regex'
 import {
   useSignUpModalActions,
-  useSignUpModalIsOpen,
+  useIsSignUpModalOpen,
 } from '@/hooks/store/useSignUpModalStore'
 import useSignUpMutation from '@/hooks/mutation/useSignUpMutation'
 import { useFireWorkActions } from '@/hooks/store/useFireWorkStore'
@@ -21,7 +21,7 @@ interface SignUpFormDataType {
 }
 
 export default function SignUpModal() {
-  const signUpModalIsOpen = useSignUpModalIsOpen()
+  const isSignUpModalOpen = useIsSignUpModalOpen()
   const { onClose: closeSignUpModal } = useSignUpModalActions()
   const { onOpen: openLoginModal } = useLoginModalActions()
   const { mutation: signUpMutation } = useSignUpMutation()
@@ -124,7 +124,7 @@ export default function SignUpModal() {
       title="Sign Up"
       body={bodyContent}
       footer={footerContent}
-      isOpen={signUpModalIsOpen}
+      isOpen={isSignUpModalOpen}
       onClose={closeSignUpModal}
       onSubmit={handleSubmit(onSubmit, onError)}
       actionLabel="가입하기"

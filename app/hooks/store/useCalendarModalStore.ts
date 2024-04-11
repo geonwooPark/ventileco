@@ -6,20 +6,18 @@ interface State {
 
 interface Actions {
   actions: {
-    onOpen: () => void
-    onClose: () => void
+    handleModal: () => void
   }
 }
 
 const useCalendarModalStore = create<State & Actions>()((set) => ({
   isOpen: false,
   actions: {
-    onOpen: () => set({ isOpen: true }),
-    onClose: () => set({ isOpen: false }),
+    handleModal: () => set((state) => ({ isOpen: !state.isOpen })),
   },
 }))
 
-export const useCalendarModalIsOpen = () =>
+export const useIsCalendarModalOpen = () =>
   useCalendarModalStore((state) => state.isOpen)
 export const useCalendarModalActions = () =>
   useCalendarModalStore((state) => state.actions)

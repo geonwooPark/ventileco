@@ -6,20 +6,18 @@ interface State {
 
 interface Actions {
   actions: {
-    onOpen: () => void
-    onClose: () => void
+    handleModal: () => void
   }
 }
 
 const useAddListItemModalStore = create<State & Actions>()((set) => ({
   isOpen: false,
   actions: {
-    onOpen: () => set({ isOpen: true }),
-    onClose: () => set({ isOpen: false }),
+    handleModal: () => set((state) => ({ isOpen: !state.isOpen })),
   },
 }))
 
-export const useAddListItemModalIsOpen = () =>
+export const useIsAddListItemModalOpen = () =>
   useAddListItemModalStore((state) => state.isOpen)
 export const useAddListItemModalActions = () =>
   useAddListItemModalStore((state) => state.actions)

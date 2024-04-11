@@ -17,7 +17,7 @@ export default function CommentDeleteButton({
   userId,
 }: CommentDeleteButtonProps) {
   const { data: session } = useSession()
-  const { onOpen: openDeleteCommentModal, onClose: closeDeleteCommentModal } =
+  const { handleModal: handleDeleteCommentModal } =
     useConfirmModalDisplayActions()
   const { onChange: changeModalContent } = useConfirmModalContentActions()
 
@@ -37,7 +37,7 @@ export default function CommentDeleteButton({
       },
       {
         onSuccess: () => {
-          closeDeleteCommentModal()
+          handleDeleteCommentModal()
         },
         onError: (error) => {
           toast.error(error.message)
@@ -53,7 +53,7 @@ export default function CommentDeleteButton({
       action: () => deleteComment(),
       actionLabel: '삭제',
     })
-    openDeleteCommentModal()
+    handleDeleteCommentModal()
   }
 
   return <button onClick={handleModal}>삭제</button>

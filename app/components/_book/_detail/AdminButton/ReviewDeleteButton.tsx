@@ -15,7 +15,7 @@ export default function ReviewDeleteButton({
 }: ReviewDeleteButtonProps) {
   const { data: session } = useSession()
   const router = useRouter()
-  const { onOpen: openDeleteReviewModal, onClose: closeDeleteReviewModal } =
+  const { handleModal: handleDeleteReviewModal } =
     useConfirmModalDisplayActions()
   const { onChange: changeModalContent } = useConfirmModalContentActions()
   const { mutation: deleteStoreMutation } = useDeleteReviewMutation()
@@ -29,7 +29,7 @@ export default function ReviewDeleteButton({
       },
       {
         onSuccess: () => {
-          closeDeleteReviewModal()
+          handleDeleteReviewModal()
           router.push('/book')
           toast.success('리뷰 제거 성공!')
         },
@@ -48,7 +48,7 @@ export default function ReviewDeleteButton({
       actionLabel: '삭제',
       isLoading: deleteStoreMutation.isPending,
     })
-    openDeleteReviewModal()
+    handleDeleteReviewModal()
   }
 
   return (

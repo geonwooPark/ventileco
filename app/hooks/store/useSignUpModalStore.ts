@@ -19,7 +19,7 @@ const useSignUpModalStore = create<State & Actions>()((set) => ({
   },
 }))
 
-export const useSignUpModalIsOpen = () =>
+export const useIsSignUpModalOpen = () =>
   useSignUpModalStore((state) => state.isOpen)
 export const useSignUpModalActions = () =>
   useSignUpModalStore((state) => state.actions)

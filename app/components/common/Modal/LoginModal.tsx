@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import { useSignUpModalActions } from '@/hooks/store/useSignUpModalStore'
 import {
   useLoginModalActions,
-  useLoginModalIsOpen,
+  useIsLoginModalOpen,
 } from '@/hooks/store/useLoginModalStore'
 import Modal from './Modal'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -24,7 +24,7 @@ interface LoginFormDataType {
 }
 
 export default function LoginModal() {
-  const loginModalIsOpen = useLoginModalIsOpen()
+  const isLoginModalOpen = useIsLoginModalOpen()
   const { onClose: closeLoginModal } = useLoginModalActions()
   const { onOpen: openSignUpModal } = useSignUpModalActions()
   const { mutation: loginMutation } = useLoginMutation()
@@ -146,7 +146,7 @@ export default function LoginModal() {
       title="Login"
       body={bodyContent}
       footer={footerContent}
-      isOpen={loginModalIsOpen}
+      isOpen={isLoginModalOpen}
       onClose={closeLoginModal}
       onSubmit={handleSubmit(onSubmit, onError)}
       actionLabel="계속하기"

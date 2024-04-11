@@ -19,7 +19,7 @@ const useLoginModalStore = create<State & Actions>()((set) => ({
   },
 }))
 
-export const useLoginModalIsOpen = () =>
+export const useIsLoginModalOpen = () =>
   useLoginModalStore((state) => state.isOpen)
 export const useLoginModalActions = () =>
   useLoginModalStore((state) => state.actions)
