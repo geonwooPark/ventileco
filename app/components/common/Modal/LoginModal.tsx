@@ -5,11 +5,6 @@ import { FcGoogle } from 'react-icons/fc'
 import { BiLogoGithub } from 'react-icons/bi'
 import Button from '../../common/Button'
 import { toast } from 'react-toastify'
-import { useSignUpModalActions } from '@/hooks/store/useSignUpModalStore'
-import {
-  useLoginModalActions,
-  useIsLoginModalOpen,
-} from '@/hooks/store/useLoginModalStore'
 import Modal from './Modal'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import InputWithLabel from '../Input/InputWithLabel'
@@ -17,6 +12,8 @@ import { emailRegex, passwordRegex } from '@/constants/regex'
 import useLoginMutation from '@/hooks/mutation/useLoginMutation'
 import useOAuthLoginMutation from '@/hooks/mutation/useOAuthLoginMutation'
 import { OAuthType } from '@/interfaces/interface'
+import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
+import SignUpModal from './SignUpModal'
 
 interface LoginFormDataType {
   email: string
@@ -24,9 +21,8 @@ interface LoginFormDataType {
 }
 
 export default function LoginModal() {
-  const isLoginModalOpen = useIsLoginModalOpen()
-  const { onClose: closeLoginModal } = useLoginModalActions()
-  const { onOpen: openSignUpModal } = useSignUpModalActions()
+  const isModalOpen = useIsModalOpen()
+  const { removeModal, addModal } = useModalActions()
   const { mutation: loginMutation } = useLoginMutation()
   const { mutation: OAuthMutation } = useOAuthLoginMutation()
 
@@ -37,11 +33,15 @@ export default function LoginModal() {
     },
   })
 
-  const onSubmit: SubmitHandler<LoginFormDataType> = async (data) => {
+  const onClose = () => {
+    removeModal('login-modal')
+  }
+
+  const onLogin: SubmitHandler<LoginFormDataType> = async (data) => {
     loginMutation.mutate(data, {
       onSuccess: () => {
         reset()
-        closeLoginModal()
+        onClose()
         toast.success('로그인에 성공했습니다')
 
         setTimeout(() => window.location.reload(), 1000)
@@ -52,19 +52,11 @@ export default function LoginModal() {
     })
   }
 
-  const onError = (error: any) => {
-    if (error === null) return
-    for (const key in error) {
-      toast.error(error[key].message)
-      break
-    }
-  }
-
-  const onClick = async (oauth: OAuthType) => {
+  const onOAuthLogin = async (oauth: OAuthType) => {
     OAuthMutation.mutate(oauth, {
       onSuccess: () => {
+        onClose()
         toast.success('로그인에 성공했습니다')
-        closeLoginModal()
       },
       onError: (error) => {
         toast.error(error.message)
@@ -72,9 +64,20 @@ export default function LoginModal() {
     })
   }
 
-  const handleModal = () => {
-    closeLoginModal()
-    openSignUpModal()
+  const onSignUp = () => {
+    removeModal('login-modal')
+    addModal({
+      key: 'signup-modal',
+      component: <SignUpModal />,
+    })
+  }
+
+  const onError = (error: any) => {
+    if (error === null) return
+    for (const key in error) {
+      toast.error(error[key].message)
+      break
+    }
   }
 
   const emailRegister = register('email', {
@@ -90,7 +93,7 @@ export default function LoginModal() {
   })
 
   const bodyContent = (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <form onSubmit={handleSubmit(onLogin, onError)}>
       <InputWithLabel
         register={emailRegister}
         type="text"
@@ -117,7 +120,7 @@ export default function LoginModal() {
         icon={FcGoogle}
         disabled={OAuthMutation.isPending || loginMutation.isPending}
         className="mb-1"
-        onClick={() => onClick('google')}
+        onClick={() => onOAuthLogin('google')}
       />
       <Button
         type="button"
@@ -127,14 +130,11 @@ export default function LoginModal() {
         label="깃허브로 로그인"
         icon={BiLogoGithub}
         disabled={OAuthMutation.isPending || loginMutation.isPending}
-        onClick={() => onClick('github')}
+        onClick={() => onOAuthLogin('github')}
       />
       <p className="mt-4 text-center text-xs text-beige-light">
         계정이 없으신가요?{' '}
-        <span
-          onClick={handleModal}
-          className="cursor-pointer text-beige-normal"
-        >
+        <span onClick={onSignUp} className="cursor-pointer text-beige-normal">
           회원가입
         </span>
       </p>
@@ -146,9 +146,9 @@ export default function LoginModal() {
       title="Login"
       body={bodyContent}
       footer={footerContent}
-      isOpen={isLoginModalOpen}
-      onClose={closeLoginModal}
-      onSubmit={handleSubmit(onSubmit, onError)}
+      isOpen={isModalOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit(onLogin, onError)}
       actionLabel="계속하기"
       isLoading={OAuthMutation.isPending || loginMutation.isPending}
     />

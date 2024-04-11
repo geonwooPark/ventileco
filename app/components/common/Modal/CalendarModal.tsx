@@ -1,31 +1,34 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import Modal from './Modal'
 import 'react-calendar/dist/Calendar.css'
 import styles from '@/styles/calendar.module.css'
 import Calendar from 'react-calendar'
 import dayjs from '@/lib/dayjs'
-import {
-  useCalendarModalActions,
-  useIsCalendarModalOpen,
-} from '@/hooks/store/useCalendarModalStore'
+import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
 
 interface CalendarModalProps {
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>
 }
 
-export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
-  const [value, setValue] = useState(new Date())
+export default memo(function CalendarModal({
+  setSelectedDate,
+}: CalendarModalProps) {
+  const isModalOpen = useIsModalOpen()
+  const { removeModal } = useModalActions()
 
-  const isCalendarModalOpen = useIsCalendarModalOpen()
-  const { handleModal: handleCalendarModal } = useCalendarModalActions()
+  const [value, setValue] = useState(new Date())
 
   const changeDate = (e: any) => {
     setValue(e)
   }
 
+  const onClose = () => {
+    removeModal('calendar-modal')
+  }
+
   const onSubmit = () => {
     setSelectedDate(value)
-    handleCalendarModal()
+    onClose()
   }
 
   const bodyContent = (
@@ -42,10 +45,10 @@ export default function CalendarModal({ setSelectedDate }: CalendarModalProps) {
     <Modal
       title="Date"
       body={bodyContent}
-      isOpen={isCalendarModalOpen}
-      onClose={handleCalendarModal}
+      isOpen={isModalOpen}
+      onClose={onClose}
       onSubmit={onSubmit}
       actionLabel="조회하기"
     />
   )
-}
+})

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { homeKeys } from '@/constants/queryKey'
-import { getCommits } from '@/actions/_home/getCommits'
+import getCommits from '@/actions/_home/getCommits'
 import { BRANCH, PER_PAGE } from '@/constants'
 
 export default function useUpdateQuery() {

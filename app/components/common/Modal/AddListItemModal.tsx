@@ -3,17 +3,14 @@ import Modal from './Modal'
 import Input from '../Input/Input'
 import { useSession } from 'next-auth/react'
 import dayjs from '@/lib/dayjs'
-import {
-  useAddListItemModalActions,
-  useIsAddListItemModalOpen,
-} from '@/hooks/store/useAddListItemModalStore'
 import { toast } from 'react-toastify'
 import useAddCheckListItemMutation from '@/hooks/mutation/useAddCheckListItemMutation'
+import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
 
 export default function AddListItemModal() {
   const { data: session } = useSession()
-  const isAddListItemModalOpen = useIsAddListItemModalOpen()
-  const { handleModal: handleAddListItemModal } = useAddListItemModalActions()
+  const isModalOpen = useIsModalOpen()
+  const { removeModal } = useModalActions()
 
   const [value, setValue] = useState('')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
@@ -25,6 +22,11 @@ export default function AddListItemModal() {
   const { mutation: addCheckListItemMutation } = useAddCheckListItemMutation({
     today,
   })
+
+  const onClose = () => {
+    removeModal('addListItem-modal')
+  }
+
   const addCheckListItem = () => {
     if (session?.user.role !== 'admin') return
 
@@ -33,7 +35,7 @@ export default function AddListItemModal() {
       {
         onSuccess: () => {
           setValue('')
-          handleAddListItemModal()
+          onClose()
         },
         onError: (error) => {
           toast.error(error.message)
@@ -57,8 +59,8 @@ export default function AddListItemModal() {
     <Modal
       title="Add List"
       body={bodyContent}
-      isOpen={isAddListItemModalOpen}
-      onClose={handleAddListItemModal}
+      isOpen={isModalOpen}
+      onClose={onClose}
       onSubmit={addCheckListItem}
       actionLabel="등록하기"
     />

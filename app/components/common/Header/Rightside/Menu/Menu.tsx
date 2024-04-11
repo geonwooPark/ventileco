@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Avatar from '../../../../common/Avatar'
-import { useLoginModalActions } from '@/hooks/store/useLoginModalStore'
-import { useSignUpModalActions } from '@/hooks/store/useSignUpModalStore'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
 import MenuItem from './MenuItem'
+import { useModalActions } from '@/hooks/store/useModalStore'
+import LoginModal from '@/components/common/Modal/LoginModal'
+import SignUpModal from '@/components/common/Modal/SignUpModal'
 
 interface MenuProps {
   session: Session | null
@@ -15,13 +16,24 @@ export default function Menu({ session }: MenuProps) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [fade, setFade] = useState(false)
-  const { onOpen: openLoginModal, onClose: closeLoginModal } =
-    useLoginModalActions()
-  const { onOpen: openSignUpModal, onClose: closeSignUpModal } =
-    useSignUpModalActions()
+  const { addModal } = useModalActions()
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev)
+  }
+
+  const onLogin = () => {
+    addModal({
+      key: 'login-modal',
+      component: <LoginModal />,
+    })
+  }
+
+  const onSignUp = () => {
+    addModal({
+      key: 'signup-modal',
+      component: <SignUpModal />,
+    })
   }
 
   useEffect(() => {
@@ -69,20 +81,8 @@ export default function Menu({ session }: MenuProps) {
                 </>
               ) : (
                 <>
-                  <MenuItem
-                    onClick={() => {
-                      closeSignUpModal()
-                      openLoginModal()
-                    }}
-                    label="로그인"
-                  />
-                  <MenuItem
-                    onClick={() => {
-                      openSignUpModal()
-                      closeLoginModal()
-                    }}
-                    label="회원가입"
-                  />
+                  <MenuItem onClick={onLogin} label="로그인" />
+                  <MenuItem onClick={onSignUp} label="회원가입" />
                 </>
               )}
             </div>

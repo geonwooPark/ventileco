@@ -10,7 +10,6 @@ interface ModalProps {
   footer?: React.ReactElement
   onSubmit: () => void
   actionLabel: string
-  secondaryAction?: () => void
   secondaryActionLabel?: string
   isLoading?: boolean
 }
@@ -23,22 +22,19 @@ export default function Modal({
   footer,
   onSubmit,
   actionLabel,
-  secondaryAction,
   secondaryActionLabel,
   isLoading,
 }: ModalProps) {
-  const [showModal, setShowModal] = useState(isOpen)
-
-  useEffect(() => {
-    setShowModal(isOpen)
-  }, [isOpen])
+  const [showModalCard, setShowModalCard] = useState(isOpen)
 
   const handleClose = () => {
-    setShowModal(false)
+    setShowModalCard(false)
     setTimeout(() => onClose(), 300)
   }
 
-  if (!isOpen) return null
+  useEffect(() => {
+    setShowModalCard(isOpen)
+  }, [isOpen])
 
   return (
     <div
@@ -48,7 +44,9 @@ export default function Modal({
       <div
         onClick={(e) => e.stopPropagation()}
         className={`mx-auto h-full w-full transition duration-300 md:h-[auto] md:w-[300px] ${
-          showModal ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+          showModalCard
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-full opacity-0'
         }`}
       >
         <div className={`modal-shadowed h-full w-full`}>
@@ -64,7 +62,7 @@ export default function Modal({
           {/* 푸터 */}
           <div className="p-4">
             <div className="flex justify-center gap-2">
-              {secondaryAction && secondaryActionLabel && (
+              {secondaryActionLabel && (
                 <Button
                   type="button"
                   level="outline"

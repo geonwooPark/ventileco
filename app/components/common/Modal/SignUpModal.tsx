@@ -3,16 +3,13 @@
 import React from 'react'
 import Modal from './Modal'
 import { toast } from 'react-toastify'
-import { useLoginModalActions } from '@/hooks/store/useLoginModalStore'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import InputWithLabel from '../Input/InputWithLabel'
 import { emailRegex, nameRegex, passwordRegex } from '@/constants/regex'
-import {
-  useSignUpModalActions,
-  useIsSignUpModalOpen,
-} from '@/hooks/store/useSignUpModalStore'
 import useSignUpMutation from '@/hooks/mutation/useSignUpMutation'
 import { useFireWorkActions } from '@/hooks/store/useFireWorkStore'
+import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
+import LoginModal from './LoginModal'
 
 interface SignUpFormDataType {
   email: string
@@ -21,9 +18,8 @@ interface SignUpFormDataType {
 }
 
 export default function SignUpModal() {
-  const isSignUpModalOpen = useIsSignUpModalOpen()
-  const { onClose: closeSignUpModal } = useSignUpModalActions()
-  const { onOpen: openLoginModal } = useLoginModalActions()
+  const isModalOpen = useIsModalOpen()
+  const { removeModal, addModal } = useModalActions()
   const { mutation: signUpMutation } = useSignUpMutation()
   const { onOpen: openFireWork } = useFireWorkActions()
 
@@ -35,11 +31,15 @@ export default function SignUpModal() {
     },
   })
 
+  const onClose = () => {
+    removeModal('signup-modal')
+  }
+
   const onSubmit: SubmitHandler<SignUpFormDataType> = async (data) => {
     signUpMutation.mutate(data, {
       onSuccess: () => {
         reset()
-        closeSignUpModal()
+        onClose()
         toast.success('회원가입에 성공했습니다!')
         openFireWork()
       },
@@ -49,17 +49,20 @@ export default function SignUpModal() {
     })
   }
 
+  const onLogin = () => {
+    removeModal('signup-modal')
+    addModal({
+      key: 'login-modal',
+      component: <LoginModal />,
+    })
+  }
+
   const onError = (error: any) => {
     if (error === null) return
     for (const key in error) {
       toast.error(error[key].message)
       break
     }
-  }
-
-  const handleModal = () => {
-    closeSignUpModal()
-    openLoginModal()
   }
 
   const emailRegister = register('email', {
@@ -109,10 +112,7 @@ export default function SignUpModal() {
       <hr className="mb-3 border-beige-normal" />
       <p className="mt-4 text-center text-xs text-beige-light">
         이미 계정이 있으신가요?{' '}
-        <span
-          onClick={handleModal}
-          className="cursor-pointer text-beige-normal"
-        >
+        <span onClick={onLogin} className="cursor-pointer text-beige-normal">
           로그인
         </span>
       </p>
@@ -124,8 +124,8 @@ export default function SignUpModal() {
       title="Sign Up"
       body={bodyContent}
       footer={footerContent}
-      isOpen={isSignUpModalOpen}
-      onClose={closeSignUpModal}
+      isOpen={isModalOpen}
+      onClose={onClose}
       onSubmit={handleSubmit(onSubmit, onError)}
       actionLabel="가입하기"
       isLoading={signUpMutation.isPending}

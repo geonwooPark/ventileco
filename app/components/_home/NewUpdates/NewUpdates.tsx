@@ -3,8 +3,8 @@ import getQueryClient from '@/utils/getQueryClient'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { homeKeys } from '@/constants/queryKey'
 import NewUpdateList from './NewUpdateList'
-import { getCommits } from '@/actions/_home/getCommits'
 import { BRANCH, PER_PAGE } from '@/constants'
+import getCommits from '@/actions/_home/getCommits'
 
 export default async function NewUpdates() {
   const queryClient = getQueryClient()

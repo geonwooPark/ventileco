@@ -1,20 +1,17 @@
 import type { Metadata } from 'next'
 import { Outfit, Rye } from 'next/font/google'
 import '../app/styles/globals.css'
-import LoginModal from './components/common/Modal/LoginModal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import SignUpModal from './components/common/Modal/SignUpModal'
 import Header from './components/common/Header/Header'
 import Script from 'next/script'
 import RabbitGPT from './components/common/RabbitGPT/RabbitGPT'
 import Firework from './components/common/Animation/FireworkAnimation'
-import ConfirmModal from './components/common/Modal/ConfirmModal'
 import AuthSession from './components/common/provider/AuthSession'
 import TanstackProvider from './components/common/provider/TanstackProvider'
 import { RootMetadata } from './constants/staticMetadata'
-
 import localFont from 'next/font/local'
+import ModalContainer from './components/common/Modal/ModalContainer'
 
 const classic = localFont({
   src: [
@@ -67,9 +64,7 @@ export default async function RootLayout({
               autoClose={3000}
               hideProgressBar={true}
             />
-            <SignUpModal />
-            <LoginModal />
-            <ConfirmModal />
+            <ModalContainer />
             <Header />
             {children}
           </TanstackProvider>

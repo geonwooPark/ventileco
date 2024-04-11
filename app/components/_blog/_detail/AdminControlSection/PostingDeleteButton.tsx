@@ -1,6 +1,6 @@
 import Button from '@/components/common/Button'
-import { useConfirmModalContentActions } from '@/hooks/store/useConfirmModalContentStore'
-import { useConfirmModalDisplayActions } from '@/hooks/store/useConfirmModalDisplayStore'
+import ConfirmModal from '@/components/common/Modal/ConfirmModal'
+import { useModalActions } from '@/hooks/store/useModalStore'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -16,8 +16,7 @@ export default function PostingDeleteButton({
   const router = useRouter()
   const { data: session } = useSession()
 
-  const { handleModal: handlePostingModal } = useConfirmModalDisplayActions()
-  const { onChange: changeModalContent } = useConfirmModalContentActions()
+  const { addModal, removeModal } = useModalActions()
 
   const deletePosting = async () => {
     if (!session || session.user.role !== 'admin') return
@@ -29,7 +28,7 @@ export default function PostingDeleteButton({
       })
         .then((res) => res.json())
         .then((result) => {
-          handlePostingModal()
+          removeModal('confirm-modal')
           router.push('/blog')
           router.refresh()
           toast.success(result.message)
@@ -41,14 +40,23 @@ export default function PostingDeleteButton({
     }
   }
 
-  const onDelete = () => {
-    changeModalContent({
-      title: 'Delete',
-      description: '글을 삭제하시겠습니까?',
-      action: () => deletePosting(),
-      actionLabel: '삭제',
+  const bodyContent = (
+    <p className="text-beige-light">게시글을 삭제하시겠습니까?</p>
+  )
+
+  const onClick = () => {
+    addModal({
+      key: 'confirm-modal',
+      component: (
+        <ConfirmModal
+          title="Delete"
+          bodyContent={bodyContent}
+          onSubmit={deletePosting}
+          actionLabel="삭제하기"
+          secondaryActionLabel="취소"
+        />
+      ),
     })
-    handlePostingModal()
   }
 
   return (
@@ -59,7 +67,7 @@ export default function PostingDeleteButton({
       label="삭제하기"
       fullWidth={true}
       className="border-red-600 text-red-600"
-      onClick={onDelete}
+      onClick={onClick}
     />
   )
 }

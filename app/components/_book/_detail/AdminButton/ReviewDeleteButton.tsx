@@ -1,10 +1,10 @@
 import React from 'react'
-import { useConfirmModalDisplayActions } from '@/hooks/store/useConfirmModalDisplayStore'
-import { useConfirmModalContentActions } from '@/hooks/store/useConfirmModalContentStore'
 import useDeleteReviewMutation from '@/hooks/mutation/useDeleteReviewMutation'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useModalActions } from '@/hooks/store/useModalStore'
+import ConfirmModal from '@/components/common/Modal/ConfirmModal'
 
 interface ReviewDeleteButtonProps {
   bookId: string
@@ -15,9 +15,9 @@ export default function ReviewDeleteButton({
 }: ReviewDeleteButtonProps) {
   const { data: session } = useSession()
   const router = useRouter()
-  const { handleModal: handleDeleteReviewModal } =
-    useConfirmModalDisplayActions()
-  const { onChange: changeModalContent } = useConfirmModalContentActions()
+
+  const { addModal, removeModal } = useModalActions()
+
   const { mutation: deleteStoreMutation } = useDeleteReviewMutation()
 
   const deleteReview = () => {
@@ -29,7 +29,7 @@ export default function ReviewDeleteButton({
       },
       {
         onSuccess: () => {
-          handleDeleteReviewModal()
+          removeModal('confirm-modal')
           router.push('/book')
           toast.success('리뷰 제거 성공!')
         },
@@ -40,19 +40,27 @@ export default function ReviewDeleteButton({
     )
   }
 
-  const handleModal = () => {
-    changeModalContent({
-      title: '삭제하기',
-      description: '정말 리뷰를 삭제하시겠습니까?',
-      action: () => deleteReview(),
-      actionLabel: '삭제',
-      isLoading: deleteStoreMutation.isPending,
+  const bodyContent = (
+    <p className="text-beige-light">정말 리뷰를 삭제하시겠습니까?</p>
+  )
+
+  const onClick = () => {
+    addModal({
+      key: 'confirm-modal',
+      component: (
+        <ConfirmModal
+          title="Delete"
+          bodyContent={bodyContent}
+          onSubmit={deleteReview}
+          actionLabel="삭제하기"
+          secondaryActionLabel="취소"
+        />
+      ),
     })
-    handleDeleteReviewModal()
   }
 
   return (
-    <button onClick={handleModal}>
+    <button onClick={onClick}>
       <span className="text-sm text-red-600">삭제</span>
     </button>
   )

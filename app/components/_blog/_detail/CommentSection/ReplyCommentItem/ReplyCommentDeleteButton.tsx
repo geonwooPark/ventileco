@@ -1,6 +1,6 @@
+import ConfirmModal from '@/components/common/Modal/ConfirmModal'
 import useDeleteCommentMutation from '@/hooks/mutation/useDeleteCommentMutation'
-import { useConfirmModalContentActions } from '@/hooks/store/useConfirmModalContentStore'
-import { useConfirmModalDisplayActions } from '@/hooks/store/useConfirmModalDisplayStore'
+import { useModalActions } from '@/hooks/store/useModalStore'
 import { useSession } from 'next-auth/react'
 import React from 'react'
 import { toast } from 'react-toastify'
@@ -17,9 +17,9 @@ export default function ReplyCommentDeleteButton({
   userId,
 }: ReplyCommentDeleteButtonProps) {
   const { data: session } = useSession()
-  const { handleModal: handleDeleteCommentModal } =
-    useConfirmModalDisplayActions()
-  const { onChange: changeModalContent } = useConfirmModalContentActions()
+
+  const { addModal, removeModal } = useModalActions()
+
   const { mutation: deleteCommentMutation } = useDeleteCommentMutation({
     session,
     postingId,
@@ -36,7 +36,7 @@ export default function ReplyCommentDeleteButton({
       },
       {
         onSuccess: () => {
-          handleDeleteCommentModal()
+          removeModal('confirm-modal')
         },
         onError: (error) => {
           toast.error(error.message)
@@ -45,15 +45,24 @@ export default function ReplyCommentDeleteButton({
     )
   }
 
-  const handleModal = () => {
-    changeModalContent({
-      title: 'Delete',
-      description: '댓글을 삭제하시겠습니까?',
-      action: () => deleteComment(),
-      actionLabel: '삭제',
+  const bodyContent = (
+    <p className="text-beige-light">댓글을 삭제하시겠습니까?</p>
+  )
+
+  const onClick = () => {
+    addModal({
+      key: 'confirm-modal',
+      component: (
+        <ConfirmModal
+          title="Delete"
+          bodyContent={bodyContent}
+          onSubmit={deleteComment}
+          actionLabel="삭제하기"
+          secondaryActionLabel="취소"
+        />
+      ),
     })
-    handleDeleteCommentModal()
   }
 
-  return <button onClick={handleModal}>삭제</button>
+  return <button onClick={onClick}>삭제</button>
 }
