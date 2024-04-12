@@ -52,7 +52,7 @@ export default function CommentDeleteButton({
   const onClick = () => {
     addModal({
       key: 'confirm-modal',
-      component: () => (
+      component: (
         <ConfirmModal
           title="Delete"
           bodyContent={bodyContent}

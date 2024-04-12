@@ -25,14 +25,14 @@ export default function Menu({ session }: MenuProps) {
   const onLogin = () => {
     addModal({
       key: 'login-modal',
-      component: () => <LoginModal />,
+      component: <LoginModal />,
     })
   }
 
   const onSignUp = () => {
     addModal({
       key: 'signup-modal',
-      component: () => <SignUpModal />,
+      component: <SignUpModal />,
     })
   }
 

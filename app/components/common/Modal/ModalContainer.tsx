@@ -10,8 +10,7 @@ export default function ModalContainer() {
   const pathname = usePathname()
 
   const modalArr = modals.map((modal) => {
-    const ModalComponent = modal.component
-    return <ModalComponent key={modal.key} />
+    return <div key={modal.key}>{modal.component}</div>
   })
 
   useEffect(() => {

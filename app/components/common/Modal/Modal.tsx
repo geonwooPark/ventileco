@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
 import Button from '../../common/Button'
+import { IconClose } from '../../../../public/svgs/icons'
 
 interface ModalProps {
   isOpen: boolean
@@ -53,8 +53,8 @@ export default function Modal({
           {/* 헤더 */}
           <div className="flex justify-between p-4 text-beige-normal">
             <div className="font-point text-lg">{title}</div>
-            <button onClick={handleClose}>
-              <AiOutlineClose size={20} />
+            <button onClick={handleClose} className="size-5">
+              <IconClose />
             </button>
           </div>
           {/* 바디 */}

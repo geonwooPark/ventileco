@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { IconHome } from '../../../../public/svgs'
 import { useRouter } from 'next/navigation'
 
 export default function HomeButton() {
@@ -14,7 +13,7 @@ export default function HomeButton() {
         onClick={() => router.push('/')}
         className="absolute left-[50%] top-1 size-6 translate-x-[-50%] text-beige-light"
       >
-        <IconHome />
+        <span className="font-point text-lg">V</span>
       </button>
     </div>
   )
