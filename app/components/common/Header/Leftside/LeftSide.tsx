@@ -1,13 +1,14 @@
+'use client'
+
 import React, { useState } from 'react'
 import HamburgerIcon from './HamburgerIcon/HamburgerIcon'
 import HeaderListSmallDevice from './HeaderList/HeaderListSmallDevice'
 import HeaderList from './HeaderList/HeaderList'
+import { usePathname } from 'next/navigation'
 
-interface LeftSideProps {
-  path: string
-}
+export default function LeftSide() {
+  const path = usePathname()
 
-export default function LeftSide({ path }: LeftSideProps) {
   const [showMenu, setShowMenu] = useState(false)
 
   return (

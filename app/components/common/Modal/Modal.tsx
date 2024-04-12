@@ -25,7 +25,7 @@ export default function Modal({
   secondaryActionLabel,
   isLoading,
 }: ModalProps) {
-  const [showModalCard, setShowModalCard] = useState(isOpen)
+  const [showModalCard, setShowModalCard] = useState(false)
 
   const handleClose = () => {
     setShowModalCard(false)

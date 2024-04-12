@@ -26,14 +26,14 @@ export default function CheckListController({
     if (session?.user.role !== 'admin' && date === today) return
     addModal({
       key: 'addListItem-modal',
-      component: <AddListItemModal />,
+      component: () => <AddListItemModal />,
     })
   }, [session])
 
   const openCalendarModal = useCallback(() => {
     addModal({
       key: 'calendar-modal',
-      component: <CalendarModal setSelectedDate={setSelectedDate} />,
+      component: () => <CalendarModal setSelectedDate={setSelectedDate} />,
     })
   }, [])
 

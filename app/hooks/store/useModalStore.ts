@@ -7,7 +7,7 @@ interface Modal {
     | 'confirm-modal'
     | 'calendar-modal'
     | 'addListItem-modal'
-  component: React.ReactNode
+  component: () => React.ReactNode
 }
 
 interface State {

@@ -68,7 +68,7 @@ export default function LoginModal() {
     removeModal('login-modal')
     addModal({
       key: 'signup-modal',
-      component: <SignUpModal />,
+      component: () => <SignUpModal />,
     })
   }
 
