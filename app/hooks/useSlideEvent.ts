@@ -62,26 +62,25 @@ export default function useSlideEvent(gap?: number) {
     if (!slideContainer.current) return
     if (!gap) return
 
-    const childNode = slideContainer.current.childNodes[0]
-    if (!(childNode instanceof HTMLElement)) return
-    const width = childNode.offsetWidth
+    const childNodes = slideContainer.current
+      .childNodes as NodeListOf<HTMLElement>
 
-    const isScrollAtRight =
-      slideContainer.current.scrollWidth - slideContainer.current.scrollLeft ===
-      slideContainer.current.clientWidth
+    const width = childNodes[0].offsetWidth
 
-    const visibleChildCount = Math.floor(
-      slideContainer.current.offsetWidth / (width + gap),
+    // 첫번째로 보이는 요소의 인덱스
+    const firstViewChildIndex = Math.floor(
+      slideContainer.current?.scrollLeft / (width + gap),
     )
 
-    if (isScrollAtRight) {
-      slideContainer.current.scrollLeft -=
-        width -
-        (slideContainer.current.offsetWidth -
-          (width + gap) * visibleChildCount) +
-        10
+    if (
+      firstViewChildIndex > 0 &&
+      Number.isInteger(slideContainer.current?.scrollLeft / (width + gap))
+    ) {
+      slideContainer.current.scrollLeft =
+        childNodes[firstViewChildIndex - 1].offsetLeft
     } else {
-      slideContainer.current.scrollLeft -= width + gap
+      slideContainer.current.scrollLeft =
+        childNodes[firstViewChildIndex].offsetLeft
     }
   }
 
@@ -89,11 +88,18 @@ export default function useSlideEvent(gap?: number) {
     if (!slideContainer.current) return
     if (!gap) return
 
-    const childNode = slideContainer.current.childNodes[0]
-    if (!(childNode instanceof HTMLElement)) return
-    const width = childNode.offsetWidth
+    const childNodes = slideContainer.current
+      .childNodes as NodeListOf<HTMLElement>
 
-    slideContainer.current.scrollLeft += width + gap
+    const width = childNodes[0].offsetWidth
+
+    // 첫번째로 보이는 요소의 인덱스
+    const firstViewChildIndex = Math.floor(
+      slideContainer.current?.scrollLeft / (width + gap),
+    )
+
+    slideContainer.current.scrollLeft =
+      childNodes[firstViewChildIndex + 1].offsetLeft
   }
 
   const onThrottleDragMove = throttle(onDragMove, 50)
