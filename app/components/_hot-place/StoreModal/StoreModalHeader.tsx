@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import { AiOutlineClose, AiOutlineShareAlt } from 'react-icons/ai'
 import { toast } from 'react-toastify'
+import { IconClose, IconShare } from '../../../../public/svgs/icons'
 
 export default function StoreModalHeader() {
   const router = useRouter()
@@ -17,11 +17,11 @@ export default function StoreModalHeader() {
     <div className="flex justify-between p-4 text-beige-normal">
       <div className="font-point text-lg">Store</div>
       <div className="flex items-center gap-3">
-        <button onClick={onShare}>
-          <AiOutlineShareAlt size={20} />
+        <button onClick={onShare} className="size-5">
+          <IconShare />
         </button>
-        <button onClick={() => router.back()}>
-          <AiOutlineClose size={20} />
+        <button onClick={() => router.back()} className="size-5">
+          <IconClose />
         </button>
       </div>
     </div>

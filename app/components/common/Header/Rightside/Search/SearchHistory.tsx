@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
-import { AiOutlineClose } from 'react-icons/ai'
+import { IconClose } from '../../../../../../public/svgs/icons'
 
 interface SearchHistoryProps {
   keywords: string[]
@@ -40,8 +40,8 @@ export default function SearchHistory({
           className="flex cursor-pointer items-center rounded-full border border-beige-normal px-4 py-2 "
         >
           <div className="mr-2 hover:opacity-70">{keyword}</div>
-          <button onClick={(e) => onDelete(e, keyword)}>
-            <AiOutlineClose className="text-red-600" />
+          <button onClick={(e) => onDelete(e, keyword)} className="size-4">
+            <IconClose className="text-red-600" />
           </button>
         </div>
       ))}

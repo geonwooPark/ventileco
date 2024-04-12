@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { AiOutlineLeft } from 'react-icons/ai'
+import { IconChevronLeft } from '../../../../../public/svgs/icons'
 
 interface PrevPageButtonProps {
   path: string
@@ -31,10 +31,10 @@ export default function PrevPageButton({ ...props }: PrevPageButtonProps) {
       <button
         type="button"
         disabled={page === 1 ? true : false}
-        className={`flex h-8 w-8 items-center justify-center disabled:text-brown-dark`}
+        className={`flex size-6 items-center justify-center disabled:text-brown-dark`}
         aria-label="뒤로 가기"
       >
-        <AiOutlineLeft />
+        <IconChevronLeft />
       </button>
     </Link>
   )

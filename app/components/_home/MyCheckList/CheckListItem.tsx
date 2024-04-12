@@ -1,11 +1,11 @@
 import React from 'react'
 import { CheckListItemType } from '@/interfaces/interface'
-import { AiOutlineDelete } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import dayjs from '@/lib/dayjs'
 import { toast } from 'react-toastify'
 import useDeleteCheckListItemMutation from '@/hooks/mutation/useDeleteCheckListItemMutation'
 import useUpdateCheckListItemMutation from '@/hooks/mutation/useUpdateCheckListItemMutation'
+import { IconClose } from '../../../../public/svgs/icons'
 
 interface CheckListItemProps {
   item: CheckListItemType
@@ -65,8 +65,8 @@ export default function CheckListItem({
         />
         <span className="w-full">{item.text}</span>
         {session?.user.role === 'admin' && date === today && (
-          <button onClick={deleteCheckListItem}>
-            <AiOutlineDelete size={20} />
+          <button onClick={deleteCheckListItem} className="size-5 text-red-600">
+            <IconClose />
           </button>
         )}
       </div>

@@ -1,8 +1,8 @@
 'use client'
 
 import React, { PropsWithChildren } from 'react'
-import { IconArrowLeft, IconArrowRight } from '../../../public/svgs'
 import useSlideEvent from '@/hooks/useSlideEvent'
+import { IconArrowLeft, IconArrowRight } from '../../../public/svgs/icons'
 
 interface SliderProps {
   gap: number

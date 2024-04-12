@@ -1,5 +1,4 @@
 import React, { PropsWithChildren } from 'react'
-import { IconType } from 'react-icons'
 
 const btnSize = {
   s: 'w-20 h-11 text-xs px-4',
@@ -29,7 +28,7 @@ type ButtonProps = (
   className?: string
   fullWidth?: boolean
   disabled?: boolean
-  icon?: IconType
+  icon?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
@@ -40,7 +39,7 @@ export default function Button({
   size,
   className,
   disabled,
-  icon: Icon,
+  icon,
   fullWidth,
   onClick,
 }: PropsWithChildren<ButtonProps>) {
@@ -52,13 +51,13 @@ export default function Button({
       className={`
         ${btnSize[size]}
         ${btnLevel[level]}
-        ${Icon && 'flex items-center justify-center'}
+        ${icon && 'flex items-center justify-center'}
         ${fullWidth && '!w-full'}
         ${className}`}
     >
       <>
-        {Icon && <Icon size={20} className="mr-1" />}
-        <div>{label}</div>
+        {icon && <div className="mr-1 size-5">{icon}</div>}
+        <span>{label}</span>
       </>
     </button>
   )

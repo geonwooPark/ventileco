@@ -1,8 +1,6 @@
 'use client'
 
 import React from 'react'
-import { FcGoogle } from 'react-icons/fc'
-import { BiLogoGithub } from 'react-icons/bi'
 import Button from '../../common/Button'
 import { toast } from 'react-toastify'
 import Modal from './Modal'
@@ -14,6 +12,7 @@ import useOAuthLoginMutation from '@/hooks/mutation/useOAuthLoginMutation'
 import { OAuthType } from '@/interfaces/interface'
 import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
 import SignUpModal from './SignUpModal'
+import { IconGithub, IconGoogle } from '../../../../public/svgs/icons'
 
 interface LoginFormDataType {
   email: string
@@ -68,7 +67,7 @@ export default function LoginModal() {
     removeModal('login-modal')
     addModal({
       key: 'signup-modal',
-      component: () => <SignUpModal />,
+      component: <SignUpModal />,
     })
   }
 
@@ -117,7 +116,7 @@ export default function LoginModal() {
         size="s"
         fullWidth={true}
         label="구글로 로그인"
-        icon={FcGoogle}
+        icon={<IconGoogle />}
         disabled={OAuthMutation.isPending || loginMutation.isPending}
         className="mb-1"
         onClick={() => onOAuthLogin('google')}
@@ -128,7 +127,7 @@ export default function LoginModal() {
         size="s"
         fullWidth={true}
         label="깃허브로 로그인"
-        icon={BiLogoGithub}
+        icon={<IconGithub />}
         disabled={OAuthMutation.isPending || loginMutation.isPending}
         onClick={() => onOAuthLogin('github')}
       />

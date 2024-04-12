@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
 import { HotPlaceFormDataType } from '@/interfaces/interface'
 import {
   UseFormClearErrors,
@@ -8,6 +7,7 @@ import {
 } from 'react-hook-form'
 import ErrorMessage from '../../../common/ErrorMessage'
 import useDragEvent from '@/hooks/useSlideEvent'
+import { IconClose } from '../../../../../public/svgs/icons'
 
 interface HashtagInputProps {
   setValue: UseFormSetValue<HotPlaceFormDataType>
@@ -90,8 +90,8 @@ export default function HashtagInput({
                 className="flex select-none items-center gap-2 rounded-full border border-beige-dark px-3 py-1.5 text-sm text-brown-dark"
               >
                 {tag}
-                <AiOutlineClose
-                  className="h-4 w-4 cursor-pointer text-red-600"
+                <IconClose
+                  className="size-4 cursor-pointer text-red-600"
                   onClick={() => onDelete(tag)}
                 />
               </li>

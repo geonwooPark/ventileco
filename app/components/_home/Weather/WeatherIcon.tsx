@@ -1,16 +1,16 @@
 import dayjs from '@/lib/dayjs'
 import React from 'react'
 import {
-  WiCloud,
-  WiDaySunny,
-  WiFog,
-  WiNightAltCloudy,
-  WiNightClear,
-  WiRain,
-  WiShowers,
-  WiSnowflakeCold,
-  WiThunderstorm,
-} from 'react-icons/wi'
+  Clear,
+  Cloudy,
+  Fog,
+  NightClear,
+  NightCloudy,
+  Rain,
+  Shower,
+  Snow,
+  Thunderstorm,
+} from '../../../../public/svgs/weatherIcons'
 
 interface WeatherIconProps {
   main: string
@@ -18,30 +18,24 @@ interface WeatherIconProps {
 
 export default function WeatherIcon({ main }: WeatherIconProps) {
   const props = {
-    size: '100',
-    className: 'mx-auto',
+    className: 'mx-auto size-[100px]',
   }
   const currentHour = dayjs(new Date()).tz().hour()
+  const isDaytime = currentHour <= 18 && currentHour >= 6
 
   switch (main) {
     case 'Clear':
-      if (currentHour <= 18 && currentHour >= 6) {
-        return <WiDaySunny {...props} />
-      }
-      return <WiNightClear {...props} />
+      return isDaytime ? <Clear {...props} /> : <NightClear {...props} />
     case 'Clouds':
-      if (currentHour <= 18 && currentHour >= 6) {
-        return <WiCloud {...props} />
-      }
-      return <WiNightAltCloudy {...props} />
+      return isDaytime ? <Cloudy {...props} /> : <NightCloudy {...props} />
     case 'Rain':
-      return <WiRain {...props} />
+      return <Rain {...props} />
     case 'Drizzle':
-      return <WiShowers {...props} />
+      return <Shower {...props} />
     case 'Thunderstorm':
-      return <WiThunderstorm {...props} />
+      return <Thunderstorm {...props} />
     case 'Snow':
-      return <WiSnowflakeCold {...props} />
+      return <Snow {...props} />
     case 'Mist':
     case 'Smoke':
     case 'Haze':
@@ -51,6 +45,8 @@ export default function WeatherIcon({ main }: WeatherIconProps) {
     case 'Ash':
     case 'Squall':
     case 'Tornado':
-      return <WiFog {...props} />
+      return <Fog {...props} />
+    default:
+      return null
   }
 }

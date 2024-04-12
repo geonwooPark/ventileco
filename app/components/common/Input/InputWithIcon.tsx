@@ -1,5 +1,4 @@
 import React from 'react'
-import { IconType } from 'react-icons'
 
 interface InputWithIconProps {
   type: 'text' | 'name' | 'email' | 'password'
@@ -8,7 +7,7 @@ interface InputWithIconProps {
   disabled?: boolean
   placeholder?: string
   className?: string
-  icon: IconType
+  icon: React.ReactNode
   iconAction?: () => void
   iconType?: 'button' | 'submit'
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -16,7 +15,7 @@ interface InputWithIconProps {
 
 export default function InputWithIcon({
   className,
-  icon: Icon,
+  icon,
   iconAction,
   iconType,
   ...props
@@ -33,9 +32,9 @@ export default function InputWithIcon({
       <button
         type={iconType}
         onClick={iconAction}
-        className="absolute right-3 top-3 cursor-pointer"
+        className="absolute right-3 top-3 size-5 cursor-pointer"
       >
-        <Icon size={20} />
+        {icon}
       </button>
     </div>
   )

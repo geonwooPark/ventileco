@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { IconPlus } from '../../../../../../public/svgs/icons'
 
 interface WriteIconProps {
   path: string
@@ -10,9 +10,9 @@ export default function WriteIcon({ path }: WriteIconProps) {
   return (
     <Link
       href={`${path}/write` as any}
-      className="relative z-[100] cursor-pointer"
+      className="relative z-[100] size-5 cursor-pointer"
     >
-      <AiOutlinePlus size={24} />
+      <IconPlus />
     </Link>
   )
 }

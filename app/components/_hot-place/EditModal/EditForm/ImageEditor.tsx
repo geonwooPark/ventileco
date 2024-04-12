@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { IoMdCloseCircleOutline } from 'react-icons/io'
-import { AiOutlinePlus } from 'react-icons/ai'
 import {
   UseFormClearErrors,
   UseFormRegisterReturn,
@@ -9,6 +7,7 @@ import {
 } from 'react-hook-form'
 import { HotPlaceFormDataType, ImageType } from '@/interfaces/interface'
 import ErrorMessage from '../../../common/ErrorMessage'
+import { IconClose, IconPlus } from '../../../../../public/svgs/icons'
 
 interface ImageSelectorProps {
   setValue: UseFormSetValue<HotPlaceFormDataType>
@@ -91,7 +90,9 @@ export default function ImageEditor({
             htmlFor="input-file"
             className="flex h-[70px] w-[70px] cursor-pointer items-center justify-center rounded bg-beige-light text-brown-dark"
           >
-            <AiOutlinePlus size={20} />
+            <div className="size-5">
+              <IconPlus />
+            </div>
           </label>
         </div>
         <input
@@ -104,7 +105,7 @@ export default function ImageEditor({
           onChange={onFileChange}
         />
         <div
-          className={`flex gap-4 overflow-x-scroll pt-2.5 ${
+          className={`hide-scroll flex gap-4 overflow-x-scroll pt-2.5 ${
             images.length < 5 ? 'hide-scroll' : ''
           }`}
         >
@@ -122,9 +123,9 @@ export default function ImageEditor({
                 <button
                   type="button"
                   onClick={() => onPrevImageDelete(i)}
-                  className="absolute -right-2 -top-2 rounded-3xl bg-beige-light text-brown-dark"
+                  className="absolute -right-2 -top-2 size-5 rounded-full bg-beige-light p-1 text-brown-dark"
                 >
-                  <IoMdCloseCircleOutline size={20} />
+                  <IconClose />
                 </button>
               </div>
             </div>
@@ -140,9 +141,9 @@ export default function ImageEditor({
                 <button
                   type="button"
                   onClick={() => onImageDelete(i)}
-                  className="absolute -right-2 -top-2 rounded-3xl bg-beige-light text-brown-dark"
+                  className="absolute -right-2 -top-2 size-5 rounded-full bg-beige-light p-1 text-brown-dark"
                 >
-                  <IoMdCloseCircleOutline size={20} />
+                  <IconClose size={20} />
                 </button>
               </div>
             </div>

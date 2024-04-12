@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { FallbackProps } from 'react-error-boundary'
-import { IoRefresh } from 'react-icons/io5'
+import { IconRefresh } from '../../../public/svgs/icons'
 
 export default function ErrorUI({ resetErrorBoundary }: FallbackProps) {
   return (
@@ -10,9 +10,9 @@ export default function ErrorUI({ resetErrorBoundary }: FallbackProps) {
       <div className="text-center">
         <button
           onClick={() => resetErrorBoundary()}
-          className="inline-block rounded-md border border-red-400 bg-red-100 p-2 text-red-700"
+          className="inline-block size-5 rounded-md border border-red-600 bg-red-100 p-2 text-red-600"
         >
-          <IoRefresh size={20} />
+          <IconRefresh />
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { useModalActions } from '@/hooks/store/useModalStore'
 import dayjs from '@/lib/dayjs'
 import { useSession } from 'next-auth/react'
 import React, { useCallback } from 'react'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { IconPlus } from '../../../../public/svgs/icons'
 
 interface CheckListControllerProps {
   selectedDate: Date
@@ -26,14 +26,14 @@ export default function CheckListController({
     if (session?.user.role !== 'admin' && date === today) return
     addModal({
       key: 'addListItem-modal',
-      component: () => <AddListItemModal />,
+      component: <AddListItemModal />,
     })
   }, [session])
 
   const openCalendarModal = useCallback(() => {
     addModal({
       key: 'calendar-modal',
-      component: () => <CalendarModal setSelectedDate={setSelectedDate} />,
+      component: <CalendarModal setSelectedDate={setSelectedDate} />,
     })
   }, [])
 
@@ -44,8 +44,8 @@ export default function CheckListController({
         <span className="ml-2 text-sm">{date}</span>
       </button>
       {session?.user.role === 'admin' && date === today && (
-        <button onClick={openAddListItemModal}>
-          <AiOutlinePlus size={20} />
+        <button onClick={openAddListItemModal} className="size-5">
+          <IconPlus />
         </button>
       )}
     </div>

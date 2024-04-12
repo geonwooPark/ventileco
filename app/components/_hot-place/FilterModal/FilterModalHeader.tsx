@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
+import { IconClose } from '../../../../public/svgs/icons'
 
 export default function FilterModalHeader() {
   const router = useRouter()
@@ -10,8 +10,8 @@ export default function FilterModalHeader() {
   return (
     <div className="flex justify-between p-4 text-beige-normal">
       <div className="font-point text-lg">Filter</div>
-      <button onClick={() => router.back()}>
-        <AiOutlineClose size={20} />
+      <button onClick={() => router.back()} className="size-5">
+        <IconClose />
       </button>
     </div>
   )

@@ -4,9 +4,9 @@ import { ReplyCommentUserType } from '@/interfaces/interface'
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import CommentEditInput from '../CommentInput/CommentEditInput'
-import { IconReplyArrow } from '../../../../../../public/svgs'
 import ReplyCommentEditButton from './ReplyCommentEditButton'
 import ReplyCommentDeleteButton from './ReplyCommentDeleteButton'
+import { IconReplyArrow } from '../../../../../../public/svgs/icons'
 
 interface ReplyCommentItemProps {
   postingId: string

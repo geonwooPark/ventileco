@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { AiOutlineRight } from 'react-icons/ai'
+import { IconChevronRight } from '../../../../../public/svgs/icons'
 
 interface NextPageButtonProps {
   path: string
@@ -31,10 +31,10 @@ export default function NextPageButton({
       <button
         type="button"
         disabled={page === lastPageNum ? true : false}
-        className={`flex h-8 w-8 items-center justify-center disabled:text-brown-dark`}
+        className={`flex size-6 items-center justify-center disabled:text-brown-dark`}
         aria-label="앞으로 가기"
       >
-        <AiOutlineRight />
+        <IconChevronRight />
       </button>
     </Link>
   )

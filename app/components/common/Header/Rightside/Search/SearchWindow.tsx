@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import SearchHistory from './SearchHistory'
 import InputWithIcon from '@/components/common/Input/InputWithIcon'
 import ProjectTitle from '@/components/common/ProjectTitle'
 import Container from '@/components/common/Container'
+import { IconSearch } from '../../../../../../public/svgs/icons'
 
 interface SearchProps {
   isOpen: boolean
@@ -100,7 +100,7 @@ export default function SearchWindow({ isOpen, setIsOpen }: SearchProps) {
                   placeholder="검색어를 입력하세요"
                   onChange={onChange}
                   className="w-full rounded-sm px-4 py-3 text-black outline-none "
-                  icon={AiOutlineSearch}
+                  icon={<IconSearch />}
                   iconAction={() => onSubmit}
                   iconType="submit"
                 />

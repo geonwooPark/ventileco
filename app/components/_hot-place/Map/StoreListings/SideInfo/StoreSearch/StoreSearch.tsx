@@ -1,9 +1,9 @@
 import InputWithIcon from '@/components/common/Input/InputWithIcon'
 import React, { useState } from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
 import AutomaticSearch from './AutomaticSearch/AutomaticSearch'
 import SearchHeader from './SearchHeader'
 import { useKeywordChange } from '@/hooks/store/useHotPlaceFilterStore'
+import { IconSearch } from '../../../../../../../public/svgs/icons'
 
 interface StoreSearchProps {
   searchKeyword: string
@@ -46,7 +46,7 @@ export default function StoreSearch({ searchKeyword }: StoreSearchProps) {
           name="search"
           value={keyword}
           placeholder="맛집을 검색해보세요!"
-          icon={AiOutlineSearch}
+          icon={<IconSearch />}
           onChange={onChange}
           iconType="submit"
           className="w-full"

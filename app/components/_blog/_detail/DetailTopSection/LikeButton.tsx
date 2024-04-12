@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import useLikeQuery from '@/hooks/query/useLikeQuery'
 import useLikeMutation from '@/hooks/mutation/useLikeMutation'
+import { IconHeart } from '../../../../../public/svgs/icons'
 
 interface LikeButtonProps {
   className?: string
@@ -42,11 +42,11 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
       onClick={handleLikeButton}
       disabled={isPending}
     >
-      {data?.isLike ? (
-        <AiFillHeart size={30} className="text-rose-500" />
-      ) : (
-        <AiOutlineHeart size={30} />
-      )}
+      <IconHeart
+        className={`size-8 ${
+          data?.isLike ? 'text-red-500' : 'fill-none stroke-white'
+        }`}
+      />
     </button>
   )
 }

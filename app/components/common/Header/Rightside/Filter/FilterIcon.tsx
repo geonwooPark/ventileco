@@ -1,7 +1,7 @@
 import { useHotPlaceFilter } from '@/hooks/store/useHotPlaceFilterStore'
 import Link from 'next/link'
 import React from 'react'
-import { LuFilter } from 'react-icons/lu'
+import { IconFilter } from '../../../../../../public/svgs/icons'
 
 interface WriteIconProps {
   path: string
@@ -13,11 +13,11 @@ export default function FilterIcon({ path }: WriteIconProps) {
   return (
     <Link
       href={`${path}/filter` as any}
-      className={`relative z-[100] cursor-pointer ${
+      className={`relative z-[100] size-5 cursor-pointer ${
         category || gu ? 'text-red-600' : 'text-brown-dark'
       }`}
     >
-      <LuFilter size={22} />
+      <IconFilter />
     </Link>
   )
 }
