@@ -44,7 +44,7 @@ export default function Icons({ session }: IconsProps) {
         const IconComponent = icon.component
         return <IconComponent key={i} />
       }),
-    [key],
+    [key, session?.user.role],
   )
 
   return componentArr.filter(Boolean)
