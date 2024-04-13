@@ -17,6 +17,8 @@ import { storage } from '@/lib/firebase'
 import EditTopSection from '@blog/_edit/EditTopSection/EditTopSection'
 import Main from '@common/Main'
 import Section from '@/components/common/Section'
+import { useGoBack } from '@/hooks/useGoBack'
+import ConfirmModal from '@/components/common/Modal/ConfirmModal'
 
 const Editor = dynamic(() => import('@blog/common/Editor/Editor'), {
   ssr: false,
@@ -78,6 +80,21 @@ export default function Edit() {
     titleRef,
     descriptionRef,
   }
+
+  useGoBack({
+    key: 'confirm-modal',
+    component: (
+      <ConfirmModal
+        title="Cancel"
+        bodyContent={
+          <p className="text-beige-light">글 작성을 그만하시겠습니까?</p>
+        }
+        onSubmit={() => router.push('/blog')}
+        actionLabel="그만하기"
+        secondaryActionLabel="취소"
+      />
+    ),
+  })
 
   useEffect(() => {
     const fetchData = async () => {
