@@ -3,6 +3,7 @@ import React from 'react'
 import { PostingType } from '@/interfaces/interface'
 import InteractionMetrics from './InteractionMetrics/InteractionMetrics'
 import DetailPostingInfo from './DetailPostingInfo'
+import AdminControl from '../AdminControl/AdminControl'
 
 interface TopSectionProps {
   posting: PostingType
@@ -25,6 +26,7 @@ export default function DetailTopSection({ posting }: TopSectionProps) {
       )}
       <DetailPostingInfo posting={posting} />
       <InteractionMetrics postingId={posting._id.toString()} />
+      <AdminControl postingId={posting._id} />
     </section>
   )
 }

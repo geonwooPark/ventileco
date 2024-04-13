@@ -1,4 +1,3 @@
-import Button from '@/components/common/Button'
 import ConfirmModal from '@/components/common/Modal/ConfirmModal'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import { useSession } from 'next-auth/react'
@@ -60,14 +59,8 @@ export default function PostingDeleteButton({
   }
 
   return (
-    <Button
-      type="button"
-      level="ghost"
-      size="l"
-      label="삭제하기"
-      fullWidth={true}
-      className="border-red-600 text-red-600"
-      onClick={onClick}
-    />
+    <button onClick={onClick}>
+      <span className="text-sm text-red-600">삭제</span>
+    </button>
   )
 }

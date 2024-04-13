@@ -1,4 +1,3 @@
-import Button from '@/components/common/Button'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -20,14 +19,8 @@ export default function PostingEditButton({
   }
 
   return (
-    <Button
-      type="button"
-      level="ghost"
-      size="l"
-      label="수정하기"
-      fullWidth={true}
-      className="border-active text-active"
-      onClick={onEdit}
-    />
+    <button className="mr-3" onClick={onEdit}>
+      <span className="text-sm text-blue-600">수정</span>
+    </button>
   )
 }

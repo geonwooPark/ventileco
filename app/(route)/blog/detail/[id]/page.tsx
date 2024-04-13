@@ -4,7 +4,6 @@ import NotFound from '@/not-found'
 import { Metadata } from 'next'
 import getAllListing from '@/actions/_blog/getAllListing'
 import CommentSection from '@blog/_detail/CommentSection/CommentSection'
-import AdminControlSection from '@blog/_detail/AdminControlSection/AdminControlSection'
 import DetailTopSection from '@blog/_detail/DetailTopSection/DetailTopSection'
 import Main from '@common/Main'
 import ContentSection from '@/components/_blog/_detail/ContentSection'
@@ -66,7 +65,6 @@ export default async function Detail({ params }: IParams) {
       <DetailTopSection posting={posting} />
       <ContentSection content={posting.content} />
       <CommentSection postingId={id} />
-      <AdminControlSection postingId={id} />
     </Main>
   )
 }
