@@ -12,7 +12,7 @@ export default function FilterIcon({ path }: WriteIconProps) {
 
   return (
     <Link
-      href={`${path}/filter` as any}
+      href={`/${path}/filter` as any}
       className={`relative z-[100] size-5 cursor-pointer ${
         category || gu ? 'text-red-600' : 'text-brown-dark'
       }`}
