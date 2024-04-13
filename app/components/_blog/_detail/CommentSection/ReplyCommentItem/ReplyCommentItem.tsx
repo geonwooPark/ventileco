@@ -24,7 +24,7 @@ export default function ReplyCommentItem({
   const [selectedCommentIdForEdit, setSelectedCommentIdForEdit] = useState('')
 
   return (
-    <div className="list-none border-b border-beige-dark px-3 py-2 text-sm">
+    <div className="list-none border-b border-gray-200 px-3 py-2 text-sm">
       <div className="mb-2 flex justify-between">
         <div className="flex items-center">
           <IconReplyArrow className="mr-2 text-brown-dark" />

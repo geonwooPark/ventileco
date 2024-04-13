@@ -54,7 +54,7 @@ export default function ReplyCommentInput({
         }
         value={text}
         disabled={session ? false : true}
-        className="w-full resize-none rounded-md bg-brown-dark px-3 py-2 text-sm text-beige-light outline-none placeholder:text-beige-dark disabled:cursor-not-allowed"
+        className="w-full resize-none rounded-md border border-brown-normal px-3 py-2 text-sm text-brown-dark outline-none placeholder:text-beige-light disabled:cursor-not-allowed"
         onChange={onChange}
       />
       <Button

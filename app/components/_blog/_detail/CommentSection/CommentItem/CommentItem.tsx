@@ -26,7 +26,7 @@ export default function CommentItem({ comment, postingId }: CommentItemProps) {
   }
 
   return (
-    <div className="list-none border-b border-beige-dark px-3 py-2 text-sm">
+    <div className="list-none border-b border-gray-200 px-3 py-2 text-sm">
       <div className="mb-2 flex justify-between">
         <div className="flex items-center">
           <Avatar src={userImage} />
