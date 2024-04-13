@@ -1,3 +1,5 @@
+import React from 'react'
+
 export default function ScrollIcon() {
   return (
     <div className="fixed bottom-4 left-[50%] z-[100] translate-x-[-50%] overflow-hidden">
