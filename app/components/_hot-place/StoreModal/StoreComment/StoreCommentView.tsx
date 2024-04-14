@@ -14,7 +14,7 @@ export default function StoreCommentView() {
   if (isPending) return <SkeletonStoreCommentList />
 
   return (
-    <div className="hide-scroll h-[calc(100%-40px)] overflow-x-auto overflow-y-scroll border-b">
+    <div className="hide-scroll h-[calc(100%-40px)] w-full overflow-x-auto overflow-y-scroll border-b">
       {allComment?.comments.map((comment) => (
         <StoreCommentItem
           key={comment.commentId}
@@ -22,6 +22,11 @@ export default function StoreCommentView() {
           comment={comment}
         />
       ))}
+      {allComment?.comments.length === 0 && (
+        <p className="flex h-full w-full items-center justify-center text-gray-400">
+          작성된 댓글이 없습니다!
+        </p>
+      )}
     </div>
   )
 }
