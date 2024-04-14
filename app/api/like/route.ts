@@ -1,9 +1,9 @@
 import { connectMongo } from '@/lib/database'
-import { Favorite } from '../../../../models/favorite'
 import { NextRequest, NextResponse } from 'next/server'
 import { LikeType } from '@/interfaces/interface'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/authOptions'
+import { Favorite } from '../../../models/favorite'
 
 export async function GET(req: NextRequest) {
   const postingId = req.nextUrl.searchParams.get('postingId')
@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
     const like = await Favorite.findOne<LikeType>({
       postingId,
     })
+
     if (!like) return NextResponse.json(null, { status: 404 })
 
     const isLike = like.userId.includes(session?.user.id as string)

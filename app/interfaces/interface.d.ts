@@ -68,7 +68,7 @@ export interface LikeType {
   title: string
   updatedAt: string
   userId: string[]
-  count: number
+  path: string
   _id: string
 }
 

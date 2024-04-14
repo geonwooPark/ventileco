@@ -56,15 +56,19 @@ export async function POST(req: NextRequest) {
     await Comment.create({
       postingId: newPosting._id,
       title,
+      path: `/blog/detail/${newPosting._id}`,
     })
     await ReplyComment.create({
       postingId: newPosting._id,
       title,
+      path: `/blog/detail/${newPosting._id}`,
     })
     await Favorite.create({
       postingId: newPosting._id,
       title,
+      path: `/blog/detail/${newPosting._id}`,
     })
+
     return NextResponse.json({ message: '글 작성 성공!' }, { status: 201 })
   } catch (error) {
     return NextResponse.json(

@@ -1,4 +1,4 @@
-// Home 페이지
+// Home
 export const homeKeys = {
   base: ['home'] as const,
   checkLists: () => [...homeKeys.base, 'checklist'] as const,
@@ -8,19 +8,17 @@ export const homeKeys = {
   newUpdates: () => [...homeKeys.base, 'new-updates'] as const,
 }
 
-// Blog-Detail 페이지
+// Blog
 export const detailKeys = {
-  base: ['detail'] as const,
+  base: ['blog'] as const,
   comments: () => [...detailKeys.base, 'comments'] as const,
   comment: (postingId: string) =>
     [...detailKeys.comments(), { postingId }] as const,
-  likes: () => [...detailKeys.base, 'likes'] as const,
-  like: (postingId: string) => [...detailKeys.likes(), { postingId }] as const,
   views: () => [...detailKeys.base, 'views'] as const,
   view: (postingId: string) => [...detailKeys.views(), { postingId }] as const,
 }
 
-// Mypage 페이지
+// Mypage
 export const myPageKeys = {
   base: ['mypage'] as const,
   myComments: () => [...myPageKeys.base, 'my-comment'] as const,
@@ -33,7 +31,7 @@ export const myPageKeys = {
     [...myPageKeys.myLikedPosts(), { user }] as const,
 }
 
-// Hot-Place 페이지
+// Hot-Place
 export const hotPlaceKeys = {
   base: ['hot-place'] as const,
   hotPlaceListing: (search?: string, category?: string, gu?: string) =>
@@ -45,4 +43,14 @@ export const hotPlaceKeys = {
         gu: gu ? gu : '',
       },
     ] as const,
+}
+
+// Common
+export const commonKeys = {
+  base: ['common'] as const,
+  likes: () => [...commonKeys.base, 'likes'] as const,
+  like: (postingId: string) => [...commonKeys.likes(), { postingId }] as const,
+  comments: () => [...commonKeys.base, 'comments'] as const,
+  comment: (postingId: string) =>
+    [...commonKeys.comments(), { postingId }] as const,
 }

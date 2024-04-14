@@ -1,4 +1,4 @@
-import { detailKeys, myPageKeys } from '@/constants/queryKey'
+import { commonKeys, detailKeys, myPageKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -7,7 +7,7 @@ interface HandleLikeParams {
 }
 
 const handleLike = async ({ postingId }: HandleLikeParams) => {
-  const result = await fetch('/api/blog/like', {
+  const result = await fetch('/api/like', {
     method: 'PATCH',
     body: JSON.stringify({
       postingId: postingId,
@@ -31,7 +31,7 @@ export default function useLikeMutation({
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: detailKeys.like(postingId),
+        queryKey: commonKeys.like(postingId),
       })
       queryClient.invalidateQueries({
         queryKey: myPageKeys.myLikedPost(session?.user.id),

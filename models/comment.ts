@@ -14,6 +14,10 @@ const commentSchema = new Schema(
     user: {
       type: Array,
     },
+    path: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true, versionKey: false },
 )

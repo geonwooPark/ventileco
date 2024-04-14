@@ -11,6 +11,10 @@ const favoriteSchema = new Schema(
       type: String,
       required: true,
     },
+    path: {
+      type: String,
+      required: true,
+    },
     userId: {
       type: Array,
       // unique: true,

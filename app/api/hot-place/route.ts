@@ -6,6 +6,9 @@ import { deleteObject, ref } from 'firebase/storage'
 import { storage } from '@/lib/firebase'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/authOptions'
+import { Comment } from '../../../models/comment'
+import { Favorite } from '../../../models/favorite'
+import { ReplyComment } from '../../../models/replyComment'
 
 export async function GET(req: NextRequest) {
   const searchKeyword = req.nextUrl.searchParams.get('searchKeyword')
@@ -48,7 +51,27 @@ export async function POST(req: NextRequest) {
 
   try {
     await connectMongo()
-    await HotPlace.create({ ...data, si, gu, creator: session?.user.id })
+    const newStore = await HotPlace.create({
+      ...data,
+      si,
+      gu,
+      creator: session?.user.id,
+    })
+    await Comment.create({
+      postingId: newStore._id,
+      title: data.store,
+      path: `/hot-place/store/${newStore._id}`,
+    })
+    await ReplyComment.create({
+      postingId: newStore._id,
+      title: data.store,
+      path: `/hot-place/store/${newStore._id}`,
+    })
+    await Favorite.create({
+      postingId: newStore._id,
+      title: data.store,
+      path: `/hot-place/store/${newStore._id}`,
+    })
 
     return NextResponse.json({ message: '스토어 추가 성공!' }, { status: 201 })
   } catch (error) {
