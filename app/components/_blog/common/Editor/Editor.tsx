@@ -7,7 +7,7 @@ import 'react-quill/dist/quill.bubble.css'
 import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { toast } from 'react-toastify'
-import { ImageType, PostingType } from '../../../../interfaces/interface'
+import { ImageType, OmittedPostingType } from '../../../../interfaces/interface'
 import { storage } from '@/lib/firebase'
 Quill.register('modules/ImageResize', ImageResize)
 
@@ -15,11 +15,7 @@ interface EditorProps {
   content: string
   theme: string
   readOnly?: boolean
-  setPosting?: React.Dispatch<
-    React.SetStateAction<
-      Omit<PostingType, '_id' | 'createdAt' | 'updatedAt' | 'views'>
-    >
-  >
+  setPosting?: React.Dispatch<React.SetStateAction<OmittedPostingType>>
   setUploadImages?: React.Dispatch<React.SetStateAction<ImageType[]>>
 }
 

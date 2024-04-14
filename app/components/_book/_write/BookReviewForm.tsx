@@ -13,6 +13,9 @@ import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { BookReviewFormDataType } from '@/interfaces/interface'
+import { useGoBack } from '@/hooks/useGoBack'
+import ConfirmModal from '@/components/common/Modal/ConfirmModal'
+import { useModalActions } from '@/hooks/store/useModalStore'
 
 const BookReviewEditor = dynamic(() => import('./BookReviewEditor'), {
   ssr: false,
@@ -26,6 +29,7 @@ const BookReviewEditor = dynamic(() => import('./BookReviewEditor'), {
 
 export default function BookReviewForm() {
   const router = useRouter()
+  const { addModal } = useModalActions()
   const { data: session } = useSession()
   const {
     register,
@@ -76,6 +80,23 @@ export default function BookReviewForm() {
   })
   const contentRegister = register('content', {
     required: '후기를 입력해주세요.',
+  })
+
+  useGoBack(() => {
+    addModal({
+      key: 'confirm-modal',
+      component: (
+        <ConfirmModal
+          title="Cancel"
+          bodyContent={
+            <p className="text-beige-light">리뷰 작성을 그만하시겠습니까?</p>
+          }
+          onSubmit={() => router.push('/book')}
+          actionLabel="그만하기"
+          secondaryActionLabel="취소"
+        />
+      ),
+    })
   })
 
   return (

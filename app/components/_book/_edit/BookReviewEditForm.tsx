@@ -13,6 +13,9 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import useEditBookReviewMutation from '@/hooks/mutation/useEditBookReviewMutation'
+import ConfirmModal from '@/components/common/Modal/ConfirmModal'
+import { useGoBack } from '@/hooks/useGoBack'
+import { useModalActions } from '@/hooks/store/useModalStore'
 
 const BookReviewEditor = dynamic(() => import('../_write/BookReviewEditor'), {
   ssr: false,
@@ -32,6 +35,7 @@ export default function BookReviewEditForm({
   review,
 }: BookReviewEditFormProps) {
   const router = useRouter()
+  const { addModal } = useModalActions()
   const { data: session } = useSession()
   const {
     _id,
@@ -92,6 +96,23 @@ export default function BookReviewEditForm({
   })
   const contentRegister = register('content', {
     required: '후기를 입력해주세요.',
+  })
+
+  useGoBack(() => {
+    addModal({
+      key: 'confirm-modal',
+      component: (
+        <ConfirmModal
+          title="Cancel"
+          bodyContent={
+            <p className="text-beige-light">리뷰 수정을 그만하시겠습니까?</p>
+          }
+          onSubmit={() => router.push(`/book/detail/${_id}`)}
+          actionLabel="그만하기"
+          secondaryActionLabel="취소"
+        />
+      ),
+    })
   })
 
   return (

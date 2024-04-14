@@ -19,6 +19,7 @@ import Main from '@common/Main'
 import Section from '@/components/common/Section'
 import { useGoBack } from '@/hooks/useGoBack'
 import ConfirmModal from '@/components/common/Modal/ConfirmModal'
+import { useModalActions } from '@/hooks/store/useModalStore'
 
 const Editor = dynamic(() => import('@blog/common/Editor/Editor'), {
   ssr: false,
@@ -57,6 +58,7 @@ const deleteImage = async (uploadImages: ImageType[], content: string) => {
 
 export default function Write() {
   const router = useRouter()
+  const { addModal } = useModalActions()
 
   const [posting, setPosting] = useState<OmittedPostingType>({
     category: '',
@@ -156,19 +158,21 @@ export default function Write() {
     }
   }
 
-  useGoBack({
-    key: 'confirm-modal',
-    component: (
-      <ConfirmModal
-        title="Cancel"
-        bodyContent={
-          <p className="text-beige-light">글 작성을 그만하시겠습니까?</p>
-        }
-        onSubmit={() => router.push('/blog')}
-        actionLabel="그만하기"
-        secondaryActionLabel="취소"
-      />
-    ),
+  useGoBack(() => {
+    addModal({
+      key: 'confirm-modal',
+      component: (
+        <ConfirmModal
+          title="Cancel"
+          bodyContent={
+            <p className="text-beige-light">글 작성을 그만하시겠습니까?</p>
+          }
+          onSubmit={() => router.push('/blog')}
+          actionLabel="그만하기"
+          secondaryActionLabel="취소"
+        />
+      ),
+    })
   })
 
   return (

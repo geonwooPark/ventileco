@@ -3,7 +3,7 @@ import React from 'react'
 import { PostingType } from '@/interfaces/interface'
 import InteractionMetrics from './InteractionMetrics/InteractionMetrics'
 import DetailPostingInfo from './DetailPostingInfo'
-import AdminControl from '../AdminControl/AdminControl'
+import AdminControl from '../AdminControlSection/AdminControlSection'
 
 interface TopSectionProps {
   posting: PostingType
