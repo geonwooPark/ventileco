@@ -1,4 +1,4 @@
-import { detailKeys, myPageKeys } from '@/constants/queryKey'
+import { commonKeys, myPageKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -14,7 +14,7 @@ const postComment = async ({
   text,
 }: PostCommentParams) => {
   const result = await fetch(
-    commentId ? '/api/blog/reply-comment' : '/api/blog/comment',
+    commentId ? '/api/reply-comment' : '/api/comment',
     {
       method: 'POST',
       body: JSON.stringify({
@@ -42,7 +42,7 @@ export default function usePostCommentMutation({
       postComment({ postingId, commentId, text }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: detailKeys.comment(postingId),
+        queryKey: commonKeys.comment(postingId),
       })
       queryClient.invalidateQueries({
         queryKey: myPageKeys.myComment(session?.user.id),

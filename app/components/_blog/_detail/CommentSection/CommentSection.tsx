@@ -5,7 +5,7 @@ import Section from '@common/Section'
 import getAllComment from '@/actions/_blog/getAllComment'
 import getQueryClient from '@/utils/getQueryClient'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
-import { detailKeys } from '@/constants/queryKey'
+import { commonKeys } from '@/constants/queryKey'
 
 interface CommentSectionProps {
   postingId: string
@@ -16,7 +16,7 @@ export default async function CommentSection({
 }: CommentSectionProps) {
   const queryClient = getQueryClient()
   await queryClient.prefetchQuery({
-    queryKey: detailKeys.comment(postingId),
+    queryKey: commonKeys.comment(postingId),
     queryFn: () => getAllComment(postingId),
   })
   const dehydratedState = dehydrate(queryClient)

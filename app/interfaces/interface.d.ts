@@ -46,6 +46,7 @@ export interface ReplyCommentUserType {
 
 export interface CommentType {
   _id: string
+  path: string
   postingId: string
   title: string
   user: CommentUserType[]
@@ -55,6 +56,7 @@ export interface CommentType {
 
 export interface ReplyCommentType {
   _id: string
+  path: string
   postingId: string
   title: string
   user: ReplyCommentUserType[]
@@ -102,6 +104,7 @@ export interface MyCommentType {
   userName: string
   createdAt: Date
   text: string
+  path: string
 }
 
 export interface GPTChatType {

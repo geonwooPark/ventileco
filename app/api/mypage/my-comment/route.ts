@@ -21,6 +21,7 @@ export async function GET(req: NextRequest) {
           myComment.push({
             title: posting.title,
             postingId: posting.postingId,
+            path: posting.path,
             ...elem,
           })
         }

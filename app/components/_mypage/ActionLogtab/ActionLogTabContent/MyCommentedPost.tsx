@@ -33,7 +33,7 @@ export default function MyCommentedPost() {
             className="flex items-center border-b border-brown-dark"
           >
             <td className="flex-1 px-4 py-3">
-              <Link href={`/blog/detail/${posting.postingId}`} target="_blank">
+              <Link href={posting.path as any} target="_blank">
                 <p>{posting.title}</p>
               </Link>
             </td>

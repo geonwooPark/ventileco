@@ -1,4 +1,4 @@
-import { detailKeys, myPageKeys } from '@/constants/queryKey'
+import { commonKeys, myPageKeys } from '@/constants/queryKey'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Session } from 'next-auth'
 
@@ -14,7 +14,7 @@ const deleteComment = async ({
   type,
 }: DeleteCommentParams) => {
   const result = await fetch(
-    type === 'origin' ? '/api/blog/comment' : '/api/blog/reply-comment',
+    type === 'origin' ? '/api/comment' : '/api/reply-comment',
     {
       method: 'DELETE',
       body: JSON.stringify({
@@ -39,7 +39,7 @@ export default function useDeleteCommentMutation({
       deleteComment({ postingId, commentId, type }),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: detailKeys.comment(postingId),
+        queryKey: commonKeys.comment(postingId),
       })
       queryClient.invalidateQueries({
         queryKey: myPageKeys.myComment(session?.user.id),

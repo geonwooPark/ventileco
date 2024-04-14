@@ -15,6 +15,7 @@ import IconRefresh from './IconRefresh.svg'
 import IconGithub from './IconGithub.svg'
 import IconGoogle from './IconGoogle.svg'
 import IconShare from './IconShare.svg'
+import IconChat from './IconChat.svg'
 
 export {
   IconReplyArrow,
@@ -34,4 +35,5 @@ export {
   IconShare,
   IconGithub,
   IconGoogle,
+  IconChat,
 }

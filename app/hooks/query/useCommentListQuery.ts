@@ -4,7 +4,7 @@ import {
   CommentUserType,
   ReplyCommentUserType,
 } from '../../interfaces/interface'
-import { detailKeys } from '@/constants/queryKey'
+import { commonKeys } from '@/constants/queryKey'
 
 export default function useCommentListQuery(postingId: string) {
   const {
@@ -12,13 +12,13 @@ export default function useCommentListQuery(postingId: string) {
     isPending,
     error,
   } = useQuery({
-    queryKey: detailKeys.comment(postingId),
+    queryKey: commonKeys.comment(postingId),
     queryFn: () =>
       getData<{
         comments: CommentUserType[]
         replyComments: ReplyCommentUserType[]
       }>(
-        `${process.env.NEXT_PUBLIC_FE_URL}/api/blog/comment?postingId=${postingId}`,
+        `${process.env.NEXT_PUBLIC_FE_URL}/api/comment?postingId=${postingId}`,
       ),
     staleTime: 1000 * 60 * 3, // 3분
     gcTime: 1000 * 60 * 5, // 5분

@@ -37,10 +37,7 @@ export default function MyComment() {
               className="flex items-center border-b border-brown-dark"
             >
               <td className="flex-1 px-4 py-3 text-brown-dark">
-                <Link
-                  href={`/blog/detail/${comment.postingId}`}
-                  target="_blank"
-                >
+                <Link href={comment.path as any} target="_blank">
                   <p className="mb-2">{comment.text}</p>
                   <p className="ml-2 text-beige-dark">{comment.title}</p>
                 </Link>

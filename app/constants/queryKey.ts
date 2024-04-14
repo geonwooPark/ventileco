@@ -11,9 +11,6 @@ export const homeKeys = {
 // Blog
 export const detailKeys = {
   base: ['blog'] as const,
-  comments: () => [...detailKeys.base, 'comments'] as const,
-  comment: (postingId: string) =>
-    [...detailKeys.comments(), { postingId }] as const,
   views: () => [...detailKeys.base, 'views'] as const,
   view: (postingId: string) => [...detailKeys.views(), { postingId }] as const,
 }

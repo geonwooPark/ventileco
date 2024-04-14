@@ -2,7 +2,7 @@ import { connectMongo } from '@/lib/database'
 import { getServerSession } from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
 import { v4 as uuid } from 'uuid'
-import { ReplyComment } from '../../../../models/replyComment'
+import { ReplyComment } from '../../../models/replyComment'
 import { authOptions } from '@/lib/authOptions'
 import { revalidatePath } from 'next/cache'
 
