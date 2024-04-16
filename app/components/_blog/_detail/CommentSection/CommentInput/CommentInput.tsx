@@ -40,7 +40,7 @@ export default function CommentInput({ postingId }: CommentInputProps) {
   }
 
   return (
-    <div className="mb-4 flex gap-2">
+    <div className="flex gap-2 pb-4">
       <textarea
         cols={30}
         rows={3}

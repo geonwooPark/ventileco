@@ -32,6 +32,7 @@ export interface CommentUserType {
   userName: string
   createdAt: Date
   text: string
+  deleted: boolean
 }
 
 export interface ReplyCommentUserType {

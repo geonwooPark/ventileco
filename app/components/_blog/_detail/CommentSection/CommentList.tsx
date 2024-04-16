@@ -4,6 +4,7 @@ import React from 'react'
 import CommentItem from './CommentItem/CommentItem'
 import ReplyCommentItem from './ReplyCommentItem/ReplyCommentItem'
 import useCommentListQuery from '@/hooks/query/useCommentListQuery'
+import DeletedCommentItem from './CommentItem/DeletedCommentItem'
 
 interface CommentListProps {
   postingId: string
@@ -17,7 +18,11 @@ export default function CommentList({ postingId }: CommentListProps) {
     <div>
       {allComment?.comments.map((comment) => (
         <div key={comment.commentId}>
-          <CommentItem postingId={postingId} comment={comment} />
+          {comment.deleted ? (
+            <DeletedCommentItem />
+          ) : (
+            <CommentItem postingId={postingId} comment={comment} />
+          )}
           <div>
             {allComment.replyComments
               .filter((r) => r.commentId === comment.commentId)

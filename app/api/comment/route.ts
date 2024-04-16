@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
             userName: session?.user.name,
             createdAt: new Date(),
             text,
+            deleted: false,
           },
         },
       },
@@ -84,12 +85,28 @@ export async function DELETE(req: NextRequest) {
 
   try {
     await connectMongo()
+
+    const replyComment = await ReplyComment.find(
+      {
+        postingId,
+      },
+      {
+        user: {
+          $elemMatch: {
+            commentId,
+          },
+        },
+      },
+    )
+
     const comment = await Comment.findOneAndUpdate(
       {
         postingId,
       },
-      { $pull: { user: { commentId } } },
-      { new: true },
+      replyComment[0].user.length !== 0
+        ? { $set: { 'user.$[elem].deleted': true } }
+        : { $pull: { user: { commentId } } },
+      { arrayFilters: [{ 'elem.commentId': commentId }], new: true },
     )
 
     revalidatePath(`/blog/detail/${postingId}`)
