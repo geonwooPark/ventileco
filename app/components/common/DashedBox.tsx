@@ -1,9 +1,9 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 
-export default function DashedBox({ children }: PropsWithChildren) {
+export default function DashedBox() {
   return (
-    <div className="h-[calc(100%-32px)] w-[calc(100%-32px)] rounded-md border-4 border-dashed border-beige-light">
-      {children}
+    <div className="absolute inset-0 z-[10] hidden h-full w-full items-center justify-center pt-[56px] md:flex">
+      <div className="h-[calc(100%-32px)] w-[calc(100%-32px)] rounded-md border-4 border-dashed border-beige-dark"></div>
     </div>
   )
 }
