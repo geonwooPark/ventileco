@@ -1,9 +1,8 @@
 import React from 'react'
 import Container from '../Container'
 import RightSide from './Rightside/RightSide'
-import HomeButton from './HomeButton'
 import LeftSide from './Leftside/LeftSide'
-import HeaderDecoration from './HeaderDecoration'
+import Logo from './Logo'
 
 export default function Header() {
   return (
@@ -12,11 +11,9 @@ export default function Header() {
     >
       <Container className="flex h-full items-center justify-between">
         <LeftSide />
-        <HomeButton />
+        <Logo />
         <RightSide />
       </Container>
-
-      {/* <HeaderDecoration /> */}
     </header>
   )
 }
