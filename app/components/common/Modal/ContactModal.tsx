@@ -2,13 +2,14 @@
 
 import React, { useEffect, useState } from 'react'
 import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
-import Button from '../Button'
 import {
   IconClose,
   IconEmail,
   IconGithub,
   IconPhone,
 } from '../../../../public/svgs/icons'
+import Image from 'next/image'
+import placeholder from '../../../../public/images/speaker.png'
 
 export default function ContactModal() {
   const isModalOpen = useIsModalOpen()
@@ -47,30 +48,41 @@ export default function ContactModal() {
             </button>
           </div>
           {/* 바디 */}
-          <div className="space-y-2 px-4 pb-8 pt-4 text-beige-light">
-            <div className="flex items-center gap-2">
-              <div className="size-5">
-                <IconEmail />
-              </div>
-              <span>white0581@naver.com</span>
+          <div className="px-4 pb-8 pt-4 text-beige-light">
+            <div className="relative mx-auto mb-8 size-[200px]">
+              <Image
+                src={placeholder}
+                alt="profile"
+                fill
+                objectFit="cover"
+                className="rounded-full"
+              />
             </div>
-            <div className="flex items-center gap-2">
-              <div className="size-5">
-                <IconPhone />
+            <div className="space-y-2 ">
+              <div className="flex items-center gap-2">
+                <div className="size-5">
+                  <IconEmail />
+                </div>
+                <span>white0581@naver.com</span>
               </div>
-              <span>010-6331-0581</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="size-5">
-                <IconGithub />
+              <div className="flex items-center gap-2">
+                <div className="size-5">
+                  <IconPhone />
+                </div>
+                <span>010-6331-0581</span>
               </div>
-              <a
-                href="https://github.com/geonwooPark"
-                target="_blank"
-                rel="noreferrer"
-              >
-                https://github.com/geonwooPark
-              </a>
+              <div className="flex items-center gap-2">
+                <div className="size-5">
+                  <IconGithub />
+                </div>
+                <a
+                  href="https://github.com/geonwooPark"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://github.com/geonwooPark
+                </a>
+              </div>
             </div>
           </div>
         </div>
