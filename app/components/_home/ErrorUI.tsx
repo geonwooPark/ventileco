@@ -10,9 +10,9 @@ export default function ErrorUI({ resetErrorBoundary }: FallbackProps) {
       <div className="text-center">
         <button
           onClick={() => resetErrorBoundary()}
-          className="inline-block size-5 rounded-md border border-red-600 bg-red-100 p-2 text-red-600"
+          className="inline-block rounded-md border border-red-600 bg-red-100 p-2 text-red-600"
         >
-          <IconRefresh />
+          <IconRefresh className="size-5" />
         </button>
       </div>
     </div>
