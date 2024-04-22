@@ -45,7 +45,13 @@ export default function IntroModal() {
           {/* 바디 */}
           <div className="px-4 pb-8 pt-4 text-beige-light">
             <div className="relative mx-auto mb-8 size-[200px] overflow-hidden rounded-full bg-beige-normal">
-              <Image src={men} alt="profile" fill objectFit="cover" />
+              <Image
+                src={men}
+                alt="profile"
+                fill
+                objectFit="cover"
+                placeholder="blur"
+              />
             </div>
             <div className="space-y-4 ">
               <p>

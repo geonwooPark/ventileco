@@ -54,6 +54,7 @@ export default function ContactModal() {
                 src={placeholder}
                 alt="profile"
                 fill
+                placeholder="blur"
                 objectFit="cover"
                 className="rounded-full"
               />
