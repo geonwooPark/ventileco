@@ -7,6 +7,8 @@ interface Modal {
     | 'confirm-modal'
     | 'calendar-modal'
     | 'addListItem-modal'
+    | 'intro-modal'
+    | 'contact-modal'
   component: React.ReactNode
 }
 

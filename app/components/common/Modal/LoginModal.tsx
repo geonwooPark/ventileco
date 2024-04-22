@@ -127,7 +127,7 @@ export default function LoginModal() {
         size="s"
         fullWidth={true}
         label="깃허브로 로그인"
-        icon={<IconGithub />}
+        icon={<IconGithub className="text-white" />}
         disabled={OAuthMutation.isPending || loginMutation.isPending}
         onClick={() => onOAuthLogin('github')}
       />

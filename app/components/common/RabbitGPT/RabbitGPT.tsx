@@ -56,10 +56,10 @@ export default function RabbitGPT() {
       )}
       <RabbitBody />
       <RabbitEyeLeft
-        className={`absolute right-[78px] top-[74px] ${rotateVariants[deg]} transition duration-75`}
+        className={`absolute right-[84px] top-[91px] ${rotateVariants[deg]} transition duration-75`}
       />
       <RabbitEyeRight
-        className={`absolute right-[14px] top-[71px] ${rotateVariants[deg]} transition duration-75`}
+        className={`absolute right-[19px] top-[90px] ${rotateVariants[deg]} transition duration-75`}
       />
       <div
         ref={OriginRef}

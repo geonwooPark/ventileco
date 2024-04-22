@@ -30,7 +30,7 @@
   }
 
   .card-shadowed {
-    @apply relative bg-beige-light rounded-md before:absolute before:bottom-[-6px] before:right-[-6px] before:z-[-1] before:h-full before:w-full before:rounded-md before:border before:border-beige-light before:bg-brown-dark;
+    @apply relative bg-beige-light rounded-md before:absolute before:bottom-[-6px] before:right-[-6px] before:z-[-1] before:h-full before:w-full before:rounded-md before:border before:border-beige-light;
   }
 
   .modal-shadowed {

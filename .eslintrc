@@ -29,7 +29,9 @@
     "react/require-default-props": "off",
     "no-underscore-dangle": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@next/next/no-img-element": "off" // Image가 아닌 img 태그 사용 시 경고
+    "@next/next/no-img-element": "off", // Image가 아닌 img 태그 사용 시 경고
+    "react/no-unknown-property": "warn"
+
     // '@typescript-eslint/interface-name-prefix': 'off',
     // '@typescript-eslint/explicit-function-return-type': 'off',
     // '@typescript-eslint/explicit-module-boundary-types': 'off',

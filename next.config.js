@@ -18,6 +18,8 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  transpilePackages: ['three'],
+
   webpack(config) {
     config.module.rules.push({
       test: /.svg$/,
