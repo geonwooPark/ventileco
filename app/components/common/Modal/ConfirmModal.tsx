@@ -9,7 +9,7 @@ interface ConfirmModalProps {
   bodyContent: React.ReactElement
   onSubmit: () => void
   actionLabel: string
-  secondaryActionLabel: string
+  secondaryActionLabel?: string
 }
 
 export default function ConfirmModal({

@@ -7,15 +7,23 @@ import NewUpdates from './components/_home/NewUpdates/NewUpdates'
 import GridItem from './components/_home/GridItem'
 import GridContainer from './components/_home/GridContainer'
 import BackgroundImage from './components/_home/BackgroundImage'
+import CowboyHat from './components/_home/Models/CowboyHat'
+import dynamic from 'next/dynamic'
+import Particle from './components/_home/Models/Particle'
+import Signs from './components/_home/Models/Signs'
 
-export const dynamic = 'force-dynamic'
+const RenderModel = dynamic(() => import('@home/RenderModel'))
 
 export default async function Home() {
   return (
     <main className="h-full w-full">
       <BackgroundImage />
 
-      <div className="h-screen w-full" />
+      <RenderModel>
+        <CowboyHat />
+        <Signs />
+        <Particle />
+      </RenderModel>
 
       <section className="h-auto md:h-full">
         <Container className="flex h-full items-center justify-center py-4">
