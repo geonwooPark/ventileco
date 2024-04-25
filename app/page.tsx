@@ -11,8 +11,16 @@ import CowboyHat from './components/_home/Models/CowboyHat'
 import dynamic from 'next/dynamic'
 import Particle from './components/_home/Models/Particle'
 import Signs from './components/_home/Models/Signs'
+import Spinner from './components/common/Spinner'
 
-const RenderModel = dynamic(() => import('@home/RenderModel'), { ssr: false })
+const RenderModel = dynamic(() => import('@home/RenderModel'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center">
+      <Spinner width="w-8" height="w-8" />
+    </div>
+  ),
+})
 
 export default async function Home() {
   return (
