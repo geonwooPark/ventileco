@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic'
 import Particle from './components/_home/Models/Particle'
 import Signs from './components/_home/Models/Signs'
 
-const RenderModel = dynamic(() => import('@home/RenderModel'))
+const RenderModel = dynamic(() => import('@home/RenderModel'), { ssr: false })
 
 export default async function Home() {
   return (
