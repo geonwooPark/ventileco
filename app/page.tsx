@@ -40,7 +40,7 @@ export default async function Home() {
               <Weather />
             </GridItem>
             <GridItem className="row-span-2 h-[300px]">
-              <MyCheckList />
+              {/* <MyCheckList /> */}
             </GridItem>
             <GridItem className="row-span-1 h-[184px]">
               <NewArrivals />
