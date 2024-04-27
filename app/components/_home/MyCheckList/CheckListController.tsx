@@ -19,11 +19,10 @@ export default function CheckListController({
 
   const { addModal } = useModalActions()
 
-  const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const openAddListItemModal = useCallback(() => {
-    if (session?.user.role !== 'admin' && date === today) return
+    if (session?.user.role !== 'admin' && selectedDate === today) return
     addModal({
       key: 'addListItem-modal',
       component: <AddListItemModal />,
@@ -33,17 +32,22 @@ export default function CheckListController({
   const openCalendarModal = useCallback(() => {
     addModal({
       key: 'calendar-modal',
-      component: <CalendarModal setSelectedDate={setSelectedDate} />,
+      component: (
+        <CalendarModal
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
+      ),
     })
-  }, [])
+  }, [selectedDate])
 
   return (
     <div className="mb-4 flex items-center justify-between">
       <button onClick={openCalendarModal}>
         <span>🗓</span>
-        <span className="ml-2 text-sm">{date}</span>
+        <span className="ml-2 text-sm">{selectedDate}</span>
       </button>
-      {session?.user.role === 'admin' && date === today && (
+      {session?.user.role === 'admin' && selectedDate === today && (
         <button onClick={openAddListItemModal} className="size-5">
           <IconPlus />
         </button>

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { useState } from 'react'
 import Modal from './Modal'
 import 'react-calendar/dist/Calendar.css'
 import styles from '@/styles/calendar.module.css'
@@ -7,18 +7,18 @@ import dayjs from '@/lib/dayjs'
 import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
 
 interface CalendarModalProps {
+  selectedDate: string
   setSelectedDate: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default memo(function CalendarModal({
+export default function CalendarModal({
+  selectedDate,
   setSelectedDate,
 }: CalendarModalProps) {
   const isModalOpen = useIsModalOpen()
   const { removeModal } = useModalActions()
 
-  const [value, setValue] = useState(
-    dayjs(new Date()).tz().format('YYYY-MM-DD'),
-  )
+  const [value, setValue] = useState(selectedDate)
 
   const changeDate = (e: any) => {
     setValue(dayjs(e).tz().format('YYYY-MM-DD'))
@@ -53,4 +53,4 @@ export default memo(function CalendarModal({
       actionLabel="조회하기"
     />
   )
-})
+}
