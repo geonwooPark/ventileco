@@ -9,10 +9,10 @@ export default function CheckListWrapper() {
 
   return (
     <div>
-      <CheckListController
+      {/* <CheckListController
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
-      />
+      /> */}
       <CheckList selectedDate={selectedDate} />
     </div>
   )
