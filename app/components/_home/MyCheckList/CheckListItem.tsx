@@ -9,7 +9,7 @@ import { IconClose } from '../../../../public/svgs/icons'
 
 interface CheckListItemProps {
   item: CheckListItemType
-  selectedDate: Date
+  selectedDate: string
 }
 
 export default function CheckListItem({
@@ -18,13 +18,12 @@ export default function CheckListItem({
 }: CheckListItemProps) {
   const { data: session } = useSession()
 
-  const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
   const { mutation: deleteCheckListItemMutation } =
     useDeleteCheckListItemMutation({ today })
   const deleteCheckListItem = () => {
-    if (session?.user.role !== 'admin' || date !== today) return
+    if (session?.user.role !== 'admin' || selectedDate !== today) return
 
     deleteCheckListItemMutation.mutate({
       listId: item.listId,
@@ -36,7 +35,7 @@ export default function CheckListItem({
     useUpdateCheckListItemMutation({ today })
 
   const updateCheckListItem = () => {
-    if (session?.user.role !== 'admin' || date !== today) return
+    if (session?.user.role !== 'admin' || selectedDate !== today) return
 
     updateCheckListItemMutation.mutate(
       {
@@ -64,7 +63,7 @@ export default function CheckListItem({
           onChange={updateCheckListItem}
         />
         <span className="w-full">{item.text}</span>
-        {session?.user.role === 'admin' && date === today && (
+        {session?.user.role === 'admin' && selectedDate === today && (
           <button onClick={deleteCheckListItem} className="size-5 text-red-600">
             <IconClose />
           </button>

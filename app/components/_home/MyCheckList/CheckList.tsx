@@ -1,16 +1,14 @@
 import React from 'react'
 import CheckListItem from './CheckListItem'
 import SkeletonCheckList from './SkeletonCheckList'
-import dayjs from '@/lib/dayjs'
 import useCheckListQuery from '@/hooks/query/useCheckListQuery'
 
 interface CheckListProps {
-  selectedDate: Date
+  selectedDate: string
 }
 
 export default function CheckList({ selectedDate }: CheckListProps) {
-  const date = dayjs(selectedDate).tz().format('YYYY-MM-DD')
-  const { checkList, isPending } = useCheckListQuery(date)
+  const { checkList, isPending } = useCheckListQuery(selectedDate)
   if (isPending) return <SkeletonCheckList />
 
   return (

@@ -7,7 +7,7 @@ import dayjs from '@/lib/dayjs'
 import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
 
 interface CalendarModalProps {
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>
+  setSelectedDate: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default memo(function CalendarModal({
@@ -16,10 +16,12 @@ export default memo(function CalendarModal({
   const isModalOpen = useIsModalOpen()
   const { removeModal } = useModalActions()
 
-  const [value, setValue] = useState(new Date())
+  const [value, setValue] = useState(
+    dayjs(new Date()).tz().format('YYYY-MM-DD'),
+  )
 
   const changeDate = (e: any) => {
-    setValue(e)
+    setValue(dayjs(e).tz().format('YYYY-MM-DD'))
   }
 
   const onClose = () => {

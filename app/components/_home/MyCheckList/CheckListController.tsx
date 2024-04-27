@@ -7,8 +7,8 @@ import React, { useCallback } from 'react'
 import { IconPlus } from '../../../../public/svgs/icons'
 
 interface CheckListControllerProps {
-  selectedDate: Date
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>
+  selectedDate: string
+  setSelectedDate: React.Dispatch<React.SetStateAction<string>>
 }
 
 export default function CheckListController({
