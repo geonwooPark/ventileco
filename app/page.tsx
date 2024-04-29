@@ -17,8 +17,8 @@ export default async function Home() {
       <BackgroundImage />
       <CanvasRenderer />
 
-      <section className="h-auto md:h-full">
-        <Container className="flex h-full items-center justify-center py-4">
+      <section className="h-auto py-4 md:h-[calc(100%-56px)]">
+        <Container className="flex h-full items-center justify-center">
           <GridContainer>
             <GridItem className="row-span-2 h-[300px]">
               <Weather />

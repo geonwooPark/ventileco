@@ -12,7 +12,7 @@ export default function RenderModel({ children }: PropsWithChildren) {
     <Canvas
       camera={{ position: [0, 0, 3] }}
       shadows
-      className="relative h-screen w-screen"
+      className="relative h-screen w-screen pt-[56px]"
     >
       <directionalLight
         intensity={3}
