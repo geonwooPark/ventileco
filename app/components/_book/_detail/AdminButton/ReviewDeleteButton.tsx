@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useModalActions } from '@/hooks/store/useModalStore'
-import ConfirmModal from '@/components/common/Modal/ConfirmModal'
+import ConfirmModal from '@/components/common/Modals/ConfirmModal'
 
 interface ReviewDeleteButtonProps {
   bookId: string
@@ -29,7 +29,7 @@ export default function ReviewDeleteButton({
       },
       {
         onSuccess: () => {
-          removeModal('confirm-modal')
+          removeModal()
           router.push('/book')
           toast.success('리뷰 제거 성공!')
         },
@@ -40,23 +40,15 @@ export default function ReviewDeleteButton({
     )
   }
 
-  const bodyContent = (
-    <p className="text-beige-light">정말 리뷰를 삭제하시겠습니까?</p>
-  )
-
   const onClick = () => {
-    addModal({
-      key: 'confirm-modal',
-      component: (
-        <ConfirmModal
-          title="Delete"
-          bodyContent={bodyContent}
-          onSubmit={deleteReview}
-          actionLabel="삭제하기"
-          secondaryActionLabel="취소"
-        />
-      ),
-    })
+    addModal(
+      <ConfirmModal
+        title="Delete"
+        description="정말 리뷰를 삭제하시겠습니까?"
+        onSubmit={deleteReview}
+        actionLabel="삭제하기"
+      />,
+    )
   }
 
   return (

@@ -1,15 +1,16 @@
 'use client'
 
 import React from 'react'
-import Modal from './Modal'
+import Modal from './Modal/Modal'
 import { toast } from 'react-toastify'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import InputWithLabel from '../Input/InputWithLabel'
 import { emailRegex, nameRegex, passwordRegex } from '@/constants/regex'
 import useSignUpMutation from '@/hooks/mutation/useSignUpMutation'
 import { useFireWorkActions } from '@/hooks/store/useFireWorkStore'
-import { useIsModalOpen, useModalActions } from '@/hooks/store/useModalStore'
+import { useModalActions } from '@/hooks/store/useModalStore'
 import LoginModal from './LoginModal'
+import Button from '../Button'
 
 interface SignUpFormDataType {
   email: string
@@ -18,7 +19,6 @@ interface SignUpFormDataType {
 }
 
 export default function SignUpModal() {
-  const isModalOpen = useIsModalOpen()
   const { removeModal, addModal } = useModalActions()
   const { mutation: signUpMutation } = useSignUpMutation()
   const { onOpen: openFireWork } = useFireWorkActions()
@@ -31,15 +31,11 @@ export default function SignUpModal() {
     },
   })
 
-  const onClose = () => {
-    removeModal('signup-modal')
-  }
-
   const onSubmit: SubmitHandler<SignUpFormDataType> = async (data) => {
     signUpMutation.mutate(data, {
       onSuccess: () => {
         reset()
-        onClose()
+        removeModal()
         toast.success('회원가입에 성공했습니다!')
         openFireWork()
       },
@@ -50,11 +46,8 @@ export default function SignUpModal() {
   }
 
   const onLogin = () => {
-    removeModal('signup-modal')
-    addModal({
-      key: 'login-modal',
-      component: <LoginModal />,
-    })
+    removeModal()
+    addModal(<LoginModal />)
   }
 
   const onError = (error: any) => {
@@ -84,51 +77,59 @@ export default function SignUpModal() {
     },
   })
 
-  const bodyContent = (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <InputWithLabel
-        register={emailRegister}
-        type="text"
-        label="이메일"
-        className="mb-1"
-      />
-      <InputWithLabel
-        register={nameRegister}
-        type="text"
-        label="닉네임"
-        className="mb-1"
-      />
-      <InputWithLabel
-        register={passwordRegister}
-        type="password"
-        label="비밀번호"
-        className="mb-1"
-      />
-    </form>
-  )
-
-  const footerContent = (
-    <div className="mt-3">
-      <hr className="mb-3 border-beige-normal" />
-      <p className="mt-4 text-center text-xs text-beige-light">
-        이미 계정이 있으신가요?{' '}
-        <span onClick={onLogin} className="cursor-pointer text-beige-normal">
-          로그인
-        </span>
-      </p>
-    </div>
-  )
-
   return (
-    <Modal
-      title="Sign Up"
-      body={bodyContent}
-      footer={footerContent}
-      isOpen={isModalOpen}
-      onClose={onClose}
-      onSubmit={handleSubmit(onSubmit, onError)}
-      actionLabel="가입하기"
-      isLoading={signUpMutation.isPending}
-    />
+    <Modal>
+      <Modal.Dim>
+        <Modal.Card size="small">
+          <Modal.Header>
+            <Modal.Title>Sign Up</Modal.Title>
+            <Modal.CloseButton />
+          </Modal.Header>
+          <Modal.Content>
+            <form onSubmit={handleSubmit(onSubmit, onError)}>
+              <InputWithLabel
+                register={emailRegister}
+                type="text"
+                label="이메일"
+                className="mb-1"
+              />
+              <InputWithLabel
+                register={nameRegister}
+                type="text"
+                label="닉네임"
+                className="mb-1"
+              />
+              <InputWithLabel
+                register={passwordRegister}
+                type="password"
+                label="비밀번호"
+                className="mb-1"
+              />
+            </form>
+            <div className="mt-6">
+              <Button
+                type="button"
+                level="primary"
+                size="s"
+                label="가입하기"
+                fullWidth={true}
+                disabled={signUpMutation.isPending}
+                onClick={handleSubmit(onSubmit, onError)}
+              />
+              <hr className="my-3 border-beige-normal" />
+              <p className="mt-4 text-center text-xs text-beige-light">
+                이미 계정이 있으신가요?{' '}
+                <span
+                  onClick={onLogin}
+                  className="cursor-pointer text-beige-normal"
+                >
+                  로그인
+                </span>
+              </p>
+            </div>
+          </Modal.Content>
+        </Modal.Card>
+      </Modal.Dim>
+    </Modal>
   )
 }

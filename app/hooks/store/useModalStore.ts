@@ -1,26 +1,20 @@
 import { create } from 'zustand'
+import { v4 as uuid } from 'uuid'
 
-interface Modal {
-  key:
-    | 'login-modal'
-    | 'signup-modal'
-    | 'confirm-modal'
-    | 'calendar-modal'
-    | 'addListItem-modal'
-    | 'intro-modal'
-    | 'contact-modal'
+interface ModalType {
+  id: string
   component: React.ReactNode
 }
 
 interface State {
   isOpen: boolean
-  modals: Modal[]
+  modals: ModalType[]
 }
 
 interface Actions {
   actions: {
-    addModal: (modal: Modal) => void
-    removeModal: (id: string) => void
+    addModal: (modal: React.ReactNode) => void
+    removeModal: () => void
     clearModal: () => void
   }
 }
@@ -29,22 +23,24 @@ const useModalStore = create<State & Actions>()((set) => ({
   isOpen: false,
   modals: [],
   actions: {
-    addModal: (modal) => {
+    addModal: (modal: React.ReactNode) => {
       set((state) => {
         if (!state.isOpen) {
           return { isOpen: true }
         } else return { isOpen: true }
       })
-      set((state) => ({ modals: [...state.modals, modal] }))
+      set((state) => ({
+        modals: [...state.modals, { id: uuid(), component: modal }],
+      }))
     },
-    removeModal: (key) => {
+    removeModal: () => {
       set((state) => {
         if (state.modals.length === 1) {
           return { isOpen: false }
         } else return { isOpen: true }
       })
       set((state) => ({
-        modals: state.modals.filter((r) => r.key !== key),
+        modals: state.modals.slice(0, -1),
       }))
     },
     clearModal: () => set(() => ({ modals: [] })),

@@ -14,8 +14,8 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { BookReviewFormDataType } from '@/interfaces/interface'
 import { useGoBack } from '@/hooks/useGoBack'
-import ConfirmModal from '@/components/common/Modal/ConfirmModal'
 import { useModalActions } from '@/hooks/store/useModalStore'
+import ConfirmModal from '@/components/common/Modals/ConfirmModal'
 
 const BookReviewEditor = dynamic(() => import('./BookReviewEditor'), {
   ssr: false,
@@ -83,20 +83,14 @@ export default function BookReviewForm() {
   })
 
   useGoBack(() => {
-    addModal({
-      key: 'confirm-modal',
-      component: (
-        <ConfirmModal
-          title="Cancel"
-          bodyContent={
-            <p className="text-beige-light">리뷰 작성을 그만하시겠습니까?</p>
-          }
-          onSubmit={() => router.push('/book')}
-          actionLabel="그만하기"
-          secondaryActionLabel="취소"
-        />
-      ),
-    })
+    addModal(
+      <ConfirmModal
+        title="Cancel"
+        description="리뷰 작성을 그만하시겠습니까?"
+        onSubmit={() => router.push('/book')}
+        actionLabel="그만하기"
+      />,
+    )
   })
 
   return (

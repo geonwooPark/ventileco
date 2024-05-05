@@ -1,10 +1,10 @@
-import AddListItemModal from '@/components/common/Modal/AddListItemModal'
-import CalendarModal from '@/components/common/Modal/CalendarModal'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import dayjs from '@/lib/dayjs'
 import { useSession } from 'next-auth/react'
 import React, { useCallback } from 'react'
 import { IconPlus } from '../../../../public/svgs/icons'
+import CalendarModal from '@/components/common/Modals/CalendarModal'
+import AddListItemModal from '@/components/common/Modals/AddListItemModal'
 
 interface CheckListControllerProps {
   selectedDate: string
@@ -23,22 +23,16 @@ export default function CheckListController({
 
   const openAddListItemModal = useCallback(() => {
     if (session?.user.role !== 'admin' && selectedDate === today) return
-    addModal({
-      key: 'addListItem-modal',
-      component: <AddListItemModal />,
-    })
+    addModal(<AddListItemModal />)
   }, [session])
 
   const openCalendarModal = useCallback(() => {
-    addModal({
-      key: 'calendar-modal',
-      component: (
-        <CalendarModal
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-        />
-      ),
-    })
+    addModal(
+      <CalendarModal
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />,
+    )
   }, [selectedDate])
 
   return (

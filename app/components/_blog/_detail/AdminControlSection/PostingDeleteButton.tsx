@@ -1,4 +1,4 @@
-import ConfirmModal from '@/components/common/Modal/ConfirmModal'
+import ConfirmModal from '@/components/common/Modals/ConfirmModal'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -27,7 +27,7 @@ export default function PostingDeleteButton({
       })
         .then((res) => res.json())
         .then((result) => {
-          removeModal('confirm-modal')
+          removeModal()
           router.push('/blog')
           router.refresh()
           toast.success(result.message)
@@ -39,23 +39,15 @@ export default function PostingDeleteButton({
     }
   }
 
-  const bodyContent = (
-    <p className="text-beige-light">게시글을 삭제하시겠습니까?</p>
-  )
-
   const onClick = () => {
-    addModal({
-      key: 'confirm-modal',
-      component: (
-        <ConfirmModal
-          title="Delete"
-          bodyContent={bodyContent}
-          onSubmit={deletePosting}
-          actionLabel="삭제하기"
-          secondaryActionLabel="취소"
-        />
-      ),
-    })
+    addModal(
+      <ConfirmModal
+        title="Delete"
+        description="게시글을 삭제하시겠습니까?"
+        onSubmit={deletePosting}
+        actionLabel="삭제하기"
+      />,
+    )
   }
 
   return (

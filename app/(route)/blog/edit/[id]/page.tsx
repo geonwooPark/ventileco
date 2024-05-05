@@ -18,8 +18,8 @@ import EditTopSection from '@blog/_edit/EditTopSection/EditTopSection'
 import Main from '@common/Main'
 import Section from '@/components/common/Section'
 import { useGoBack } from '@/hooks/useGoBack'
-import ConfirmModal from '@/components/common/Modal/ConfirmModal'
 import { useModalActions } from '@/hooks/store/useModalStore'
+import ConfirmModal from '@/components/common/Modals/ConfirmModal'
 
 const Editor = dynamic(() => import('@blog/common/Editor/Editor'), {
   ssr: false,
@@ -84,20 +84,14 @@ export default function Edit() {
   }
 
   useGoBack(() => {
-    addModal({
-      key: 'confirm-modal',
-      component: (
-        <ConfirmModal
-          title="Cancel"
-          bodyContent={
-            <p className="text-beige-light">글 수정을 그만하시겠습니까?</p>
-          }
-          onSubmit={() => router.push(`/blog/detail/${postingId}`)}
-          actionLabel="그만하기"
-          secondaryActionLabel="취소"
-        />
-      ),
-    })
+    addModal(
+      <ConfirmModal
+        title="Cancel"
+        description="글 수정을 그만하시겠습니까?"
+        onSubmit={() => router.push(`/blog/detail/${postingId}`)}
+        actionLabel="그만하기"
+      />,
+    )
   })
 
   useEffect(() => {

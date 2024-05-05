@@ -11,7 +11,7 @@ import AuthSession from './components/common/provider/AuthSession'
 import TanstackProvider from './components/common/provider/TanstackProvider'
 import { RootMetadata } from './constants/staticMetadata'
 import localFont from 'next/font/local'
-import ModalContainer from './components/common/Modal/ModalContainer'
+import ModalContainer from './components/common/Modals/ModalContainer'
 
 const classic = localFont({
   src: [

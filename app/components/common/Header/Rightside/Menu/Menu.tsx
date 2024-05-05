@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation'
 import { Session } from 'next-auth'
 import MenuItem from './MenuItem'
 import { useModalActions } from '@/hooks/store/useModalStore'
-import LoginModal from '@/components/common/Modal/LoginModal'
-import SignUpModal from '@/components/common/Modal/SignUpModal'
+import LoginModal from '@/components/common/Modals/LoginModal'
+import SignUpModal from '@/components/common/Modals/SignUpModal'
 
 interface MenuProps {
   session: Session | null
@@ -23,17 +23,11 @@ export default function Menu({ session }: MenuProps) {
   }
 
   const onLogin = () => {
-    addModal({
-      key: 'login-modal',
-      component: <LoginModal />,
-    })
+    addModal(<LoginModal />)
   }
 
   const onSignUp = () => {
-    addModal({
-      key: 'signup-modal',
-      component: <SignUpModal />,
-    })
+    addModal(<SignUpModal />)
   }
 
   useEffect(() => {

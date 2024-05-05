@@ -3,24 +3,18 @@
 import React from 'react'
 import Sign from './Sign'
 import { useModalActions } from '@/hooks/store/useModalStore'
-import IntroModal from '../../common/Modal/IntroModal'
-import ContactModal from '../../common/Modal/ContactModal'
+import IntroModal from '@/components/common/Modals/IntroModal'
+import ContactModal from '@/components/common/Modals/ContactModal'
 
 export default function Signs() {
   const { addModal } = useModalActions()
 
   const openIntroModal = () => {
-    addModal({
-      key: 'intro-modal',
-      component: <IntroModal />,
-    })
+    addModal(<IntroModal />)
   }
 
   const openContactModal = () => {
-    addModal({
-      key: 'contact-modal',
-      component: <ContactModal />,
-    })
+    addModal(<ContactModal />)
   }
 
   return (
