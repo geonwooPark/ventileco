@@ -3,20 +3,11 @@
 import { useMap } from '@/hooks/store/useMapStore'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { MARKER_SIZE, StoreCategory } from '@/constants'
+import { MARKER_SIZE, StoreCategory, spriteOrigin } from '@/constants'
 import { HotPlaceListingType } from '@/interfaces/interface'
 
 interface MarkersProps {
   hotPlaceListings?: HotPlaceListingType[]
-}
-
-const getSpriteOrigin = (category: string) => {
-  if (category === '한식') return MARKER_SIZE * 0
-  if (category === '일식') return MARKER_SIZE * 1
-  if (category === '중식') return MARKER_SIZE * 2
-  if (category === '양식') return MARKER_SIZE * 3
-  if (category === '분식') return MARKER_SIZE * 4
-  if (category === '카페') return MARKER_SIZE * 5
 }
 
 export default function Markers({ hotPlaceListings }: MarkersProps) {
@@ -61,10 +52,7 @@ export default function Markers({ hotPlaceListings }: MarkersProps) {
             MARKER_SIZE * StoreCategory.length,
             MARKER_SIZE,
           ), // 스프라이트 이미지의 크기
-          spriteOrigin: new window.kakao.maps.Point(
-            getSpriteOrigin(category),
-            0,
-          ),
+          spriteOrigin: new window.kakao.maps.Point(spriteOrigin[category], 0),
         }
         const markerImage = new window.kakao.maps.MarkerImage(
           imageSrc,

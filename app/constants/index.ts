@@ -118,6 +118,18 @@ export const PAGE = 1
 export const LIMIT = 5
 
 // 맛집
+export const INITIAL_CENTER = [37.574187, 126.976882]
+export const MARKER_SIZE = 40
+
+export const spriteOrigin: Record<string, number> = {
+  한식: MARKER_SIZE * 0,
+  일식: MARKER_SIZE * 1,
+  중식: MARKER_SIZE * 2,
+  양식: MARKER_SIZE * 3,
+  분식: MARKER_SIZE * 4,
+  카페: MARKER_SIZE * 5,
+}
+
 export const StoreCategory = [
   {
     id: 301,
@@ -247,9 +259,6 @@ export const GuList = [
     gu: '중랑구',
   },
 ]
-
-export const INITIAL_CENTER = [37.574187, 126.976882]
-export const MARKER_SIZE = 40
 
 // 독서
 export const bookCategory = [
