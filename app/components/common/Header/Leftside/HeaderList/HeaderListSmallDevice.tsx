@@ -19,7 +19,7 @@ export default function HeaderListSmallDevice({
         }
 `}
     >
-      <ul className="card-shadowed h-full !rounded-l-none text-center">
+      <ul className="h-full bg-beige-light text-center shadow-xl">
         {headerListItem.map((item) => (
           <HeaderListItemSmallDevice key={item.id} item={item} path={path} />
         ))}
