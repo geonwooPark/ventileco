@@ -15,11 +15,8 @@ export default function ImageSlider({ images }: ImageSliderProps) {
   return (
     <Slider gap={16} slideLength={images.length}>
       {images.map((img) => (
-        <div
-          key={img.path}
-          className="mx-auto aspect-[4/3] h-[300px] w-[400px]"
-        >
-          <div className="relative h-full w-full">
+        <div key={img.path} className="mx-auto aspect-[4/3]">
+          <div className="relative h-full w-[400px]">
             <Image
               src={img.url}
               alt="store-images"

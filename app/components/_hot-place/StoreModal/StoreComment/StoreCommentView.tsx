@@ -23,7 +23,7 @@ export default function StoreCommentView() {
         />
       ))}
       {allComment?.comments.length === 0 && (
-        <p className="flex h-full w-full items-center justify-center text-gray-400">
+        <p className="flex h-full w-full items-center justify-center text-sm text-gray-400">
           작성된 댓글이 없습니다!
         </p>
       )}
