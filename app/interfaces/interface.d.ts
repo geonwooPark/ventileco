@@ -27,9 +27,16 @@ export type OmittedPostingType = Omit<
 
 export interface CommentUserType {
   commentId: string
-  userImage: string
-  userId: string
-  userName: string
+  user: {
+    userImage: string
+    userId: string
+    userName: string
+  }
+  posting: {
+    postingId: string
+    title: string
+    path: string
+  }
   createdAt: Date
   text: string
   deleted: boolean
@@ -38,9 +45,16 @@ export interface CommentUserType {
 export interface ReplyCommentUserType {
   commentId: string
   replyCommentId: string
-  userImage: string
-  userId: string
-  userName: string
+  user: {
+    userImage: string
+    userId: string
+    userName: string
+  }
+  posting: {
+    postingId: string
+    title: string
+    path: string
+  }
   createdAt: Date
   text: string
 }
@@ -105,15 +119,19 @@ export interface CheckListItemType {
 }
 
 export interface MyCommentType {
-  title: string
-  postingId: string
+  user: {
+    userImage: string
+    userId: string
+    userName: string
+  }
+  posting: {
+    postingId: string
+    title: string
+    path: string
+  }
   commentId: string
-  userImage: string
-  userId: string
-  userName: string
   createdAt: Date
   text: string
-  path: string
 }
 
 export interface GPTChatType {

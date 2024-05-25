@@ -17,7 +17,12 @@ export default function StoreCommentItem({
   comment,
 }: StoreCommentItemProps) {
   const { data: session } = useSession()
-  const { commentId, userId, userImage, userName, createdAt, text } = comment
+  const {
+    commentId,
+    user: { userId, userImage, userName },
+    createdAt,
+    text,
+  } = comment
 
   const [selectedCommentIdForEdit, setSelectedCommentIdForEdit] = useState('')
 

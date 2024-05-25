@@ -15,7 +15,12 @@ interface CommentItemProps {
 
 export default function CommentItem({ comment, postingId }: CommentItemProps) {
   const { data: session } = useSession()
-  const { commentId, userId, userImage, userName, createdAt, text } = comment
+  const {
+    commentId,
+    user: { userId, userImage, userName },
+    createdAt,
+    text,
+  } = comment
 
   const [selectedCommentIdForEdit, setSelectedCommentIdForEdit] = useState('')
   const [replyMode, setReplyMode] = useState(false)

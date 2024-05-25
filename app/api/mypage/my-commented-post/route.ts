@@ -12,12 +12,16 @@ export async function GET(req: NextRequest) {
     const [myCommentedPost, myReplyCommentedPost] = await Promise.all([
       Comment.find<CommentType>({
         user: {
-          $elemMatch: { userId },
+          $elemMatch: {
+            'user.userId': userId,
+          },
         },
       }),
       ReplyComment.find<CommentType>({
         user: {
-          $elemMatch: { userId },
+          $elemMatch: {
+            'user.userId': userId,
+          },
         },
       }),
     ])

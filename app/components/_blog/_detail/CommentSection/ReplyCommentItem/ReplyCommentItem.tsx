@@ -18,8 +18,12 @@ export default function ReplyCommentItem({
   replyComment,
 }: ReplyCommentItemProps) {
   const { data: session } = useSession()
-  const { replyCommentId, userId, userImage, userName, createdAt, text } =
-    replyComment
+  const {
+    replyCommentId,
+    user: { userId, userImage, userName },
+    createdAt,
+    text,
+  } = replyComment
 
   const [selectedCommentIdForEdit, setSelectedCommentIdForEdit] = useState('')
 

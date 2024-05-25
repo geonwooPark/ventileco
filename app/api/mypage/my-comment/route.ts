@@ -12,48 +12,36 @@ export async function GET(req: NextRequest) {
     const [myCommentedPost, myReplyCommentedPost] = await Promise.all([
       Comment.find<CommentType>({
         user: {
-          $elemMatch: { userId },
+          $elemMatch: {
+            'user.userId': userId,
+          },
         },
       }),
       ReplyComment.find<CommentType>({
         user: {
-          $elemMatch: { userId },
+          $elemMatch: {
+            'user.userId': userId,
+          },
         },
       }),
     ])
 
-    const myComment = []
+    const users = []
     for (const posting of myCommentedPost) {
-      for (const elem of posting.user) {
-        if (elem.userId === userId) {
-          myComment.push({
-            title: posting.title,
-            postingId: posting.postingId,
-            path: posting.path,
-            ...elem,
-          })
-        }
-      }
+      users.push(...posting.user)
     }
     for (const posting of myReplyCommentedPost) {
-      for (const elem of posting.user) {
-        if (elem.userId === userId) {
-          myComment.push({
-            title: posting.title,
-            postingId: posting.postingId,
-            path: posting.path,
-            ...elem,
-          })
-        }
-      }
+      users.push(...posting.user)
     }
 
-    myComment.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    )
+    const result = users
+      .filter((users) => users.user.userId === userId)
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      )
 
-    return NextResponse.json(myComment, { status: 200 })
+    return NextResponse.json(result, { status: 200 })
   } catch (error) {
     return NextResponse.json(
       { error: 'Internal server error' },

@@ -8,10 +8,13 @@ export default cache(async function getAllComment(postingId: string) {
   try {
     await connectMongo()
 
-    const comments = await Comment.findOne<CommentType>({ postingId })
-    const replyComments = await ReplyComment.findOne<ReplyCommentType>({
-      postingId,
-    })
+    const [comments, replyComments] = await Promise.all([
+      Comment.findOne<CommentType>({ postingId }),
+      ReplyComment.findOne<ReplyCommentType>({
+        postingId,
+      }),
+    ])
+
     if (!comments) return { comments: [], replyComments: [] }
     if (!replyComments) return { comments: comments.user, replyComments: [] }
 

@@ -32,9 +32,9 @@ export default function MyComment() {
             className="flex items-center border-b border-brown-dark text-brown-dark"
           >
             <td className="flex-1 px-4 py-3">
-              <Link href={comment.path as any} target="_blank">
+              <Link href={comment.posting.path as any} target="_blank">
                 <p className="mb-2">{comment.text}</p>
-                <p className="ml-2 text-beige-dark">{comment.title}</p>
+                <p className="ml-2 text-beige-dark">{comment.posting.title}</p>
               </Link>
             </td>
             <td className="w-[100px] text-center text-sm">
