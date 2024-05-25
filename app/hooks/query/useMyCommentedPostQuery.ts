@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import getData from '../../utils/getData'
-import { CommentType } from '../../interfaces/interface'
+import { UniquePostType } from '../../interfaces/interface'
 import { Session } from 'next-auth'
 import { myPageKeys } from '@/constants/queryKey'
 
@@ -8,7 +8,7 @@ export default function useMyCommentedPostQuery(session: Session | null) {
   const { data: myCommentedPost, isPending } = useQuery({
     queryKey: myPageKeys.myCommentedPost(session?.user.id),
     queryFn: () =>
-      getData<CommentType[]>(
+      getData<UniquePostType[]>(
         `/api/mypage/my-commented-post?userId=${session?.user.id}`,
       ),
     staleTime: 1000 * 60 * 5, // 5분

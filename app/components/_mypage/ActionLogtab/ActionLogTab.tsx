@@ -1,9 +1,18 @@
 'use client'
 
 import React, { useState } from 'react'
-import MyComment from './ActionLogTabContent/MyComment'
-import MyCommentedPost from './ActionLogTabContent/MyCommentedPost'
-import MyLikedPost from './ActionLogTabContent/MyLikedPost'
+import dynamic from 'next/dynamic'
+
+const MyComment = dynamic(() => import('./ActionLogTabContent/MyComment'))
+const MyCommentedPost = dynamic(
+  () => import('./ActionLogTabContent/MyCommentedPost'),
+  {
+    ssr: false,
+  },
+)
+const MyLikedPost = dynamic(() => import('./ActionLogTabContent/MyLikedPost'), {
+  ssr: false,
+})
 
 const menuArr = [
   {
@@ -27,7 +36,7 @@ export default function ActionLogTab() {
   const [currentTab, setCurrentTab] = useState(0)
 
   return (
-    <div>
+    <>
       <div className="mb-4 flex gap-4">
         {menuArr.map((menu, i) => (
           <button
@@ -41,11 +50,12 @@ export default function ActionLogTab() {
           </button>
         ))}
       </div>
+
       <div className="relative pt-10">
-        <div className="hide-scroll h-[500px] overflow-y-scroll rounded-b-md bg-beige-light">
+        <div className="hide-scroll h-[500px] overflow-y-scroll rounded-b-md">
           {menuArr[currentTab].content}
         </div>
       </div>
-    </div>
+    </>
   )
 }

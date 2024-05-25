@@ -18,7 +18,7 @@ export default function MyCommentedPost() {
   }
 
   return (
-    <table className="w-full">
+    <table className="h-full w-full bg-beige-light">
       <thead className="absolute top-0 w-full overflow-hidden rounded-t-md bg-brown-normal text-beige-light">
         <tr className="flex w-full text-center">
           <th className="flex-1 py-2">제목</th>
@@ -30,7 +30,7 @@ export default function MyCommentedPost() {
         {myCommentedPost?.map((posting) => (
           <tr
             key={posting._id}
-            className="flex items-center border-b border-brown-dark"
+            className="flex items-center border-b border-brown-dark text-brown-dark"
           >
             <td className="flex-1 px-4 py-3">
               <Link href={posting.path as any} target="_blank">
@@ -38,7 +38,7 @@ export default function MyCommentedPost() {
               </Link>
             </td>
             <td className="w-[100px] text-center text-sm">
-              {posting.user.length}
+              {posting.userLength}
             </td>
             <td className="w-[100px] text-center text-sm">
               {dayjs(posting.createdAt).tz().format('YYYY-MM-DD')}

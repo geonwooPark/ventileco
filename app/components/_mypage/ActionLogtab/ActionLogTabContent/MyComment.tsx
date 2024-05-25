@@ -18,7 +18,7 @@ export default function MyComment() {
   }
 
   return (
-    <table className="w-full">
+    <table className="h-full w-full bg-beige-light">
       <thead className="absolute top-0 w-full overflow-hidden rounded-t-md bg-brown-normal text-beige-light">
         <tr className="flex w-full text-center">
           <th className="flex-1 py-2">댓글</th>
@@ -26,27 +26,22 @@ export default function MyComment() {
         </tr>
       </thead>
       <tbody>
-        {myComment
-          ?.sort(
-            (a, b) =>
-              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-          )
-          .map((comment) => (
-            <tr
-              key={comment.commentId}
-              className="flex items-center border-b border-brown-dark"
-            >
-              <td className="flex-1 px-4 py-3 text-brown-dark">
-                <Link href={comment.path as any} target="_blank">
-                  <p className="mb-2">{comment.text}</p>
-                  <p className="ml-2 text-beige-dark">{comment.title}</p>
-                </Link>
-              </td>
-              <td className="w-[100px] text-center text-sm text-beige-dark">
-                {dayjs(comment.createdAt).tz().format('YYYY-MM-DD')}
-              </td>
-            </tr>
-          ))}
+        {myComment?.map((comment, idx) => (
+          <tr
+            key={idx}
+            className="flex items-center border-b border-brown-dark text-brown-dark"
+          >
+            <td className="flex-1 px-4 py-3">
+              <Link href={comment.path as any} target="_blank">
+                <p className="mb-2">{comment.text}</p>
+                <p className="ml-2 text-beige-dark">{comment.title}</p>
+              </Link>
+            </td>
+            <td className="w-[100px] text-center text-sm">
+              {dayjs(comment.createdAt).tz().format('YYYY-MM-DD')}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

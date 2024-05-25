@@ -55,6 +55,14 @@ export interface CommentType {
   updatedAt: Date
 }
 
+export interface UniquePostType {
+  _id: string
+  title: string
+  path: string
+  userLength: number
+  createdAt: Date
+}
+
 export interface ReplyCommentType {
   _id: string
   path: string
