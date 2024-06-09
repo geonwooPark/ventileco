@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Button from '../../common/Button'
-import { toast } from 'react-toastify'
 import Modal from './Modal/Modal'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import InputWithLabel from '../Input/InputWithLabel'
@@ -13,6 +12,7 @@ import { OAuthType } from '@/interfaces/interface'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import SignUpModal from './SignUpModal'
 import { IconGithub, IconGoogle } from '../../../../public/svgs/icons'
+import { useAlert } from '@/hooks/useAlert'
 
 interface LoginFormDataType {
   email: string
@@ -20,6 +20,7 @@ interface LoginFormDataType {
 }
 
 export default function LoginModal() {
+  const alert = useAlert()
   const { removeModal, addModal } = useModalActions()
   const { mutation: loginMutation } = useLoginMutation()
   const { mutation: OAuthMutation } = useOAuthLoginMutation()
@@ -36,12 +37,12 @@ export default function LoginModal() {
       onSuccess: () => {
         reset()
         removeModal()
-        toast.success('로그인에 성공했습니다')
+        alert.success('로그인에 성공했습니다')
 
         setTimeout(() => window.location.reload(), 1000)
       },
       onError: (error) => {
-        toast.error(error.message)
+        alert.error(error.message)
       },
     })
   }
@@ -50,10 +51,10 @@ export default function LoginModal() {
     OAuthMutation.mutate(oauth, {
       onSuccess: () => {
         removeModal()
-        toast.success('로그인에 성공했습니다')
+        alert.success('로그인에 성공했습니다')
       },
       onError: (error) => {
-        toast.error(error.message)
+        alert.error(error.message)
       },
     })
   }
@@ -66,7 +67,7 @@ export default function LoginModal() {
   const onError = (error: any) => {
     if (error === null) return
     for (const key in error) {
-      toast.error(error[key].message)
+      alert.error(error[key].message)
       break
     }
   }

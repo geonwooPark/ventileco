@@ -195,3 +195,5 @@ export interface BookReviewType {
   content: string
   category: string
 }
+
+export type ToastType = `success` | `error` | `info`

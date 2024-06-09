@@ -16,6 +16,7 @@ import useEditBookReviewMutation from '@/hooks/mutation/useEditBookReviewMutatio
 import { useGoBack } from '@/hooks/useGoBack'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import ConfirmModal from '@/components/common/Modals/ConfirmModal'
+import { useAlert } from '@/hooks/useAlert'
 
 const BookReviewEditor = dynamic(() => import('../_write/BookReviewEditor'), {
   ssr: false,
@@ -35,6 +36,7 @@ export default function BookReviewEditForm({
   review,
 }: BookReviewEditFormProps) {
   const router = useRouter()
+  const alert = useAlert()
   const { addModal } = useModalActions()
   const { data: session } = useSession()
   const {
@@ -78,10 +80,10 @@ export default function BookReviewEditForm({
         onSuccess: () => {
           reset()
           router.push(`/book/detail/${_id.toString()}`)
-          toast.success('리뷰 수정 완료!')
+          alert.success('리뷰 수정 완료!')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

@@ -2,10 +2,10 @@ import React from 'react'
 import { CheckListItemType } from '@/interfaces/interface'
 import { useSession } from 'next-auth/react'
 import dayjs from '@/lib/dayjs'
-import { toast } from 'react-toastify'
 import useDeleteCheckListItemMutation from '@/hooks/mutation/useDeleteCheckListItemMutation'
 import useUpdateCheckListItemMutation from '@/hooks/mutation/useUpdateCheckListItemMutation'
 import { IconClose } from '../../../../public/svgs/icons'
+import { useAlert } from '@/hooks/useAlert'
 
 interface CheckListItemProps {
   item: CheckListItemType
@@ -17,6 +17,7 @@ export default function CheckListItem({
   selectedDate,
 }: CheckListItemProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const today = dayjs(new Date()).tz().format('YYYY-MM-DD')
 
@@ -45,7 +46,7 @@ export default function CheckListItem({
       },
       {
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

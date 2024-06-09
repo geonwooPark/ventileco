@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Modal from './Modal/Modal'
-import { toast } from 'react-toastify'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import InputWithLabel from '../Input/InputWithLabel'
 import { emailRegex, nameRegex, passwordRegex } from '@/constants/regex'
@@ -11,6 +10,7 @@ import { useFireWorkActions } from '@/hooks/store/useFireWorkStore'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import LoginModal from './LoginModal'
 import Button from '../Button'
+import { useAlert } from '@/hooks/useAlert'
 
 interface SignUpFormDataType {
   email: string
@@ -19,6 +19,7 @@ interface SignUpFormDataType {
 }
 
 export default function SignUpModal() {
+  const alert = useAlert()
   const { removeModal, addModal } = useModalActions()
   const { mutation: signUpMutation } = useSignUpMutation()
   const { onOpen: openFireWork } = useFireWorkActions()
@@ -36,11 +37,11 @@ export default function SignUpModal() {
       onSuccess: () => {
         reset()
         removeModal()
-        toast.success('회원가입에 성공했습니다!')
+        alert.success('회원가입에 성공했습니다!')
         openFireWork()
       },
       onError: (error) => {
-        toast.error(error.message)
+        alert.error(error.message)
       },
     })
   }
@@ -53,7 +54,7 @@ export default function SignUpModal() {
   const onError = (error: any) => {
     if (error === null) return
     for (const key in error) {
-      toast.error(error[key].message)
+      alert.error(error[key].message)
       break
     }
   }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IconChat } from '../../../../../public/svgs/icons'
 import { useSession } from 'next-auth/react'
 import useEditCommentMutation from '@/hooks/mutation/useEditCommentMutation'
-import { toast } from 'react-toastify'
+import { useAlert } from '@/hooks/useAlert'
 
 interface StoreCommentEditInputProps {
   commentText: string
@@ -22,6 +22,7 @@ export default function StoreCommentEditInput({
   setSelectedCommentIdForEdit,
 }: StoreCommentEditInputProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const [text, setText] = useState(commentText)
 
@@ -50,7 +51,7 @@ export default function StoreCommentEditInput({
           setSelectedCommentIdForEdit('')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

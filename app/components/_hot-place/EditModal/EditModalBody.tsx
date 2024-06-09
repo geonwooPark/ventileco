@@ -4,7 +4,6 @@ import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import {
   HotPlaceFormDataType,
   HotPlaceListingType,
@@ -19,6 +18,7 @@ import StoreInput from '../WriteModal/WriteForm/StoreInput'
 import DescriptionInput from '../WriteModal/WriteForm/DescriptionInput'
 import HashtagInput from '../WriteModal/WriteForm/HashtagInput'
 import RatingStar from '../WriteModal/WriteForm/RatingStar'
+import { useAlert } from '@/hooks/useAlert'
 
 interface EditModalBodyProps {
   listing: {
@@ -30,6 +30,8 @@ interface EditModalBodyProps {
 export default function EditModalBody({ listing }: EditModalBodyProps) {
   const router = useRouter()
   const { data: session } = useSession()
+  const alert = useAlert()
+
   const { store } = listing
   if (!store) return
   const {
@@ -85,10 +87,10 @@ export default function EditModalBody({ listing }: EditModalBodyProps) {
         onSuccess: () => {
           reset()
           router.back()
-          toast.success('스토어 수정 완료!')
+          alert.success('스토어 수정 완료!')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

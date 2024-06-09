@@ -2,10 +2,10 @@
 
 import Button from '@/components/common/Button'
 import useDeleteHotPlaceMutation from '@/hooks/mutation/useDeleteHotPlaceMutation'
+import { useAlert } from '@/hooks/useAlert'
 import { useSession } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React from 'react'
-import { toast } from 'react-toastify'
 
 interface DeleteModalBodyProps {
   storeId: string
@@ -13,6 +13,7 @@ interface DeleteModalBodyProps {
 
 export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
   const router = useRouter()
+  const alert = useAlert()
   const creator = useSearchParams().get('creator')
   const { data: session } = useSession()
   const { mutation: deleteStoreMutation } = useDeleteHotPlaceMutation()
@@ -29,10 +30,10 @@ export default function DeleteModalBody({ storeId }: DeleteModalBodyProps) {
       {
         onSuccess: () => {
           router.back()
-          toast.success('스토어 제거 성공!')
+          alert.success('스토어 제거 성공!')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

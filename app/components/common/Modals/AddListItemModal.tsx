@@ -3,13 +3,14 @@ import Modal from './Modal/Modal'
 import Input from '../Input/Input'
 import { useSession } from 'next-auth/react'
 import dayjs from '@/lib/dayjs'
-import { toast } from 'react-toastify'
 import useAddCheckListItemMutation from '@/hooks/mutation/useAddCheckListItemMutation'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import Button from '../Button'
+import { useAlert } from '@/hooks/useAlert'
 
 export default function AddListItemModal() {
   const { data: session } = useSession()
+  const alert = useAlert()
   const { removeModal } = useModalActions()
 
   const [value, setValue] = useState('')
@@ -34,7 +35,7 @@ export default function AddListItemModal() {
           removeModal()
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

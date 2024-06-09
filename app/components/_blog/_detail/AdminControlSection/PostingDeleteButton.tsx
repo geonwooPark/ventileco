@@ -1,9 +1,9 @@
 import ConfirmModal from '@/components/common/Modals/ConfirmModal'
 import { useModalActions } from '@/hooks/store/useModalStore'
+import { useAlert } from '@/hooks/useAlert'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import { toast } from 'react-toastify'
 
 interface PostingDeleteButtonProps {
   postingId: string
@@ -14,6 +14,7 @@ export default function PostingDeleteButton({
 }: PostingDeleteButtonProps) {
   const router = useRouter()
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const { addModal, removeModal } = useModalActions()
 
@@ -30,11 +31,11 @@ export default function PostingDeleteButton({
           removeModal()
           router.push('/blog')
           router.refresh()
-          toast.success(result.message)
+          alert.success(result.message)
         })
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message)
+        alert.error(error.message)
       }
     }
   }

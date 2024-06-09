@@ -1,20 +1,21 @@
 'use client'
 
 import React from 'react'
-import { toast } from 'react-toastify'
 import Spinner from '@common/Spinner'
 import useLikeQuery from '@/hooks/query/useLikeQuery'
 import { IconHeart } from '../../../../../../public/svgs/icons'
+import { useAlert } from '@/hooks/useAlert'
 
 interface LikeCounterProps {
   postingId: string
 }
 
 export default function LikeCounter({ postingId }: LikeCounterProps) {
+  const alert = useAlert()
   const { data, isPending, error } = useLikeQuery(postingId)
 
   if (error) {
-    toast.error(error.message)
+    alert.error(error.message)
   }
 
   return (

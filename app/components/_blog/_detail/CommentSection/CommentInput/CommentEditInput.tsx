@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { toast } from 'react-toastify'
 import Button from '@common/Button'
 import useEditCommentMutation from '@/hooks/mutation/useEditCommentMutation'
 import { useSession } from 'next-auth/react'
+import { useAlert } from '@/hooks/useAlert'
 
 interface CommentInputProps {
   commentText: string
@@ -22,6 +22,7 @@ export default function CommentEditInput({
   setSelectedCommentIdForEdit,
 }: CommentInputProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const [text, setText] = useState(commentText)
 
@@ -50,7 +51,7 @@ export default function CommentEditInput({
           setSelectedCommentIdForEdit('')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

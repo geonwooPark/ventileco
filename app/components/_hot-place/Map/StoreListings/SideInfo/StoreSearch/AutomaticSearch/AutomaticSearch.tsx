@@ -1,7 +1,7 @@
 import { HotPlaceListingType } from '@/interfaces/interface'
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import AutomaticSearchList from './AutomaticSearchList'
+import { useAlert } from '@/hooks/useAlert'
 
 interface AutomaticSearchProps {
   keyword: string
@@ -12,6 +12,8 @@ export default function AutomaticSearch({
   keyword,
   onClick,
 }: AutomaticSearchProps) {
+  const alert = useAlert()
+
   const [automaticSearchList, setAutomaticSearchList] = useState<
     HotPlaceListingType[]
   >([])
@@ -28,7 +30,7 @@ export default function AutomaticSearch({
           })
       } catch (error) {
         if (error instanceof Error) {
-          toast.error(error.message)
+          alert.error(error.message)
         }
       }
     }

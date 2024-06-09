@@ -1,10 +1,10 @@
 import React from 'react'
 import useDeleteReviewMutation from '@/hooks/mutation/useDeleteReviewMutation'
-import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import ConfirmModal from '@/components/common/Modals/ConfirmModal'
+import { useAlert } from '@/hooks/useAlert'
 
 interface ReviewDeleteButtonProps {
   bookId: string
@@ -14,6 +14,7 @@ export default function ReviewDeleteButton({
   bookId,
 }: ReviewDeleteButtonProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
   const router = useRouter()
 
   const { addModal, removeModal } = useModalActions()
@@ -31,10 +32,10 @@ export default function ReviewDeleteButton({
         onSuccess: () => {
           removeModal()
           router.push('/book')
-          toast.success('리뷰 제거 성공!')
+          alert.success('리뷰 제거 성공!')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

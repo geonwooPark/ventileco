@@ -12,6 +12,7 @@ import TanstackProvider from './components/common/provider/TanstackProvider'
 import { RootMetadata } from './constants/staticMetadata'
 import localFont from 'next/font/local'
 import ModalContainer from './components/common/Modals/ModalContainer'
+import AlertContainer from './components/common/Alerts/AlertContainer'
 
 const classic = localFont({
   src: [
@@ -64,9 +65,10 @@ export default async function RootLayout({
               autoClose={3000}
               hideProgressBar={true}
             />
-            <ModalContainer />
             <Header />
             {children}
+            <ModalContainer />
+            <AlertContainer />
           </TanstackProvider>
           <Firework />
           <RabbitGPT />

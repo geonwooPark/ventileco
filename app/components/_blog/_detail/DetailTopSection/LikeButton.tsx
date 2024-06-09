@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
 import useLikeQuery from '@/hooks/query/useLikeQuery'
 import useLikeMutation from '@/hooks/mutation/useLikeMutation'
 import { IconHeart } from '../../../../../public/svgs/icons'
+import { useAlert } from '@/hooks/useAlert'
 
 interface LikeButtonProps {
   className?: string
@@ -14,6 +14,7 @@ interface LikeButtonProps {
 
 export default function LikeButton({ className, postingId }: LikeButtonProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
   const { data, isPending, error } = useLikeQuery(postingId)
   const { mutation: likeMutation } = useLikeMutation({
     postingId,
@@ -25,14 +26,14 @@ export default function LikeButton({ className, postingId }: LikeButtonProps) {
       { postingId },
       {
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )
   }
 
   if (error) {
-    toast.error(error.message)
+    alert.error(error.message)
   }
 
   return (

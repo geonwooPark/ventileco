@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
 import Button from '@common/Button'
 import usePostCommentMutation from '@/hooks/mutation/usePostCommentMutation'
+import { useAlert } from '@/hooks/useAlert'
 
 interface CommentInputProps {
   postingId: string
@@ -12,6 +12,7 @@ interface CommentInputProps {
 
 export default function CommentInput({ postingId }: CommentInputProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const [text, setText] = useState('')
 
@@ -33,7 +34,7 @@ export default function CommentInput({ postingId }: CommentInputProps) {
           setText('')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

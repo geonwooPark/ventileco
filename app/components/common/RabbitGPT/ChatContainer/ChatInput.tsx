@@ -2,11 +2,13 @@
 
 import React, { useState } from 'react'
 import { useChatLog, useChatLogActions } from '@/hooks/store/useChatLogStore'
-import { toast } from 'react-toastify'
 import LoadingAnimation from '../../Animation/LoadingAnimation'
 import Input from '../../Input/Input'
+import { useAlert } from '@/hooks/useAlert'
 
 export default function ChatInput() {
+  const alert = useAlert()
+
   const [text, setText] = useState('')
   const { onAdd: setChatLog } = useChatLogActions()
   const [isLoading, setIsLoading] = useState(false)
@@ -37,12 +39,12 @@ export default function ChatInput() {
             setChatLog({ id: newId + 1, content: result, sender: 'gpt' })
             setIsLoading(false)
           } else {
-            toast.error(result.error)
+            alert.error(result.error)
           }
         })
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message)
+        alert.error(error.message)
       }
     }
   }

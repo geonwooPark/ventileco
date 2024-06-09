@@ -4,13 +4,14 @@ import React, { useState } from 'react'
 import { IconChat } from '../../../../../public/svgs/icons'
 import usePostCommentMutation from '@/hooks/mutation/usePostCommentMutation'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
 import { useParams } from 'next/navigation'
+import { useAlert } from '@/hooks/useAlert'
 
 export default function StoreCommentInput() {
   const params = useParams()
   const { id } = params
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const [text, setText] = useState('')
 
@@ -31,7 +32,7 @@ export default function StoreCommentInput() {
           setText('')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

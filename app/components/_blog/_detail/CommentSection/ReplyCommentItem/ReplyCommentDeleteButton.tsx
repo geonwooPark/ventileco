@@ -1,9 +1,9 @@
 import ConfirmModal from '@/components/common/Modals/ConfirmModal'
 import useDeleteCommentMutation from '@/hooks/mutation/useDeleteCommentMutation'
 import { useModalActions } from '@/hooks/store/useModalStore'
+import { useAlert } from '@/hooks/useAlert'
 import { useSession } from 'next-auth/react'
 import React from 'react'
-import { toast } from 'react-toastify'
 
 interface ReplyCommentDeleteButtonProps {
   postingId: string
@@ -17,6 +17,7 @@ export default function ReplyCommentDeleteButton({
   userId,
 }: ReplyCommentDeleteButtonProps) {
   const { data: session } = useSession()
+  const alert = useAlert()
 
   const { addModal, removeModal } = useModalActions()
 
@@ -39,7 +40,7 @@ export default function ReplyCommentDeleteButton({
           removeModal()
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

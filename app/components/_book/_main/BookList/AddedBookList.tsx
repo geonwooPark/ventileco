@@ -3,15 +3,17 @@
 import { BookReviewType } from '@/interfaces/interface'
 import React, { useEffect, useState } from 'react'
 import BookListItem from './BookListItem'
-import { toast } from 'react-toastify'
 import Spinner from '../../../common/Spinner'
 import useIntersectionObserver from '@/hooks/useIntersectionObserver'
+import { useAlert } from '@/hooks/useAlert'
 
 interface AddedBookListProps {
   category: string
 }
 
 export default function AddedBookList({ category }: AddedBookListProps) {
+  const alert = useAlert()
+
   const [addedBooks, setAddedBooks] = useState<BookReviewType[]>([])
   const { lastItem, isLoading, setIsLoading, triggerRef } =
     useIntersectionObserver(addedBooks)
@@ -30,7 +32,7 @@ export default function AddedBookList({ category }: AddedBookListProps) {
           })
       } catch (error) {
         if (error instanceof Error) {
-          toast.error(error.message)
+          alert.error(error.message)
         }
       } finally {
         setIsLoading(false)

@@ -18,6 +18,9 @@ import IconShare from './IconShare.svg'
 import IconChat from './IconChat.svg'
 import IconEmail from './IconEmail.svg'
 import IconPhone from './IconPhone.svg'
+import IconInfo from './IconInfo.svg'
+import IconError from './IconError.svg'
+import IconSuccess from './IconSuccess.svg'
 
 export {
   IconReplyArrow,
@@ -40,4 +43,7 @@ export {
   IconChat,
   IconEmail,
   IconPhone,
+  IconInfo,
+  IconError,
+  IconSuccess,
 }

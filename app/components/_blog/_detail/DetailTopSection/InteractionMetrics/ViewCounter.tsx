@@ -1,20 +1,21 @@
 'use client'
 
 import React from 'react'
-import { toast } from 'react-toastify'
 import Spinner from '@common/Spinner'
 import useViewQuery from '@/hooks/query/useViewQuery'
 import { IconEye } from '../../../../../../public/svgs/icons'
+import { useAlert } from '@/hooks/useAlert'
 
 interface ViewCounterProps {
   postingId: string
 }
 
 export default function ViewCounter({ postingId }: ViewCounterProps) {
+  const alert = useAlert()
   const { views, isPending, error } = useViewQuery(postingId)
 
   if (error) {
-    toast.error(error.message)
+    alert.error(error.message)
   }
 
   return (

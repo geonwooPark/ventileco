@@ -2,17 +2,18 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import React from 'react'
-import { toast } from 'react-toastify'
 import { IconClose, IconHeart, IconShare } from '../../../../public/svgs/icons'
 import useLikeQuery from '@/hooks/query/useLikeQuery'
 import useLikeMutation from '@/hooks/mutation/useLikeMutation'
 import { useSession } from 'next-auth/react'
+import { useAlert } from '@/hooks/useAlert'
 
 export default function StoreModalHeader() {
   const params = useParams()
   const { id } = params
   const router = useRouter()
   const { data: session } = useSession()
+  const alert = useAlert()
   const { data, isPending, error } = useLikeQuery(id as string)
   const { mutation: likeMutation } = useLikeMutation({
     postingId: id as string,
@@ -25,19 +26,19 @@ export default function StoreModalHeader() {
       { postingId: id as string },
       {
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )
   }
 
   if (error) {
-    toast.error(error.message)
+    alert.error(error.message)
   }
 
   const onShare = () => {
     navigator.clipboard.writeText(window.location.href)
-    toast.success('링크가 복사되었습니다!')
+    alert.success('링크가 복사되었습니다!')
   }
 
   return (

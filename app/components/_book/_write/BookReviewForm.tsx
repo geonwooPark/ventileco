@@ -10,12 +10,12 @@ import EmptyState from '../../common/EmptyState'
 import BookCategorySelector from './BookCategorySelector'
 import useWriteBookReviewMutation from '@/hooks/mutation/useWriteBookReviewMutation'
 import { useSession } from 'next-auth/react'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { BookReviewFormDataType } from '@/interfaces/interface'
 import { useGoBack } from '@/hooks/useGoBack'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import ConfirmModal from '@/components/common/Modals/ConfirmModal'
+import { useAlert } from '@/hooks/useAlert'
 
 const BookReviewEditor = dynamic(() => import('./BookReviewEditor'), {
   ssr: false,
@@ -29,6 +29,7 @@ const BookReviewEditor = dynamic(() => import('./BookReviewEditor'), {
 
 export default function BookReviewForm() {
   const router = useRouter()
+  const alert = useAlert()
   const { addModal } = useModalActions()
   const { data: session } = useSession()
   const {
@@ -62,10 +63,10 @@ export default function BookReviewForm() {
         onSuccess: () => {
           reset()
           router.push('/book')
-          toast.success('도서 등록 완료!')
+          alert.success('도서 등록 완료!')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

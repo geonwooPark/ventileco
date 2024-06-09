@@ -4,7 +4,6 @@ import Button from '@/components/common/Button'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import { HotPlaceFormDataType } from '@/interfaces/interface'
 import { useSession } from 'next-auth/react'
 import HashtagInput from './WriteForm/HashtagInput'
@@ -14,10 +13,13 @@ import StoreInput from './WriteForm/StoreInput'
 import DescriptionInput from './WriteForm/DescriptionInput'
 import RatingStar from './WriteForm/RatingStar'
 import useWriteHotPlaceMutation from '@/hooks/mutation/useWriteHotPlaceMutation'
+import { useAlert } from '@/hooks/useAlert'
 
 export default function WriteModalBody() {
   const router = useRouter()
   const { data: session } = useSession()
+  const alert = useAlert()
+
   const {
     register,
     handleSubmit,
@@ -53,10 +55,10 @@ export default function WriteModalBody() {
         onSuccess: () => {
           reset()
           router.back()
-          toast.success('스토어 등록 완료!')
+          alert.success('스토어 등록 완료!')
         },
         onError: (error) => {
-          toast.error(error.message)
+          alert.error(error.message)
         },
       },
     )

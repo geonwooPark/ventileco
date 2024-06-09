@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Button from '@/components/common/Button'
 import dynamic from 'next/dynamic'
-import { toast } from 'react-toastify'
 import {
   deleteObject,
   getDownloadURL,
@@ -20,6 +19,7 @@ import Section from '@/components/common/Section'
 import { useGoBack } from '@/hooks/useGoBack'
 import { useModalActions } from '@/hooks/store/useModalStore'
 import ConfirmModal from '@/components/common/Modals/ConfirmModal'
+import { useAlert } from '@/hooks/useAlert'
 
 const Editor = dynamic(() => import('@blog/common/Editor/Editor'), {
   ssr: false,
@@ -27,21 +27,15 @@ const Editor = dynamic(() => import('@blog/common/Editor/Editor'), {
 })
 
 const thumbnailUpload = async (thumbnailFile: File | null) => {
-  try {
-    if (!thumbnailFile) return
+  if (!thumbnailFile) return
 
-    const imgRef = ref(
-      storage,
-      `ThumbnailImages/${Date.now()} - ${thumbnailFile.name}`,
-    )
-    const result = await uploadBytes(imgRef, thumbnailFile)
-    const thumbnailURL = await getDownloadURL(ref(storage, result.ref.fullPath))
-    return thumbnailURL
-  } catch (error) {
-    if (error instanceof Error) {
-      toast.error(error.message)
-    }
-  }
+  const imgRef = ref(
+    storage,
+    `ThumbnailImages/${Date.now()} - ${thumbnailFile.name}`,
+  )
+  const result = await uploadBytes(imgRef, thumbnailFile)
+  const thumbnailURL = await getDownloadURL(ref(storage, result.ref.fullPath))
+  return thumbnailURL
 }
 
 const deleteImage = async (uploadImages: ImageType[], content: string) => {
@@ -60,6 +54,7 @@ export default function Edit() {
   const router = useRouter()
   const { id: postingId } = useParams()
   const { addModal } = useModalActions()
+  const alert = useAlert()
 
   const [posting, setPosting] = useState<OmittedPostingType>({
     category: '',
@@ -106,7 +101,7 @@ export default function Edit() {
           })
       } catch (error) {
         if (error instanceof Error) {
-          toast.error(error.message)
+          alert.error(error.message)
         }
       } finally {
         setFetchLoading(false)
@@ -160,7 +155,7 @@ export default function Edit() {
           if (!result.error) {
             router.push(`/blog/detail/${postingId}`)
             router.refresh()
-            toast.success(result.message)
+            alert.success(result.message)
           } else {
             if (result.focus === 'category') {
               categoryRef.current?.scrollIntoView({
@@ -185,7 +180,7 @@ export default function Edit() {
         })
     } catch (error) {
       if (error instanceof Error) {
-        toast.error(error.message)
+        alert.error(error.message)
       }
     } finally {
       setIsLoading(false)

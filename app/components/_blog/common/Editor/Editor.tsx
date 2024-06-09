@@ -6,9 +6,9 @@ import 'react-quill/dist/quill.snow.css'
 import 'react-quill/dist/quill.bubble.css'
 import { ImageResize } from 'quill-image-resize-module-ts'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
-import { toast } from 'react-toastify'
 import { ImageType, OmittedPostingType } from '../../../../interfaces/interface'
 import { storage } from '@/lib/firebase'
+import { useAlert } from '@/hooks/useAlert'
 Quill.register('modules/ImageResize', ImageResize)
 
 interface EditorProps {
@@ -26,6 +26,7 @@ export default function Editor({
   setPosting,
   setUploadImages,
 }: EditorProps) {
+  const alert = useAlert()
   const quillRef = useRef<any>()
 
   const onChange = (content: string) => {
@@ -63,7 +64,7 @@ export default function Editor({
         }
       } catch (error) {
         if (error instanceof Error) {
-          toast.error('이미지 업로드에 실패했습니다!')
+          alert.error('이미지 업로드에 실패했습니다!')
         }
       }
     }
