@@ -1,6 +1,5 @@
 import '../../styles/globals.css'
 import type { Metadata } from 'next'
-import 'react-toastify/dist/ReactToastify.css'
 import { BlogMetadata } from '@/constants/staticMetadata'
 
 export const metadata: Metadata = BlogMetadata

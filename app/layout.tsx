@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Outfit, Rye } from 'next/font/google'
 import '../app/styles/globals.css'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import Header from './components/common/Header/Header'
 import Script from 'next/script'
 import RabbitGPT from './components/common/RabbitGPT/RabbitGPT'
@@ -60,11 +58,6 @@ export default async function RootLayout({
         />
         <AuthSession>
           <TanstackProvider>
-            <ToastContainer
-              position="top-center"
-              autoClose={3000}
-              hideProgressBar={true}
-            />
             <Header />
             {children}
             <ModalContainer />
