@@ -6,6 +6,11 @@ import Particle from './Particle'
 
 const RenderModel = dynamic(
   () => import('@/components/_home/Three/RenderModel'),
+  {
+    loading: () => (
+      <div className="flex h-full w-full items-center justify-center" />
+    ),
+  },
 )
 
 export default function CanvasRenderer() {
