@@ -17,7 +17,6 @@ import IconGoogle from './IconGoogle.svg'
 import IconShare from './IconShare.svg'
 import IconChat from './IconChat.svg'
 import IconEmail from './IconEmail.svg'
-import IconPhone from './IconPhone.svg'
 import IconInfo from './IconInfo.svg'
 import IconError from './IconError.svg'
 import IconSuccess from './IconSuccess.svg'
@@ -42,7 +41,6 @@ export {
   IconGoogle,
   IconChat,
   IconEmail,
-  IconPhone,
   IconInfo,
   IconError,
   IconSuccess,

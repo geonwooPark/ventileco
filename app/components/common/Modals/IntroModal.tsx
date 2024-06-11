@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
-import men from '../../../../public/images/men.png'
+import home from '../../../../public/images/home.png'
 import Modal from './Modal/Modal'
 
 export default function IntroModal() {
@@ -16,14 +16,8 @@ export default function IntroModal() {
           </Modal.Header>
           <Modal.Content>
             <div className="text-beige-light">
-              <div className="relative mx-auto mb-4 size-[200px] overflow-hidden rounded-full bg-beige-normal">
-                <Image
-                  src={men}
-                  alt="profile"
-                  fill
-                  objectFit="cover"
-                  placeholder="blur"
-                />
+              <div className="relative mx-auto mb-4 size-[200px]">
+                <Image src={home} alt="profile" fill placeholder="blur" />
               </div>
               <div className="space-y-4 ">
                 <p>
