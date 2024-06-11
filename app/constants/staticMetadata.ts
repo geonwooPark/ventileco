@@ -23,7 +23,7 @@ export const RootMetadata = {
     type: 'website',
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/images/favicon.ico',
   },
   verification: {
     google: 'Ib9DLGTTkxzdg0mlwOLhB2GjzIwB8Od2tFbWWWwPWzk',
