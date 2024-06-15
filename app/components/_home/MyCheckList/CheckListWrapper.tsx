@@ -1,9 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import CheckList from './CheckList'
-import CheckListController from './CheckListController'
 import dayjs from '@/lib/dayjs'
+import dynamic from 'next/dynamic'
+
+const CheckListController = dynamic(() => import('./CheckListController'))
+const CheckList = dynamic(() => import('./CheckList'))
 
 export default function CheckListWrapper() {
   const [selectedDate, setSelectedDate] = useState(

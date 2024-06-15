@@ -1,10 +1,13 @@
 'use client'
 
 import React from 'react'
-import WeatherIcon from './WeatherIcon'
 import SkeletonWeatherInfo from './SkeletonWeatherInfo'
 import useWeatherQuery from '@/hooks/query/useWeatherQuery'
-import { APIKEY, CITY, weatherMap } from '@/constants'
+import { APIKEY, CITY } from '@/constants'
+import dynamic from 'next/dynamic'
+import WeatherDesc from './WeatherDesc'
+
+const WeatherIcon = dynamic(() => import('./WeatherIcon'))
 
 export default function WeatherInfo() {
   const { weatherData, isPending } = useWeatherQuery(CITY, APIKEY)
@@ -12,9 +15,7 @@ export default function WeatherInfo() {
 
   return (
     <div className="w-full font-normal">
-      <div>
-        <WeatherIcon main={weatherData?.weather[0].main} />
-      </div>
+      <WeatherIcon main={weatherData?.weather[0].main} />
 
       <div className="mb-3 flex-1 text-center">
         <p className="text-sm">Seoul</p>
@@ -32,9 +33,7 @@ export default function WeatherInfo() {
         </div>
       </div>
 
-      <p className="text-center">
-        {weatherMap.get(Number(weatherData?.weather[0].id))}
-      </p>
+      <WeatherDesc weatherData={weatherData} />
     </div>
   )
 }
