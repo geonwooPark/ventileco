@@ -9,6 +9,17 @@
     "lint": "next lint",
     "prepare": "husky install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo hi"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
   "dependencies": {
     "@react-three/fiber": "^8.16.2",
     "@svgr/webpack": "^8.1.0",
@@ -52,6 +63,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "husky": "^8.0.0",
     "leva": "^0.9.35",
+    "lint-staged": "^15.2.7",
     "postcss": "^8",
     "prettier": "^3.1.1",
     "react-lottie-player": "^1.5.5",
