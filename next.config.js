@@ -23,7 +23,7 @@ const nextConfig = {
 
   transpilePackages: ['three'],
 
-  output: 'export',
+  output: 'standalone',
 
   webpack(config) {
     config.module.rules.push({
