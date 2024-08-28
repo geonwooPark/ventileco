@@ -28,25 +28,25 @@ export async function POST(req: NextRequest) {
   if (!category) {
     return NextResponse.json(
       { error: '카테고리를 입력해주세요.', focus: 'category' },
-      { status: 406 },
+      { status: 400 },
     )
   }
   if (!title) {
     return NextResponse.json(
       { error: '제목을 입력해주세요.', focus: 'title' },
-      { status: 406 },
+      { status: 400 },
     )
   }
   if (title.length > 40) {
     return NextResponse.json(
       { error: '제목은 40자 이하로 입력해주세요.', focus: 'title' },
-      { status: 406 },
+      { status: 400 },
     )
   }
   if (description.length > 90) {
     return NextResponse.json(
       { error: '설명은 90자 이하로 입력해주세요.', focus: 'description' },
-      { status: 406 },
+      { status: 400 },
     )
   }
 
@@ -104,25 +104,25 @@ export async function PUT(req: NextRequest) {
   if (!category) {
     return NextResponse.json(
       { error: '카테고리를 입력해주세요.', focus: 'category' },
-      { status: 409 },
+      { status: 400 },
     )
   }
   if (!title) {
     return NextResponse.json(
       { error: '제목을 입력해주세요.', focus: 'title' },
-      { status: 409 },
+      { status: 400 },
     )
   }
   if (title.length > 40) {
     return NextResponse.json(
       { error: '제목은 40자 이하로 입력해주세요.', focus: 'title' },
-      { status: 409 },
+      { status: 400 },
     )
   }
   if (description.length > 90) {
     return NextResponse.json(
       { error: '설명은 90자 이하로 입력해주세요.', focus: 'description' },
-      { status: 409 },
+      { status: 400 },
     )
   }
 
