@@ -1,0 +1,57 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set PENDING status for Git Clone
+        id: set_status
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.CI_CD_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "pending", "description": "Git Clone in progress", "context": "ci/jenkins/git-clone"}' \
+            "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
+
+      - name: Set SUCCESS status for Git Clone
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.CI_CD_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "success", "description": "Git Clone succeeded", "context": "ci/jenkins/git-clone"}' \
+            "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
+
+      - name: Set PENDING status for FE-build
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.CI_CD_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "pending", "description": "FE-build in progress", "context": "ci/jenkins/fe-build"}' \
+            "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
+
+      - name: Set PENDING status for Compression
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.CI_CD_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "pending", "description": "Compression in progress", "context": "ci/jenkins/compression"}' \
+            "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
+
+      - name: Set PENDING status for Deploy
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.CI_CD_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "pending", "description": "Deploy in progress", "context": "ci/jenkins/deploy"}' \
+            "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
