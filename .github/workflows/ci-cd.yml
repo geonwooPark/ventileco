@@ -24,14 +24,6 @@ jobs:
             -d '{"state": "pending", "description": "Git Clone in progress", "context": "ci/jenkins/git-clone"}' \
             "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
 
-      - name: Set SUCCESS status for Git Clone
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.CI_CD_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -d '{"state": "success", "description": "Git Clone succeeded", "context": "ci/jenkins/git-clone"}' \
-            "https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }}"
-
       - name: Set PENDING status for FE-build
         run: |
           curl -X POST \
